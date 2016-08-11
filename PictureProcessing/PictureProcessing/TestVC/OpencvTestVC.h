@@ -6,8 +6,13 @@
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TestBaseVC.h"
 
-@interface OpencvTestVC : UIViewController
+@interface OpencvTestVC : TestBaseVC
+
+
+
+
+
 
 @end

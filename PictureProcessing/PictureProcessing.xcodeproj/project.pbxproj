@@ -192,16 +192,13 @@
 		7594A7A01D5CBBEA00D6F31B /* OpenCVDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7901D5CBBEA00D6F31B /* OpenCVDemo.cpp */; };
 		7594A7A11D5CBBEA00D6F31B /* CoreImgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7941D5CBBEA00D6F31B /* CoreImgeTest.m */; };
 		7594A7A21D5CBBEA00D6F31B /* GPUImageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7971D5CBBEA00D6F31B /* GPUImageTest.m */; };
-		7594A7A31D5CBBEA00D6F31B /* OpenCVMorphology.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A79A1D5CBBEA00D6F31B /* OpenCVMorphology.mm */; };
-		7594A7A41D5CBBEA00D6F31B /* OpencvTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A79C1D5CBBEA00D6F31B /* OpencvTest.mm */; };
-		7594A7A51D5CBBEA00D6F31B /* OpenCVUtilBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A79E1D5CBBEA00D6F31B /* OpenCVUtilBase.mm */; };
 		7594A7A71D5CBC5700D6F31B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */; };
 		7594A7A91D5CBC5F00D6F31B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */; };
 		7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */; };
 		7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */; };
 		7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */; };
 		7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B11D5CBEF500D6F31B /* TestCell.m */; };
-		7594A7B61D5CBF6100D6F31B /* OpencvTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B51D5CBF6100D6F31B /* OpencvTestVC.m */; };
+		7594A7B61D5CBF6100D6F31B /* OpencvTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B51D5CBF6100D6F31B /* OpencvTestVC.mm */; };
 		7594A7D61D5CC10200D6F31B /* sj_20160705_1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7B81D5CC10200D6F31B /* sj_20160705_1.JPG */; };
 		7594A7D71D5CC10200D6F31B /* sj_20160705_10.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7B91D5CC10200D6F31B /* sj_20160705_10.JPG */; };
 		7594A7D81D5CC10200D6F31B /* sj_20160705_11.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7BA1D5CC10200D6F31B /* sj_20160705_11.JPG */; };
@@ -232,6 +229,7 @@
 		7594A7F11D5CC10200D6F31B /* sj_20160705_7.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7D31D5CC10200D6F31B /* sj_20160705_7.JPG */; };
 		7594A7F21D5CC10200D6F31B /* sj_20160705_8.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7D41D5CC10200D6F31B /* sj_20160705_8.JPG */; };
 		7594A7F31D5CC10200D6F31B /* sj_20160705_9.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7D51D5CC10200D6F31B /* sj_20160705_9.JPG */; };
+		7594A7F61D5CC1F000D6F31B /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -606,12 +604,6 @@
 		7594A7941D5CBBEA00D6F31B /* CoreImgeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImgeTest.m; sourceTree = "<group>"; };
 		7594A7961D5CBBEA00D6F31B /* GPUImageTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageTest.h; sourceTree = "<group>"; };
 		7594A7971D5CBBEA00D6F31B /* GPUImageTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageTest.m; sourceTree = "<group>"; };
-		7594A7991D5CBBEA00D6F31B /* OpenCVMorphology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVMorphology.h; sourceTree = "<group>"; };
-		7594A79A1D5CBBEA00D6F31B /* OpenCVMorphology.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVMorphology.mm; sourceTree = "<group>"; };
-		7594A79B1D5CBBEA00D6F31B /* OpencvTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpencvTest.h; sourceTree = "<group>"; };
-		7594A79C1D5CBBEA00D6F31B /* OpencvTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpencvTest.mm; sourceTree = "<group>"; };
-		7594A79D1D5CBBEA00D6F31B /* OpenCVUtilBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVUtilBase.h; sourceTree = "<group>"; };
-		7594A79E1D5CBBEA00D6F31B /* OpenCVUtilBase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVUtilBase.mm; sourceTree = "<group>"; };
 		7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -620,7 +612,7 @@
 		7594A7B01D5CBEF500D6F31B /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
 		7594A7B11D5CBEF500D6F31B /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
 		7594A7B41D5CBF6100D6F31B /* OpencvTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpencvTestVC.h; sourceTree = "<group>"; };
-		7594A7B51D5CBF6100D6F31B /* OpencvTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpencvTestVC.m; sourceTree = "<group>"; };
+		7594A7B51D5CBF6100D6F31B /* OpencvTestVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpencvTestVC.mm; sourceTree = "<group>"; };
 		7594A7B81D5CC10200D6F31B /* sj_20160705_1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_1.JPG; sourceTree = "<group>"; };
 		7594A7B91D5CC10200D6F31B /* sj_20160705_10.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_10.JPG; sourceTree = "<group>"; };
 		7594A7BA1D5CC10200D6F31B /* sj_20160705_11.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_11.JPG; sourceTree = "<group>"; };
@@ -651,6 +643,8 @@
 		7594A7D31D5CC10200D6F31B /* sj_20160705_7.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_7.JPG; sourceTree = "<group>"; };
 		7594A7D41D5CC10200D6F31B /* sj_20160705_8.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_8.JPG; sourceTree = "<group>"; };
 		7594A7D51D5CC10200D6F31B /* sj_20160705_9.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_9.JPG; sourceTree = "<group>"; };
+		7594A7F41D5CC1F000D6F31B /* TestBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseVC.h; sourceTree = "<group>"; };
+		7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBaseVC.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1103,7 +1097,6 @@
 				7594A78D1D5CBBEA00D6F31B /* C++ */,
 				7594A7921D5CBBEA00D6F31B /* CoreImage */,
 				7594A7951D5CBBEA00D6F31B /* GPU */,
-				7594A7981D5CBBEA00D6F31B /* OpenCVTool */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1137,24 +1130,13 @@
 			path = GPU;
 			sourceTree = "<group>";
 		};
-		7594A7981D5CBBEA00D6F31B /* OpenCVTool */ = {
-			isa = PBXGroup;
-			children = (
-				7594A7991D5CBBEA00D6F31B /* OpenCVMorphology.h */,
-				7594A79A1D5CBBEA00D6F31B /* OpenCVMorphology.mm */,
-				7594A79B1D5CBBEA00D6F31B /* OpencvTest.h */,
-				7594A79C1D5CBBEA00D6F31B /* OpencvTest.mm */,
-				7594A79D1D5CBBEA00D6F31B /* OpenCVUtilBase.h */,
-				7594A79E1D5CBBEA00D6F31B /* OpenCVUtilBase.mm */,
-			);
-			path = OpenCVTool;
-			sourceTree = "<group>";
-		};
 		7594A7B31D5CBF4500D6F31B /* TestVC */ = {
 			isa = PBXGroup;
 			children = (
 				7594A7B41D5CBF6100D6F31B /* OpencvTestVC.h */,
-				7594A7B51D5CBF6100D6F31B /* OpencvTestVC.m */,
+				7594A7B51D5CBF6100D6F31B /* OpencvTestVC.mm */,
+				7594A7F41D5CC1F000D6F31B /* TestBaseVC.h */,
+				7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */,
 			);
 			path = TestVC;
 			sourceTree = "<group>";
@@ -1386,7 +1368,7 @@
 				7594A6DE1D5CBA9100D6F31B /* GLProgram.m in Sources */,
 				7594A71F1D5CBA9100D6F31B /* GPUImageHighPassFilter.m in Sources */,
 				7594A71B1D5CBA9100D6F31B /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
-				7594A7B61D5CBF6100D6F31B /* OpencvTestVC.m in Sources */,
+				7594A7B61D5CBF6100D6F31B /* OpencvTestVC.mm in Sources */,
 				7594A7381D5CBA9100D6F31B /* GPUImageMaskFilter.m in Sources */,
 				7594A7431D5CBA9100D6F31B /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				7594A6FD1D5CBA9100D6F31B /* GPUImageCropFilter.m in Sources */,
@@ -1419,7 +1401,6 @@
 				7594A75E1D5CBA9100D6F31B /* GPUImageSaturationFilter.m in Sources */,
 				7594A75D1D5CBA9100D6F31B /* GPUImageSaturationBlendFilter.m in Sources */,
 				7594A7501D5CBA9100D6F31B /* GPUImagePixellatePositionFilter.m in Sources */,
-				7594A7A31D5CBBEA00D6F31B /* OpenCVMorphology.mm in Sources */,
 				7594A7A21D5CBBEA00D6F31B /* GPUImageTest.m in Sources */,
 				7594A7761D5CBA9100D6F31B /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				7594A73C1D5CBA9100D6F31B /* GPUImageMosaicFilter.m in Sources */,
@@ -1436,9 +1417,7 @@
 				7594A70A1D5CBA9100D6F31B /* GPUImageExposureFilter.m in Sources */,
 				7594A7471D5CBA9100D6F31B /* GPUImageOpeningFilter.m in Sources */,
 				7594A7881D5CBA9100D6F31B /* GPUImageWhiteBalanceFilter.m in Sources */,
-				7594A7A51D5CBBEA00D6F31B /* OpenCVUtilBase.mm in Sources */,
 				7594A72A1D5CBA9100D6F31B /* GPUImageKuwaharaRadius3Filter.m in Sources */,
-				7594A7A41D5CBBEA00D6F31B /* OpencvTest.mm in Sources */,
 				7594A7071D5CBA9100D6F31B /* GPUImageEmbossFilter.m in Sources */,
 				7594A7461D5CBA9100D6F31B /* GPUImageOpacityFilter.m in Sources */,
 				7594A7811D5CBA9100D6F31B /* GPUImageUnsharpMaskFilter.m in Sources */,
@@ -1481,6 +1460,7 @@
 				7594A7241D5CBA9100D6F31B /* GPUImageHSBFilter.m in Sources */,
 				7594A7631D5CBA9100D6F31B /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				7594A72C1D5CBA9100D6F31B /* GPUImageLaplacianFilter.m in Sources */,
+				7594A7F61D5CC1F000D6F31B /* TestBaseVC.mm in Sources */,
 				7594A70B1D5CBA9100D6F31B /* GPUImageFalseColorFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
