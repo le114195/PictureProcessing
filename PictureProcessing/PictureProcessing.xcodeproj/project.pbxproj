@@ -200,6 +200,8 @@
 		7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */; };
 		7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */; };
 		7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */; };
+		7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B11D5CBEF500D6F31B /* TestCell.m */; };
+		7594A7B61D5CBF6100D6F31B /* OpencvTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B51D5CBF6100D6F31B /* OpencvTestVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -585,6 +587,10 @@
 		7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7594A7B01D5CBEF500D6F31B /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
+		7594A7B11D5CBEF500D6F31B /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
+		7594A7B41D5CBF6100D6F31B /* OpencvTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpencvTestVC.h; sourceTree = "<group>"; };
+		7594A7B51D5CBF6100D6F31B /* OpencvTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpencvTestVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -630,11 +636,14 @@
 		7556F7D01D5CA0AA008CC401 /* PictureProcessing */ = {
 			isa = PBXGroup;
 			children = (
+				7594A7B31D5CBF4500D6F31B /* TestVC */,
 				7594A78C1D5CBBEA00D6F31B /* Util */,
 				7556F7D41D5CA0AA008CC401 /* AppDelegate.h */,
 				7556F7D51D5CA0AA008CC401 /* AppDelegate.m */,
 				7556F7D71D5CA0AA008CC401 /* ViewController.h */,
 				7556F7D81D5CA0AA008CC401 /* ViewController.mm */,
+				7594A7B01D5CBEF500D6F31B /* TestCell.h */,
+				7594A7B11D5CBEF500D6F31B /* TestCell.m */,
 				7556F7DA1D5CA0AA008CC401 /* Main.storyboard */,
 				7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */,
 				7556F7DF1D5CA0AA008CC401 /* LaunchScreen.storyboard */,
@@ -1080,6 +1089,15 @@
 			path = OpenCVTool;
 			sourceTree = "<group>";
 		};
+		7594A7B31D5CBF4500D6F31B /* TestVC */ = {
+			isa = PBXGroup;
+			children = (
+				7594A7B41D5CBF6100D6F31B /* OpencvTestVC.h */,
+				7594A7B51D5CBF6100D6F31B /* OpencvTestVC.m */,
+			);
+			path = TestVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1220,6 +1238,7 @@
 				7594A6E81D5CBA9100D6F31B /* GPUImageBoxBlurFilter.m in Sources */,
 				7594A7331D5CBA9100D6F31B /* GPUImageLowPassFilter.m in Sources */,
 				7594A7231D5CBA9100D6F31B /* GPUImageHoughTransformLineDetector.m in Sources */,
+				7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */,
 				7594A6FF1D5CBA9100D6F31B /* GPUImageCrosshatchFilter.m in Sources */,
 				7594A7211D5CBA9100D6F31B /* GPUImageHistogramFilter.m in Sources */,
 				7594A7081D5CBA9100D6F31B /* GPUImageErosionFilter.m in Sources */,
@@ -1239,6 +1258,7 @@
 				7594A6DE1D5CBA9100D6F31B /* GLProgram.m in Sources */,
 				7594A71F1D5CBA9100D6F31B /* GPUImageHighPassFilter.m in Sources */,
 				7594A71B1D5CBA9100D6F31B /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
+				7594A7B61D5CBF6100D6F31B /* OpencvTestVC.m in Sources */,
 				7594A7381D5CBA9100D6F31B /* GPUImageMaskFilter.m in Sources */,
 				7594A7431D5CBA9100D6F31B /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				7594A6FD1D5CBA9100D6F31B /* GPUImageCropFilter.m in Sources */,
