@@ -195,6 +195,11 @@
 		7594A7A31D5CBBEA00D6F31B /* OpenCVMorphology.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A79A1D5CBBEA00D6F31B /* OpenCVMorphology.mm */; };
 		7594A7A41D5CBBEA00D6F31B /* OpencvTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A79C1D5CBBEA00D6F31B /* OpencvTest.mm */; };
 		7594A7A51D5CBBEA00D6F31B /* OpenCVUtilBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A79E1D5CBBEA00D6F31B /* OpenCVUtilBase.mm */; };
+		7594A7A71D5CBC5700D6F31B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */; };
+		7594A7A91D5CBC5F00D6F31B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */; };
+		7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */; };
+		7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */; };
+		7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -575,6 +580,11 @@
 		7594A79C1D5CBBEA00D6F31B /* OpencvTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpencvTest.mm; sourceTree = "<group>"; };
 		7594A79D1D5CBBEA00D6F31B /* OpenCVUtilBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVUtilBase.h; sourceTree = "<group>"; };
 		7594A79E1D5CBBEA00D6F31B /* OpenCVUtilBase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVUtilBase.mm; sourceTree = "<group>"; };
+		7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -582,6 +592,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */,
+				7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */,
+				7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */,
+				7594A7A91D5CBC5F00D6F31B /* AVFoundation.framework in Frameworks */,
+				7594A7A71D5CBC5700D6F31B /* QuartzCore.framework in Frameworks */,
 				7594A57A1D5CBA0E00D6F31B /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +607,11 @@
 		7556F7C51D5CA0AA008CC401 = {
 			isa = PBXGroup;
 			children = (
+				7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */,
+				7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */,
+				7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */,
+				7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */,
+				7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */,
 				7594A57B1D5CBA9000D6F31B /* Lib */,
 				7594A5791D5CBA0E00D6F31B /* opencv2.framework */,
 				7556F7D01D5CA0AA008CC401 /* PictureProcessing */,

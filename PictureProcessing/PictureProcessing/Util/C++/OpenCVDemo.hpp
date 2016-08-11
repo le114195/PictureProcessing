@@ -17,7 +17,7 @@
 using namespace cv;
 
 class TJOpenCVBase{
-
+    
 public:
     
     Mat showImage(const char *imageName);
@@ -25,7 +25,7 @@ public:
     static void converBGR2RGB(Mat dstMat);
     
 protected:
-
+    
     Mat srcImage;
     Mat dstImage;
     
@@ -40,7 +40,7 @@ private:
 
 /** 访问图片的像素操作 */
 class TJPixel:public TJOpenCVBase {
-
+    
 public:
     
     //利用at函数访问像素
@@ -50,7 +50,7 @@ public:
     //利用指针访问像素
     void ptr_demo(const char* imgName);
     
-
+    
     /** 迭代器访问像素 */
     void iterator_demo(const char* imgName);
     
@@ -60,10 +60,13 @@ public:
     
     void createImage();
     
+    Mat cutImage(const char* imgName);
+    
+    
 private:
     
     void createAlphaMat(Mat &mat);
-
+    
 };
 
 
@@ -71,7 +74,7 @@ private:
 
 /** 形态学 */
 class TJMorphology: public TJOpenCVBase{
-
+    
 public:
     
     
@@ -96,7 +99,7 @@ public:
 private:
     
     
-
+    
 };
 
 
@@ -104,7 +107,7 @@ private:
 /** 图片放缩 */
 class TJScale: public TJOpenCVBase {
     
-
+    
 public:
     
     /** resize：图像放缩函数 */
@@ -112,6 +115,9 @@ public:
     
     
     Mat color_demo(const char* imgName);
+    
+    
+    Mat ROI_demo(const char *imgName);
     
     
     

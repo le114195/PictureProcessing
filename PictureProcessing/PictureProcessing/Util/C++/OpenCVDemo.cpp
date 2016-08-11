@@ -79,9 +79,9 @@ void TJPixel::iterator_demo(const char *imgName) {
     
     while (it!=itend) {
         
-//        (*it)[0]
-//        (*it)[1]
-//        (*it)[2]
+        //        (*it)[0]
+        //        (*it)[1]
+        //        (*it)[2]
         
         it++;
     }
@@ -141,8 +141,40 @@ void TJPixel::createImage()
     
     
     
-
+    
 }
+
+Mat TJPixel::cutImage(const char *imgName){
+    
+    Mat srcMat = imread(imgName);
+    Mat dstMat = Mat::zeros(srcMat.size(), CV_8UC4);
+    
+    
+    for (int i = 0; i < dstMat.rows; ++i) {
+        
+        for (int j = 0; j < dstMat.cols; ++j) {
+            
+            Vec4b& rgba = dstMat.at<Vec4b>(i, j);
+            
+            //            rgba[0] = srcMat.at<Vec3b>(i, j)[0];
+            //            rgba[1] = srcMat.at<Vec3b>(i, j)[1];
+            //            rgba[2] = srcMat.at<Vec3b>(i, j)[2];
+            
+            rgba[0] = UCHAR_MAX;
+            rgba[1] = saturate_cast<uchar>((float (dstMat.cols - j)) / ((float)dstMat.cols) *UCHAR_MAX);
+            rgba[2] = saturate_cast<uchar>((float (dstMat.rows - i)) / ((float)dstMat.rows) *UCHAR_MAX);
+            rgba[3] = saturate_cast<uchar>(0.5 * (rgba[1] + rgba[2]));
+            //            rgba[3] = 0;
+            
+        }
+        
+    }
+    
+    cvtColor(dstMat, dstMat, CV_RGB2BGR);
+    
+    return dstMat;
+}
+
 
 
 
@@ -156,7 +188,7 @@ Mat TJMorphology::dilate_demo(const char *imgName, cv::Size size)
     Mat dstMat = Mat::zeros(srcMat.size(), srcMat.type());
     
     Mat element = getStructuringElement(MORPH_RECT, size);
-
+    
     dilate(srcMat, dstMat, element);
     
     converBGR2RGB(dstMat);
@@ -262,6 +294,35 @@ Mat TJScale::color_demo(const char *imgName){
     
     return dstMat;
 }
+
+
+Mat TJScale::ROI_demo(const char *imgName) {
+    
+    Mat srcMat = imread(imgName);
+    Mat logoMat = this->resize_demo(imgName);
+    
+    Mat imgROI = srcMat(Rect(0, 0, logoMat.cols, logoMat.rows));
+    
+    
+    for (int i = 0; i < logoMat.rows; ++i) {
+        
+        for (int j = 0; j < logoMat.cols; ++j) {
+            
+            Vec3b& rgba = imgROI.at<Vec3b>(i, j);
+            rgba[0] = logoMat.at<Vec3b>(i, j)[0];
+            rgba[1] = logoMat.at<Vec3b>(i, j)[1];
+            rgba[2] = logoMat.at<Vec3b>(i, j)[2];
+            
+        }
+    }
+    
+    converBGR2RGB(srcMat);
+    return srcMat;
+}
+
+
+
+
 
 
 //TJEdge
