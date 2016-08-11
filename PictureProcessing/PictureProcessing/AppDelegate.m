@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    [self createDir];
+    
     return YES;
 }
 
@@ -41,5 +45,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+
+- (void)createDir {
+    NSLog(@"%@", ToolDirectory);
+    BOOL isDir = false;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:ToolDirectory isDirectory:&isDir]) {
+        [fileManager createDirectoryAtPath:ToolDirectory withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+}
+
+
 
 @end
