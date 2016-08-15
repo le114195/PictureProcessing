@@ -44,6 +44,7 @@
 }
 
 
+/** 渲染图片 */
 - (UIImage *)rendering
 {
     // 渲染并输出CIImage

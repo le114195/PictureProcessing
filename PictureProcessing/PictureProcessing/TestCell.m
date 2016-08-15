@@ -27,7 +27,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 100, 44)];
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 200, 44)];
         [self.contentView addSubview:nameLabel];
         self.nameLabel = nameLabel;
     }

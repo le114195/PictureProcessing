@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750F80081D61655E004BF41A /* CoreImageVCTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750F80071D61655E004BF41A /* CoreImageVCTest.mm */; };
+		750F800F1D616E4D004BF41A /* GPUImageTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 750F800E1D616E4D004BF41A /* GPUImageTestVC.mm */; };
 		7514FC1C1D6163C7008B7F2F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7514FABE1D6163C6008B7F2F /* Info.plist */; };
 		7514FC1D1D6163C7008B7F2F /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 7514FAC11D6163C6008B7F2F /* GLProgram.m */; };
 		7514FC1E1D6163C7008B7F2F /* GPUImage3x3ConvolutionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7514FAC51D6163C6008B7F2F /* GPUImage3x3ConvolutionFilter.m */; };
@@ -234,6 +236,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		750F80061D61655E004BF41A /* CoreImageVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageVCTest.h; sourceTree = "<group>"; };
+		750F80071D61655E004BF41A /* CoreImageVCTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageVCTest.mm; sourceTree = "<group>"; };
+		750F800A1D616A39004BF41A /* BlockHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockHeader.h; sourceTree = "<group>"; };
+		750F800B1D616AA4004BF41A /* SizeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizeHeader.h; sourceTree = "<group>"; };
+		750F800C1D616AD8004BF41A /* FileHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileHeader.h; sourceTree = "<group>"; };
+		750F800D1D616E4D004BF41A /* GPUImageTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageTestVC.h; sourceTree = "<group>"; };
+		750F800E1D616E4D004BF41A /* GPUImageTestVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageTestVC.mm; sourceTree = "<group>"; };
 		7514FABD1D6163C6008B7F2F /* GPUImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramework.h; sourceTree = "<group>"; };
 		7514FABE1D6163C6008B7F2F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7514FABF1D6163C6008B7F2F /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -1016,6 +1025,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		750F80091D616A2B004BF41A /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				750F800A1D616A39004BF41A /* BlockHeader.h */,
+				750F800B1D616AA4004BF41A /* SizeHeader.h */,
+				750F800C1D616AD8004BF41A /* FileHeader.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		7514FABA1D6163C6008B7F2F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1821,6 +1840,7 @@
 		7594A78C1D5CBBEA00D6F31B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				750F80091D616A2B004BF41A /* Header */,
 				7594A78D1D5CBBEA00D6F31B /* C++ */,
 				7594A7921D5CBBEA00D6F31B /* CoreImage */,
 				7594A7951D5CBBEA00D6F31B /* GPU */,
@@ -1864,6 +1884,10 @@
 				7594A7B51D5CBF6100D6F31B /* OpencvTestVC.mm */,
 				7594A7F41D5CC1F000D6F31B /* TestBaseVC.h */,
 				7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */,
+				750F80061D61655E004BF41A /* CoreImageVCTest.h */,
+				750F80071D61655E004BF41A /* CoreImageVCTest.mm */,
+				750F800D1D616E4D004BF41A /* GPUImageTestVC.h */,
+				750F800E1D616E4D004BF41A /* GPUImageTestVC.mm */,
 			);
 			path = TestVC;
 			sourceTree = "<group>";
@@ -2075,6 +2099,7 @@
 				7514FC4C1D6163C7008B7F2F /* GPUImageFilter.m in Sources */,
 				7514FCB11D6163C7008B7F2F /* GPUImageTextureInput.m in Sources */,
 				7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */,
+				750F800F1D616E4D004BF41A /* GPUImageTestVC.mm in Sources */,
 				7514FCA11D6163C7008B7F2F /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
 				7514FC9D1D6163C7008B7F2F /* GPUImageSaturationFilter.m in Sources */,
 				7514FC531D6163C7008B7F2F /* GPUImageGaussianBlurFilter.m in Sources */,
@@ -2112,6 +2137,7 @@
 				7514FCB01D6163C7008B7F2F /* GPUImageSwirlFilter.m in Sources */,
 				7514FC351D6163C7008B7F2F /* GPUImageColorLocalBinaryPatternFilter.m in Sources */,
 				7514FCA41D6163C7008B7F2F /* GPUImageSkinToneFilter.m in Sources */,
+				750F80081D61655E004BF41A /* CoreImageVCTest.mm in Sources */,
 				7514FCA01D6163C7008B7F2F /* GPUImageSharpenFilter.m in Sources */,
 				7514FCBB1D6163C7008B7F2F /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				7514FC971D6163C7008B7F2F /* GPUImageRGBClosingFilter.m in Sources */,
@@ -2311,7 +2337,7 @@
 				INFOPLIST_FILE = PictureProcessing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = TJ.PictureProcessing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.PictureProcessing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2328,7 +2354,7 @@
 				INFOPLIST_FILE = PictureProcessing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = TJ.PictureProcessing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.PictureProcessing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

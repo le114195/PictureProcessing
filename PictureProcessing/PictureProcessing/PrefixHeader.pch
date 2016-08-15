@@ -14,14 +14,13 @@
 
 
 
-#define PictureHeader(imageName)       [[NSBundle mainBundle] pathForResource:imageName ofType:nil]
-
-#define ScreenWidth         [UIScreen mainScreen].bounds.size.width
-#define ScreenHeight        [UIScreen mainScreen].bounds.size.height
 
 
 
-#define ToolDirectory       [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"tool"]
+#import "BlockHeader.h"
+#import "SizeHeader.h"
+#import "FileHeader.h"
+
 
 
 

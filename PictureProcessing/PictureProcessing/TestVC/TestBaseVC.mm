@@ -39,9 +39,7 @@
 
 - (void)subViewConfigure
 {
-    
     CGFloat imgWidth = (ScreenWidth / ScreenHeight) * (ScreenHeight - 64);
-    
     
     UIImageView *srcImageView = [[UIImageView alloc] initWithFrame:CGRectMake((ScreenWidth - imgWidth) * 0.5, 64, imgWidth, ScreenHeight - 64)];
     self.srcImageView = srcImageView;
