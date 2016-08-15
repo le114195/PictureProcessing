@@ -40,12 +40,15 @@
     
     //    self.srcImageView.image = MatToUIImage(TJMorphology::open_demo([self.imageName UTF8String], 5));
     
-    [self scaleTest];
+//    [self scaleTest];
     
     
-    //    [self pixelTest];
+        [self pixelTest];
     
     //    [self edgeTest];
+    
+    
+    
     
     
 }
@@ -69,24 +72,16 @@
 
 /** 图片像素操作 */
 - (void)pixelTest {
-    
     TJPixel *pixel = new TJPixel();
-    
-    
-    self.srcImageView.image = MatToUIImage(pixel->cutImage([self.imageName UTF8String]));
-    
-    
+    self.srcImageView.image = MatToUIImage(pixel->colorReversal([self.imageName UTF8String]));
     delete pixel;
 }
 
 
 /** 边缘检测 */
 - (void)edgeTest {
-    
     TJEdge *edge = new TJEdge();
-    
     self.srcImageView.image = MatToUIImage(edge->canny_demo([self.imageName UTF8String]));
-    
     delete edge;
 }
 

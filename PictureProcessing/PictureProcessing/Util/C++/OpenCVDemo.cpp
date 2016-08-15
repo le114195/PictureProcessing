@@ -175,7 +175,42 @@ Mat TJPixel::cutImage(const char *imgName){
     return dstMat;
 }
 
+Mat TJPixel::oneGallery(const char *imgName) {
+    
+    Mat srcMat = imread(imgName);
+    Mat dstMat = Mat::zeros(srcMat.size(), CV_8UC1);
 
+    for (int i = 0; i < srcMat.rows; ++i) {
+        for (int j = 0; j < srcMat.cols; ++j) {
+            if (srcMat.type() == CV_8UC1) {
+                dstMat.at<uchar>(i, j) = srcMat.at<uchar>(i, j);
+            }else if (srcMat.type() == CV_8UC2) {
+                dstMat.at<uchar>(i, j) = srcMat.at<Vec2b>(i, j)[0];
+            }else if (srcMat.type() == CV_8UC3) {
+                dstMat.at<uchar>(i, j) = (srcMat.at<Vec3b>(i, j)[0] + srcMat.at<Vec3b>(i, j)[1] + srcMat.at<Vec3b>(i, j)[2]) / 3;
+            }else if (srcMat.type() == CV_8UC4) {
+                dstMat.at<uchar>(i, j) = (srcMat.at<Vec4b>(i, j)[0] + srcMat.at<Vec4b>(i, j)[1] + srcMat.at<Vec4b>(i, j)[2]) / 3;
+            }
+        }
+    }
+    return dstMat;
+}
+
+Mat TJPixel::colorReversal(const char* imgName){
+    
+    Mat srcMat = oneGallery(imgName);
+    
+    Mat dstMat = Mat::zeros(srcMat.size(), srcMat.type());
+
+    for (int i = 0; i < srcMat.rows; i++) {
+        
+        for (int j = 0; j < srcMat.cols; j++) {
+            
+            dstMat.at<uchar>(i, j) = UCHAR_MAX - srcMat.at<uchar>(i, j);
+        }
+    }
+    return dstMat;
+}
 
 
 //TJMorphology

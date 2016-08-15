@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.imgName = @"sj_20160705_30.JPG";
+    self.imgName = @"sj_20160705_1.JPG";
     
     [self coreImageTest];
     

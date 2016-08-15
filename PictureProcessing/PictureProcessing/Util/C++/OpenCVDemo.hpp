@@ -62,6 +62,12 @@ public:
     
     Mat cutImage(const char* imgName);
     
+    /** 将图片转成单通道黑白图片 */
+    Mat oneGallery(const char* imgName);
+    
+    
+    /** 将图片的像素灰度反转 */
+    Mat colorReversal(const char* imgName);
     
 private:
     
