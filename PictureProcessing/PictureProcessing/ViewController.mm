@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "TestCell.h"
 #import "OpencvTestVC.h"
+#import "CoreImageVCTest.h"
+#import "GPUImageTestVC.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -28,7 +30,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     
-    self.dataArray = @[@"opencvTest"];
+    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest"];
     
     [self tableViewConfigure];
     
@@ -43,6 +45,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
 
 
 #pragma mark - 子控件初始化
@@ -114,19 +121,26 @@
 {
     
     switch (indexPath.row) {
-        case 0:{
+        case 0:{//OpenCVTest
             
             OpencvTestVC *opencv = [[OpencvTestVC alloc] init];
-            
             [self.navigationController pushViewController:opencv animated:YES];
             break;
         }
+        case 1:{//CoreImageTest
             
-        case 1:{
-            
-            
+            CoreImageVCTest *coreImageVC = [[CoreImageVCTest alloc] init];
+            [self.navigationController pushViewController:coreImageVC animated:YES];
             break;
         }
+            
+        case 2:{
+            
+            GPUImageTestVC *gpuVC = [[GPUImageTestVC alloc] init];
+            [self.navigationController pushViewController:gpuVC animated:YES];
+            break;
+        }
+            
             
         default:
             break;

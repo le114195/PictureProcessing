@@ -31,13 +31,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
 
 
 - (void)subViewConfigure
 {
-    
     CGFloat imgWidth = (ScreenWidth / ScreenHeight) * (ScreenHeight - 64);
-    
     
     UIImageView *srcImageView = [[UIImageView alloc] initWithFrame:CGRectMake((ScreenWidth - imgWidth) * 0.5, 64, imgWidth, ScreenHeight - 64)];
     self.srcImageView = srcImageView;
