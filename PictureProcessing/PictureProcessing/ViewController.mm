@@ -44,6 +44,11 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
 
 #pragma mark - 子控件初始化
 
