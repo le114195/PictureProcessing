@@ -44,9 +44,7 @@
 
 - (void)sliderValueChange:(UISlider *)slider
 {
-    
-    [self.coreImage.filter setValue:@(slider.value) forKey:@"inputRadius"];
-    
+    [self.coreImage.filter setValue:@(slider.value) forKey:@"inputAngle"];
     __block UIImage *image;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         image = [self.coreImage rendering];
@@ -54,7 +52,6 @@
             self.srcImageView.image = image;
         });
     });
-    
 }
 
 
@@ -64,7 +61,7 @@
 
 - (void)coreImageTest {
     
-    [self.coreImage filterWithImage:[UIImage imageNamed:self.imgName] filterName:@"CIGaussian Blur"];
+    [self.coreImage filterWithImage:[UIImage imageNamed:self.imgName] filterName:@"ColorInvert"];
     
     __block UIImage *image;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -74,14 +71,10 @@
         });
     });
     
-    self.slider.maximumValue = 20;
+    self.slider.maximumValue = 1;
     self.slider.minimumValue = 0;
-    self.slider.value = 8.0;
+    self.slider.value = 0;
 }
-
-
-
-
 
 
 

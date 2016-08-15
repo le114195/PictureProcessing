@@ -189,7 +189,6 @@
 		7556F7DC1D5CA0AA008CC401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DA1D5CA0AA008CC401 /* Main.storyboard */; };
 		7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */; };
 		7556F7E11D5CA0AA008CC401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DF1D5CA0AA008CC401 /* LaunchScreen.storyboard */; };
-		7594A57A1D5CBA0E00D6F31B /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A5791D5CBA0E00D6F31B /* opencv2.framework */; };
 		7594A6DD1D5CBA9100D6F31B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7594A57F1D5CBA9100D6F31B /* Info.plist */; };
 		7594A79F1D5CBBEA00D6F31B /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7594A78E1D5CBBEA00D6F31B /* GrammarTest.cpp */; };
 		7594A7A01D5CBBEA00D6F31B /* OpenCVDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7901D5CBBEA00D6F31B /* OpenCVDemo.cpp */; };
@@ -233,6 +232,7 @@
 		7594A7F21D5CC10200D6F31B /* sj_20160705_8.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7D41D5CC10200D6F31B /* sj_20160705_8.JPG */; };
 		7594A7F31D5CC10200D6F31B /* sj_20160705_9.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7D51D5CC10200D6F31B /* sj_20160705_9.JPG */; };
 		7594A7F61D5CC1F000D6F31B /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */; };
+		75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C43EB01D61A908002F25EF /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -604,7 +604,6 @@
 		7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7556F7E01D5CA0AA008CC401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7556F7E21D5CA0AA008CC401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7594A5791D5CBA0E00D6F31B /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		7594A57E1D5CBA9100D6F31B /* GPUImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramework.h; sourceTree = "<group>"; };
 		7594A57F1D5CBA9100D6F31B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7594A5801D5CBA9100D6F31B /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -1006,6 +1005,7 @@
 		7594A7D51D5CC10200D6F31B /* sj_20160705_9.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_9.JPG; sourceTree = "<group>"; };
 		7594A7F41D5CC1F000D6F31B /* TestBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseVC.h; sourceTree = "<group>"; };
 		7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBaseVC.mm; sourceTree = "<group>"; };
+		75C43EB01D61A908002F25EF /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1013,12 +1013,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */,
 				7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */,
 				7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */,
 				7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */,
 				7594A7A91D5CBC5F00D6F31B /* AVFoundation.framework in Frameworks */,
 				7594A7A71D5CBC5700D6F31B /* QuartzCore.framework in Frameworks */,
-				7594A57A1D5CBA0E00D6F31B /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1412,7 @@
 		7556F7C51D5CA0AA008CC401 = {
 			isa = PBXGroup;
 			children = (
+				75C43EB01D61A908002F25EF /* opencv2.framework */,
 				7514FABA1D6163C6008B7F2F /* Lib */,
 				7594A7B71D5CC10200D6F31B /* image */,
 				7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */,
@@ -1420,7 +1421,6 @@
 				7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */,
 				7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */,
 				7594A57B1D5CBA9000D6F31B /* Lib */,
-				7594A5791D5CBA0E00D6F31B /* opencv2.framework */,
 				7556F7D01D5CA0AA008CC401 /* PictureProcessing */,
 				7556F7CF1D5CA0AA008CC401 /* Products */,
 			);
@@ -2337,7 +2337,7 @@
 				INFOPLIST_FILE = PictureProcessing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.PictureProcessing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.Picture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2354,7 +2354,7 @@
 				INFOPLIST_FILE = PictureProcessing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.PictureProcessing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.Picture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

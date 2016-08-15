@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) GPUImagePicture               *gpuImage;
 @property (nonatomic, strong) GPUImageOutput<GPUImageInput> *sepiaFilter;
+@property (nonatomic, strong) GPUImageTest                  *tjGPU;
 
 
 @end
@@ -46,12 +47,17 @@
 - (void)sliderValueChange:(UISlider *)slider
 {
 
-    [(GPUImageVignetteFilter *)self.sepiaFilter setVignetteCenter:CGPointMake(slider.value, slider.value)];
+    self.tjGPU.motionBlurFilter.blurAngle = slider.value;
     
-    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
+    __block UIImage *image;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        image = [self.tjGPU.motionBlurFilter imageByFilteringImage:self.originImage];
+        tj_dispatch_main_sync_safe(^{
+            self.srcImageView.image = image;
+        });
+    });
     
 }
-
 
 
 
@@ -59,16 +65,30 @@
     
     self.originImage = [UIImage imageNamed:self.imgName];
     
-    self.sepiaFilter = [[GPUImageVignetteFilter alloc] init];
+    self.tjGPU.motionBlurFilter.blurSize = 4.0;
+    __block UIImage *image;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        image = [self.tjGPU.motionBlurFilter imageByFilteringImage:self.originImage];
+        tj_dispatch_main_sync_safe(^{
+            self.srcImageView.image = image;
+        });
+    });
     
-    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
     
-    [self.slider addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+    self.slider.maximumValue = 100;
+    self.slider.minimumValue = 0;
     
-    self.slider.value = 0.5;
-    
+    self.slider.value = 0;
 }
 
+
+- (GPUImageTest *)tjGPU
+{
+    if (!_tjGPU) {
+        _tjGPU = [GPUImageTest shareInstance];
+    }
+    return _tjGPU;
+}
 
 
 @end
