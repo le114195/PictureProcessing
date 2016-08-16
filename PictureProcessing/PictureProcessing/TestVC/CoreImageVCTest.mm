@@ -32,7 +32,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.imgName = @"sj_20160705_1.JPG";
+<<<<<<< HEAD
     self.inputImg = @"sj_20160705_2.JPG";
+=======
+>>>>>>> 260e746b4808a68e23d8a59c4e2d015ba71e99bd
     
     [self coreImageTest];
     
