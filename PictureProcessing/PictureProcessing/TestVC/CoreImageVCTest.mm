@@ -12,6 +12,10 @@
 @interface CoreImageVCTest ()
 
 
+@property (nonatomic, weak) UICollectionView                *collectionView;
+
+
+@property (nonatomic, copy) NSString                        *inputImg;
 @property (nonatomic, copy) NSString                        *imgName;
 
 @property (nonatomic, strong) CoreImgeTest                  *coreImage;
@@ -27,7 +31,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.imgName = @"sj_20160705_30.JPG";
+    self.imgName = @"sj_20160705_1.JPG";
+    self.inputImg = @"sj_20160705_2.JPG";
     
     [self coreImageTest];
     
@@ -44,7 +49,7 @@
 
 - (void)sliderValueChange:(UISlider *)slider
 {
-    [self.coreImage.filter setValue:@(slider.value) forKey:@"inputAngle"];
+    [self.coreImage.filter setValue:@(slider.value) forKey:@"inputSaturation"];
     __block UIImage *image;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         image = [self.coreImage rendering];
@@ -53,15 +58,19 @@
         });
     });
 }
-
-
 
 
 #pragma mark - coreImage
 
+
 - (void)coreImageTest {
     
-    [self.coreImage filterWithImage:[UIImage imageNamed:self.imgName] filterName:@"ColorInvert"];
+//    CIImage *ciImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:self.inputImg]];
+    
+    [self.coreImage filterWithImage:[UIImage imageNamed:self.imgName] filterName:@"CIColorControls"];
+    
+//    [self.coreImage.filter setValue:ciImage forKey:@"inputMask"];
+    
     
     __block UIImage *image;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -71,13 +80,10 @@
         });
     });
     
-    self.slider.maximumValue = 1;
-    self.slider.minimumValue = 0;
-    self.slider.value = 0;
+    self.slider.maximumValue = 5.0;
+    self.slider.minimumValue = -5;
+    self.slider.value = 1.0;
 }
-
-
-
 
 
 

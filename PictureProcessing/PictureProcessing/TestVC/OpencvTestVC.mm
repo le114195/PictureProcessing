@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.srcImageView.backgroundColor = [UIColor redColor];
+    
     [self openCVTest];
     
     // Do any additional setup after loading the view.
