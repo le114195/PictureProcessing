@@ -69,6 +69,9 @@ public:
     /** 将图片的像素灰度反转 */
     Mat colorReversal(const char* imgName);
     
+    
+    
+    
 private:
     
     void createAlphaMat(Mat &mat);
