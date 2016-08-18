@@ -297,21 +297,13 @@ Mat TJMorphology::close_demo(const char* imgName, int size)
 //TJScale
 /*- - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-Mat TJScale::resize_demo(const char *imgName){
+/** size放大的倍数 */
+Mat TJScale::resize_demo(const char *imgName, float size){
     
     Mat srcMat = imread(imgName);
     Mat dstMat;
-    
-    printf("width=%d---height=%d\n", srcMat.cols, srcMat.rows);
-    
-    resize(srcMat, dstMat, cv::Size(srcMat.cols/2, srcMat.rows/2));
-    
-    
-    printf("width=%d---height=%d\n", dstMat.cols, dstMat.rows);
-    
-    
+    resize(srcMat, dstMat, cv::Size(srcMat.cols*size, srcMat.rows*size));
     converBGR2RGB(dstMat);
-    
     return dstMat;
 }
 
@@ -334,7 +326,7 @@ Mat TJScale::color_demo(const char *imgName){
 Mat TJScale::ROI_demo(const char *imgName) {
     
     Mat srcMat = imread(imgName);
-    Mat logoMat = this->resize_demo(imgName);
+    Mat logoMat = this->resize_demo(imgName, 2);
     
     Mat imgROI = srcMat(Rect(0, 0, logoMat.cols, logoMat.rows));
     

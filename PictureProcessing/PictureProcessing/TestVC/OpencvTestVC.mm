@@ -60,15 +60,9 @@
 
 /** 图片放缩 */
 - (void)scaleTest {
-    
     TJScale *scale = new TJScale();
-    
-    
     self.srcImageView.image = MatToUIImage(scale->ROI_demo([self.imageName UTF8String]));
-    
-    
     delete scale;
-    
 }
 
 

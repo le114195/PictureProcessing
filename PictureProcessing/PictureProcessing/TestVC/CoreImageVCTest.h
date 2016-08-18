@@ -10,7 +10,6 @@
 
 @interface CoreImageVCTest : TestBaseVC
 
-
-
+@property (nonatomic, strong) NSDictionary                  *parameters;
 
 @end

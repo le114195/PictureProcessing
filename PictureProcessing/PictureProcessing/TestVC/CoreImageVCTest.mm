@@ -8,6 +8,7 @@
 
 #import "CoreImageVCTest.h"
 #import "CoreImgeTest.h"
+#import "OpenCVDemo.hpp"
 
 @interface CoreImageVCTest ()
 
@@ -20,6 +21,14 @@
 
 @property (nonatomic, strong) CoreImgeTest                  *coreImage;
 
+@property (nonatomic, strong) NSString                      *filterName;
+
+@property (nonatomic, strong) NSArray                       *sliderValue;
+
+
+@property (nonatomic, copy) NSString                        *paraName1;
+@property (nonatomic, copy) NSString                        *paraName2;
+@property (nonatomic, copy) NSString                        *paraName3;
 
 @end
 
@@ -48,7 +57,22 @@
 
 - (void)sliderValueChange:(UISlider *)slider
 {
-    [self.coreImage.filter setValue:@(slider.value) forKey:@"inputSaturation"];
+    switch (slider.tag) {
+        case 100:{
+            [self.coreImage.filter setValue:@(slider.value) forKey:self.paraName1];
+            break;
+        }
+        case 101:{
+            [self.coreImage.filter setValue:@(slider.value) forKey:self.paraName2];
+            break;
+        }
+        case 102:{
+            [self.coreImage.filter setValue:@(slider.value) forKey:self.paraName3];
+            break;
+        }
+        default:
+            break;
+    }
     __block UIImage *image;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         image = [self.coreImage rendering];
@@ -57,39 +81,91 @@
         });
     });
 }
+
+
+
+
+- (void)setParameters:(NSDictionary *)parameters
+{
+    _parameters = parameters;
+    
+    self.filterName = [parameters valueForKey:@"filterName"];
+    
+    self.sliderValue = [parameters valueForKey:@"sliderValue"];
+    
+}
+
+
+
 
 
 #pragma mark - coreImage
 
-
 - (void)coreImageTest {
     
-//    CIImage *ciImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:self.inputImg]];
-    
-    [self.coreImage filterWithImage:[UIImage imageNamed:self.imgName] filterName:@"CIColorControls"];
-    
-//    [self.coreImage.filter setValue:ciImage forKey:@"inputMask"];
+    TJScale *scale = new TJScale();
+    UIImage *image = MatToUIImage(scale->resize_demo([self.imageName UTF8String], 1));
     
     
-    __block UIImage *image;
+    [self.coreImage filterWithImage:image filterName:self.filterName];
+    
+//    CIVector *vec = [CIVector vectorWithX:10 Y:10];
+//    
+//    [self.coreImage.filter setValue:vec forKey:@"inputCenter"];
+//
+    
+    if (self.sliderValue && self.sliderValue.count > 0) {
+        for (int i= 0; i < self.sliderValue.count; i++) {
+            
+            NSDictionary *dict = self.sliderValue[i];
+            
+            NSNumber *defaultValue = [dict valueForKey:@"defauleValue"];
+            NSNumber *mini = [dict valueForKey:@"mini"];
+            NSNumber *max = [dict valueForKey:@"max"];
+            
+            NSString *name = [dict valueForKey:@"name"];
+            
+            UISlider *slider = nil;
+            
+            switch (i) {
+                case 0:{
+                    slider = self.slider1;
+                    self.paraName1 = name;
+                    break;
+                }
+                case 1:{
+                    slider = self.slider2;
+                    self.paraName2 = name;
+                    break;
+                }
+                case 2:{
+                    slider = self.slider3;
+                    self.paraName3 = name;
+                    break;
+                }
+                default:
+                    break;
+            }
+            slider.maximumValue = [max floatValue];
+            slider.minimumValue = [mini floatValue];
+            slider.value = [defaultValue floatValue];
+
+            [self.coreImage.filter setValue:defaultValue forKey:name];
+        }
+    }
+    __block UIImage *imageBlock;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        image = [self.coreImage rendering];
+        imageBlock = [self.coreImage rendering];
         tj_dispatch_main_sync_safe(^{
-            self.srcImageView.image = image;
+            self.srcImageView.image = imageBlock;
         });
     });
-    
-    self.slider.maximumValue = 5.0;
-    self.slider.minimumValue = -5;
-    self.slider.value = 1.0;
 }
-
-
 
 - (CoreImgeTest *)coreImage
 {
     if (!_coreImage) {
-        _coreImage = [CoreImgeTest shareInstance];
+        _coreImage = [[CoreImgeTest alloc] init];
     }
     return _coreImage;
 }

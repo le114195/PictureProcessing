@@ -12,10 +12,9 @@
 
 @interface CoreImgeTest ()
 
-
 @property (nonatomic, strong) CIContext         *context;
 
-
+@property (nonatomic, strong) CIImage           *inputImage;
 
 @end
 
@@ -37,28 +36,23 @@
 - (void)filterWithImage:(UIImage *)image filterName:(NSString *)filterName
 {
     // 将UIImage转换成CIImage
-    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    self.inputImage = [[CIImage alloc] initWithImage:image];
     
     // 创建滤镜
-    self.filter = [CIFilter filterWithName:filterName keysAndValues:kCIInputImageKey, ciImage, nil];
+    self.filter = [CIFilter filterWithName:filterName keysAndValues:kCIInputImageKey, self.inputImage, nil];
 }
-
 
 /** 渲染图片 */
 - (UIImage *)rendering
 {
-    // 渲染并输出CIImage
-    CIImage *outputImage = [self.filter outputImage];
-    
     // 创建CGImage句柄
-    CGImageRef cgImage = [self.context createCGImage:outputImage
-                                            fromRect:[outputImage extent]];
+    CGImageRef cgImage = [self.context createCGImage:self.filter.outputImage
+                                        fromRect:[self.inputImage extent]];
     // 获取图片
     UIImage *showImage = [UIImage imageWithCGImage:cgImage];
     
     // 释放CGImage句柄
     CGImageRelease(cgImage);
-    
     return showImage;
 }
 

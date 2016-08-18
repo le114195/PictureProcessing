@@ -46,12 +46,12 @@
 
 - (void)sliderValueChange:(UISlider *)slider
 {
-
-    self.tjGPU.whiteBalanceFilter.temperature = slider.value;
+//    self.tjGPU.zoomBlurFilter.blurCenter = CGPointMake(slider.value, slider.value);
+    self.tjGPU.gaussianBlurFilter.blurRadiusInPixels = slider.value;
     
     __block UIImage *image;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        image = [self.tjGPU.whiteBalanceFilter imageByFilteringImage:self.originImage];
+        image = [self.tjGPU.gaussianBlurFilter imageByFilteringImage:self.originImage];
         tj_dispatch_main_sync_safe(^{
             self.srcImageView.image = image;
         });
@@ -59,19 +59,14 @@
 }
 
 
-
 - (void)gpuImageTest {
     
     self.originImage = [UIImage imageNamed:self.imgName];
-
-    self.srcImageView.image = [self.tjGPU.sketchFilter imageByFilteringImage:self.originImage];
+    self.srcImageView.image = [self.tjGPU.gaussianBlurFilter imageByFilteringImage:self.originImage];
     
-    
-    
-    self.slider.maximumValue = 1;
-    self.slider.minimumValue = 0;
-    
-    self.slider.value = 0;
+    self.slider1.maximumValue = 5;
+    self.slider1.minimumValue = 0;
+    self.slider1.value = 2;
 }
 
 

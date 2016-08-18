@@ -1,19 +1,17 @@
 //
-//  ViewController.m
+//  CoreImageList.m
 //  PictureProcessing
 //
-//  Created by 勒俊 on 16/8/11.
+//  Created by 勒俊 on 16/8/16.
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "TestCell.h"
-#import "OpencvTestVC.h"
-#import "CoreImageVCTest.h"
-#import "GPUImageTestVC.h"
 #import "CoreImageList.h"
+#import "TestCell.h"
+#import "CoreImageVCTest.h"
+#import "CorePara.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface CoreImageList ()<UITableViewDelegate, UITableViewDataSource>
 
 
 
@@ -24,14 +22,14 @@
 
 @end
 
-@implementation ViewController
+@implementation CoreImageList
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+
     
-    
-    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest"];
+    self.dataArray = @[@"CIBoxBlur", @"CIDiscBlur", @"CIGaussianBlur", @"CIMotionBlur", @"CINoiseReduction", @"CIZoomBlur", @"CIColorControls"];
     
     [self tableViewConfigure];
     
@@ -120,30 +118,48 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *parameters;
     
     switch (indexPath.row) {
-        case 0:{//OpenCVTest
-            OpencvTestVC *opencv = [[OpencvTestVC alloc] init];
-            [self.navigationController pushViewController:opencv animated:YES];
+        case 0:{//CIBoxBlur
+            parameters = [CorePara boxBlur];
             break;
         }
-        case 1:{//CoreImageTest
-            CoreImageList *coreImageVC = [[CoreImageList alloc] init];
-            [self.navigationController pushViewController:coreImageVC animated:YES];
+        case 1:{//CIDiscBlur
+            parameters = [CorePara discBlur];
             break;
         }
-        case 2:{
-            GPUImageTestVC *gpuVC = [[GPUImageTestVC alloc] init];
-            [self.navigationController pushViewController:gpuVC animated:YES];
+        case 2:{//CIGaussianBlur
+            parameters = [CorePara gaussianBlur];
+            break;
+        }
+        case 3:{//CIMotionBlur
+            parameters = [CorePara motionBlur];
+            break;
+        }
+        case 4:{//CINoiseReduction
+            parameters = [CorePara noiseReduction];
+            break;
+        }
+        case 5:{//CIZoomBlur
+            parameters = [CorePara zoomBlur];
+            break;
+        }
+        case 6:{//CIColorControls
+            parameters = [CorePara colorControls];
             break;
         }
         default:
             break;
     }
+    CoreImageVCTest *coreVC = [[CoreImageVCTest alloc] init];
+    coreVC.parameters = parameters;
+    [self.navigationController pushViewController:coreVC animated:YES];
 }
 
-#pragma mark - 私有方法
 
+
+#pragma mark - 私有方法
 
 
 

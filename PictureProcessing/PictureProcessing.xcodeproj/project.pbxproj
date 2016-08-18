@@ -233,6 +233,8 @@
 		7594A7F31D5CC10200D6F31B /* sj_20160705_9.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7594A7D51D5CC10200D6F31B /* sj_20160705_9.JPG */; };
 		7594A7F61D5CC1F000D6F31B /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */; };
 		75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C43EB01D61A908002F25EF /* opencv2.framework */; };
+		75C43EB41D62A1EF002F25EF /* CoreImageList.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB31D62A1EF002F25EF /* CoreImageList.mm */; };
+		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1006,6 +1008,10 @@
 		7594A7F41D5CC1F000D6F31B /* TestBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseVC.h; sourceTree = "<group>"; };
 		7594A7F51D5CC1F000D6F31B /* TestBaseVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBaseVC.mm; sourceTree = "<group>"; };
 		75C43EB01D61A908002F25EF /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		75C43EB21D62A1EF002F25EF /* CoreImageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageList.h; sourceTree = "<group>"; };
+		75C43EB31D62A1EF002F25EF /* CoreImageList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageList.mm; sourceTree = "<group>"; };
+		75C43EB61D62ADAC002F25EF /* CorePara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePara.h; sourceTree = "<group>"; };
+		75C43EB71D62ADAC002F25EF /* CorePara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePara.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1840,6 +1846,7 @@
 		7594A78C1D5CBBEA00D6F31B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				75C43EB51D62AD97002F25EF /* Const */,
 				750F80091D616A2B004BF41A /* Header */,
 				7594A78D1D5CBBEA00D6F31B /* C++ */,
 				7594A7921D5CBBEA00D6F31B /* CoreImage */,
@@ -1888,6 +1895,8 @@
 				750F80071D61655E004BF41A /* CoreImageVCTest.mm */,
 				750F800D1D616E4D004BF41A /* GPUImageTestVC.h */,
 				750F800E1D616E4D004BF41A /* GPUImageTestVC.mm */,
+				75C43EB21D62A1EF002F25EF /* CoreImageList.h */,
+				75C43EB31D62A1EF002F25EF /* CoreImageList.mm */,
 			);
 			path = TestVC;
 			sourceTree = "<group>";
@@ -1929,6 +1938,15 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		75C43EB51D62AD97002F25EF /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				75C43EB61D62ADAC002F25EF /* CorePara.h */,
+				75C43EB71D62ADAC002F25EF /* CorePara.m */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1960,7 +1978,6 @@
 				TargetAttributes = {
 					7556F7CD1D5CA0AA008CC401 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Y9E6T3VGEQ;
 					};
 				};
 			};
@@ -2140,6 +2157,7 @@
 				7514FCA41D6163C7008B7F2F /* GPUImageSkinToneFilter.m in Sources */,
 				750F80081D61655E004BF41A /* CoreImageVCTest.mm in Sources */,
 				7514FCA01D6163C7008B7F2F /* GPUImageSharpenFilter.m in Sources */,
+				75C43EB41D62A1EF002F25EF /* CoreImageList.mm in Sources */,
 				7514FCBB1D6163C7008B7F2F /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				7514FC971D6163C7008B7F2F /* GPUImageRGBClosingFilter.m in Sources */,
 				7594A7A21D5CBBEA00D6F31B /* GPUImageTest.m in Sources */,
@@ -2165,6 +2183,7 @@
 				7514FC9F1D6163C7008B7F2F /* GPUImageSepiaFilter.m in Sources */,
 				7514FC591D6163C7008B7F2F /* GPUImageHardLightBlendFilter.m in Sources */,
 				7514FC211D6163C7008B7F2F /* GPUImageAddBlendFilter.m in Sources */,
+				75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */,
 				7514FC7A1D6163C7008B7F2F /* GPUImageMonochromeFilter.m in Sources */,
 				7514FC6A1D6163C7008B7F2F /* GPUImageLanczosResamplingFilter.m in Sources */,
 				7514FC331D6163C7008B7F2F /* GPUImageColorDodgeBlendFilter.m in Sources */,

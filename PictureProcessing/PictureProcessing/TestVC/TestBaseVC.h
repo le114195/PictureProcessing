@@ -16,7 +16,11 @@
 
 
 @property (nonatomic, weak) UIImageView                     *srcImageView;
-@property (nonatomic, weak) UISlider                        *slider;
+
+
+@property (nonatomic, strong) UISlider                        *slider1;
+@property (nonatomic, strong) UISlider                      *slider2;
+@property (nonatomic, strong) UISlider                      *slider3;
 
 
 @property (nonatomic, copy) NSString                        *imageName;

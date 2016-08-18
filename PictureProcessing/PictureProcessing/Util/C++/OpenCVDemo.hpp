@@ -117,7 +117,7 @@ class TJScale: public TJOpenCVBase {
 public:
     
     /** resize：图像放缩函数 */
-    Mat resize_demo(const char* imgName);
+    Mat resize_demo(const char *imgName, float size);
     
     
     Mat color_demo(const char* imgName);

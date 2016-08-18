@@ -13,11 +13,10 @@
 
 @interface CoreImgeTest : NSObject
 
-+ (instancetype)shareInstance;
+//+ (instancetype)shareInstance;
 
 
 @property (nonatomic, strong)  CIFilter             *filter;
-
 
 - (void)filterWithImage:(UIImage *)image filterName:(NSString *)filterName;
 
