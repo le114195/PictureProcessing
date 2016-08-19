@@ -65,15 +65,13 @@
     
     self.originImage = [UIImage imageNamed:self.imgName];
 
-    self.srcImageView.image = [self.tjGPU.gaussianBlurFilter imageByFilteringImage:self.originImage];
+    self.sepiaFilter = [[NSClassFromString(@"GPUImageGaussianBlurFilter") alloc] init];
+    
+    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
     
     self.slider1.maximumValue = 5;
     self.slider1.minimumValue = 0;
     self.slider1.value = 2;
-
-    self.sepiaFilter = [[NSClassFromString(@"GPUImageGaussianBlurFilter") alloc] init];
-    
-    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
 
 }
 
