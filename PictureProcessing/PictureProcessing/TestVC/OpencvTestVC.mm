@@ -7,6 +7,7 @@
 //
 
 #import "OpencvTestVC.h"
+#import "CategoryHeader.h"
 
 
 @interface OpencvTestVC ()
@@ -45,12 +46,12 @@
 //    [self scaleTest];
     
     
-        [self pixelTest];
+//        [self pixelTest];
     
     //    [self edgeTest];
     
     
-    
+    [self blendingTest];
     
     
 }
@@ -69,7 +70,10 @@
 /** 图片像素操作 */
 - (void)pixelTest {
     TJPixel *pixel = new TJPixel();
-    self.srcImageView.image = MatToUIImage(pixel->colorReversal([self.imageName UTF8String]));
+    self.srcImageView.image = MatToUIImage(pixel->createPngImg());
+    
+    [self.srcImageView.image saveImageWithImgName:@"00012" imageType:1];
+    
     delete pixel;
 }
 
@@ -83,6 +87,18 @@
 
 
 
+/** 混合 */
+- (void)blendingTest {
+    
+    TJBlend *blend = new TJBlend();
+    
+    
+    self.srcImageView.image = MatToUIImage(blend->linearBlending1([self.imageName UTF8String], [self.imgName2 UTF8String]));
+    
+    
+    delete blend;
+    
+}
 
 
 #pragma mark - c++语法测试

@@ -24,6 +24,7 @@
 
 
 @property (nonatomic, copy) NSString                        *imageName;
+@property (nonatomic, copy) NSString                        *imgName2;
 
 
 - (void)sliderValueChange:(UISlider *)slider;

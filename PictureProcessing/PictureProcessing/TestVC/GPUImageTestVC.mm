@@ -65,7 +65,7 @@
     
     self.originImage = [UIImage imageNamed:self.imgName];
 
-    self.sepiaFilter = [[NSClassFromString(@"GPUImageGaussianBlurFilter") alloc] init];
+    self.sepiaFilter = [[NSClassFromString(@"GPUImageMultiplyBlendFilter") alloc] init];
     
     self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
     

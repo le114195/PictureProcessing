@@ -30,7 +30,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
     self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest"];
     
     [self tableViewConfigure];
@@ -59,7 +58,7 @@
 - (void)tableViewConfigure
 {
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height) style:UITableViewStylePlain];
     self.tableView = tableView;
     [self.view addSubview:tableView];
     tableView.delegate = self;

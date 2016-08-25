@@ -11,11 +11,6 @@
 
 
 
-
-#define ScreenWidth         [UIScreen mainScreen].bounds.size.width
-#define ScreenHeight        [UIScreen mainScreen].bounds.size.height
-
-
 #define Screen_Height               [UIScreen mainScreen].bounds.size.height
 #define Screen_Width                [UIScreen mainScreen].bounds.size.width
 

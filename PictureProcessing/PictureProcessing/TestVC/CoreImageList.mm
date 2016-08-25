@@ -11,6 +11,7 @@
 #import "CoreImageVCTest.h"
 #import "CorePara.h"
 
+
 @interface CoreImageList ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -57,7 +58,7 @@
 - (void)tableViewConfigure
 {
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height) style:UITableViewStylePlain];
     self.tableView = tableView;
     [self.view addSubview:tableView];
     tableView.delegate = self;

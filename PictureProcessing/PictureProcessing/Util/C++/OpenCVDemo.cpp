@@ -26,6 +26,8 @@ void TJOpenCVBase::converBGR2RGB(cv::Mat dstMat)
 
 
 
+
+
 /*- - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 
@@ -147,31 +149,24 @@ void TJPixel::createImage()
 Mat TJPixel::cutImage(const char *imgName){
     
     Mat srcMat = imread(imgName);
+
     Mat dstMat = Mat::zeros(srcMat.size(), CV_8UC4);
     
-    
     for (int i = 0; i < dstMat.rows; ++i) {
-        
         for (int j = 0; j < dstMat.cols; ++j) {
-            
             Vec4b& rgba = dstMat.at<Vec4b>(i, j);
-            
-            //            rgba[0] = srcMat.at<Vec3b>(i, j)[0];
-            //            rgba[1] = srcMat.at<Vec3b>(i, j)[1];
-            //            rgba[2] = srcMat.at<Vec3b>(i, j)[2];
-            
-            rgba[0] = UCHAR_MAX;
-            rgba[1] = saturate_cast<uchar>((float (dstMat.cols - j)) / ((float)dstMat.cols) *UCHAR_MAX);
-            rgba[2] = saturate_cast<uchar>((float (dstMat.rows - i)) / ((float)dstMat.rows) *UCHAR_MAX);
-            rgba[3] = saturate_cast<uchar>(0.5 * (rgba[1] + rgba[2]));
-            //            rgba[3] = 0;
-            
+            if (dstMat.rows * 0.5 > i) {
+                rgba[0] = srcMat.at<Vec3b>(i, j)[0];
+                rgba[1] = srcMat.at<Vec3b>(i, j)[1];
+                rgba[2] = srcMat.at<Vec3b>(i, j)[2];
+            }else {
+                rgba[0] = srcMat.at<Vec3b>(i, j)[0];
+                rgba[1] = srcMat.at<Vec3b>(i, j)[0];
+                rgba[2] = srcMat.at<Vec3b>(i, j)[0];
+            }
         }
-        
     }
-    
     cvtColor(dstMat, dstMat, CV_RGB2BGR);
-    
     return dstMat;
 }
 
@@ -210,6 +205,23 @@ Mat TJPixel::colorReversal(const char* imgName){
         }
     }
     return dstMat;
+}
+
+
+Mat TJPixel::createPngImg()
+{
+    Mat srcImg = Mat::zeros(736 * 2, 414 * 2, CV_8UC4);
+    for (int i = 0; i < srcImg.rows; i++) {
+        for (int j = 0; j < srcImg.cols; j++) {
+            Vec4b &rgba = srcImg.at<Vec4b>(i, j);
+            rgba[0] = UCHAR_MAX;
+            rgba[1] = saturate_cast<uchar>((float (srcImg.cols - j)) / ((float)srcImg.cols) *UCHAR_MAX);
+            rgba[2] = saturate_cast<uchar>((float (srcImg.rows - i)) / ((float)srcImg.rows) *UCHAR_MAX);
+            rgba[3] = saturate_cast<uchar>(0.5 * (rgba[1] + rgba[2]));
+        }
+    }
+    
+    return srcImg;
 }
 
 
@@ -327,22 +339,16 @@ Mat TJScale::ROI_demo(const char *imgName) {
     
     Mat srcMat = imread(imgName);
     Mat logoMat = this->resize_demo(imgName, 2);
-    
     Mat imgROI = srcMat(Rect(0, 0, logoMat.cols, logoMat.rows));
     
-    
     for (int i = 0; i < logoMat.rows; ++i) {
-        
         for (int j = 0; j < logoMat.cols; ++j) {
-            
             Vec3b& rgba = imgROI.at<Vec3b>(i, j);
             rgba[0] = logoMat.at<Vec3b>(i, j)[0];
             rgba[1] = logoMat.at<Vec3b>(i, j)[1];
             rgba[2] = logoMat.at<Vec3b>(i, j)[2];
-            
         }
     }
-    
     converBGR2RGB(srcMat);
     return srcMat;
 }
@@ -384,11 +390,58 @@ Mat TJEdge::canny_demo(const char *imgName) {
 }
 
 
+//TJBlend
+/*- - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 
 
 
 
+Mat TJBlend::linearBlending(const char *imgName1, const char *imgName2)
+{
+    Mat srcImg, src1Img, src2Img, dstImg;
+    
+    srcImg = imread(imgName1);
+    src1Img = srcImg(Rect(0, 0, srcImg.cols * 0.25, srcImg.rows * 0.25));
+    src2Img = imread(imgName2);
+    resize(src2Img, src2Img, cv::Size(src1Img.cols, src1Img.rows));
+    
+    double alphaValue = 0.3;
+    double betaValue;
+    
+    betaValue = 1 - alphaValue;
+    addWeighted(src1Img, alphaValue, src2Img, betaValue, 0.0, dstImg);
+    
+    for (int i = 0; i < dstImg.rows; ++i) {
+        for (int j = 0; j < dstImg.cols; ++j) {
+            Vec3b& rgba = srcImg.at<Vec3b>(i, j);
+            rgba[0] = dstImg.at<Vec3b>(i, j)[0];
+            rgba[1] = dstImg.at<Vec3b>(i, j)[1];
+            rgba[2] = dstImg.at<Vec3b>(i, j)[2];
+        }
+    }
+    converBGR2RGB(srcImg);
+    return srcImg;
+}
+
+
+Mat TJBlend::linearBlending1(const char *imgName1, const char *imgName2)
+{
+    Mat src1Img, src2Img, dstImg;
+    
+    src1Img = imread(imgName1);
+    src2Img = imread(imgName2);
+    resize(src2Img, src2Img, cv::Size(src1Img.cols, src1Img.rows));
+    
+    double alphaValue = 0.2;
+    double betaValue;
+    
+    betaValue = 1 - alphaValue;
+    addWeighted(src1Img, alphaValue, src2Img, betaValue, 0.0, dstImg);
+    
+    converBGR2RGB(dstImg);
+    return dstImg;
+}
 
 
 

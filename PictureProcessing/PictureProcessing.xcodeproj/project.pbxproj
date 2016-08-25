@@ -189,6 +189,10 @@
 		7556F7DC1D5CA0AA008CC401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DA1D5CA0AA008CC401 /* Main.storyboard */; };
 		7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */; };
 		7556F7E11D5CA0AA008CC401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DF1D5CA0AA008CC401 /* LaunchScreen.storyboard */; };
+		758B0F9E1D6E92510010D9B4 /* UIColor+Conver16.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0F9B1D6E92510010D9B4 /* UIColor+Conver16.m */; };
+		758B0F9F1D6E92510010D9B4 /* UIView+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0F9D1D6E92510010D9B4 /* UIView+Size.m */; };
+		758B0FA21D6E9A190010D9B4 /* 0001.png in Resources */ = {isa = PBXBuildFile; fileRef = 758B0FA11D6E9A190010D9B4 /* 0001.png */; };
+		758B0FA51D6EAF3C0010D9B4 /* UIImage+SaveToTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0FA41D6EAF3C0010D9B4 /* UIImage+SaveToTool.m */; };
 		7594A6DD1D5CBA9100D6F31B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7594A57F1D5CBA9100D6F31B /* Info.plist */; };
 		7594A79F1D5CBBEA00D6F31B /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7594A78E1D5CBBEA00D6F31B /* GrammarTest.cpp */; };
 		7594A7A01D5CBBEA00D6F31B /* OpenCVDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7901D5CBBEA00D6F31B /* OpenCVDemo.cpp */; };
@@ -606,6 +610,14 @@
 		7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7556F7E01D5CA0AA008CC401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7556F7E21D5CA0AA008CC401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		758B0F9A1D6E92510010D9B4 /* UIColor+Conver16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Conver16.h"; sourceTree = "<group>"; };
+		758B0F9B1D6E92510010D9B4 /* UIColor+Conver16.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Conver16.m"; sourceTree = "<group>"; };
+		758B0F9C1D6E92510010D9B4 /* UIView+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Size.h"; sourceTree = "<group>"; };
+		758B0F9D1D6E92510010D9B4 /* UIView+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Size.m"; sourceTree = "<group>"; };
+		758B0FA01D6E927F0010D9B4 /* CategoryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
+		758B0FA11D6E9A190010D9B4 /* 0001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0001.png; sourceTree = "<group>"; };
+		758B0FA31D6EAF3C0010D9B4 /* UIImage+SaveToTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SaveToTool.h"; sourceTree = "<group>"; };
+		758B0FA41D6EAF3C0010D9B4 /* UIImage+SaveToTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SaveToTool.m"; sourceTree = "<group>"; };
 		7594A57E1D5CBA9100D6F31B /* GPUImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramework.h; sourceTree = "<group>"; };
 		7594A57F1D5CBA9100D6F31B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7594A5801D5CBA9100D6F31B /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -1037,6 +1049,7 @@
 				750F800A1D616A39004BF41A /* BlockHeader.h */,
 				750F800B1D616AA4004BF41A /* SizeHeader.h */,
 				750F800C1D616AD8004BF41A /* FileHeader.h */,
+				758B0FA01D6E927F0010D9B4 /* CategoryHeader.h */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -1469,6 +1482,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		758B0F971D6E91C60010D9B4 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				758B0F991D6E92510010D9B4 /* Category */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		758B0F991D6E92510010D9B4 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				758B0F9A1D6E92510010D9B4 /* UIColor+Conver16.h */,
+				758B0F9B1D6E92510010D9B4 /* UIColor+Conver16.m */,
+				758B0F9C1D6E92510010D9B4 /* UIView+Size.h */,
+				758B0F9D1D6E92510010D9B4 /* UIView+Size.m */,
+				758B0FA31D6EAF3C0010D9B4 /* UIImage+SaveToTool.h */,
+				758B0FA41D6EAF3C0010D9B4 /* UIImage+SaveToTool.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		7594A57B1D5CBA9000D6F31B /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1846,6 +1880,7 @@
 		7594A78C1D5CBBEA00D6F31B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				758B0F971D6E91C60010D9B4 /* Tool */,
 				75C43EB51D62AD97002F25EF /* Const */,
 				750F80091D616A2B004BF41A /* Header */,
 				7594A78D1D5CBBEA00D6F31B /* C++ */,
@@ -1904,6 +1939,7 @@
 		7594A7B71D5CC10200D6F31B /* image */ = {
 			isa = PBXGroup;
 			children = (
+				758B0FA11D6E9A190010D9B4 /* 0001.png */,
 				7594A7B81D5CC10200D6F31B /* sj_20160705_1.JPG */,
 				7594A7B91D5CC10200D6F31B /* sj_20160705_10.JPG */,
 				7594A7BA1D5CC10200D6F31B /* sj_20160705_11.JPG */,
@@ -2004,6 +2040,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758B0FA21D6E9A190010D9B4 /* 0001.png in Resources */,
 				7594A7EC1D5CC10200D6F31B /* sj_20160705_30.JPG in Resources */,
 				7594A6DD1D5CBA9100D6F31B /* Info.plist in Resources */,
 				7594A7F01D5CC10200D6F31B /* sj_20160705_6.JPG in Resources */,
@@ -2118,6 +2155,7 @@
 				7514FCB11D6163C7008B7F2F /* GPUImageTextureInput.m in Sources */,
 				7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */,
 				750F800F1D616E4D004BF41A /* GPUImageTestVC.mm in Sources */,
+				758B0FA51D6EAF3C0010D9B4 /* UIImage+SaveToTool.m in Sources */,
 				7514FCA11D6163C7008B7F2F /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
 				7514FC9D1D6163C7008B7F2F /* GPUImageSaturationFilter.m in Sources */,
 				7514FC531D6163C7008B7F2F /* GPUImageGaussianBlurFilter.m in Sources */,
@@ -2162,6 +2200,7 @@
 				7514FC971D6163C7008B7F2F /* GPUImageRGBClosingFilter.m in Sources */,
 				7594A7A21D5CBBEA00D6F31B /* GPUImageTest.m in Sources */,
 				7514FC611D6163C7008B7F2F /* GPUImageHistogramGenerator.m in Sources */,
+				758B0F9E1D6E92510010D9B4 /* UIColor+Conver16.m in Sources */,
 				7514FCB31D6163C7008B7F2F /* GPUImageThreeInputFilter.m in Sources */,
 				7514FCBA1D6163C7008B7F2F /* GPUImageTransformFilter.m in Sources */,
 				7514FCA31D6163C7008B7F2F /* GPUImageSketchFilter.m in Sources */,
@@ -2195,6 +2234,7 @@
 				7514FC421D6163C7008B7F2F /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				7514FC471D6163C7008B7F2F /* GPUImageErosionFilter.m in Sources */,
 				7514FC951D6163C7008B7F2F /* GPUImageRawDataInput.m in Sources */,
+				758B0F9F1D6E92510010D9B4 /* UIView+Size.m in Sources */,
 				7514FC8B1D6163C7008B7F2F /* GPUImagePicture+TextureSubimage.m in Sources */,
 				7514FC371D6163C7008B7F2F /* GPUImageColorPackingFilter.m in Sources */,
 				7514FC411D6163C7008B7F2F /* GPUImageDilationFilter.m in Sources */,

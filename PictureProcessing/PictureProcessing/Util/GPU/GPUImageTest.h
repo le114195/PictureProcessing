@@ -147,6 +147,14 @@
 
 
 
+/** GPUImageChromaKeyBlendFilter */
+@property (nonatomic, strong) GPUImageChromaKeyBlendFilter          *chromaKeyBlendFilter;
+
+
+/** GPUImageMultiplyBlendFilter */
+@property (nonatomic, strong) GPUImageMultiplyBlendFilter           *multiplyBlendFilter;
+
+
 
 
 

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #import <opencv2/opencv.hpp>
+#import <vector>
 
 #endif /* OpenCVDemo_hpp */
 
@@ -23,6 +24,8 @@ public:
     Mat showImage(const char *imageName);
     
     static void converBGR2RGB(Mat dstMat);
+    
+    
     
 protected:
     
@@ -60,6 +63,7 @@ public:
     
     void createImage();
     
+    /** 裁剪图片 */
     Mat cutImage(const char* imgName);
     
     /** 将图片转成单通道黑白图片 */
@@ -69,8 +73,8 @@ public:
     /** 将图片的像素灰度反转 */
     Mat colorReversal(const char* imgName);
     
-    
-    
+    /** 创建一张png的图片 */
+    Mat createPngImg();
     
 private:
     
@@ -158,8 +162,25 @@ public:
 
 
 
-
-
+/** Blending：混合 */
+class TJBlend:public TJOpenCVBase {
+    
+public:
+    
+    /** 线性混合 */
+    Mat linearBlending(const char* imgName1, const char* imgName2);
+    
+    /** 线性混合2 */
+    Mat linearBlending1(const char* imgName1, const char* imgName2);
+    
+    
+    
+private:
+    
+    
+    
+    
+};
 
 
 

@@ -22,6 +22,8 @@
     [self subViewConfigure];
     
     self.imageName = PictureHeader(@"sj_20160705_1.JPG");
+    self.imgName2 = PictureHeader(@"sj_20160705_2.JPG");
+
     
     // Do any additional setup after loading the view.
 }
@@ -39,9 +41,9 @@
 
 - (void)subViewConfigure
 {
-    CGFloat imgWidth = (ScreenWidth / ScreenHeight) * (ScreenHeight - 64);
+    CGFloat imgWidth = (Screen_Width / Screen_Height) * (Screen_Height - 64);
     
-    UIImageView *srcImageView = [[UIImageView alloc] initWithFrame:CGRectMake((ScreenWidth - imgWidth) * 0.5, 64, imgWidth, ScreenHeight - 64)];
+    UIImageView *srcImageView = [[UIImageView alloc] initWithFrame:CGRectMake((Screen_Width - imgWidth) * 0.5, 64, imgWidth, Screen_Height - 64)];
     self.srcImageView = srcImageView;
     srcImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:srcImageView];
@@ -62,7 +64,7 @@
         
         _slider1 = [[UISlider alloc] init];
         _slider1.tag = 100;
-        _slider1.frame = CGRectMake(20, ScreenHeight - 60, ScreenWidth - 40, 30);
+        _slider1.frame = CGRectMake(20, Screen_Height - 60, Screen_Width - 40, 30);
         [self.view addSubview:_slider1];
         [_slider1 addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -76,7 +78,7 @@
         
         _slider2 = [[UISlider alloc] init];
         _slider2.tag = 101;
-        _slider2.frame = CGRectMake(20, ScreenHeight - 100, ScreenWidth - 40, 30);
+        _slider2.frame = CGRectMake(20, Screen_Height - 100, Screen_Width - 40, 30);
         [self.view addSubview:_slider2];
         [_slider2 addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -89,7 +91,7 @@
     if (!_slider3) {
         _slider3 = [[UISlider alloc] init];
         _slider3.tag = 102;
-        _slider3.frame = CGRectMake(20, ScreenHeight - 140, ScreenWidth - 40, 30);
+        _slider3.frame = CGRectMake(20, Screen_Height - 140, Screen_Width - 40, 30);
         [self.view addSubview:_slider3];
         [_slider3 addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventTouchUpInside];
     }
