@@ -150,8 +150,47 @@
 @property (nonatomic, strong) GPUImageChromaKeyBlendFilter          *chromaKeyBlendFilter;
 
 
+
+
+
+
+//混合模式
+
+
+/** GPUImageNormalBlendFilter */
+@property (nonatomic, strong) GPUImageNormalBlendFilter             *normalBlendFilter;
+
 /** GPUImageMultiplyBlendFilter */
 @property (nonatomic, strong) GPUImageMultiplyBlendFilter           *multiplyBlendFilter;
+
+/** GPUImageColorBurnBlendFilter */
+@property (nonatomic, strong) GPUImageColorBurnBlendFilter          *colorBurnBlendFilter;
+
+/** GPUImageDarkenBlendFilter */
+@property (nonatomic, strong) GPUImageDarkenBlendFilter             *darkenBlendFilter;
+
+
+/** GPUImageLightenBlendFilter */
+@property (nonatomic, strong) GPUImageLightenBlendFilter            *lightenBlendFilter;
+
+
+/** GPUImageScreenBlendFilter */
+@property (nonatomic, strong) GPUImageScreenBlendFilter             *screenBlendFilter;
+
+/** GPUImageOverlayBlendFilter */
+@property (nonatomic, strong) GPUImageOverlayBlendFilter            *overlayBlendFilter;
+
+/** GPUImageSoftLightBlendFilter */
+@property (nonatomic, strong) GPUImageSoftLightBlendFilter          *softLightBlendFilter;
+
+/** GPUImageHardLightBlendFilter */
+@property (nonatomic, strong) GPUImageHardLightBlendFilter          *hardLightBlendFilter;
+
+/** GPUImageDifferenceBlendFilter */
+@property (nonatomic, strong) GPUImageDifferenceBlendFilter         *differenceBlendFilter;
+
+
+
 
 
 + (instancetype)shareInstance;

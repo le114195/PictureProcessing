@@ -64,14 +64,27 @@
 - (void)gpuImageTest {
     
     self.originImage = [UIImage imageNamed:self.imgName];
-
-    self.sepiaFilter = [[NSClassFromString(@"GPUImageMultiplyBlendFilter") alloc] init];
+    self.sepiaFilter = self.tjGPU.gaussianBlurFilter;
+    [self.sepiaFilter setValue:@10 forKey:@"blurRadiusInPixels"];
     
-    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
     
-    self.slider1.maximumValue = 5;
-    self.slider1.minimumValue = 0;
-    self.slider1.value = 2;
+    UIImage *image = [self.sepiaFilter imageByFilteringImage:self.originImage];
+    
+    
+    GPUImagePicture *pic1 = [[GPUImagePicture alloc] initWithImage:image];
+    GPUImagePicture *pic2 = [[GPUImagePicture alloc] initWithImage:self.originImage];
+    self.sepiaFilter = self.tjGPU.colorBurnBlendFilter;
+    
+    [pic1 addTarget:self.sepiaFilter];
+    [pic2 addTarget:self.sepiaFilter];
+    
+    [self.sepiaFilter useNextFrameForImageCapture];
+    
+    
+    [pic1 processImage];
+    [pic2 processImage];
+    
+    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];;
 
 }
 

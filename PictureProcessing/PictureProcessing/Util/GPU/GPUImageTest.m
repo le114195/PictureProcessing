@@ -448,9 +448,108 @@
 
 
 
+#pragma mark -- 混合模式
+
+/** GPUImageNormalBlendFilter */
+- (GPUImageNormalBlendFilter *)normalBlendFilter
+{
+    if (!_normalBlendFilter) {
+        _normalBlendFilter = [[GPUImageNormalBlendFilter alloc] init];
+    }
+    return _normalBlendFilter;
+}
 
 
 
+/** GPUImageMultiplyBlendFilter */
+- (GPUImageMultiplyBlendFilter *)multiplyBlendFilter
+{
+    if (!_multiplyBlendFilter) {
+        _multiplyBlendFilter = [[GPUImageMultiplyBlendFilter alloc] init];
+    }
+    return _multiplyBlendFilter;
+}
+
+
+
+/** GPUImageColorBurnBlendFilter */
+- (GPUImageColorBurnBlendFilter *)colorBurnBlendFilter
+{
+    if (!_colorBurnBlendFilter) {
+        _colorBurnBlendFilter = [[GPUImageColorBurnBlendFilter alloc] init];
+    }
+    return _colorBurnBlendFilter;
+}
+
+
+/** GPUImageDarkenBlendFilter */
+- (GPUImageDarkenBlendFilter *)darkenBlendFilter
+{
+    if (!_darkenBlendFilter) {
+        _darkenBlendFilter = [[GPUImageDarkenBlendFilter alloc] init];
+    }
+    return _darkenBlendFilter;
+}
+
+
+/** GPUImageLightenBlendFilter */
+- (GPUImageLightenBlendFilter *)lightenBlendFilter
+{
+    if (!_lineGenerator) {
+        _lightenBlendFilter = [[GPUImageLightenBlendFilter alloc] init];
+    }
+    return _lightenBlendFilter;
+}
+
+
+/** GPUImageScreenBlendFilter */
+- (GPUImageScreenBlendFilter *)screenBlendFilter
+{
+    if (!_screenBlendFilter) {
+        _screenBlendFilter = [[GPUImageScreenBlendFilter alloc] init];
+    }
+    return _screenBlendFilter;
+}
+
+
+/** GPUImageOverlayBlendFilter */
+- (GPUImageOverlayBlendFilter *)overlayBlendFilter
+{
+    if (!_overlayBlendFilter) {
+        _overlayBlendFilter = [[GPUImageOverlayBlendFilter alloc] init];
+    }
+    return _overlayBlendFilter;
+}
+
+
+/** GPUImageSoftLightBlendFilter */
+- (GPUImageSoftLightBlendFilter *)softLightBlendFilter
+{
+    if (!_softLightBlendFilter) {
+        _softLightBlendFilter = [[GPUImageSoftLightBlendFilter alloc] init];
+    }
+    return _softLightBlendFilter;
+}
+
+
+/** GPUImageHardLightBlendFilter */
+- (GPUImageHardLightBlendFilter *)hardLightBlendFilter
+{
+    if (!_hardLightBlendFilter) {
+        _hardLightBlendFilter = [[GPUImageHardLightBlendFilter alloc] init];
+    }
+    return _hardLightBlendFilter;
+}
+
+
+/** GPUImageDifferenceBlendFilter */
+- (GPUImageDifferenceBlendFilter *)differenceBlendFilter
+{
+    if (!_differenceBlendFilter) {
+        _differenceBlendFilter = [[GPUImageDifferenceBlendFilter alloc] init];
+    }
+    return _differenceBlendFilter;
+}
 
 
 
