@@ -146,7 +146,6 @@
 @property (nonatomic, strong) GPUImageBulgeDistortionFilter         *bulgeDistortionFilter;
 
 
-
 /** GPUImageChromaKeyBlendFilter */
 @property (nonatomic, strong) GPUImageChromaKeyBlendFilter          *chromaKeyBlendFilter;
 
@@ -155,10 +154,9 @@
 @property (nonatomic, strong) GPUImageMultiplyBlendFilter           *multiplyBlendFilter;
 
 
-
-
-
-
 + (instancetype)shareInstance;
+
+
+
 
 @end
