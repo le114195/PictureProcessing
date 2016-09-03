@@ -107,9 +107,7 @@
     
     self.srcImageView.image = MatToUIImage(blend->linearBlending1([self.imageName UTF8String], [self.imgName2 UTF8String]));
     
-    
     delete blend;
-    
 }
 
 
