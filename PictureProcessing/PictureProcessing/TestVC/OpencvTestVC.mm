@@ -8,6 +8,7 @@
 
 #import "OpencvTestVC.h"
 #import "CategoryHeader.h"
+#import "TJPixel.hpp"
 
 
 @interface OpencvTestVC ()
@@ -43,7 +44,7 @@
     
     //    self.srcImageView.image = MatToUIImage(TJMorphology::open_demo([self.imageName UTF8String], 5));
     
-//    [self scaleTest];
+    [self scaleTest];
     
     
 //        [self pixelTest];
@@ -51,7 +52,7 @@
     //    [self edgeTest];
     
     
-    [self blendingTest];
+//    [self blendingTest];
     
     
 }
@@ -62,7 +63,14 @@
 /** 图片放缩 */
 - (void)scaleTest {
     TJScale *scale = new TJScale();
-    self.srcImageView.image = MatToUIImage(scale->ROI_demo([self.imageName UTF8String]));
+    self.srcImageView.image = MatToUIImage(scale->resize_demo([self.imageName UTF8String], 0.5));
+    
+    
+    Mat mat;
+    UIImageToMat(self.srcImageView.image, mat);
+    
+    printf("%d", mat.channels());
+    
     delete scale;
 }
 
@@ -70,9 +78,13 @@
 /** 图片像素操作 */
 - (void)pixelTest {
     TJPixel *pixel = new TJPixel();
-    self.srcImageView.image = MatToUIImage(pixel->createPngImg());
+    self.srcImageView.image = MatToUIImage(pixel->createPngWithRgb([self.imageName UTF8String]));
     
-    [self.srcImageView.image saveImageWithImgName:@"00012" imageType:1];
+    Mat mat;
+    UIImageToMat(self.srcImageView.image, mat);
+    
+    printf("%d", mat.channels());
+    
     
     delete pixel;
 }
