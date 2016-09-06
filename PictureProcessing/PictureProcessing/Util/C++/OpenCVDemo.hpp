@@ -9,78 +9,12 @@
 #ifndef OpenCVDemo_hpp
 #define OpenCVDemo_hpp
 
-#include <stdio.h>
-#import <opencv2/opencv.hpp>
-#import <vector>
+#include "TJOpencvBase.hpp"
 
 #endif /* OpenCVDemo_hpp */
 
-using namespace cv;
-
-class TJOpenCVBase{
-    
-public:
-    
-    Mat showImage(const char *imageName);
-    
-    static void converBGR2RGB(Mat dstMat);
-    
-    
-    
-protected:
-    
-    Mat srcImage;
-    Mat dstImage;
-    
-private:
-    
-    
-    
-    
-};
 
 
-
-/** 访问图片的像素操作 */
-class TJPixel:public TJOpenCVBase {
-    
-public:
-    
-    //利用at函数访问像素
-    void at_demo(const char* imgName);
-    
-    
-    //利用指针访问像素
-    void ptr_demo(const char* imgName);
-    
-    
-    /** 迭代器访问像素 */
-    void iterator_demo(const char* imgName);
-    
-    
-    /** 将图片变成灰度图片 */
-    Mat resetPixel(const char* imgName);
-    
-    void createImage();
-    
-    /** 裁剪图片 */
-    Mat cutImage(const char* imgName);
-    
-    /** 将图片转成单通道黑白图片 */
-    Mat oneGallery(const char* imgName);
-    
-    
-    /** 将图片的像素灰度反转 */
-    Mat colorReversal(const char* imgName);
-    
-    /** 创建一张png的图片 */
-    Mat createPngImg();
-    
-private:
-    
-    void createAlphaMat(Mat &mat);
-    
-};
 
 
 
