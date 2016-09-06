@@ -44,10 +44,10 @@
     
     //    self.srcImageView.image = MatToUIImage(TJMorphology::open_demo([self.imageName UTF8String], 5));
     
-    [self scaleTest];
+//    [self scaleTest];
     
     
-//        [self pixelTest];
+        [self pixelTest];
     
     //    [self edgeTest];
     
@@ -78,7 +78,15 @@
 /** 图片像素操作 */
 - (void)pixelTest {
     TJPixel *pixel = new TJPixel();
-    self.srcImageView.image = MatToUIImage(pixel->createPngWithRgb([self.imageName UTF8String]));
+    
+    
+    float imgWidth = Screen_Width * 3;
+    float imgHeight = Screen_Height * 3;
+    
+    Mat srcMat = Mat::zeros(cv::Size(imgWidth, imgHeight), CV_8UC4);
+    pixel->drawCircle(srcMat, cv::Point(300, 300), 100);
+    
+    self.srcImageView.image = MatToUIImage(srcMat);
     
     Mat mat;
     UIImageToMat(self.srcImageView.image, mat);
