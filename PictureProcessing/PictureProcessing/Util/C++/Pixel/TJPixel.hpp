@@ -47,6 +47,17 @@ public:
     Mat resize_demo(Mat &srcMat, float size);
     
     
+    
+    /** 获得一张png图片 */
+    Mat createPngImg(cv::Size size);
+    
+    /** 已知半径和圆心画一个圆 */
+    void drawCircle(Mat &srcMat, cv::Point center, float r);
+    
+    
+    
+    
+    
 private:
     
     

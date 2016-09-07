@@ -141,3 +141,47 @@ Mat TJPixel::resize_demo(Mat &srcMat, float size){
 
 
 
+
+
+Mat TJPixel::createPngImg(cv::Size size)
+{
+    Mat srcMat = Mat::zeros(size, CV_8UC4);
+    for (int i = 0; i < srcMat.rows; i++) {
+        for (int j = 0; j < srcMat.cols; j++) {
+            Vec4b &rgba = srcMat.at<Vec4b>(i, j);
+            rgba[0] = UCHAR_MAX;
+            rgba[1] = UCHAR_MAX;
+            rgba[2] = UCHAR_MAX;
+            rgba[3] = UCHAR_MAX;
+        }
+    }
+    return srcMat;
+}
+
+void TJPixel::drawCircle(cv::Mat &srcMat, cv::Point center, float r)
+{
+    for (int i = center.y - r; i < center.y + r; i++) {
+        for (int j = center.x - r; j < center.x + r; j++) {
+            Vec4b &rgba = srcMat.at<Vec4b>(i, j);
+            if (hypot(std::abs(j - center.x), std::abs(i - center.y)) < r) {
+                float xx = (rand() % 10) * 0.1;
+                float value = UCHAR_MAX * xx;
+                
+                rgba[0] = value;
+                rgba[1] = value;
+                rgba[2] = value;
+                rgba[3] = UCHAR_MAX;
+            }
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

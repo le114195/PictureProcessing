@@ -12,6 +12,7 @@
 #import "CoreImageVCTest.h"
 #import "GPUImageTestVC.h"
 #import "CoreImageList.h"
+#import "DrawController.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -30,7 +31,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest"];
+    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest", @"画布"];
     
     [self tableViewConfigure];
     
@@ -136,6 +137,15 @@
             [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
+            
+        case 3:{
+        
+            DrawController *drawVC = [[DrawController alloc] init];
+            [self.navigationController pushViewController:drawVC animated:YES];
+            break;
+        }
+            
+            
         default:
             break;
     }
