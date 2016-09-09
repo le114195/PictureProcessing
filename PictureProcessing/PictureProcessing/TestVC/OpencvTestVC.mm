@@ -9,6 +9,7 @@
 #import "OpencvTestVC.h"
 #import "CategoryHeader.h"
 #import "TJPixel.hpp"
+#import "GrammarTest.hpp"
 
 
 @interface OpencvTestVC ()
@@ -54,6 +55,9 @@
     
 //    [self blendingTest];
     
+    
+    
+    [self grammarTest];
     
 }
 
@@ -123,8 +127,15 @@
 
 - (void)grammarTest
 {
-    [self virtual_test];
-    [self threadTest];
+//    [self virtual_test];
+//    [self threadTest];
+    
+    
+    GrammmarDemo *grammar = new GrammmarDemo();
+    
+    grammar->vecTest(10);
+    delete grammar;
+    
 }
 
 /** 静态函数、虚函数和纯虚函数测试 */

@@ -189,6 +189,7 @@
 		7579B2461D82484B007B0F74 /* GPUImageWhiteBalanceFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B1961D82484B007B0F74 /* GPUImageWhiteBalanceFilter.m */; };
 		7579B2471D82484B007B0F74 /* GPUImageXYDerivativeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B1981D82484B007B0F74 /* GPUImageXYDerivativeFilter.m */; };
 		7579B2481D82484B007B0F74 /* GPUImageZoomBlurFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B19A1D82484B007B0F74 /* GPUImageZoomBlurFilter.m */; };
+		7579B2621D828CFA007B0F74 /* Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7579B2601D828CFA007B0F74 /* Draw.cpp */; };
 		758B0F9E1D6E92510010D9B4 /* UIColor+Conver16.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0F9B1D6E92510010D9B4 /* UIColor+Conver16.m */; };
 		758B0F9F1D6E92510010D9B4 /* UIView+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0F9D1D6E92510010D9B4 /* UIView+Size.m */; };
 		758B0FA51D6EAF3C0010D9B4 /* UIImage+SaveToTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0FA41D6EAF3C0010D9B4 /* UIImage+SaveToTool.m */; };
@@ -582,6 +583,8 @@
 		7579B1981D82484B007B0F74 /* GPUImageXYDerivativeFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageXYDerivativeFilter.m; sourceTree = "<group>"; };
 		7579B1991D82484B007B0F74 /* GPUImageZoomBlurFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageZoomBlurFilter.h; sourceTree = "<group>"; };
 		7579B19A1D82484B007B0F74 /* GPUImageZoomBlurFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageZoomBlurFilter.m; sourceTree = "<group>"; };
+		7579B2601D828CFA007B0F74 /* Draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Draw.cpp; sourceTree = "<group>"; };
+		7579B2611D828CFA007B0F74 /* Draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Draw.hpp; sourceTree = "<group>"; };
 		758B0F9A1D6E92510010D9B4 /* UIColor+Conver16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Conver16.h"; sourceTree = "<group>"; };
 		758B0F9B1D6E92510010D9B4 /* UIColor+Conver16.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Conver16.m"; sourceTree = "<group>"; };
 		758B0F9C1D6E92510010D9B4 /* UIView+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Size.h"; sourceTree = "<group>"; };
@@ -1086,6 +1089,15 @@
 			path = Framework;
 			sourceTree = "<group>";
 		};
+		7579B25F1D828CE4007B0F74 /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+				7579B2601D828CFA007B0F74 /* Draw.cpp */,
+				7579B2611D828CFA007B0F74 /* Draw.hpp */,
+			);
+			path = Draw;
+			sourceTree = "<group>";
+		};
 		758B0F971D6E91C60010D9B4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,6 +1136,7 @@
 		7594A78D1D5CBBEA00D6F31B /* C++ */ = {
 			isa = PBXGroup;
 			children = (
+				7579B25F1D828CE4007B0F74 /* Draw */,
 				75FE84DD1D7AB71400E45DBE /* Grammar */,
 				75FE84DB1D7AB6FC00E45DBE /* OpnecvBase */,
 				75FE84DC1D7AB6FC00E45DBE /* Pixel */,
@@ -1254,7 +1267,6 @@
 				TargetAttributes = {
 					7556F7CD1D5CA0AA008CC401 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Y9E6T3VGEQ;
 					};
 				};
 			};
@@ -1364,6 +1376,7 @@
 				758B0FA51D6EAF3C0010D9B4 /* UIImage+SaveToTool.m in Sources */,
 				7579B1EB1D82484B007B0F74 /* GPUImageLevelsFilter.m in Sources */,
 				7579B2351D82484B007B0F74 /* GPUImageThresholdSketchFilter.m in Sources */,
+				7579B2621D828CFA007B0F74 /* Draw.cpp in Sources */,
 				7594A7B61D5CBF6100D6F31B /* OpencvTestVC.mm in Sources */,
 				7556F7D61D5CA0AA008CC401 /* AppDelegate.m in Sources */,
 				7579B1CB1D82484B007B0F74 /* GPUImageFilter.m in Sources */,

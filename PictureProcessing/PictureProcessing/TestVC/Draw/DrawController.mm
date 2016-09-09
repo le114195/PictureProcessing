@@ -10,10 +10,11 @@
 #import "CategoryHeader.h"
 #import "TJPixel.hpp"
 #import "MathFunc.h"
+#import "Draw.hpp"
 
 
-#define ImgWidth                Screen_Width * 3
-#define ImgHeight               Screen_Height * 3
+#define ImgWidth                Screen_Width
+#define ImgHeight               Screen_Height
 
 
 #define CircleR         8
@@ -27,9 +28,14 @@
 
 @property (nonatomic, assign) CGPoint               currentPoint;
 
+
+@property (nonatomic, assign) CGPoint               lastPoint;
+
 /** 角度 */
 @property (nonatomic, assign) float                 angle;
 
+
+@property (nonatomic, copy) void(^addNewPoint)(CGPoint newPoint);
 
 @end
 
@@ -38,13 +44,17 @@
 
 Mat             srcMat;
 TJPixel         *pixel;
+TJDraw          *draw;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
     
-    [self pixelTest];
+//    [self pixelTest];
+    
+    
+    [self drawTest];
     
     
     // Do any additional setup after loading the view.
@@ -53,6 +63,25 @@ TJPixel         *pixel;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)drawTest {
+    draw = new TJDraw();
+    srcMat = draw->createPngImg(cv::Size(ImgWidth, ImgHeight));
+    
+    __weak __typeof(self)weakSelf = self;
+    self.addNewPoint = ^(CGPoint point){
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        
+        cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+        cv::Point point2 = cv::Point(point.x / self.srcImageView.width * ImgWidth, point.y / self.srcImageView.heigth * ImgHeight);
+        
+        draw->drawLine(srcMat, point1, point2, 5);
+        strongSelf.srcImageView.image = MatToUIImage(srcMat);
+    };
+    
+    delete draw;
 }
 
 
@@ -80,27 +109,7 @@ TJPixel         *pixel;
     CGPoint location = [touch locationInView:self.srcImageView];
     
     
-    double angle = atan((location.y - self.currentPoint.y) / (location.x - self.currentPoint.x));
-    CGFloat distance = hypot(fabs(location.y - self.currentPoint.y), fabs(location.x - self.currentPoint.x));
-    
-    if (distance < 2 * CircleR) {
-        return;
-    }
-    if (fabs(self.angle - angle) < M_PI_4 && distance < Distance) {
-        return;
-    }else if (distance > Distance) {
-        int count = distance / Distance;
-        for (int i = 0; i < count; i++) {
-            self.currentPoint = [MathFunc newPointWithLastLocation:self.currentPoint local:location distance:Distance];
-            NSValue *value = [NSValue valueWithCGPoint:self.currentPoint];
-            [self.pointArrM addObject:value];
-            
-            pixel->drawCircle(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 30);
-            self.srcImageView.image = MatToUIImage(srcMat);
-            
-        }
-    }
-    self.angle = angle;
+    [self constDistance:location];
 }
 
 - (NSMutableArray *)pointArrM
@@ -110,6 +119,41 @@ TJPixel         *pixel;
     }
     return _pointArrM;
 }
+
+
+/** 取出距离恒定的点 */
+- (void)constDistance:(CGPoint)location
+{
+    double angle = atan((location.y - self.currentPoint.y) / (location.x - self.currentPoint.x));
+    CGFloat distance = hypot(fabs(location.y - self.currentPoint.y), fabs(location.x - self.currentPoint.x));
+    if (distance < 2 * CircleR) {
+        return;
+    }
+    if (fabs(self.angle - angle) < M_PI_4 && distance < Distance) {
+        return;
+    }else if (distance > Distance) {
+        int count = distance / Distance;
+        for (int i = 0; i < count; i++) {
+            
+            self.lastPoint = self.currentPoint;
+            self.currentPoint = [MathFunc newPointWithLastLocation:self.currentPoint local:location distance:Distance];
+            
+//            pixel->drawCircle(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 30);
+//            self.srcImageView.image = MatToUIImage(srcMat);
+            
+
+            cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+            cv::Point point2 = cv::Point(self.lastPoint.x / self.srcImageView.width * ImgWidth, self.lastPoint.y / self.srcImageView.heigth * ImgHeight);
+            draw->drawLine(srcMat, point1, point2, 8);
+            self.srcImageView.image = MatToUIImage(srcMat);
+            
+
+        }
+    }
+    self.angle = angle;
+
+}
+
 
 
 
