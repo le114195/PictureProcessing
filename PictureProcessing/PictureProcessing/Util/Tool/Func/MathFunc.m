@@ -37,16 +37,6 @@
         }
         y0 = slope * x0 + c0;
     }
-<<<<<<< HEAD
-    y0 = slope * x0 + c0;
-    
-    if (x0 == 0) {
-        NSLog(@"dfe");
-    }
-    
-    
-=======
->>>>>>> 4776b27ee00e8a6064619aa5d9204981fddc666c
     return CGPointMake(x0, y0);
 }
 

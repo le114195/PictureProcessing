@@ -48,7 +48,7 @@ void TJDraw::drawCircle(cv::Mat &srcMat, cv::Point center, float r)
     for (int i = center.y - r; i < center.y + r; i++) {
         for (int j = center.x - r; j < center.x + r; j++) {
             
-            if (i < 0 || j < 0 || i > srcMat.cols || j > srcMat.rows) {
+            if (i < 0 || j < 0 || j > srcMat.cols || i > srcMat.rows) {
                 return;
             }
             
@@ -69,43 +69,71 @@ void TJDraw::drawCircle(cv::Mat &srcMat, cv::Point center, float r)
 
 void TJDraw::drawCircleFill(cv::Mat &srcMat, cv::Point center, float r)
 {
+
+    int cc = srcMat.channels();
     for (int i = center.y - r; i < center.y + r; i++) {
-        for (int j = center.x - r; j < center.x + r; j++) {
-            if (i < 0 || j < 0 || i > srcMat.cols || j > srcMat.rows) {
+        if (i < 0 || i > srcMat.rows) {
+            return;
+        }
+        
+        uchar *data = srcMat.ptr<uchar>(i);
+        for (int j = center.x -r ; j < center.x + r; j++) {
+            if (j < 0 || j > srcMat.cols) {
                 return;
             }
-            
-            Vec4b &rgba = srcMat.at<Vec4b>(i, j);
-            if (hypot(std::abs(j - center.x), std::abs(i - center.y)) < r) {
-                rgba[0] = 0;
-                rgba[1] = 0;
-                rgba[2] = 0;
-                rgba[3] = UCHAR_MAX;
+            if (hypot(std::abs(j - center.x), std::abs(i - center.y)) < r){
+                data[j * cc] = 0;
+                data[j * cc + 1] = 0;
+                data[j * cc + 2] = 0;
+                data[j * cc + 3] = UCHAR_MAX;
             }
         }
     }
+    
+//    for (int i = center.y - r; i < center.y + r; i++) {
+//        for (int j = center.x - r; j < center.x + r; j++) {
+//            if (i < 0 || j < 0 || j > srcMat.cols || i > srcMat.rows) {
+//                return;
+//            }
+//            Vec4b &rgba = srcMat.at<Vec4b>(i, j);
+//            if (hypot(std::abs(j - center.x), std::abs(i - center.y)) < r) {
+//                rgba[0] = 0;
+//                rgba[1] = 0;
+//                rgba[2] = 0;
+//                rgba[3] = UCHAR_MAX;
+//            }
+//        }
+//    }
+    
 }
-
 
 
 void TJDraw::drawLine(cv::Mat &srcMat, cv::Point point1, cv::Point point2, float width)
 {
+    printf("- - - - - - - - - - - - - - - - - - - --  -\n");
+    printf("p1x = %d, p1y = %d\n", point1.x, point1.y);
+    printf("p2x = %d, p2y = %d\n", point2.x, point2.y);
+    
     if (point1.x == point2.x) {
         for (int i = min(point1.y, point2.y); i < max(point1.y, point2.y); i++) {
             this->drawCircleFill(srcMat, cv::Point(point1.x, i), width * 0.5);
+        }
+    }else if (point1.y == point2.y){
+        for (int j = min(point1.x, point2.x); j < max(point1.x, point1.x); j++) {
+            this->drawCircleFill(srcMat, cv::Point(j, point1.y), width * 0.5);
         }
     }else {
         float d = 0;
         for (int i = min(point1.y, point2.y); i < max(point1.y, point2.y); i++) {
             for (int j = min(point1.x, point2.x); j < max(point1.x, point2.x); j++) {
                 d = this->pointToLine(point1, point2, cv::Point(j, i));
-                
                 if (d < 0.5) {
                     this->drawCircleFill(srcMat, cv::Point(j, i), width * 0.5);
                 }
             }
         }
     }
+    printf("\n");
 }
 
 
