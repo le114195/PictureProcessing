@@ -47,6 +47,7 @@ void TJPixel::ptr_demo(const char *imgName) {
         uchar *data = srcImage.ptr<uchar>(j);
         for (int i = 0; i < rows; i++) {
             uchar pixel = data[i];
+            printf("%d", pixel);
         }
     }
 }

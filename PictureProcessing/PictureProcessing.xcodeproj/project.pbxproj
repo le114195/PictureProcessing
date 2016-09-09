@@ -1448,11 +1448,7 @@
 				75C43EB01D61A908002F25EF /* opencv2.framework */,
 				7514FABA1D6163C6008B7F2F /* Lib */,
 				7594A7B71D5CC10200D6F31B /* image */,
-				7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */,
-				7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */,
-				7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */,
-				7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */,
-				7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */,
+				7579B02F1D8243A9007B0F74 /* SystemFramework */,
 				7594A57B1D5CBA9000D6F31B /* Lib */,
 				7556F7D01D5CA0AA008CC401 /* PictureProcessing */,
 				7556F7CF1D5CA0AA008CC401 /* Products */,
@@ -1494,6 +1490,18 @@
 				7556F7D21D5CA0AA008CC401 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7579B02F1D8243A9007B0F74 /* SystemFramework */ = {
+			isa = PBXGroup;
+			children = (
+				7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */,
+				7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */,
+				7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */,
+				7594A7A81D5CBC5F00D6F31B /* AVFoundation.framework */,
+				7594A7A61D5CBC5700D6F31B /* QuartzCore.framework */,
+			);
+			name = SystemFramework;
 			sourceTree = "<group>";
 		};
 		758B0F971D6E91C60010D9B4 /* Tool */ = {
