@@ -34,6 +34,12 @@
         x0 = (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
     }
     y0 = slope * x0 + c0;
+    
+    if (x0 == 0) {
+        NSLog(@"dfe");
+    }
+    
+    
     return CGPointMake(x0, y0);
 }
 

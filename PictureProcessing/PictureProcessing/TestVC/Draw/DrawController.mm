@@ -18,7 +18,7 @@
 
 #define CircleR         8
 
-#define Distance        50
+#define Distance        35
 
 
 @interface DrawController ()
@@ -95,6 +95,7 @@ TJPixel         *pixel;
             NSValue *value = [NSValue valueWithCGPoint:self.currentPoint];
             [self.pointArrM addObject:value];
             
+            
             pixel->drawCircle(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 30);
             self.srcImageView.image = MatToUIImage(srcMat);
             
@@ -111,6 +112,12 @@ TJPixel         *pixel;
     return _pointArrM;
 }
 
+
+
+- (void)dealloc
+{
+    delete pixel;
+}
 
 
 @end

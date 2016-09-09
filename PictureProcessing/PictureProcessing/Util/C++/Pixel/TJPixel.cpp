@@ -46,7 +46,10 @@ void TJPixel::ptr_demo(const char *imgName) {
         
         uchar *data = srcImage.ptr<uchar>(j);
         for (int i = 0; i < rows; i++) {
-            uchar pixel = data[i];
+            
+            
+            
+            
         }
     }
 }
@@ -160,12 +163,31 @@ Mat TJPixel::createPngImg(cv::Size size)
 
 void TJPixel::drawCircle(cv::Mat &srcMat, cv::Point center, float r)
 {
+    if (center.x == 0 && center.y == 0) {
+        return;
+    }
+    
+    if (center.y < 0) {
+        center.y = 0;
+    }else if (center.y > srcMat.rows) {
+        center.y = srcMat.rows;
+    }
+    
+    if (center.x < 0) {
+        center.x = 0;
+    }else if (center.x > srcMat.cols) {
+        center.x = srcMat.cols;
+    }
+    
     for (int i = center.y - r; i < center.y + r; i++) {
         for (int j = center.x - r; j < center.x + r; j++) {
+            if (i + 1 > srcMat.rows || i - 1 < 0 || j - 1 < 0 || j + 1 > srcMat.cols) {
+                continue;
+            }
             Vec4b &rgba = srcMat.at<Vec4b>(i, j);
             if (hypot(std::abs(j - center.x), std::abs(i - center.y)) < r) {
                 float xx = (rand() % 10) * 0.1;
-                float value = UCHAR_MAX * xx;
+                uchar value = UCHAR_MAX * xx;
                 
                 rgba[0] = value;
                 rgba[1] = value;
