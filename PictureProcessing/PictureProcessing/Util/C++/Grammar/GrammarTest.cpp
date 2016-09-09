@@ -43,6 +43,31 @@ void GrammmarDemo::static_test()
 
 
 
+void GrammmarDemo::vecTest(int x)
+{
+    for (int i = 0; i < 10; i++) {
+        this->tt.push_back(x * i);
+    }
+    printf("size = %lu\n", this->tt.size());
+    
+    vector<int>::iterator ptt;
+    ptt = this->tt.begin();
+    
+    while (ptt != this->tt.end()) {
+        printf("%d", *ptt);
+        ptt++;
+    }
+    printf("******\n");
+    
+    for (int j = 0; j < this->tt.size(); j++) {
+        printf("%d  ", this->tt[j]);
+    }
+    printf("\n");
+}
+
+
+
+
 /*- - - - - - - - - - - - - - - - - - - - - - - -*/
 
 

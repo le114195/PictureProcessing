@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include <pthread.h>
+#include <vector>
+
+using namespace std;
 
 #endif /* GrammarTest_hpp */
 
@@ -52,13 +55,16 @@ public:
     virtual void virtual_test();//覆盖父类的虚函数
     
     
+    void vecTest(int x);
+    
+    
 protected:
     
     
     
 private:
     
-    
+    vector<int> tt;
     
     
 };

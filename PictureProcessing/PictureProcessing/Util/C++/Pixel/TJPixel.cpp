@@ -46,10 +46,15 @@ void TJPixel::ptr_demo(const char *imgName) {
         
         uchar *data = srcImage.ptr<uchar>(j);
         for (int i = 0; i < rows; i++) {
+<<<<<<< HEAD
             
             
             
             
+=======
+            uchar pixel = data[i];
+            printf("%d", pixel);
+>>>>>>> 4776b27ee00e8a6064619aa5d9204981fddc666c
         }
     }
 }
