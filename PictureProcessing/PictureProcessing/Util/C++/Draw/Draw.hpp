@@ -48,12 +48,6 @@ public:
     /** 已知半径和圆心画一个圆 */
     void drawCircle(Mat &srcMat, cv::Point center, float r);
     
-    
-    
-    
-    
-    
-    
     /**
      *  画一条直线
      *
@@ -85,9 +79,26 @@ public:
     double pointToLine(cv::Point point1, cv::Point point2, cv::Point point);
     
     
+    
+    /**
+     *  画一个多边形
+     *
+     *  @param point  新输入的点
+     *  @param srcMat 输入的图片
+     *  @param width  线的宽度（像素）
+     */
+    void drawPolygon(cv::Point point, cv::Mat &srcMat, float width);
+    
+    /**
+     *  将pointVec清空
+     */
+    void clearPointVec();
+    
+    
+    
 private:
     
-    
+    vector<cv::Point> pointVec;
     
     
     

@@ -16,8 +16,8 @@
 #define ImgHeight               Screen_Height * 5
 
 
-#define CircleR         8
-#define Distance        20.0
+#define CircleR         3.5
+#define Distance        30.0
 
 
 @interface DrawController ()
@@ -103,8 +103,13 @@ TJDraw          *draw;
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self.srcImageView];
     
-    
     [self constDistance:location];
+}
+
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    draw->clearPointVec();
 }
 
 - (NSMutableArray *)pointArrM
@@ -128,26 +133,26 @@ TJDraw          *draw;
         return;
     }else if (distance > Distance) {
         int count = distance / Distance;
-        
-        NSLog(@"count = %d", count);
         for (int i = 0; i < count; i++) {
             
             self.lastPoint = self.currentPoint;
             
+            
+            cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+            
+            draw->drawPolygon(polygonPoint, srcMat, 16);
+            
             cv::Point point = draw->newPoint(cv::Point(self.currentPoint.x, self.currentPoint.y), cv::Point(location.x, location.y), Distance);
             self.currentPoint = CGPointMake(point.x, point.y);
             
-            NSLog(@"%@", NSStringFromCGPoint(self.currentPoint));
-            NSLog(@"--%f", distance);
-            
-            draw->drawCircleFill(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 20);
-            
-            self.srcImageView.image = MatToUIImage(srcMat);
-
-//            cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
-//            cv::Point point2 = cv::Point(self.lastPoint.x / self.srcImageView.width * ImgWidth, self.lastPoint.y / self.srcImageView.heigth * ImgHeight);
-//            draw->drawLine(srcMat, point1, point2, 8);
+//            draw->drawCircleFill(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 20);
 //            self.srcImageView.image = MatToUIImage(srcMat);
+            
+            
+            cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+            cv::Point point2 = cv::Point(self.lastPoint.x / self.srcImageView.width * ImgWidth, self.lastPoint.y / self.srcImageView.heigth * ImgHeight);
+            draw->drawLine(srcMat, point1, point2, 16);
+            self.srcImageView.image = MatToUIImage(srcMat);
             
 
         }

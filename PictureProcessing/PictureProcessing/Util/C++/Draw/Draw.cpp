@@ -43,10 +43,10 @@ cv::Point TJDraw::newPoint(cv::Point lastLocation, cv::Point location, double di
     double slope = 0; //斜率
     if (location.x == lastLocation.x) {
         x0 = location.x;
-        if (location.y > lastLocation.y) {
+        if (location.y > lastLocation.y) {//向下
             y0 = lastLocation.y + distance;
-        }else {
-            y0 = location.y + distance;
+        }else {//向上
+            y0 = lastLocation.y - distance;
         }
     }else {
         slope = 1.0 * (location.y - lastLocation.y) / (location.x - lastLocation.x);
@@ -134,12 +134,18 @@ void TJDraw::drawCircleFill(cv::Mat &srcMat, cv::Point center, float r)
 
 void TJDraw::drawLine(cv::Mat &srcMat, cv::Point point1, cv::Point point2, float width)
 {
-    if (point1.x == point2.x) {
-        for (int i = min(point1.y, point2.y); i < max(point1.y, point2.y); i++) {
+    if (point1.x == point2.x) {//垂直运动
+        int yMin = min(point1.y, point2.y);
+        int yMax = max(point1.y, point2.y);
+        
+        for (int i = yMin; i < yMax; i++) {
             this->drawCircleFill(srcMat, cv::Point(point1.x, i), width * 0.5);
         }
-    }else if (point1.y == point2.y){
-        for (int j = min(point1.x, point2.x); j < max(point1.x, point1.x); j++) {
+    }else if (point1.y == point2.y){//水平运动
+        int xMin = min(point1.x, point2.x);
+        int xMax = max(point1.x, point2.x);
+        
+        for (int j = xMin; j < xMax; j++) {
             this->drawCircleFill(srcMat, cv::Point(j, point1.y), width * 0.5);
         }
     }else {
@@ -154,6 +160,45 @@ void TJDraw::drawLine(cv::Mat &srcMat, cv::Point point1, cv::Point point2, float
         }
     }
 }
+
+
+void TJDraw::drawPolygon(cv::Point point, cv::Mat &srcMat, float width)
+{
+    this->pointVec.push_back(point);
+    long size = this->pointVec.size();
+    
+    if (size < 2) {
+        return;
+    }
+    if (size == 2) {
+        drawLine(srcMat, point, this->pointVec[0], width);
+    }else if (size > 2 && size < 6) {
+        for (int i = 0; i < size; i++) {
+            drawLine(srcMat, point, this->pointVec[size - i - 1], width);
+        }
+    }else {
+        for (int i = 0; i < 6; i++) {
+            drawLine(srcMat, point, this->pointVec[size - i - 1], width);
+        }
+    }
+}
+
+
+
+
+void TJDraw::clearPointVec()
+{
+    this->pointVec.clear();
+}
+
+
+
+
+
+
+
+
+
 
 
 
