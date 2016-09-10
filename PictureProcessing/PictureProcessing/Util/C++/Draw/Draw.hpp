@@ -18,11 +18,39 @@ class TJDraw:public TJOpenCVBase{
   
 public:
     
-    /** 获得一张png图片 */
+    /** 获得一张rgba图片 */
     Mat createPngImg(cv::Size size);
+    
+    
+    /**
+     *  获得一张单通道的图片
+     *
+     *  @param size 图片的大小
+     *
+     *  @return 返回图片矩阵
+     */
+    Mat createOneGalleryimg(cv::Size size);
+    
+    
+    /**
+     *  通过两个点获取第三个点，第三个点位于这两个点所组成的直线上，并且该点距离第一个点的距离为distance
+     *
+     *  @param lastLocation 第一个点
+     *  @param location     第二个点
+     *  @param distance     第三个点距第一个点的距离
+     *
+     *  @return 返回第三个点
+     */
+    cv::Point newPoint(cv::Point lastLocation, cv::Point location, double distance);
+    
+    
     
     /** 已知半径和圆心画一个圆 */
     void drawCircle(Mat &srcMat, cv::Point center, float r);
+    
+    
+    
+    
     
     
     
@@ -54,7 +82,7 @@ public:
      *
      *  @return 返回距离
      */
-    float pointToLine(cv::Point point1, cv::Point point2, cv::Point point);
+    double pointToLine(cv::Point point1, cv::Point point2, cv::Point point);
     
     
 private:

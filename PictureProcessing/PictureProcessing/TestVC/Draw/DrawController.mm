@@ -9,17 +9,15 @@
 #import "DrawController.h"
 #import "CategoryHeader.h"
 #import "TJPixel.hpp"
-#import "MathFunc.h"
 #import "Draw.hpp"
 
 
-#define ImgWidth                Screen_Width * 2
-#define ImgHeight               Screen_Height * 2
+#define ImgWidth                Screen_Width * 5
+#define ImgHeight               Screen_Height * 5
 
 
 #define CircleR         8
-
-#define Distance        20
+#define Distance        20.0
 
 
 @interface DrawController ()
@@ -50,11 +48,17 @@ TJDraw          *draw;
     [super viewDidLoad];
     
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
 //    [self pixelTest];
     
     
     [self drawTest];
+    
+    
+    NSLog(@"width = %f", ImgWidth);
+    
+    NSLog(@"height = %f", ImgHeight);
     
     
     // Do any additional setup after loading the view.
@@ -68,7 +72,11 @@ TJDraw          *draw;
 
 - (void)drawTest {
     draw = new TJDraw();
-    srcMat = draw->createPngImg(cv::Size(ImgWidth, ImgHeight));
+    
+    
+//    srcMat = draw->createPngImg(cv::Size(ImgWidth, ImgHeight));
+    
+    srcMat = draw->createOneGalleryimg(cv::Size(ImgWidth, ImgHeight));
 }
 
 
@@ -120,19 +128,22 @@ TJDraw          *draw;
         return;
     }else if (distance > Distance) {
         int count = distance / Distance;
+        
+        NSLog(@"count = %d", count);
         for (int i = 0; i < count; i++) {
             
             self.lastPoint = self.currentPoint;
-            self.currentPoint = [MathFunc newPointWithLastLocation:self.currentPoint local:location distance:Distance];
             
+            cv::Point point = draw->newPoint(cv::Point(self.currentPoint.x, self.currentPoint.y), cv::Point(location.x, location.y), Distance);
+            self.currentPoint = CGPointMake(point.x, point.y);
+            
+            NSLog(@"%@", NSStringFromCGPoint(self.currentPoint));
+            NSLog(@"--%f", distance);
             
             draw->drawCircleFill(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 20);
             
             self.srcImageView.image = MatToUIImage(srcMat);
-            
-//            NSLog(@"%@%@", NSStringFromCGPoint(self.currentPoint), NSStringFromCGPoint(self.lastPoint));
-//            
-//            
+
 //            cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
 //            cv::Point point2 = cv::Point(self.lastPoint.x / self.srcImageView.width * ImgWidth, self.lastPoint.y / self.srcImageView.heigth * ImgHeight);
 //            draw->drawLine(srcMat, point1, point2, 8);
