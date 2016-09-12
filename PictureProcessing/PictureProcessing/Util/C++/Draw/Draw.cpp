@@ -172,12 +172,12 @@ void TJDraw::drawPolygon(cv::Point point, cv::Mat &srcMat, float width)
     }
     if (size == 2) {
         drawLine(srcMat, point, this->pointVec[0], width);
-    }else if (size > 2 && size < 6) {
+    }else if (size > 2 && size < 7) {
         for (int i = 0; i < size; i++) {
             drawLine(srcMat, point, this->pointVec[size - i - 1], width);
         }
     }else {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             drawLine(srcMat, point, this->pointVec[size - i - 1], width);
         }
     }

@@ -12,12 +12,16 @@
 #import "Draw.hpp"
 
 
-#define ImgWidth                Screen_Width * 5
-#define ImgHeight               Screen_Height * 5
+#define ImgWidth                Screen_Width * 4
+#define ImgHeight               Screen_Height * 4
+
+
+
+#define LineWidth               10
 
 
 #define CircleR         3.5
-#define Distance        30.0
+#define Distance        40.0
 
 
 @interface DrawController ()
@@ -74,9 +78,9 @@ TJDraw          *draw;
     draw = new TJDraw();
     
     
-//    srcMat = draw->createPngImg(cv::Size(ImgWidth, ImgHeight));
+    srcMat = draw->createPngImg(cv::Size(ImgWidth, ImgHeight));
     
-    srcMat = draw->createOneGalleryimg(cv::Size(ImgWidth, ImgHeight));
+//    srcMat = draw->createOneGalleryimg(cv::Size(ImgWidth, ImgHeight));
 }
 
 
@@ -97,6 +101,11 @@ TJDraw          *draw;
     CGPoint location =[touch locationInView:self.srcImageView];
     
     self.currentPoint = location;
+    
+    
+    cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+    draw->drawPolygon(polygonPoint, srcMat, LineWidth);
+    
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -137,21 +146,22 @@ TJDraw          *draw;
             
             self.lastPoint = self.currentPoint;
             
-            
-            cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
-            
-            draw->drawPolygon(polygonPoint, srcMat, 16);
-            
             cv::Point point = draw->newPoint(cv::Point(self.currentPoint.x, self.currentPoint.y), cv::Point(location.x, location.y), Distance);
             self.currentPoint = CGPointMake(point.x, point.y);
             
+            
+            cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+            draw->drawPolygon(polygonPoint, srcMat, LineWidth);
+            
+            
 //            draw->drawCircleFill(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 20);
-//            self.srcImageView.image = MatToUIImage(srcMat);
             
             
-            cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
-            cv::Point point2 = cv::Point(self.lastPoint.x / self.srcImageView.width * ImgWidth, self.lastPoint.y / self.srcImageView.heigth * ImgHeight);
-            draw->drawLine(srcMat, point1, point2, 16);
+//            cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+//            cv::Point point2 = cv::Point(self.lastPoint.x / self.srcImageView.width * ImgWidth, self.lastPoint.y / self.srcImageView.heigth * ImgHeight);
+//            draw->drawLine(srcMat, point1, point2, 16);
+            
+            
             self.srcImageView.image = MatToUIImage(srcMat);
             
 
