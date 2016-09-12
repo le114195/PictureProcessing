@@ -207,6 +207,7 @@
 		75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C43EB01D61A908002F25EF /* opencv2.framework */; };
 		75C43EB41D62A1EF002F25EF /* CoreImageList.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB31D62A1EF002F25EF /* CoreImageList.mm */; };
 		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
+		75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */; };
 		75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75FB69CD1D7F11AE00FF880F /* DrawController.mm */; };
 		75FE84E01D7AB73100E45DBE /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */; };
 		75FE84E31D7AB75800E45DBE /* TJOpencvBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84E11D7AB75800E45DBE /* TJOpencvBase.cpp */; };
@@ -614,6 +615,8 @@
 		75C43EB31D62A1EF002F25EF /* CoreImageList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageList.mm; sourceTree = "<group>"; };
 		75C43EB61D62ADAC002F25EF /* CorePara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePara.h; sourceTree = "<group>"; };
 		75C43EB71D62ADAC002F25EF /* CorePara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePara.m; sourceTree = "<group>"; };
+		75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpenGL.cpp; sourceTree = "<group>"; };
+		75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJOpenGL.hpp; sourceTree = "<group>"; };
 		75FB69CC1D7F11AE00FF880F /* DrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawController.h; sourceTree = "<group>"; };
 		75FB69CD1D7F11AE00FF880F /* DrawController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DrawController.mm; sourceTree = "<group>"; };
 		75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GrammarTest.cpp; sourceTree = "<group>"; };
@@ -629,10 +632,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */,
 				75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */,
 				7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */,
 				7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */,
-				7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */,
 				7594A7A91D5CBC5F00D6F31B /* AVFoundation.framework in Frameworks */,
 				7594A7A71D5CBC5700D6F31B /* QuartzCore.framework in Frameworks */,
 			);
@@ -1132,6 +1135,7 @@
 		7594A78D1D5CBBEA00D6F31B /* C++ */ = {
 			isa = PBXGroup;
 			children = (
+				75F9EDA51D84E498001BA4DC /* opengl */,
 				7579B25F1D828CE4007B0F74 /* Draw */,
 				75FE84DD1D7AB71400E45DBE /* Grammar */,
 				75FE84DB1D7AB6FC00E45DBE /* OpnecvBase */,
@@ -1185,6 +1189,15 @@
 				75C43EB71D62ADAC002F25EF /* CorePara.m */,
 			);
 			path = Const;
+			sourceTree = "<group>";
+		};
+		75F9EDA51D84E498001BA4DC /* opengl */ = {
+			isa = PBXGroup;
+			children = (
+				75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */,
+				75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */,
+			);
+			path = opengl;
 			sourceTree = "<group>";
 		};
 		75FB69CB1D7F119100FF880F /* Draw */ = {
@@ -1466,6 +1479,7 @@
 				7579B1BD1D82484B007B0F74 /* GPUImageCrosshatchFilter.m in Sources */,
 				7579B1AB1D82484B007B0F74 /* GPUImageCGAColorspaceFilter.m in Sources */,
 				7579B20A1D82484B007B0F74 /* GPUImagePicture+TextureSubimage.m in Sources */,
+				75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */,
 				7579B19E1D82484B007B0F74 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				7579B1F51D82484B007B0F74 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				7579B2301D82484B007B0F74 /* GPUImageTextureInput.m in Sources */,
