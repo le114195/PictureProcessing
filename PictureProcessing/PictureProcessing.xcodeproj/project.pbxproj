@@ -15,6 +15,7 @@
 		7556F7DC1D5CA0AA008CC401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DA1D5CA0AA008CC401 /* Main.storyboard */; };
 		7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */; };
 		7556F7E11D5CA0AA008CC401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DF1D5CA0AA008CC401 /* LaunchScreen.storyboard */; };
+		755CB15C1D863855000AC00A /* TJOPenGL2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 755CB15B1D863855000AC00A /* TJOPenGL2VC.m */; };
 		7579B19B1D82484B007B0F74 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7579B03D1D82484B007B0F74 /* Info.plist */; };
 		7579B19C1D82484B007B0F74 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0401D82484B007B0F74 /* GLProgram.m */; };
 		7579B19D1D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0441D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m */; };
@@ -232,6 +233,8 @@
 		7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7556F7E01D5CA0AA008CC401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7556F7E21D5CA0AA008CC401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		755CB15A1D863855000AC00A /* TJOPenGL2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOPenGL2VC.h; sourceTree = "<group>"; };
+		755CB15B1D863855000AC00A /* TJOPenGL2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOPenGL2VC.m; sourceTree = "<group>"; };
 		7579B03C1D82484B007B0F74 /* GPUImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramework.h; sourceTree = "<group>"; };
 		7579B03D1D82484B007B0F74 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7579B03E1D82484B007B0F74 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -703,6 +706,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		755CB1591D863839000AC00A /* TJOpenGL2 */ = {
+			isa = PBXGroup;
+			children = (
+				755CB15A1D863855000AC00A /* TJOPenGL2VC.h */,
+				755CB15B1D863855000AC00A /* TJOPenGL2VC.m */,
+			);
+			path = TJOpenGL2;
+			sourceTree = "<group>";
+		};
 		7579B02F1D8243A9007B0F74 /* SystemFramework */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,6 +1179,7 @@
 		7594A7B31D5CBF4500D6F31B /* TestVC */ = {
 			isa = PBXGroup;
 			children = (
+				755CB1591D863839000AC00A /* TJOpenGL2 */,
 				75FB69CB1D7F119100FF880F /* Draw */,
 				7594A7B41D5CBF6100D6F31B /* OpencvTestVC.h */,
 				7594A7B51D5CBF6100D6F31B /* OpencvTestVC.mm */,
@@ -1341,6 +1354,7 @@
 				7579B2211D82484B007B0F74 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				7579B2311D82484B007B0F74 /* GPUImageTextureOutput.m in Sources */,
 				7579B1CC1D82484B007B0F74 /* GPUImageFilterGroup.m in Sources */,
+				755CB15C1D863855000AC00A /* TJOPenGL2VC.m in Sources */,
 				7579B21A1D82484B007B0F74 /* GPUImageRGBOpeningFilter.m in Sources */,
 				7579B1E81D82484B007B0F74 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				7579B1A51D82484B007B0F74 /* GPUImageBilateralFilter.m in Sources */,

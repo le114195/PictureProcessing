@@ -13,6 +13,7 @@
 #import "GPUImageTestVC.h"
 #import "CoreImageList.h"
 #import "DrawController.h"
+#import "TJOPenGL2VC.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -31,7 +32,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest", @"画布"];
+    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest", @"画布", @"OpenGL"];
     
     [self tableViewConfigure];
     
@@ -144,7 +145,13 @@
             [self.navigationController pushViewController:drawVC animated:YES];
             break;
         }
+        case 4:{
+        
+            TJOPenGL2VC *openGLVC = [[TJOPenGL2VC alloc] init];
+            [self.navigationController pushViewController:openGLVC animated:YES];
             
+            break;
+        }
             
         default:
             break;
