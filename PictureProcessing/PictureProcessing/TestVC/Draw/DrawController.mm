@@ -17,7 +17,7 @@
 
 
 
-#define LineWidth               10
+#define LineWidth               4
 
 
 #define CircleR         3.5
@@ -55,14 +55,9 @@ TJDraw          *draw;
     self.view.backgroundColor = [UIColor whiteColor];
     
 //    [self pixelTest];
-    
-    
     [self drawTest];
     
     
-    NSLog(@"width = %f", ImgWidth);
-    
-    NSLog(@"height = %f", ImgHeight);
     
     
     // Do any additional setup after loading the view.
@@ -75,8 +70,12 @@ TJDraw          *draw;
 
 
 - (void)drawTest {
-    draw = new TJDraw();
     
+    UIImage *image = [UIImage imageWithContentsOfFile:self.imageName];
+    Mat tarMat;
+    UIImageToMat(image, tarMat);
+    
+    draw = new TJDraw(tarMat, 100);
     
     srcMat = draw->createPngImg(cv::Size(ImgWidth, ImgHeight));
     
@@ -105,6 +104,10 @@ TJDraw          *draw;
     
     cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
     draw->drawPolygon(polygonPoint, srcMat, LineWidth);
+    
+//    draw->drawIrregular(srcMat, polygonPoint);
+    
+    
     
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -149,8 +152,9 @@ TJDraw          *draw;
             cv::Point point = draw->newPoint(cv::Point(self.currentPoint.x, self.currentPoint.y), cv::Point(location.x, location.y), Distance);
             self.currentPoint = CGPointMake(point.x, point.y);
             
-            
             cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
+            
+            //画多边形
             draw->drawPolygon(polygonPoint, srcMat, LineWidth);
             
             
@@ -160,6 +164,12 @@ TJDraw          *draw;
 //            cv::Point point1 = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
 //            cv::Point point2 = cv::Point(self.lastPoint.x / self.srcImageView.width * ImgWidth, self.lastPoint.y / self.srcImageView.heigth * ImgHeight);
 //            draw->drawLine(srcMat, point1, point2, 16);
+            
+            
+            //画不规则图形
+//            draw->drawIrregular(srcMat, polygonPoint);
+            
+            
             
             
             self.srcImageView.image = MatToUIImage(srcMat);

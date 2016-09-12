@@ -16,6 +16,9 @@
 		7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DD1D5CA0AA008CC401 /* Assets.xcassets */; };
 		7556F7E11D5CA0AA008CC401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7556F7DF1D5CA0AA008CC401 /* LaunchScreen.storyboard */; };
 		755CB15C1D863855000AC00A /* TJOPenGL2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 755CB15B1D863855000AC00A /* TJOPenGL2VC.m */; };
+		755CB1771D8690D9000AC00A /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 755CB1741D8690D9000AC00A /* 01.png */; };
+		755CB1781D8690D9000AC00A /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 755CB1751D8690D9000AC00A /* 02.png */; };
+		755CB1791D8690D9000AC00A /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 755CB1761D8690D9000AC00A /* 03.png */; };
 		7579B19B1D82484B007B0F74 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7579B03D1D82484B007B0F74 /* Info.plist */; };
 		7579B19C1D82484B007B0F74 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0401D82484B007B0F74 /* GLProgram.m */; };
 		7579B19D1D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0441D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m */; };
@@ -235,6 +238,9 @@
 		7556F7E21D5CA0AA008CC401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		755CB15A1D863855000AC00A /* TJOPenGL2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOPenGL2VC.h; sourceTree = "<group>"; };
 		755CB15B1D863855000AC00A /* TJOPenGL2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOPenGL2VC.m; sourceTree = "<group>"; };
+		755CB1741D8690D9000AC00A /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
+		755CB1751D8690D9000AC00A /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
+		755CB1761D8690D9000AC00A /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
 		7579B03C1D82484B007B0F74 /* GPUImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramework.h; sourceTree = "<group>"; };
 		7579B03D1D82484B007B0F74 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7579B03E1D82484B007B0F74 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -680,6 +686,7 @@
 		7556F7D01D5CA0AA008CC401 /* PictureProcessing */ = {
 			isa = PBXGroup;
 			children = (
+				755CB1731D8690D9000AC00A /* picture */,
 				7594A7B31D5CBF4500D6F31B /* TestVC */,
 				7594A78C1D5CBBEA00D6F31B /* Util */,
 				7556F7D41D5CA0AA008CC401 /* AppDelegate.h */,
@@ -713,6 +720,16 @@
 				755CB15B1D863855000AC00A /* TJOPenGL2VC.m */,
 			);
 			path = TJOpenGL2;
+			sourceTree = "<group>";
+		};
+		755CB1731D8690D9000AC00A /* picture */ = {
+			isa = PBXGroup;
+			children = (
+				755CB1741D8690D9000AC00A /* 01.png */,
+				755CB1751D8690D9000AC00A /* 02.png */,
+				755CB1761D8690D9000AC00A /* 03.png */,
+			);
+			path = picture;
 			sourceTree = "<group>";
 		};
 		7579B02F1D8243A9007B0F74 /* SystemFramework */ = {
@@ -1306,10 +1323,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				755CB1791D8690D9000AC00A /* 03.png in Resources */,
+				755CB1771D8690D9000AC00A /* 01.png in Resources */,
 				7579B19B1D82484B007B0F74 /* Info.plist in Resources */,
 				7556F7E11D5CA0AA008CC401 /* LaunchScreen.storyboard in Resources */,
 				7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */,
 				7556F7DC1D5CA0AA008CC401 /* Main.storyboard in Resources */,
+				755CB1781D8690D9000AC00A /* 02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

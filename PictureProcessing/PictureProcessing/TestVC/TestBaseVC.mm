@@ -21,10 +21,10 @@
     
     [self subViewConfigure];
     
-    self.imageName = PictureHeader(@"1234567.png");
+    self.imageName = PictureHeader(@"01.png");
     
 //    self.imageName = PictureHeader(@"sj_20160705_1.JPG");
-    self.imgName2 = PictureHeader(@"sj_20160705_2.JPG");
+    self.imgName2 = PictureHeader(@"02.png");
 
     
     // Do any additional setup after loading the view.

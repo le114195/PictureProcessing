@@ -18,6 +18,11 @@ class TJDraw:public TJOpenCVBase{
   
 public:
     
+    /**
+     *  构造方法
+     */
+    TJDraw(cv::Mat &tarMat, int size);
+    
     /** 获得一张rgba图片 */
     Mat createPngImg(cv::Size size);
     
@@ -48,16 +53,6 @@ public:
     /** 已知半径和圆心画一个圆 */
     void drawCircle(Mat &srcMat, cv::Point center, float r);
     
-    /**
-     *  画一条直线
-     *
-     *  @param srcMat 地图
-     *  @param point1 点1
-     *  @param point2 点2
-     *  @param width  线的宽度
-     */
-    void drawLine(Mat &srcMat, cv::Point point1, cv::Point point2, float width);
-    
     
     /**
      *  画一个充满的圆
@@ -78,8 +73,6 @@ public:
      */
     double pointToLine(cv::Point point1, cv::Point point2, cv::Point point);
     
-    
-    
     /**
      *  画一个多边形
      *
@@ -87,7 +80,7 @@ public:
      *  @param srcMat 输入的图片
      *  @param width  线的宽度（像素）
      */
-    void drawPolygon(cv::Point point, cv::Mat &srcMat, float width);
+    void drawPolygon(cv::Point point, cv::Mat &srcMat, int width);
     
     /**
      *  将pointVec清空
@@ -95,12 +88,22 @@ public:
     void clearPointVec();
     
     
+    /**
+     *  画一个不规则的图形
+     *
+     *  @param srcMat 输入的图片
+     *  @param point  不规则图片矩阵中心
+     */
+    void drawIrregular(cv::Mat &srcMat, cv::Point point);
+    
+    
+    
     
 private:
     
     vector<cv::Point> pointVec;
     
-    
+    Mat targetMat;
     
 };
 

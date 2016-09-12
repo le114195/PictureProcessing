@@ -9,6 +9,11 @@
 #include "Draw.hpp"
 
 
+TJDraw::TJDraw(cv::Mat &tarMat, int size)
+{
+    resize(tarMat, this->targetMat, cv::Size(size, size));
+}
+
 
 Mat TJDraw::createPngImg(cv::Size size)
 {
@@ -132,37 +137,8 @@ void TJDraw::drawCircleFill(cv::Mat &srcMat, cv::Point center, float r)
 }
 
 
-void TJDraw::drawLine(cv::Mat &srcMat, cv::Point point1, cv::Point point2, float width)
-{
-    if (point1.x == point2.x) {//垂直运动
-        int yMin = min(point1.y, point2.y);
-        int yMax = max(point1.y, point2.y);
-        
-        for (int i = yMin; i < yMax; i++) {
-            this->drawCircleFill(srcMat, cv::Point(point1.x, i), width * 0.5);
-        }
-    }else if (point1.y == point2.y){//水平运动
-        int xMin = min(point1.x, point2.x);
-        int xMax = max(point1.x, point2.x);
-        
-        for (int j = xMin; j < xMax; j++) {
-            this->drawCircleFill(srcMat, cv::Point(j, point1.y), width * 0.5);
-        }
-    }else {
-        double d = 0;
-        for (int i = min(point1.y, point2.y); i < max(point1.y, point2.y); i++) {
-            for (int j = min(point1.x, point2.x); j < max(point1.x, point2.x); j++) {
-                d = this->pointToLine(point1, point2, cv::Point(j, i));
-                if (d < 0.5) {
-                    this->drawCircleFill(srcMat, cv::Point(j, i), width * 0.5);
-                }
-            }
-        }
-    }
-}
 
-
-void TJDraw::drawPolygon(cv::Point point, cv::Mat &srcMat, float width)
+void TJDraw::drawPolygon(cv::Point point, cv::Mat &srcMat, int width)
 {
     this->pointVec.push_back(point);
     long size = this->pointVec.size();
@@ -171,14 +147,14 @@ void TJDraw::drawPolygon(cv::Point point, cv::Mat &srcMat, float width)
         return;
     }
     if (size == 2) {
-        drawLine(srcMat, point, this->pointVec[0], width);
+        line(srcMat, point, this->pointVec[0], Scalar(0, 0, 0, 255), width);
     }else if (size > 2 && size < 7) {
         for (int i = 0; i < size; i++) {
-            drawLine(srcMat, point, this->pointVec[size - i - 1], width);
+            line(srcMat, point, this->pointVec[size - i - 1], Scalar(0, 0, 0, 255), width);
         }
     }else {
         for (int i = 0; i < 7; i++) {
-            drawLine(srcMat, point, this->pointVec[size - i - 1], width);
+            line(srcMat, point, this->pointVec[size - i - 1], Scalar(0, 0, 0, 255), width);
         }
     }
 }
@@ -192,6 +168,25 @@ void TJDraw::clearPointVec()
 }
 
 
+
+void TJDraw::drawIrregular(cv::Mat &srcMat, cv::Point point)
+{
+    
+    int originY = point.y - this->targetMat.rows * 0.5;
+    int originX = point.x - this->targetMat.cols * 0.5;
+    
+    for (int i = originY; i < originY + this->targetMat.rows; i++) {
+        for (int j = originX; j < originX + this->targetMat.cols; j++) {
+            Vec4b &rgba = srcMat.at<Vec4b>(i, j);
+            Vec4b &tarRgba = this->targetMat.at<Vec4b>(i - originY, j - originX);
+            
+            rgba[0] = UCHAR_MAX - tarRgba[0];
+            rgba[1] = UCHAR_MAX - tarRgba[1];
+            rgba[2] = UCHAR_MAX - tarRgba[2];
+            rgba[3] = tarRgba[3];
+        }
+    }
+}
 
 
 
