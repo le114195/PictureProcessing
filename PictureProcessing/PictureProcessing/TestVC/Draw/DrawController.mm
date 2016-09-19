@@ -21,7 +21,7 @@
 
 
 #define CircleR         3.5
-#define Distance        40.0
+#define Distance        20.0
 
 
 @interface DrawController ()
@@ -103,9 +103,9 @@ TJDraw          *draw;
     
     
     cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
-    draw->drawPolygon(polygonPoint, srcMat, LineWidth);
+//    draw->drawPolygon(polygonPoint, srcMat, LineWidth);
     
-//    draw->drawIrregular(srcMat, polygonPoint);
+    draw->drawIrregular(srcMat, polygonPoint);
     
     
     
@@ -155,7 +155,7 @@ TJDraw          *draw;
             cv::Point polygonPoint = cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight);
             
             //画多边形
-            draw->drawPolygon(polygonPoint, srcMat, LineWidth);
+//            draw->drawPolygon(polygonPoint, srcMat, LineWidth);
             
             
 //            draw->drawCircleFill(srcMat, cv::Point(self.currentPoint.x / self.srcImageView.width * ImgWidth, self.currentPoint.y / self.srcImageView.heigth * ImgHeight), 20);
@@ -167,7 +167,7 @@ TJDraw          *draw;
             
             
             //画不规则图形
-//            draw->drawIrregular(srcMat, polygonPoint);
+            draw->drawIrregular(srcMat, polygonPoint);
             
             
             

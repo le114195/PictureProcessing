@@ -37,7 +37,7 @@ static const SceneVertex vertices[] =
 {
     {{0.0f, 0.5f, 0.0}}, // lower left corner
     {{-0.5f, -0.5f, 0.0}}, // lower right corner
-    {{0.5f,  -0.5f, 0.0}}  // upper left corner
+    {{0.5f,  -0.5f, 0.0}}// upper left corner
 };
 
 /////////////////////////////////////////////////////////////////
@@ -120,6 +120,7 @@ static const SceneVertex vertices[] =
     glDrawArrays(GL_TRIANGLES,      // STEP 6
                  0,  // Start with first vertex in currently bound buffer
                  3); // Use three vertices from currently bound buffer
+    
 }
 
 
