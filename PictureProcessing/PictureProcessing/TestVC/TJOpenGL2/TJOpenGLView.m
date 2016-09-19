@@ -247,7 +247,6 @@ typedef struct {
         texture.width = (int)width;
         texture.height = (int)height;
     }
-    
     return texture;
 }
 
@@ -410,12 +409,11 @@ typedef struct {
         vertexCount += 1;
     }
     
-    // Load data to the Vertex Buffer Object
-    glBindBuffer(GL_ARRAY_BUFFER, vboId);
-    glBufferData(GL_ARRAY_BUFFER, vertexCount*2*sizeof(GLfloat), vertexBuffer, GL_DYNAMIC_DRAW);
     
+    
+    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, GL_FALSE, 0, vertexBuffer);
     glEnableVertexAttribArray(ATTRIB_VERTEX);
-    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    
     
     // Draw
     glUseProgram(program[PROGRAM_POINT].programID);
