@@ -19,6 +19,7 @@
 		755CB1771D8690D9000AC00A /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 755CB1741D8690D9000AC00A /* 01.png */; };
 		755CB1781D8690D9000AC00A /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 755CB1751D8690D9000AC00A /* 02.png */; };
 		755CB1791D8690D9000AC00A /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 755CB1761D8690D9000AC00A /* 03.png */; };
+		7560A96B1D8FAC320056AB99 /* TJOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7560A96A1D8FAC320056AB99 /* TJOpenGLView.m */; };
 		7579B19B1D82484B007B0F74 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7579B03D1D82484B007B0F74 /* Info.plist */; };
 		7579B19C1D82484B007B0F74 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0401D82484B007B0F74 /* GLProgram.m */; };
 		7579B19D1D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0441D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m */; };
@@ -214,7 +215,6 @@
 		75C399891D87FE4000C67F3D /* fileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C399861D87FE4000C67F3D /* fileUtil.m */; };
 		75C3998A1D87FE4000C67F3D /* shaderUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 75C399871D87FE4000C67F3D /* shaderUtil.c */; };
 		75C3998C1D87FEC200C67F3D /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 75C3998B1D87FEC200C67F3D /* Particle.png */; };
-		75C3998F1D88069900C67F3D /* OpenGLView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C3998E1D88069900C67F3D /* OpenGLView1.m */; };
 		75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C43EB01D61A908002F25EF /* opencv2.framework */; };
 		75C43EB41D62A1EF002F25EF /* CoreImageList.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB31D62A1EF002F25EF /* CoreImageList.mm */; };
 		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
@@ -248,6 +248,8 @@
 		755CB1741D8690D9000AC00A /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
 		755CB1751D8690D9000AC00A /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
 		755CB1761D8690D9000AC00A /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
+		7560A9691D8FAC320056AB99 /* TJOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenGLView.h; sourceTree = "<group>"; };
+		7560A96A1D8FAC320056AB99 /* TJOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenGLView.m; sourceTree = "<group>"; };
 		7579B03C1D82484B007B0F74 /* GPUImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramework.h; sourceTree = "<group>"; };
 		7579B03D1D82484B007B0F74 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7579B03E1D82484B007B0F74 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -636,8 +638,6 @@
 		75C399871D87FE4000C67F3D /* shaderUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shaderUtil.c; sourceTree = "<group>"; };
 		75C399881D87FE4000C67F3D /* shaderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderUtil.h; sourceTree = "<group>"; };
 		75C3998B1D87FEC200C67F3D /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
-		75C3998D1D88069900C67F3D /* OpenGLView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView1.h; sourceTree = "<group>"; };
-		75C3998E1D88069900C67F3D /* OpenGLView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView1.m; sourceTree = "<group>"; };
 		75C43EB01D61A908002F25EF /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		75C43EB21D62A1EF002F25EF /* CoreImageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageList.h; sourceTree = "<group>"; };
 		75C43EB31D62A1EF002F25EF /* CoreImageList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageList.mm; sourceTree = "<group>"; };
@@ -742,8 +742,8 @@
 				755CB15B1D863855000AC00A /* TJOPenGL2VC.m */,
 				75C399801D87F91100C67F3D /* TJOpenGLVC2.h */,
 				75C399811D87F91100C67F3D /* TJOpenGLVC2.m */,
-				75C3998D1D88069900C67F3D /* OpenGLView1.h */,
-				75C3998E1D88069900C67F3D /* OpenGLView1.m */,
+				7560A9691D8FAC320056AB99 /* TJOpenGLView.h */,
+				7560A96A1D8FAC320056AB99 /* TJOpenGLView.m */,
 			);
 			path = TJOpenGL2;
 			sourceTree = "<group>";
@@ -1415,7 +1415,6 @@
 				7579B1C61D82484B007B0F74 /* GPUImageErosionFilter.m in Sources */,
 				7579B1D21D82484B007B0F74 /* GPUImageGaussianBlurFilter.m in Sources */,
 				7579B1F21D82484B007B0F74 /* GPUImageLuminanceRangeFilter.m in Sources */,
-				75C3998F1D88069900C67F3D /* OpenGLView1.m in Sources */,
 				7579B1E41D82484B007B0F74 /* GPUImageHueFilter.m in Sources */,
 				7579B2371D82484B007B0F74 /* GPUImageToneCurveFilter.m in Sources */,
 				7579B1BE1D82484B007B0F74 /* GPUImageDarkenBlendFilter.m in Sources */,
@@ -1564,6 +1563,7 @@
 				7579B1FC1D82484B007B0F74 /* GPUImageMotionDetector.m in Sources */,
 				7579B2411D82484B007B0F74 /* GPUImageVideoCamera.m in Sources */,
 				7579B1BD1D82484B007B0F74 /* GPUImageCrosshatchFilter.m in Sources */,
+				7560A96B1D8FAC320056AB99 /* TJOpenGLView.m in Sources */,
 				7579B1AB1D82484B007B0F74 /* GPUImageCGAColorspaceFilter.m in Sources */,
 				7579B20A1D82484B007B0F74 /* GPUImagePicture+TextureSubimage.m in Sources */,
 				75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "TJOpenGLVC2.h"
-#import "OpenGLView1.h"
+#import "TJOpenGLView.h"
 
 #define kPaletteSize			5
 
@@ -30,12 +30,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
 
+
     
-    OpenGLView1 *view = [[OpenGLView1 alloc] initWithFrame:self.view.bounds];
-    
+    TJOpenGLView *view = [[TJOpenGLView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:view];
-    
-    
     
     
     CGColorRef color = [UIColor colorWithHue:(CGFloat)2.0 / (CGFloat)kPaletteSize
