@@ -14,7 +14,7 @@
 
 
 #define kBrushOpacity		(1.0 / 3.0)
-#define kBrushPixelStep		3
+#define kBrushPixelStep		1
 #define kBrushScale			2
 
 
@@ -339,6 +339,7 @@ typedef struct {
         glDeleteRenderbuffers(1, &depthRenderbuffer);
         depthRenderbuffer = 0;
     }
+    
     // texture
     if (brushTexture.textID) {
         glDeleteTextures(1, &brushTexture.textID);
@@ -353,21 +354,7 @@ typedef struct {
     // tear down context
     if ([EAGLContext currentContext] == context)
         [EAGLContext setCurrentContext:nil];
-}
-
-/** 清空屏幕 */
-- (void)erase
-{
-    [EAGLContext setCurrentContext:context];
-    
-    // Clear the buffer
-    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    // Display the buffer
-    glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
-    [context presentRenderbuffer:GL_RENDERBUFFER];
+    [self erase];
 }
 
 
@@ -409,9 +396,7 @@ typedef struct {
         vertexCount += 1;
     }
     
-    
-    
-    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, GL_FALSE, 0, vertexBuffer);
+    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), vertexBuffer);
     glEnableVertexAttribArray(ATTRIB_VERTEX);
     
     
@@ -498,7 +483,20 @@ typedef struct {
 }
 
 
-
+/** 清空屏幕 */
+- (void)erase
+{
+    [EAGLContext setCurrentContext:context];
+    
+    // Clear the buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    // Display the buffer
+    glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
+    [context presentRenderbuffer:GL_RENDERBUFFER];
+}
  
 
 @end
