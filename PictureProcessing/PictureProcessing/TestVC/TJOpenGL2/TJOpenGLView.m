@@ -325,6 +325,8 @@ typedef struct {
 // Releases resources when they are not longer needed.
 - (void)dealloc
 {
+    [self erase];
+    
     // Destroy framebuffers and renderbuffers
     if (viewFramebuffer) {
         glDeleteFramebuffers(1, &viewFramebuffer);
@@ -354,7 +356,6 @@ typedef struct {
     // tear down context
     if ([EAGLContext currentContext] == context)
         [EAGLContext setCurrentContext:nil];
-    [self erase];
 }
 
 
