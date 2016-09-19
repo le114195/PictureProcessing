@@ -218,7 +218,6 @@ typedef struct {
     
     brushImage = [UIImage imageNamed:name].CGImage;
     
-    
     // Get the width and height of the image
     width = CGImageGetWidth(brushImage);
     height = CGImageGetHeight(brushImage);
@@ -283,7 +282,7 @@ typedef struct {
     glGenBuffers(1, &vboId);
     
     // Load the brush texture
-    brushTexture = [self textureFromName:@"Particle.png"];
+    brushTexture = [self textureFromName:@"test128.png"];
     
     // Load shaders
     [self setupShaders];
