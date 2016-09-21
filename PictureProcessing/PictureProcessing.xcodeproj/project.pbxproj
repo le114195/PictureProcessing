@@ -214,6 +214,7 @@
 		7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */; };
 		7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */; };
 		7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B11D5CBEF500D6F31B /* TestCell.m */; };
+		75AA22BB1D92E0EB00DA2AB9 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AA22BA1D92E0EB00DA2AB9 /* GLProgram.m */; };
 		75C3997E1D87F69200C67F3D /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 75C3997C1D87F69200C67F3D /* point.fsh */; };
 		75C3997F1D87F69200C67F3D /* point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 75C3997D1D87F69200C67F3D /* point.vsh */; };
 		75C399821D87F91100C67F3D /* TJOpenGLVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C399811D87F91100C67F3D /* TJOpenGLVC2.m */; };
@@ -222,6 +223,7 @@
 		75C3998C1D87FEC200C67F3D /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 75C3998B1D87FEC200C67F3D /* Particle.png */; };
 		75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C43EB01D61A908002F25EF /* opencv2.framework */; };
 		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
+		75DF2F601D92C99A00F4AF6E /* TriangleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DF2F5F1D92C99A00F4AF6E /* TriangleTest.m */; };
 		75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */; };
 		75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75FB69CD1D7F11AE00FF880F /* DrawController.mm */; };
 		75FE84E01D7AB73100E45DBE /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */; };
@@ -640,6 +642,9 @@
 		7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7594A7B01D5CBEF500D6F31B /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
 		7594A7B11D5CBEF500D6F31B /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
+		75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
+		75AA22B91D92E0EB00DA2AB9 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
+		75AA22BA1D92E0EB00DA2AB9 /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLProgram.m; sourceTree = "<group>"; };
 		75C3997C1D87F69200C67F3D /* point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.fsh; sourceTree = "<group>"; };
 		75C3997D1D87F69200C67F3D /* point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vsh; sourceTree = "<group>"; };
 		75C399801D87F91100C67F3D /* TJOpenGLVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenGLVC2.h; sourceTree = "<group>"; };
@@ -653,6 +658,8 @@
 		75C43EB01D61A908002F25EF /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		75C43EB61D62ADAC002F25EF /* CorePara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePara.h; sourceTree = "<group>"; };
 		75C43EB71D62ADAC002F25EF /* CorePara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePara.m; sourceTree = "<group>"; };
+		75DF2F5E1D92C99A00F4AF6E /* TriangleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleTest.h; sourceTree = "<group>"; };
+		75DF2F5F1D92C99A00F4AF6E /* TriangleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleTest.m; sourceTree = "<group>"; };
 		75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpenGL.cpp; sourceTree = "<group>"; };
 		75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJOpenGL.hpp; sourceTree = "<group>"; };
 		75FB69CC1D7F11AE00FF880F /* DrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawController.h; sourceTree = "<group>"; };
@@ -689,6 +696,7 @@
 				750F800B1D616AA4004BF41A /* SizeHeader.h */,
 				750F800C1D616AD8004BF41A /* FileHeader.h */,
 				758B0FA01D6E927F0010D9B4 /* CategoryHeader.h */,
+				75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -790,6 +798,8 @@
 		7560A9801D8FCA410056AB99 /* TJOpenGL3 */ = {
 			isa = PBXGroup;
 			children = (
+				75AA22B91D92E0EB00DA2AB9 /* GLProgram.h */,
+				75AA22BA1D92E0EB00DA2AB9 /* GLProgram.m */,
 				7560A9811D8FCA410056AB99 /* Controller */,
 				7560A9821D8FCA410056AB99 /* View */,
 			);
@@ -810,6 +820,8 @@
 			children = (
 				7560A9861D8FCA960056AB99 /* TJOpenGL3View.h */,
 				7560A9871D8FCA960056AB99 /* TJOpenGL3View.m */,
+				75DF2F5E1D92C99A00F4AF6E /* TriangleTest.h */,
+				75DF2F5F1D92C99A00F4AF6E /* TriangleTest.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1392,6 +1404,8 @@
 				TargetAttributes = {
 					7556F7CD1D5CA0AA008CC401 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Y9E6T3VGEQ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1445,6 +1459,7 @@
 				7579B20C1D82484B007B0F74 /* GPUImagePinchDistortionFilter.m in Sources */,
 				7579B1C01D82484B007B0F74 /* GPUImageDilationFilter.m in Sources */,
 				7579B1FF1D82484B007B0F74 /* GPUImageMovieWriter.m in Sources */,
+				75AA22BB1D92E0EB00DA2AB9 /* GLProgram.m in Sources */,
 				7579B23E1D82484B007B0F74 /* GPUImageUIElement.m in Sources */,
 				7579B22F1D82484B007B0F74 /* GPUImageSwirlFilter.m in Sources */,
 				7560A9881D8FCA960056AB99 /* TJOpenGL3View.m in Sources */,
@@ -1499,6 +1514,7 @@
 				7579B1CD1D82484B007B0F74 /* GPUImageFilterPipeline.m in Sources */,
 				7579B2441D82484B007B0F74 /* GPUImageVoronoiConsumerFilter.m in Sources */,
 				7579B2251D82484B007B0F74 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
+				75DF2F601D92C99A00F4AF6E /* TriangleTest.m in Sources */,
 				7579B1D91D82484B007B0F74 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
 				7579B23B1D82484B007B0F74 /* GPUImageTwoInputFilter.m in Sources */,
 				7579B1F81D82484B007B0F74 /* GPUImageMissEtikateFilter.m in Sources */,
@@ -1757,6 +1773,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y9E6T3VGEQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1777,6 +1794,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y9E6T3VGEQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

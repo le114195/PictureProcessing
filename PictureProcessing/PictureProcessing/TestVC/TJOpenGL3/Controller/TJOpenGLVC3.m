@@ -17,9 +17,6 @@
     [super viewDidLoad];
     TJOpenGL3View *openglView = [[TJOpenGL3View alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:openglView];
-    
-    
-    
 }
 
 

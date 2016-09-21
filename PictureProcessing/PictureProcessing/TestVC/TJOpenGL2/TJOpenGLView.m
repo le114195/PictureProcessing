@@ -11,7 +11,7 @@
 #import "shaderUtil.h"
 #import "fileUtil.h"
 #import "debug.h"
-
+#import "GPUImage.h"
 
 #define kBrushOpacity		(1.0 / 3.0)
 #define kBrushPixelStep		1
@@ -124,7 +124,7 @@ typedef struct {
         
         // Set the view's scale factor as you wish
         self.contentScaleFactor = [[UIScreen mainScreen] scale];
-
+        
     }
     return self;
 }
