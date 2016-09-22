@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75382D6F1D93C77700B14F77 /* TJCustomFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 75382D6E1D93C77700B14F77 /* TJCustomFilter.m */; };
+		75382D751D93D05C00B14F77 /* sj_20160705_10.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 75382D731D93D05C00B14F77 /* sj_20160705_10.JPG */; };
+		75382D761D93D05C00B14F77 /* tone_01_goldblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 75382D741D93D05C00B14F77 /* tone_01_goldblue.png */; };
 		7556F7D31D5CA0AA008CC401 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D21D5CA0AA008CC401 /* main.m */; };
 		7556F7D61D5CA0AA008CC401 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D51D5CA0AA008CC401 /* AppDelegate.m */; };
 		7556F7D91D5CA0AA008CC401 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D81D5CA0AA008CC401 /* ViewController.mm */; };
@@ -214,7 +217,6 @@
 		7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */; };
 		7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */; };
 		7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B11D5CBEF500D6F31B /* TestCell.m */; };
-		75AA22BB1D92E0EB00DA2AB9 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AA22BA1D92E0EB00DA2AB9 /* GLProgram.m */; };
 		75C3997E1D87F69200C67F3D /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 75C3997C1D87F69200C67F3D /* point.fsh */; };
 		75C3997F1D87F69200C67F3D /* point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 75C3997D1D87F69200C67F3D /* point.vsh */; };
 		75C399821D87F91100C67F3D /* TJOpenGLVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C399811D87F91100C67F3D /* TJOpenGLVC2.m */; };
@@ -235,6 +237,10 @@
 		750F800A1D616A39004BF41A /* BlockHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockHeader.h; sourceTree = "<group>"; };
 		750F800B1D616AA4004BF41A /* SizeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizeHeader.h; sourceTree = "<group>"; };
 		750F800C1D616AD8004BF41A /* FileHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileHeader.h; sourceTree = "<group>"; };
+		75382D6D1D93C77700B14F77 /* TJCustomFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCustomFilter.h; sourceTree = "<group>"; };
+		75382D6E1D93C77700B14F77 /* TJCustomFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCustomFilter.m; sourceTree = "<group>"; };
+		75382D731D93D05C00B14F77 /* sj_20160705_10.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_10.JPG; sourceTree = "<group>"; };
+		75382D741D93D05C00B14F77 /* tone_01_goldblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tone_01_goldblue.png; sourceTree = "<group>"; };
 		7556F7CE1D5CA0AA008CC401 /* PictureProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7556F7D21D5CA0AA008CC401 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7556F7D41D5CA0AA008CC401 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -643,8 +649,6 @@
 		7594A7B01D5CBEF500D6F31B /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
 		7594A7B11D5CBEF500D6F31B /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
 		75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
-		75AA22B91D92E0EB00DA2AB9 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
-		75AA22BA1D92E0EB00DA2AB9 /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLProgram.m; sourceTree = "<group>"; };
 		75C3997C1D87F69200C67F3D /* point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.fsh; sourceTree = "<group>"; };
 		75C3997D1D87F69200C67F3D /* point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vsh; sourceTree = "<group>"; };
 		75C399801D87F91100C67F3D /* TJOpenGLVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenGLVC2.h; sourceTree = "<group>"; };
@@ -701,9 +705,28 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		75382D6C1D93C76F00B14F77 /* GPUFilter */ = {
+			isa = PBXGroup;
+			children = (
+				75382D6D1D93C77700B14F77 /* TJCustomFilter.h */,
+				75382D6E1D93C77700B14F77 /* TJCustomFilter.m */,
+			);
+			path = GPUFilter;
+			sourceTree = "<group>";
+		};
+		75382D721D93D05C00B14F77 /* ImagePath */ = {
+			isa = PBXGroup;
+			children = (
+				75382D731D93D05C00B14F77 /* sj_20160705_10.JPG */,
+				75382D741D93D05C00B14F77 /* tone_01_goldblue.png */,
+			);
+			path = ImagePath;
+			sourceTree = "<group>";
+		};
 		7556F7C51D5CA0AA008CC401 = {
 			isa = PBXGroup;
 			children = (
+				75382D721D93D05C00B14F77 /* ImagePath */,
 				7560A96E1D8FBE7B0056AB99 /* test128.png */,
 				7560A96C1D8FBE1E0056AB99 /* test1.png */,
 				75C3998B1D87FEC200C67F3D /* Particle.png */,
@@ -798,8 +821,6 @@
 		7560A9801D8FCA410056AB99 /* TJOpenGL3 */ = {
 			isa = PBXGroup;
 			children = (
-				75AA22B91D92E0EB00DA2AB9 /* GLProgram.h */,
-				75AA22BA1D92E0EB00DA2AB9 /* GLProgram.m */,
 				7560A9811D8FCA410056AB99 /* Controller */,
 				7560A9821D8FCA410056AB99 /* View */,
 			);
@@ -1245,6 +1266,7 @@
 		7594A78C1D5CBBEA00D6F31B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				75382D6C1D93C76F00B14F77 /* GPUFilter */,
 				758B0F971D6E91C60010D9B4 /* Tool */,
 				75C43EB51D62AD97002F25EF /* Const */,
 				750F80091D616A2B004BF41A /* Header */,
@@ -1404,8 +1426,8 @@
 				TargetAttributes = {
 					7556F7CD1D5CA0AA008CC401 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Y9E6T3VGEQ;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 26LY5L23G8;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1439,10 +1461,12 @@
 				7579B19B1D82484B007B0F74 /* Info.plist in Resources */,
 				7560A96D1D8FBE1E0056AB99 /* test1.png in Resources */,
 				7556F7E11D5CA0AA008CC401 /* LaunchScreen.storyboard in Resources */,
+				75382D751D93D05C00B14F77 /* sj_20160705_10.JPG in Resources */,
 				75C3997F1D87F69200C67F3D /* point.vsh in Resources */,
 				7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */,
 				7556F7DC1D5CA0AA008CC401 /* Main.storyboard in Resources */,
 				755CB1781D8690D9000AC00A /* 02.png in Resources */,
+				75382D761D93D05C00B14F77 /* tone_01_goldblue.png in Resources */,
 				75C3998C1D87FEC200C67F3D /* Particle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1459,7 +1483,6 @@
 				7579B20C1D82484B007B0F74 /* GPUImagePinchDistortionFilter.m in Sources */,
 				7579B1C01D82484B007B0F74 /* GPUImageDilationFilter.m in Sources */,
 				7579B1FF1D82484B007B0F74 /* GPUImageMovieWriter.m in Sources */,
-				75AA22BB1D92E0EB00DA2AB9 /* GLProgram.m in Sources */,
 				7579B23E1D82484B007B0F74 /* GPUImageUIElement.m in Sources */,
 				7579B22F1D82484B007B0F74 /* GPUImageSwirlFilter.m in Sources */,
 				7560A9881D8FCA960056AB99 /* TJOpenGL3View.m in Sources */,
@@ -1585,6 +1608,7 @@
 				7579B19F1D82484B007B0F74 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				7579B20D1D82484B007B0F74 /* GPUImagePixellateFilter.m in Sources */,
 				7579B1FD1D82484B007B0F74 /* GPUImageMovie.m in Sources */,
+				75382D6F1D93C77700B14F77 /* TJCustomFilter.m in Sources */,
 				7579B22B1D82484B007B0F74 /* GPUImageSphereRefractionFilter.m in Sources */,
 				7579B1EC1D82484B007B0F74 /* GPUImageLightenBlendFilter.m in Sources */,
 				7579B2131D82484B007B0F74 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
@@ -1773,7 +1797,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y9E6T3VGEQ;
+				DEVELOPMENT_TEAM = 26LY5L23G8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1784,7 +1808,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ba5ebbd8-bfd4-4159-95b7-055622c75636";
+				PROVISIONING_PROFILE_SPECIFIER = PhotostaresDevel20160912;
 			};
 			name = Debug;
 		};
@@ -1794,7 +1819,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y9E6T3VGEQ;
+				DEVELOPMENT_TEAM = 26LY5L23G8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1805,7 +1830,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ba5ebbd8-bfd4-4159-95b7-055622c75636";
+				PROVISIONING_PROFILE_SPECIFIER = PhotostaresDevel20160912;
 			};
 			name = Release;
 		};

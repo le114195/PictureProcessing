@@ -8,6 +8,7 @@
 
 #import "GPUImageTestVC.h"
 #import "GPUImageTest.h"
+#import "TJCustomFilter.h"
 
 @interface GPUImageTestVC ()
 
@@ -27,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imgName = @"sj_20160705_30.JPG";
+    self.imgName = @"sj_20160705_10.JPG";
     
     
     [self gpuImageTest];
@@ -64,27 +65,34 @@
 - (void)gpuImageTest {
     
     self.originImage = [UIImage imageNamed:self.imgName];
-    self.sepiaFilter = self.tjGPU.gaussianBlurFilter;
-    [self.sepiaFilter setValue:@10 forKey:@"blurRadiusInPixels"];
+//    self.sepiaFilter = self.tjGPU.toneCurveFilter;
+//    [self.sepiaFilter setValue:@10 forKey:@"blurRadiusInPixels"];
+//    
+//    
+//    UIImage *image = [self.sepiaFilter imageByFilteringImage:self.originImage];
+//    
+//    
+//    GPUImagePicture *pic1 = [[GPUImagePicture alloc] initWithImage:image];
+//    GPUImagePicture *pic2 = [[GPUImagePicture alloc] initWithImage:self.originImage];
+//    self.sepiaFilter = self.tjGPU.colorBurnBlendFilter;
+//    
+//    [pic1 addTarget:self.sepiaFilter];
+//    [pic2 addTarget:self.sepiaFilter];
+//    
+//    [self.sepiaFilter useNextFrameForImageCapture];
+//    
+//    
+//    [pic1 processImage];
+//    [pic2 processImage];
+//    
+//    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];
     
     
-    UIImage *image = [self.sepiaFilter imageByFilteringImage:self.originImage];
+    
+    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
     
     
-    GPUImagePicture *pic1 = [[GPUImagePicture alloc] initWithImage:image];
-    GPUImagePicture *pic2 = [[GPUImagePicture alloc] initWithImage:self.originImage];
-    self.sepiaFilter = self.tjGPU.colorBurnBlendFilter;
     
-    [pic1 addTarget:self.sepiaFilter];
-    [pic2 addTarget:self.sepiaFilter];
-    
-    [self.sepiaFilter useNextFrameForImageCapture];
-    
-    
-    [pic1 processImage];
-    [pic2 processImage];
-    
-    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];;
 
 }
 

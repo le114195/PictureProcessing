@@ -15,7 +15,7 @@
 
 #define kBrushOpacity		(1.0 / 3.0)
 #define kBrushPixelStep		1
-#define kBrushScale			2
+#define kBrushScale			3
 
 
 enum {

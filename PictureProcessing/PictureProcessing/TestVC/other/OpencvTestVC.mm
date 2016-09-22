@@ -83,20 +83,37 @@
 - (void)pixelTest {
     TJPixel *pixel = new TJPixel();
     
+//    
+//    float imgWidth = Screen_Width * 3;
+//    float imgHeight = Screen_Height * 3;
+//    
+//    Mat srcMat = Mat::zeros(cv::Size(imgWidth, imgHeight), CV_8UC4);
+//    pixel->drawCircle(srcMat, cv::Point(300, 300), 100);
+//    
+//    self.srcImageView.image = MatToUIImage(srcMat);
+//    
+//    Mat mat;
+//    UIImageToMat(self.srcImageView.image, mat);
+//    
+//    printf("%d", mat.channels());
     
-    float imgWidth = Screen_Width * 3;
-    float imgHeight = Screen_Height * 3;
     
-    Mat srcMat = Mat::zeros(cv::Size(imgWidth, imgHeight), CV_8UC4);
-    pixel->drawCircle(srcMat, cv::Point(300, 300), 100);
+    NSString *imgPath = PictureHeader(@"sj_20160705_10.JPG");
     
-    self.srcImageView.image = MatToUIImage(srcMat);
+    UIImage *imagePng = [UIImage imageNamed:@"tone_01_goldblue"];
     
-    Mat mat;
-    UIImageToMat(self.srcImageView.image, mat);
+    Mat srcMat = imread([imgPath UTF8String]);
+    Mat mapMat;
+    UIImageToMat(imagePng, mapMat);
     
-    printf("%d", mat.channels());
+    printf("%d\n", mapMat.channels());
     
+    pixel->drawTest2(srcMat, mapMat);
+    
+    
+    UIImage *image = MatToUIImage(srcMat);
+    
+    self.srcImageView.image = image;
     
     delete pixel;
 }

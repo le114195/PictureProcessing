@@ -200,6 +200,21 @@ void TJPixel::drawCircle(cv::Mat &srcMat, cv::Point center, float r)
 
 
 
+Mat TJPixel::drawTest2(cv::Mat &srcMat, cv::Mat &mapMat)
+{
+    for (int i = 0; i < srcMat.rows; i++) {
+        for (int j = 0; j < srcMat.cols; j++) {
+            Vec3b &rgba = srcMat.at<Vec3b>(i, j);
+        
+            rgba[0] = mapMat.at<Vec3b>(1, rgba[0])[0];
+            rgba[1] = mapMat.at<Vec3b>(1, rgba[1])[1];
+            rgba[2] = mapMat.at<Vec3b>(1, rgba[2])[2];
+        }
+    }
+    return srcMat;
+}
+
+
 
 
 

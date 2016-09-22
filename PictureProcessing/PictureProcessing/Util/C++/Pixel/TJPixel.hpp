@@ -56,6 +56,10 @@ public:
     void drawCircle(Mat &srcMat, cv::Point center, float r);
     
     
+    Mat drawTest2(Mat &srcMat, Mat &mapMat);
+    
+    
+    
     
 private:
     
