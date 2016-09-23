@@ -8,6 +8,7 @@
 
 #import "TJOpenGLContrtoller.h"
 #import "TJOpenglesDemo1.h"
+#import "TJOpenglesBrushView.h"
 
 @interface TJOpenGLContrtoller ()
 
@@ -18,8 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor blackColor];
+    
     TJOpenglesDemo1 *demo1 = [[TJOpenglesDemo1 alloc] initWithFrame:CGRectMake(0, 64, Screen_Width, Screen_Height - 64)];
     [self.view addSubview:demo1];
+    
+    
+//    TJOpenglesBrushView *brushView = [[TJOpenglesBrushView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+//    [self.view addSubview:brushView];
+    
+    
     
     // Do any additional setup after loading the view.
 }

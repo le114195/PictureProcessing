@@ -15,36 +15,59 @@
 #define kBrushScale			2
 
 
+//NSString *const TJ_BrushVertexShaderString = TJ_STRING_ES
+//(
+//     attribute vec4 inVertex;
+//     
+//     uniform mat4 MVP;
+//     uniform float pointSize;
+//     uniform lowp vec4 vertexColor;
+//     
+//     varying lowp vec4 color;
+//     
+//     void main()
+//     {
+//        gl_Position = MVP * inVertex;
+//        gl_PointSize = pointSize;
+//        //    1 * 3.0;
+//        color = vertexColor;
+//     }
+// );
+//
+//
+//NSString *const TJ_BrushFragmentShaderString = TJ_STRING_ES
+//(
+//     uniform sampler2D texture;
+//     varying lowp vec4 color;
+//
+//     void main()
+//     {
+//        gl_FragColor = color * texture2D(texture, gl_PointCoord);
+//     }
+//);
+
+
 NSString *const TJ_BrushVertexShaderString = TJ_STRING_ES
 (
-     attribute vec4 inVertex;
-     
-     uniform mat4 MVP;
-     uniform float pointSize;
-     uniform lowp vec4 vertexColor;
-     
-     varying lowp vec4 color;
-     
-     void main()
-     {
-        gl_Position = MVP * inVertex;
-        gl_PointSize = pointSize;
-        //    1 * 3.0;
-        color = vertexColor;
-     }
+ 
+ attribute vec4 Position;
+ void main(void) {
+     gl_Position = Position;
+ }
+ 
  );
 
 
 NSString *const TJ_BrushFragmentShaderString = TJ_STRING_ES
 (
-     uniform sampler2D texture;
-     varying lowp vec4 color;
+ 
+ precision mediump float;
+ void main(void) {
+     gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+ }
+ 
+ );
 
-     void main()
-     {
-        gl_FragColor = color * texture2D(texture, gl_PointCoord);
-     }
-);
 
 
 typedef struct {
@@ -84,6 +107,10 @@ typedef struct {
 @implementation TJOpenglesBrushView
 
 
++ (Class)layerClass {
+    return [CAEAGLLayer class];
+}
+
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -94,9 +121,6 @@ typedef struct {
     }
     return self;
 }
-
-
-
 
 
 - (void)layoutSubviews {
@@ -113,6 +137,11 @@ typedef struct {
 
 
 - (void)setupProgram {
+    
+    glGenBuffers(1, &vboId);
+    // Load the brush texture
+    brushTexture = [self textureFromName:@"Particle.png"];
+    
     CGFloat scale = [[UIScreen mainScreen] scale]; //获取视图放大倍数，可以把scale设置为1试试
     
     CGFloat originX = self.frame.origin.x * scale;
@@ -219,7 +248,7 @@ typedef struct {
     
     // 设置描绘属性，在这里设置不维持渲染内容以及颜色格式为 RGBA8
     self.myEagLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+                                          [NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 }
 
 
@@ -314,7 +343,6 @@ typedef struct {
     
     // Draw
     [self.mProgram use];
-    
     
     glDrawArrays(GL_POINTS, 0, (int)vertexCount);
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];

@@ -22,11 +22,11 @@
         program = glCreateProgram();
         
         if (![self compileShader:&vertShader type:GL_VERTEX_SHADER string:vShaderString]) {
-            NSLog(@"");
+            NSLog(@"compile vShaderString fail");
         }
         
         if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER string:fShaderString]) {
-            NSLog(@"");
+            NSLog(@"compile fShaderString fail");
         }
         
         glAttachShader(program, vertShader);
@@ -54,7 +54,7 @@
     
     glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
     
-    if (status != GL_TEXTURE) {
+    if (status != GL_TRUE) {
         GLint logLength;
         glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
         if (logLength > 0)
@@ -73,7 +73,7 @@
             free(log);
         }
     }
-    return status == GL_TEXTURE;
+    return status == GL_TRUE;
 }
 
 - (void)addAttribute:(NSString *)attributeName
