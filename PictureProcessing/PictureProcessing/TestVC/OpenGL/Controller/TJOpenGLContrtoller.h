@@ -1,13 +1,13 @@
 //
-//  TJOpenGLVC3.h
+//  TJOpenGLContrtoller.h
 //  PictureProcessing
 //
-//  Created by 勒俊 on 16/9/19.
+//  Created by 勒俊 on 16/9/23.
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface TJOpenGLVC3 : UIViewController
+@interface TJOpenGLContrtoller : UIViewController
 
 @end
