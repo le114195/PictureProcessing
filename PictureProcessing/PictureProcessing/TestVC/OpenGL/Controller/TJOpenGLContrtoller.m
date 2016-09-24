@@ -10,6 +10,22 @@
 #import "TJOpenglesDemo1.h"
 #import "TJOpenglesBrushView.h"
 
+
+
+#define kBrightness             1.0
+#define kSaturation             0.45
+
+#define kPaletteHeight			30
+#define kPaletteSize			5
+#define kMinEraseInterval		0.5
+
+// Padding for margins
+#define kLeftMargin				10.0
+#define kTopMargin				10.0
+#define kRightMargin			10.0
+
+
+
 @interface TJOpenGLContrtoller ()
 
 @end
@@ -21,14 +37,22 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    TJOpenglesDemo1 *demo1 = [[TJOpenglesDemo1 alloc] initWithFrame:CGRectMake(0, 64, Screen_Width, Screen_Height - 64)];
-    [self.view addSubview:demo1];
+//    TJOpenglesDemo1 *demo1 = [[TJOpenglesDemo1 alloc] initWithFrame:CGRectMake(0, 64, Screen_Width, Screen_Height - 64)];
+//    [self.view addSubview:demo1];
     
     
-//    TJOpenglesBrushView *brushView = [[TJOpenglesBrushView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
-//    [self.view addSubview:brushView];
+    TJOpenglesBrushView *brushView = [[TJOpenglesBrushView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:brushView];
     
+    // Define a starting color
+    CGColorRef color = [UIColor colorWithHue:(CGFloat)2.0 / (CGFloat)kPaletteSize
+                                  saturation:kSaturation
+                                  brightness:kBrightness
+                                       alpha:1.0].CGColor;
+    const CGFloat *components = CGColorGetComponents(color);
     
+    // Defer to the OpenGL view to set the brush color
+    [brushView setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
     
     // Do any additional setup after loading the view.
 }

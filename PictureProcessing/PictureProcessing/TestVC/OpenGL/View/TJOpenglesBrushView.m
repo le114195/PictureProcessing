@@ -15,178 +15,208 @@
 #define kBrushScale			2
 
 
-//NSString *const TJ_BrushVertexShaderString = TJ_STRING_ES
-//(
-//     attribute vec4 inVertex;
-//     
-//     uniform mat4 MVP;
-//     uniform float pointSize;
-//     uniform lowp vec4 vertexColor;
-//     
-//     varying lowp vec4 color;
-//     
-//     void main()
-//     {
-//        gl_Position = MVP * inVertex;
-//        gl_PointSize = pointSize;
-//        //    1 * 3.0;
-//        color = vertexColor;
-//     }
-// );
-//
-//
-//NSString *const TJ_BrushFragmentShaderString = TJ_STRING_ES
-//(
-//     uniform sampler2D texture;
-//     varying lowp vec4 color;
-//
-//     void main()
-//     {
-//        gl_FragColor = color * texture2D(texture, gl_PointCoord);
-//     }
-//);
-
-
 NSString *const TJ_BrushVertexShaderString = TJ_STRING_ES
 (
- 
- attribute vec4 Position;
- void main(void) {
-     gl_Position = Position;
- }
- 
+     attribute vec4 inVertex;
+     
+     uniform mat4 MVP;
+     uniform float pointSize;
+     uniform lowp vec4 vertexColor;
+     
+     varying lowp vec4 color;
+     
+     void main()
+     {
+        gl_Position = MVP * inVertex;
+        gl_PointSize = pointSize;
+        color = vertexColor;
+     }
  );
 
 
 NSString *const TJ_BrushFragmentShaderString = TJ_STRING_ES
 (
- 
- precision mediump float;
- void main(void) {
-     gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
- }
- 
- );
+     uniform sampler2D texture;
+     varying lowp vec4 color;
+
+     void main()
+     {
+        gl_FragColor = color * texture2D(texture, gl_PointCoord);
+     }
+);
 
 
 
+
+#define kBrushOpacity		(1.0 / 3.0)
+#define kBrushPixelStep		3
+#define kBrushScale			2
+
+enum {
+    ATTRIB_VERTEX,
+    NUM_ATTRIBS
+};
+
+
+// Texture
 typedef struct {
     GLuint id;
     GLsizei width, height;
 } textureInfo_t;
 
+@implementation LYPoint
+
+- (instancetype)initWithCGPoint:(CGPoint)point {
+    self = [super init];
+    
+    if (self) {
+        self.mX = [NSNumber numberWithDouble:point.x];
+        self.mY = [NSNumber numberWithDouble:point.y];
+    }
+    return self;
+}
+
+@end
+
+
+
+
+
 
 
 @interface TJOpenglesBrushView ()
 {
-    BOOL    firstTouch;
-    CGPoint location;
-    CGPoint previousLocation;
+    // The pixel dimensions of the backbuffer
+    GLint backingWidth;
+    GLint backingHeight;
     
-    GLuint  vboId;
+    EAGLContext *context;
+    
+    // OpenGL names for the renderbuffer and framebuffers used to render to this view
+    GLuint viewRenderbuffer, viewFramebuffer;
+    
 
-    textureInfo_t brushTexture;
+    GLuint depthRenderbuffer;
     
+    textureInfo_t brushTexture;     // brush texture
+    GLfloat brushColor[4];          // brush color
     
-    GLfloat brushColor[4];
+    Boolean	firstTouch;
+    Boolean needsErase;
+    
+    // Shader objects
+    GLuint vertexShader;
+    GLuint fragmentShader;
+    GLuint shaderProgram;
+    
+    // Buffer Objects
+    GLuint vboId;
+    
+    BOOL initialized;
     
 }
 
-@property (nonatomic , strong) EAGLContext* myContext;
-@property (nonatomic , strong) CAEAGLLayer* myEagLayer;
-@property (nonatomic , assign) GLuint       myProgram;
+@property (nonatomic, strong) TJ_GLProgram      *mProgram;
 
 
-@property (nonatomic , assign) GLuint myColorRenderBuffer;
-@property (nonatomic , assign) GLuint myColorFrameBuffer;
-@property (nonatomic , strong) TJ_GLProgram* mProgram;
+
 
 @end
 
 
 @implementation TJOpenglesBrushView
 
+@synthesize  location;
+@synthesize  previousLocation;
 
-+ (Class)layerClass {
+
+
++ (Class)layerClass
+{
     return [CAEAGLLayer class];
 }
+
+// The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if ([super initWithFrame:frame]) {
+        CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
         
-        [self customInit];
+        eaglLayer.opaque = YES;
+        // In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
+        eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
         
+        context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        
+        if (!context || ![EAGLContext setCurrentContext:context]) {
+            return nil;
+        }
+        
+        // Set the view's scale factor as you wish
+        self.contentScaleFactor = [[UIScreen mainScreen] scale];
+        
+        // Make sure to start with a cleared buffer
+        needsErase = YES;
     }
     return self;
 }
 
 
-- (void)layoutSubviews {
-    [self destoryRenderAndFrameBuffer];
-    [self setupRenderBuffer];
-    [self setupFrameBuffer];
-}
 
-- (void)customInit {
-    [self setupLayer];
-    [self setupContext];
-    [self setupProgram];
-}
-
-
-- (void)setupProgram {
+-(void)layoutSubviews
+{
+    [EAGLContext setCurrentContext:context];
     
-    glGenBuffers(1, &vboId);
-    // Load the brush texture
-    brushTexture = [self textureFromName:@"Particle.png"];
-    
-    CGFloat scale = [[UIScreen mainScreen] scale]; //获取视图放大倍数，可以把scale设置为1试试
-    
-    CGFloat originX = self.frame.origin.x * scale;
-    CGFloat originY = self.frame.origin.y * scale;
-    CGFloat backWidth = self.frame.size.width * scale;
-    CGFloat backHeight = self.frame.size.height * scale;
-    
-    
-    glViewport(originX, originY, backWidth, backHeight); //设置视口大小
-    
-    
-    self.mProgram = [[TJ_GLProgram alloc] initWithVertexShaderString:TJ_BrushVertexShaderString fragmentShaderString:TJ_BrushFragmentShaderString];
-    
-    
-    if (![self.mProgram link]) {
-        NSLog(@"link error");
+    if (!initialized) {
+        initialized = [self initGL];
+    }
+    else {
+        [self resizeFromLayer:(CAEAGLLayer*)self.layer];
     }
     
-    [self.mProgram addAttribute:@"inVertex"];
+    // Clear the framebuffer the first time it is allocated
+    if (needsErase) {
+        [self erase];
+        needsErase = NO;
+    }
+}
+
+- (void)setupShaders
+{
+    self.mProgram = [[TJ_GLProgram alloc] initWithVertexShaderString:TJ_BrushVertexShaderString fragmentShaderString:TJ_BrushFragmentShaderString];
     
+    if (![self.mProgram link]) {
+        return;
+    }
     
+    [self.mProgram validate];
     
+    // Set constant/initalize uniforms
+    [self.mProgram use];
     
     // the brush texture will be bound to texture unit 0
-    glUniform1i(0, 0);
+    glUniform1i([self.mProgram uniformIndex:@"texture"], 0);
     
     // viewing matrices
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backWidth, 0, backHeight, -1, 1);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth, 0, backingHeight, -1, 1);
     GLKMatrix4 modelViewMatrix = GLKMatrix4Identity; // this sample uses a constant identity modelView matrix
     GLKMatrix4 MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
-    glUniformMatrix4fv(0, 1, GL_FALSE, MVPMatrix.m);
+    glUniformMatrix4fv([self.mProgram uniformIndex:@"MVP"], 1, GL_FALSE, MVPMatrix.m);
     
     // point size
-    glUniform1f(1, brushTexture.width / kBrushScale);
+    glUniform1f([self.mProgram uniformIndex:@"pointSize"], brushTexture.width / kBrushScale);
     
     // initialize brush color
-    glUniform4fv(2, 1, brushColor);
+    glUniform4fv([self.mProgram uniformIndex:@"vertexColor"], 1, brushColor);
+    
 
-    
-    
 }
 
-
-
+// Create a texture from an image
 - (textureInfo_t)textureFromName:(NSString *)name
 {
     CGImageRef		brushImage;
@@ -231,76 +261,101 @@ typedef struct {
         texture.width = (int)width;
         texture.height = (int)height;
     }
+    
     return texture;
 }
 
-
-
-
-- (void)setupLayer
+- (BOOL)initGL
 {
-    self.myEagLayer = (CAEAGLLayer*) self.layer;
-    //设置放大倍数
-    [self setContentScaleFactor:[[UIScreen mainScreen] scale]];
+    // Generate IDs for a framebuffer object and a color renderbuffer
+    glGenFramebuffers(1, &viewFramebuffer);
+    glGenRenderbuffers(1, &viewRenderbuffer);
     
-    // CALayer 默认是透明的，必须将它设为不透明才能让其可见
-    self.myEagLayer.opaque = YES;
+    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
+    // This call associates the storage for the current render buffer with the EAGLDrawable (our CAEAGLLayer)
+    // allowing us to draw into a buffer that will later be rendered to screen wherever the layer is (which corresponds with our view).
+    [context renderbufferStorage:GL_RENDERBUFFER fromDrawable:(id<EAGLDrawable>)self.layer];
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, viewRenderbuffer);
     
-    // 设置描绘属性，在这里设置不维持渲染内容以及颜色格式为 RGBA8
-    self.myEagLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
-}
-
-
-- (void)setupContext {
-    // 指定 OpenGL 渲染 API 的版本，在这里我们使用 OpenGL ES 2.0
-    EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES3;
-    EAGLContext* context = [[EAGLContext alloc] initWithAPI:api];
-    if (!context) {
-        NSLog(@"Failed to initialize OpenGLES 2.0 context");
-        exit(1);
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &backingWidth);
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &backingHeight);
+    
+    
+    if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        NSLog(@"failed to make complete framebuffer object %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
+        return NO;
     }
     
-    // 设置为当前上下文
-    if (![EAGLContext setCurrentContext:context]) {
-        NSLog(@"Failed to set current OpenGL context");
-        exit(1);
-    }
-    self.myContext = context;
+    // Setup the view port in Pixels
+    glViewport(0, 0, backingWidth, backingHeight);
+    
+    // Create a Vertex Buffer Object to hold our data
+    glGenBuffers(1, &vboId);
+    
+    // Load the brush texture
+    brushTexture = [self textureFromName:@"Particle.png"];
+    
+    // Load shaders
+    [self setupShaders];
+    
+    // Enable blending and set a blending function appropriate for premultiplied alpha pixel data
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    
+    
+    return YES;
 }
 
-- (void)setupRenderBuffer {
-    GLuint buffer;
-    glGenRenderbuffers(1, &buffer);
-    self.myColorRenderBuffer = buffer;
-    glBindRenderbuffer(GL_RENDERBUFFER, self.myColorRenderBuffer);
-    // 为 颜色缓冲区 分配存储空间
-    [self.myContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:self.myEagLayer];
-}
-
-
-- (void)setupFrameBuffer {
-    GLuint buffer;
-    glGenFramebuffers(1, &buffer);
-    self.myColorFrameBuffer = buffer;
-    // 设置为当前 framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, self.myColorRenderBuffer);
-    // 将 _colorRenderBuffer 装配到 GL_COLOR_ATTACHMENT0 这个装配点上
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-                              GL_RENDERBUFFER, self.myColorRenderBuffer);
-}
-
-
-- (void)destoryRenderAndFrameBuffer
+- (BOOL)resizeFromLayer:(CAEAGLLayer *)layer
 {
-    glDeleteFramebuffers(1, &_myColorFrameBuffer);
-    self.myColorFrameBuffer = 0;
-    glDeleteRenderbuffers(1, &_myColorRenderBuffer);
-    self.myColorRenderBuffer = 0;
+    // Allocate color buffer backing based on the current layer size
+    glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
+    [context renderbufferStorage:GL_RENDERBUFFER fromDrawable:layer];
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &backingWidth);
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &backingHeight);
+    
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        NSLog(@"Failed to make complete framebuffer objectz %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
+        return NO;
+    }
+    // Update projection matrix
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth, 0, backingHeight, -1, 1);
+    GLKMatrix4 modelViewMatrix = GLKMatrix4Identity; // this sample uses a constant identity modelView matrix
+    GLKMatrix4 MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    
+    [self.mProgram use];
+    glUniformMatrix4fv([self.mProgram uniformIndex:@"MVP"], 1, GL_FALSE, MVPMatrix.m);
+    
+    // Update viewport
+    glViewport(0, 0, backingWidth, backingHeight);
+    
+    return YES;
 }
 
 
 
+#pragma mark - 清空屏幕
+- (void)erase
+{
+    [EAGLContext setCurrentContext:context];
+    
+    // Clear the buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    // Display the buffer
+    glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
+    [context presentRenderbuffer:GL_RENDERBUFFER];
+}
+
+
+
+
+#pragma mark - 获取移动轨迹
 - (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end
 {
     static GLfloat*		vertexBuffer = NULL;
@@ -308,6 +363,9 @@ typedef struct {
     NSUInteger			vertexCount = 0,
     count,
     i;
+    
+    [EAGLContext setCurrentContext:context];
+    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
     
     // Convert locations from Points to Pixels
     CGFloat scale = self.contentScaleFactor;
@@ -337,18 +395,17 @@ typedef struct {
     glBindBuffer(GL_ARRAY_BUFFER, vboId);
     glBufferData(GL_ARRAY_BUFFER, vertexCount*2*sizeof(GLfloat), vertexBuffer, GL_DYNAMIC_DRAW);
     
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-    
+    glEnableVertexAttribArray(ATTRIB_VERTEX);
+    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, GL_FALSE, 0, 0);
     
     // Draw
     [self.mProgram use];
-    
     glDrawArrays(GL_POINTS, 0, (int)vertexCount);
-    [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
+    
+    // Display the buffer
+    glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
+    [context presentRenderbuffer:GL_RENDERBUFFER];
 }
-
-
 
 // Handles the start of a touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -394,6 +451,70 @@ typedef struct {
         previousLocation.y = bounds.size.height - previousLocation.y;
         [self renderLineFromPoint:previousLocation toPoint:location];
     }
+}
+
+// Handles the end of a touch event.
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // If appropriate, add code necessary to save the state of the application.
+    // This application is not saving state.
+    NSLog(@"cancell");
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+
+
+#pragma mark - 设置画笔颜色
+- (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
+{
+    // Update the brush color
+    brushColor[0] = red * kBrushOpacity;
+    brushColor[1] = green * kBrushOpacity;
+    brushColor[2] = blue * kBrushOpacity;
+    brushColor[3] = kBrushOpacity;
+    
+    if (initialized) {
+        [self.mProgram use];
+        glUniform4fv([self.mProgram uniformIndex:@"vertexColor"], 1, brushColor);
+    }
+}
+
+
+
+#pragma mark - 释放程序
+- (void)dealloc
+{
+    // Destroy framebuffers and renderbuffers
+    if (viewFramebuffer) {
+        glDeleteFramebuffers(1, &viewFramebuffer);
+        viewFramebuffer = 0;
+    }
+    if (viewRenderbuffer) {
+        glDeleteRenderbuffers(1, &viewRenderbuffer);
+        viewRenderbuffer = 0;
+    }
+    if (depthRenderbuffer)
+    {
+        glDeleteRenderbuffers(1, &depthRenderbuffer);
+        depthRenderbuffer = 0;
+    }
+    // texture
+    if (brushTexture.id) {
+        glDeleteTextures(1, &brushTexture.id);
+        brushTexture.id = 0;
+    }
+    // vbo
+    if (vboId) {
+        glDeleteBuffers(1, &vboId);
+        vboId = 0;
+    }
+    
+    // tear down context
+    if ([EAGLContext currentContext] == context)
+        [EAGLContext setCurrentContext:nil];
 }
 
 
