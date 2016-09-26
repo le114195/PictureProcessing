@@ -80,10 +80,6 @@ typedef struct {
 
 
 
-
-
-
-
 @interface TJOpenglesBrushView ()
 {
     // The pixel dimensions of the backbuffer
@@ -349,8 +345,6 @@ typedef struct {
     glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
     [context presentRenderbuffer:GL_RENDERBUFFER];
 }
-
-
 
 
 #pragma mark - 获取移动轨迹

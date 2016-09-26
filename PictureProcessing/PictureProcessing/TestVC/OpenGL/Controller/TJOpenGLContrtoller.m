@@ -9,6 +9,8 @@
 #import "TJOpenGLContrtoller.h"
 #import "TJOpenglesDemo1.h"
 #import "TJOpenglesBrushView.h"
+#import "PaintTypeView.h"
+#import "PaintTypeModel.h"
 
 
 
