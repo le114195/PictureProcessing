@@ -30,6 +30,10 @@
 
 @interface TJOpenGLContrtoller ()
 
+
+@property (nonatomic, weak) PaintTypeView       *paintTypeView;
+
+
 @end
 
 @implementation TJOpenGLContrtoller
@@ -56,6 +60,10 @@
     // Defer to the OpenGL view to set the brush color
     [brushView setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
     
+    
+    [self paintTypeViewConfigure];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -63,6 +71,49 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+- (void)paintTypeViewConfigure
+{
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    NSDictionary *dict1 = @{@"name":@"画笔1", @"imgName":@"paint1"};
+    PaintTypeModel *model1 = [PaintTypeModel modelWithDict:dict1];
+    
+    NSDictionary *dict2 = @{@"name":@"画笔2", @"imgName":@"paint2"};
+    PaintTypeModel *model2 = [PaintTypeModel modelWithDict:dict2];
+    
+    
+    [arrM addObject:model1];
+    [arrM addObject:model2];
+    
+    PaintTypeView *paintTypeView = [[PaintTypeView alloc] initWithFrame:CGRectMake(0, Screen_Height - 64, Screen_Width, 64)];
+    self.paintTypeView = paintTypeView;
+    
+    paintTypeView.dataArray = arrM;
+    [self.view addSubview:paintTypeView];
+    
+    __weak __typeof(self)weakSelf = self;
+    paintTypeView.didSelectBlock = ^(NSInteger index){
+        [weakSelf didSelect:index];
+    };
+    
+}
+
+- (void)didSelect:(NSInteger)index
+{
+    
+    
+    
+    
+    
+}
+
+
+
+
 
 
 

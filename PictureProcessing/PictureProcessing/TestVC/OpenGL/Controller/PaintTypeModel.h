@@ -10,4 +10,11 @@
 
 @interface PaintTypeModel : NSObject
 
+@property (nonatomic, copy) NSString            *name;
+@property (nonatomic, copy) NSString            *imgName;
+
+
++ (instancetype)modelWithDict:(NSDictionary *)dict;
+
+
 @end

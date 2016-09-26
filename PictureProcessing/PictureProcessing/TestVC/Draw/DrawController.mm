@@ -21,7 +21,7 @@
 
 
 #define CircleR         3.5
-#define Distance        20.0
+#define Distance        40.0
 
 
 @interface DrawController ()
@@ -29,8 +29,6 @@
 @property (nonatomic, strong) NSMutableArray        *pointArrM;
 
 @property (nonatomic, assign) CGPoint               currentPoint;
-
-
 @property (nonatomic, assign) CGPoint               lastPoint;
 
 /** 角度 */
@@ -87,8 +85,6 @@ TJDraw          *draw;
 /** 图片像素操作 */
 - (void)pixelTest {
     pixel = new TJPixel();
-    
-    
     srcMat = pixel->createPngImg(cv::Size(ImgWidth, ImgHeight));
 }
 
@@ -115,7 +111,9 @@ TJDraw          *draw;
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self.srcImageView];
     
-    [self constDistance:location];
+//    [self constDistance:location];
+    
+    [self test:location radius:CircleR distance:Distance];
 }
 
 
@@ -130,6 +128,52 @@ TJDraw          *draw;
         _pointArrM = [NSMutableArray array];
     }
     return _pointArrM;
+}
+
+
+- (void)test
+{
+    static int x = 0;
+    
+    x++;
+    
+    
+    NSLog(@"%d", x);
+    
+    
+}
+
+
+- (void)test:(CGPoint)location radius:(CGFloat)radius distance:(CGFloat)dis
+{
+    static double lastAngle = 0;
+    static CGPoint currentPoint = CGPointMake(0, 0);
+    
+    
+    double angle = atan((location.y - currentPoint.y) / (location.x - currentPoint.x));
+    CGFloat distance = hypot(fabs(location.y - currentPoint.y), fabs(location.x - currentPoint.x));
+    if (distance < 2 * radius) {
+        return;
+    }
+    if (fabs(lastAngle - angle) < M_PI_4 && distance < dis) {
+        return;
+    }else if (distance > dis) {
+        int count = distance / dis;
+        for (int i = 0; i < count; i++) {
+
+            cv::Point point = draw->newPoint(cv::Point(currentPoint.x, currentPoint.y), cv::Point(location.x, location.y), dis);
+            currentPoint = CGPointMake(point.x, point.y);
+            
+            cv::Point polygonPoint = cv::Point(currentPoint.x / self.srcImageView.width * ImgWidth, currentPoint.y / self.srcImageView.heigth * ImgHeight);
+            
+            //画不规则图形
+            draw->drawIrregular(srcMat, polygonPoint);
+            
+            
+            self.srcImageView.image = MatToUIImage(srcMat);
+        }
+    }
+    lastAngle = angle;
 }
 
 

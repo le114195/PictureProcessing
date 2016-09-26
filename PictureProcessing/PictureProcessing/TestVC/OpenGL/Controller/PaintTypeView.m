@@ -133,9 +133,8 @@
 {
     PaintTypeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PaintTypeCollectionViewCell" forIndexPath:indexPath];
     
-    cell.nameLabel.text = self.dataArray[indexPath.row];
-    
-    
+    PaintTypeModel *model = self.dataArray[indexPath.row];
+    cell.nameLabel.text = model.name;
     return cell;
 }
 

@@ -9,10 +9,11 @@
 #import "TJOpenglesBrushView.h"
 #import "TJ_GLProgram.h"
 #import <GLKit/GLKit.h>
+#import "TJ_DrawTool.h"
 
 #define kBrushOpacity		(1.0 / 3.0)
-#define kBrushPixelStep		3
-#define kBrushScale			2
+#define kBrushPixelStep		30
+#define kBrushScale			1.5
 
 
 NSString *const TJ_BrushVertexShaderString = TJ_STRING_ES
@@ -45,12 +46,6 @@ NSString *const TJ_BrushFragmentShaderString = TJ_STRING_ES
      }
 );
 
-
-
-
-#define kBrushOpacity		(1.0 / 3.0)
-#define kBrushPixelStep		3
-#define kBrushScale			2
 
 enum {
     ATTRIB_VERTEX,
@@ -114,7 +109,8 @@ typedef struct {
 
 @property (nonatomic, strong) TJ_GLProgram      *mProgram;
 
-
+/** 角度 */
+@property (nonatomic, assign) float                 angle;
 
 
 @end
@@ -289,7 +285,7 @@ typedef struct {
     glGenBuffers(1, &vboId);
     
     // Load the brush texture
-    brushTexture = [self textureFromName:@"Particle.png"];
+    brushTexture = [self textureFromName:@"test128.png"];
     
     // Load shaders
     [self setupShaders];
@@ -416,6 +412,10 @@ typedef struct {
     CGRect				bounds = [self bounds];
     UITouch*			touch = [[event touchesForView:self] anyObject];
     
+    
+    
+    
+    
     // Convert touch point from UIView referential to OpenGL one (upside-down flip)
     if (firstTouch) {
         firstTouch = NO;
@@ -428,8 +428,30 @@ typedef struct {
         previousLocation.y = bounds.size.height - previousLocation.y;
     }
     
-    // Render the stroke
+    
+    
+    double angle = atan((location.y - previousLocation.y) / (location.x - previousLocation.x));
+    CGFloat distance = hypot(fabs(location.y - previousLocation.y), fabs(location.x - previousLocation.x));
+    if (distance < 2 * 3.5) {
+        return;
+    }
+    if (fabs(self.angle - angle) < M_PI_4 && distance < 10) {
+        return;
+    }else if (distance > 10) {
+        int count = distance / 10;
+        for (int i = 0; i < count; i++) {
+            
+            // Render the stroke
+            
+            
+        }
+    }
+    self.angle = angle;
+
+    
     [self renderLineFromPoint:previousLocation toPoint:location];
+    
+    
 }
 
 // Handles the end of a touch event when the touch is a tap.

@@ -10,4 +10,18 @@
 
 @implementation PaintTypeModel
 
+
++ (instancetype)modelWithDict:(NSDictionary *)dict
+{
+    PaintTypeModel *model = [[PaintTypeModel alloc] init];
+    
+    model.name = [dict valueForKey:@"name"];
+    model.imgName = [dict valueForKey:@"imgName"];
+    
+    return model;
+}
+
+
+
+
 @end
