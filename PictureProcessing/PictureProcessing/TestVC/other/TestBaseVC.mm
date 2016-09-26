@@ -50,6 +50,7 @@
     srcImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:srcImageView];
     
+    
 }
 
 

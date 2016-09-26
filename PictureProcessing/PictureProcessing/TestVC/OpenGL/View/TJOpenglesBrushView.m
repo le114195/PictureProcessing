@@ -230,8 +230,6 @@ typedef struct {
     
     brushImage = [UIImage imageNamed:name].CGImage;
     
-    
-    
     // Get the width and height of the image
     width = CGImageGetWidth(brushImage);
     height = CGImageGetHeight(brushImage);
