@@ -16,13 +16,13 @@
 
 /** point结构体 */
 typedef struct {
-    double  x;
-    double  y;
+    float  x;
+    float  y;
 }TJ_Point;
 
 
 /** 指针函数 */
-typedef void(*pfv)(TJ_Point point);
+typedef void(*pfv)(float *vertBuff, int count);
 
 
 TJ_Point newPoint(TJ_Point lastLocation, TJ_Point location, double distance);
@@ -30,9 +30,6 @@ TJ_Point newPoint(TJ_Point lastLocation, TJ_Point location, double distance);
 
 /** 等距离移动 */
 void constDistanceMoved(TJ_Point location, double radius, double dis, int isStartMove, pfv pFunc);
-
-
-void c_test();
 
 
 #endif /* TJ_DrawTool_C_h */

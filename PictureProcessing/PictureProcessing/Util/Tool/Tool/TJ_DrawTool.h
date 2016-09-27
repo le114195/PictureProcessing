@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef void(^DrawCompletionBlock)(CGPoint point);
+typedef void(^DrawCompletionBlock)(NSArray *array);
 
 
 @interface TJ_DrawTool : NSObject

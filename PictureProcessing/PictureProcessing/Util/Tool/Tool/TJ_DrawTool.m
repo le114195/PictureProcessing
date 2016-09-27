@@ -13,7 +13,7 @@
 
 
 
-void pFunc(TJ_Point point);
+void pFunc(float* verBuffer, int count);
 
 
 static DrawCompletionBlock  DrawCompletion;
@@ -38,13 +38,14 @@ static DrawCompletionBlock  DrawCompletion;
     constDistanceMoved(tj_Point, radius, dis, isStartM, &pFunc);
 }
 
-
-
-void pFunc(TJ_Point point)
+void pFunc(float* verBuffer, int count)
 {
-    CGPoint location = CGPointMake(point.x, point.y);
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (int i = 0; i < count; i++) {
+        [arrM addObject:[NSValue valueWithCGPoint:CGPointMake(verBuffer[2*i + 0], verBuffer[2*i + 1])]];
+    }
     if (DrawCompletion) {
-        DrawCompletion(location);
+        DrawCompletion(arrM);
     }
 }
 

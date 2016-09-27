@@ -18,7 +18,7 @@
 #define kBrushScale			2
 
 
-#define ConstDistance           30
+#define ConstDistance           10
 
 
 
@@ -76,7 +76,6 @@ typedef struct {
     }
     return self;
 }
-
 @end
 
 
@@ -123,6 +122,8 @@ typedef struct {
 /** 角度 */
 @property (nonatomic, assign) float                 angle;
 
+
+@property (nonatomic, strong) NSMutableArray        *pointArrM;
 
 @end
 
@@ -355,8 +356,9 @@ typedef struct {
 
 
 #pragma mark - 获取移动轨迹
-- (void)renderLineFromPoint:(CGPoint)start
+- (void)renderLineFromPointArr:(NSArray *)pointArr
 {
+    CGRect				bounds = [self bounds];
     static GLfloat*		vertexBuffer = NULL;
     static NSUInteger	vertexMax = 64;
     NSUInteger			vertexCount = 0;
@@ -364,18 +366,26 @@ typedef struct {
     [EAGLContext setCurrentContext:context];
     glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
     
-    // Convert locations from Points to Pixels
-    CGFloat scale = self.contentScaleFactor;
-    start.x *= scale;
-    start.y *= scale;
     
     // Allocate vertex array buffer
     if(vertexBuffer == NULL)
         vertexBuffer = malloc(vertexMax * 2 * sizeof(GLfloat));
     
-    vertexCount = 1;
-    vertexBuffer[0] = start.x;
-    vertexBuffer[1] = start.y;
+    // Convert locations from Points to Pixels
+    
+    CGFloat scale = self.contentScaleFactor;
+    for (NSValue *value in pointArr) {
+        CGPoint point = [value CGPointValue];
+        point.y = bounds.size.height - point.y;
+        
+        point.x *= scale;
+        point.y *= scale;
+        
+        vertexBuffer[2*vertexCount + 0] = point.x;
+        vertexBuffer[2*vertexCount + 1] = point.y;
+        
+        vertexCount++;
+    }
     
     // Load data to the Vertex Buffer Object
     glBindBuffer(GL_ARRAY_BUFFER, vboId);
@@ -397,23 +407,18 @@ typedef struct {
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch*            touch = [[event touchesForView:self] anyObject];
-    CGRect				bounds = [self bounds];
     firstTouch = YES;
     // Convert touch point from UIView referential to OpenGL one (upside-down flip)
     location = [touch locationInView:self];
-    self.previousPoint = location;
 
-    previousLocation = self.previousPoint;
-    previousLocation.y = bounds.size.height - previousLocation.y;
-    [self renderLineFromPoint:previousLocation];
+    [self renderLineFromPointArr:[NSArray arrayWithObject:[NSValue valueWithCGPoint:location]]];
     
-    [TJ_DrawTool constDisDraw:location radius:5.0 dis:ConstDistance isStartMove:YES completion:nil];
+    [TJ_DrawTool constDisDraw:location radius:1.0 dis:ConstDistance isStartMove:YES completion:nil];
 }
 
 // Handles the continuation of a touch.
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGRect				bounds = [self bounds];
     UITouch*			touch = [[event touchesForView:self] anyObject];
     location = [touch locationInView:self];
 
@@ -421,13 +426,9 @@ typedef struct {
         firstTouch = NO;
         return;
     }
-    
     __weak __typeof(self)weakSelf = self;
-    [TJ_DrawTool constDisDraw:location radius:5.0 dis:ConstDistance isStartMove:NO completion:^(CGPoint point) {
-        __strong __typeof(weakSelf)strongSelf = weakSelf;
-        strongSelf->previousLocation = point;
-        strongSelf->previousLocation.y = bounds.size.height - strongSelf->previousLocation.y;
-        [weakSelf renderLineFromPoint:strongSelf->previousLocation];
+    [TJ_DrawTool constDisDraw:location radius:1.0 dis:ConstDistance isStartMove:NO completion:^(NSArray *array) {
+        [weakSelf renderLineFromPointArr:array];
     }];
 }
 
@@ -503,6 +504,14 @@ typedef struct {
         [EAGLContext setCurrentContext:nil];
 }
 
+
+- (NSMutableArray *)pointArrM {
+    
+    if (!_pointArrM) {
+        _pointArrM = [NSMutableArray array];
+    }
+    return _pointArrM;
+}
 
 
 
