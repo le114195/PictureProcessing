@@ -32,4 +32,7 @@ TJ_Point newPoint(TJ_Point lastLocation, TJ_Point location, double distance);
 void constDistanceMoved(TJ_Point location, double radius, double dis, int isStartMove, pfv pFunc);
 
 
+void c_test();
+
+
 #endif /* TJ_DrawTool_C_h */

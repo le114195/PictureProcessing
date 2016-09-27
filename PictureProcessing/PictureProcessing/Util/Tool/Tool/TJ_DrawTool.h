@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef void(^DrawCompletionBlock)(CGPoint point);
+
+
 @interface TJ_DrawTool : NSObject
 
-+ (CGPoint)newPointLastPoint:(CGPoint)lastLocation currentPoint:(CGPoint)location distance:(double)distance;
+
++ (void)constDisDraw:(CGPoint)location radius:(double)radius dis:(double)dis isStartMove:(BOOL)isStartMove completion:(DrawCompletionBlock)completion;
 
 
 @end

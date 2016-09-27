@@ -74,5 +74,12 @@ TJ_Point newPoint(TJ_Point lastLocation, TJ_Point location, double distance)
 }
 
 
+void c_test()
+{
+    printf("test\n");
+}
+
+
+
 
 
