@@ -7,6 +7,11 @@
 //
 
 #import "TJ_DrawTool.h"
+#import "TJ_DrawTool_C.h"
+
+
+void pFunc(TJ_Point point);
+
 
 @implementation TJ_DrawTool
 
@@ -37,6 +42,32 @@
     }
     return CGPointMake(x0, y0);
 }
+
+
+//+ (void)constDisDraw:(CGPoint)location radius:(double)radius dis:(double)dis isStartMove:(BOOL)isStartMove
+//{
+//    TJ_Point tj_Point;
+//    tj_Point.x = location.x;
+//    tj_Point.y = location.y;
+//    
+//    int isStartM;
+//    if (isStartMove) {
+//        isStartM = 1;
+//    }else {
+//        isStartM = 0;
+//    }
+//    constDistanceMoved(tj_Point, radius, dis, isStartM, &pFunc);
+//}
+
+
+
+void pFunc(TJ_Point point)
+{
+    NSLog(@"dfedfe");
+}
+
+
+
 
 
 @end

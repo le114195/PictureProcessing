@@ -13,4 +13,5 @@
 
 + (CGPoint)newPointLastPoint:(CGPoint)lastLocation currentPoint:(CGPoint)location distance:(double)distance;
 
+
 @end

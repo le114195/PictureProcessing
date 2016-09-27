@@ -11,9 +11,14 @@
 #import <GLKit/GLKit.h>
 #import "TJ_DrawTool.h"
 
+#import "TJ_DrawTool_C.h"
+
 #define kBrushOpacity		(1.0 / 3.0)
 #define kBrushPixelStep		30
-#define kBrushScale			1.5
+#define kBrushScale			2
+
+
+#define ConstDistance           30
 
 
 NSString *const TJ_BrushVertexShaderString = TJ_STRING_ES
@@ -105,9 +110,14 @@ typedef struct {
     
     BOOL initialized;
     
+    TJ_Point testPoint;
+    
 }
 
 @property (nonatomic, strong) TJ_GLProgram      *mProgram;
+
+
+@property (nonatomic, assign) CGPoint               previousPoint;
 
 /** 角度 */
 @property (nonatomic, assign) float                 angle;
@@ -152,6 +162,8 @@ typedef struct {
         
         // Make sure to start with a cleared buffer
         needsErase = YES;
+        
+        
     }
     return self;
 }
@@ -344,13 +356,13 @@ typedef struct {
 
 
 #pragma mark - 获取移动轨迹
-- (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end
+- (void)renderLineFromPoint:(CGPoint)start
 {
     static GLfloat*		vertexBuffer = NULL;
     static NSUInteger	vertexMax = 64;
-    NSUInteger			vertexCount = 0,
-    count,
-    i;
+    NSUInteger			vertexCount = 0;
+    
+    
     
     [EAGLContext setCurrentContext:context];
     glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
@@ -359,25 +371,17 @@ typedef struct {
     CGFloat scale = self.contentScaleFactor;
     start.x *= scale;
     start.y *= scale;
-    end.x *= scale;
-    end.y *= scale;
     
     // Allocate vertex array buffer
     if(vertexBuffer == NULL)
         vertexBuffer = malloc(vertexMax * 2 * sizeof(GLfloat));
     
-    // Add points to the buffer so there are drawing points every X pixels
-    count = MAX(ceilf(sqrtf((end.x - start.x) * (end.x - start.x) + (end.y - start.y) * (end.y - start.y)) / kBrushPixelStep), 1);
-    for(i = 0; i < count; ++i) {
-        if(vertexCount == vertexMax) {
-            vertexMax = 2 * vertexMax;
-            vertexBuffer = realloc(vertexBuffer, vertexMax * 2 * sizeof(GLfloat));
-        }
-        
-        vertexBuffer[2 * vertexCount + 0] = start.x + (end.x - start.x) * ((GLfloat)i / (GLfloat)count);
-        vertexBuffer[2 * vertexCount + 1] = start.y + (end.y - start.y) * ((GLfloat)i / (GLfloat)count);
-        vertexCount += 1;
-    }
+    vertexCount = 1;
+    vertexBuffer[0] = start.x;
+    vertexBuffer[1] = start.y;
+    
+    
+    
     
     // Load data to the Vertex Buffer Object
     glBindBuffer(GL_ARRAY_BUFFER, vboId);
@@ -398,12 +402,29 @@ typedef struct {
 // Handles the start of a touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGRect				bounds = [self bounds];
     UITouch*            touch = [[event touchesForView:self] anyObject];
+    CGRect				bounds = [self bounds];
     firstTouch = YES;
     // Convert touch point from UIView referential to OpenGL one (upside-down flip)
     location = [touch locationInView:self];
-    location.y = bounds.size.height - location.y;
+    self.previousPoint = location;
+
+    previousLocation = self.previousPoint;
+    previousLocation.y = bounds.size.height - previousLocation.y;
+    [self renderLineFromPoint:previousLocation];
+    
+    
+    TJ_Point tj_location;
+    tj_location.x = location.x;
+    tj_location.y = location.y;
+    
+
+    [self constDistanceMoved:location radius:5.0 dis:ConstDistance isStartMove:YES completion:^(CGPoint point) {
+        
+        
+    }];
+    
+    
 }
 
 // Handles the continuation of a touch.
@@ -411,52 +432,75 @@ typedef struct {
 {
     CGRect				bounds = [self bounds];
     UITouch*			touch = [[event touchesForView:self] anyObject];
-    
-    
-    
-    
-    
-    // Convert touch point from UIView referential to OpenGL one (upside-down flip)
+    location = [touch locationInView:self];
+
     if (firstTouch) {
         firstTouch = NO;
-        previousLocation = [touch previousLocationInView:self];
-        previousLocation.y = bounds.size.height - previousLocation.y;
-    } else {
-        location = [touch locationInView:self];
-        location.y = bounds.size.height - location.y;
-        previousLocation = [touch previousLocationInView:self];
-        previousLocation.y = bounds.size.height - previousLocation.y;
-    }
-    
-    
-    
-    double angle = atan((location.y - previousLocation.y) / (location.x - previousLocation.x));
-    CGFloat distance = hypot(fabs(location.y - previousLocation.y), fabs(location.x - previousLocation.x));
-    if (distance < 2 * 3.5) {
         return;
     }
-    if (fabs(self.angle - angle) < M_PI_4 && distance < 10) {
-        return;
-    }else if (distance > 10) {
-        int count = distance / 10;
-        for (int i = 0; i < count; i++) {
-            
-            // Render the stroke
-            
-            
-        }
-    }
-    self.angle = angle;
+    
+    TJ_Point tj_location;
+    tj_location.x = location.x;
+    tj_location.y = location.y;
 
     
-    [self renderLineFromPoint:previousLocation toPoint:location];
+    [self constDistanceMoved:location radius:5.0 dis:ConstDistance isStartMove:NO completion:^(CGPoint point) {
+       
+        previousLocation = point;
+        previousLocation.y = bounds.size.height - previousLocation.y;
+        [self renderLineFromPoint:previousLocation];
+        
+    }];
     
+     
+}
+
+
+
+
+- (void)constDistanceMoved:(CGPoint)location1 radius:(double)radius dis:(double)dis isStartMove:(BOOL)isStartMove completion:(void(^)(CGPoint point))completion
+{
+    static CGFloat previousAngle;
+    static CGPoint previousPoint;
+    double angle, distance;
+    
+    if (isStartMove) {
+        previousPoint = location1;
+        angle = atan((location1.y - previousPoint.y) / (location1.x - previousPoint.x));
+        previousAngle = angle;
+    }
+    angle = atan((location1.y - previousPoint.y) / (location1.x - previousPoint.x));
+    distance = hypot(fabs(location1.y - previousPoint.y), fabs(location1.x - previousPoint.x));
+    
+    if (distance < 2 * radius) {
+        return;
+    }
+    if (fabs(previousAngle - angle) < M_PI_4 && distance < dis) {
+        return;
+    }else if (distance > dis) {
+        int count = distance / dis;
+        for (int i = 0; i < count; i++) {
+            previousPoint = [TJ_DrawTool newPointLastPoint:previousPoint currentPoint:location1 distance:ConstDistance];
+            
+            if (completion) {
+                completion(previousPoint);
+            }
+        }
+    }
+    previousAngle = angle;
     
 }
+
+
+
+
+
+
 
 // Handles the end of a touch event when the touch is a tap.
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    /*
     CGRect				bounds = [self bounds];
     UITouch*            touch = [[event touchesForView:self] anyObject];
     if (firstTouch) {
@@ -465,6 +509,7 @@ typedef struct {
         previousLocation.y = bounds.size.height - previousLocation.y;
         [self renderLineFromPoint:previousLocation toPoint:location];
     }
+     */
 }
 
 // Handles the end of a touch event.

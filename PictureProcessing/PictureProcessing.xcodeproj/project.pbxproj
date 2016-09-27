@@ -43,7 +43,7 @@
 		754E994E1D960C0F00ABAA2B /* sj_20160705_30.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 754E99301D960C0F00ABAA2B /* sj_20160705_30.JPG */; };
 		754E994F1D960C0F00ABAA2B /* sj_20160705_31.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 754E99311D960C0F00ABAA2B /* sj_20160705_31.JPG */; };
 		75514F361D99633C00AD957E /* UIView+TJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 75514F351D99633C00AD957E /* UIView+TJ.m */; };
-		75514F3A1D9963BE00AD957E /* TJ_DrawTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 75514F391D9963BE00AD957E /* TJ_DrawTool.m */; };
+		75514F3A1D9963BE00AD957E /* TJ_DrawTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75514F391D9963BE00AD957E /* TJ_DrawTool.mm */; };
 		7556F7D31D5CA0AA008CC401 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D21D5CA0AA008CC401 /* main.m */; };
 		7556F7D61D5CA0AA008CC401 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D51D5CA0AA008CC401 /* AppDelegate.m */; };
 		7556F7D91D5CA0AA008CC401 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D81D5CA0AA008CC401 /* ViewController.mm */; };
@@ -263,6 +263,7 @@
 		75CEE6181D99467F00E6A772 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEE60B1D99467F00E6A772 /* View+MASAdditions.m */; };
 		75CEE6191D99467F00E6A772 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEE60E1D99467F00E6A772 /* ViewController+MASAdditions.m */; };
 		75CEE61C1D99474500E6A772 /* PaintTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEE61B1D99474500E6A772 /* PaintTypeModel.m */; };
+		75D96E001D9A51AE0055D3DA /* TJ_DrawTool_C.c in Sources */ = {isa = PBXBuildFile; fileRef = 75D96DFE1D9A51AE0055D3DA /* TJ_DrawTool_C.c */; };
 		75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */; };
 		75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75FB69CD1D7F11AE00FF880F /* DrawController.mm */; };
 		75FE84E01D7AB73100E45DBE /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */; };
@@ -317,7 +318,7 @@
 		75514F341D99633C00AD957E /* UIView+TJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TJ.h"; sourceTree = "<group>"; };
 		75514F351D99633C00AD957E /* UIView+TJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TJ.m"; sourceTree = "<group>"; };
 		75514F381D9963BE00AD957E /* TJ_DrawTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DrawTool.h; sourceTree = "<group>"; };
-		75514F391D9963BE00AD957E /* TJ_DrawTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_DrawTool.m; sourceTree = "<group>"; };
+		75514F391D9963BE00AD957E /* TJ_DrawTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TJ_DrawTool.mm; sourceTree = "<group>"; };
 		75514F3B1D99652500AD957E /* ToolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolHeader.h; sourceTree = "<group>"; };
 		7556F7CE1D5CA0AA008CC401 /* PictureProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7556F7D21D5CA0AA008CC401 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -753,6 +754,8 @@
 		75CEE60E1D99467F00E6A772 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		75CEE61A1D99474500E6A772 /* PaintTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintTypeModel.h; sourceTree = "<group>"; };
 		75CEE61B1D99474500E6A772 /* PaintTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintTypeModel.m; sourceTree = "<group>"; };
+		75D96DFE1D9A51AE0055D3DA /* TJ_DrawTool_C.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TJ_DrawTool_C.c; sourceTree = "<group>"; };
+		75D96DFF1D9A51AE0055D3DA /* TJ_DrawTool_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DrawTool_C.h; sourceTree = "<group>"; };
 		75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpenGL.cpp; sourceTree = "<group>"; };
 		75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJOpenGL.hpp; sourceTree = "<group>"; };
 		75FB69CC1D7F11AE00FF880F /* DrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawController.h; sourceTree = "<group>"; };
@@ -887,7 +890,7 @@
 			isa = PBXGroup;
 			children = (
 				75514F381D9963BE00AD957E /* TJ_DrawTool.h */,
-				75514F391D9963BE00AD957E /* TJ_DrawTool.m */,
+				75514F391D9963BE00AD957E /* TJ_DrawTool.mm */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1396,6 +1399,7 @@
 		7594A78C1D5CBBEA00D6F31B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				75D96DFD1D9A517D0055D3DA /* c_tool */,
 				75382D6C1D93C76F00B14F77 /* GPUFilter */,
 				758B0F971D6E91C60010D9B4 /* Tool */,
 				75C43EB51D62AD97002F25EF /* Const */,
@@ -1489,6 +1493,15 @@
 				75CEE60E1D99467F00E6A772 /* ViewController+MASAdditions.m */,
 			);
 			path = Masonry;
+			sourceTree = "<group>";
+		};
+		75D96DFD1D9A517D0055D3DA /* c_tool */ = {
+			isa = PBXGroup;
+			children = (
+				75D96DFE1D9A51AE0055D3DA /* TJ_DrawTool_C.c */,
+				75D96DFF1D9A51AE0055D3DA /* TJ_DrawTool_C.h */,
+			);
+			path = c_tool;
 			sourceTree = "<group>";
 		};
 		75F9EDA51D84E498001BA4DC /* opengl */ = {
@@ -1769,7 +1782,7 @@
 				7560A97F1D8FC7DE0056AB99 /* TestBaseVC.mm in Sources */,
 				7579B2261D82484B007B0F74 /* GPUImageSoftEleganceFilter.m in Sources */,
 				7579B1DE1D82484B007B0F74 /* GPUImageHistogramEqualizationFilter.m in Sources */,
-				75514F3A1D9963BE00AD957E /* TJ_DrawTool.m in Sources */,
+				75514F3A1D9963BE00AD957E /* TJ_DrawTool.mm in Sources */,
 				7579B1AC1D82484B007B0F74 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				7560A97C1D8FC7DE0056AB99 /* CoreImageVCTest.mm in Sources */,
 				7579B23A1D82484B007B0F74 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
@@ -1822,6 +1835,7 @@
 				7579B2021D82484B007B0F74 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				75CEE6141D99467F00E6A772 /* MASViewAttribute.m in Sources */,
 				7579B1ED1D82484B007B0F74 /* GPUImageLinearBurnBlendFilter.m in Sources */,
+				75D96E001D9A51AE0055D3DA /* TJ_DrawTool_C.c in Sources */,
 				7579B21E1D82484B007B0F74 /* GPUImageSepiaFilter.m in Sources */,
 				7579B2101D82484B007B0F74 /* GPUImagePolarPixellateFilter.m in Sources */,
 				7579B21B1D82484B007B0F74 /* GPUImageSaturationBlendFilter.m in Sources */,
