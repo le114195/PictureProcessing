@@ -8,13 +8,21 @@
 
 #include "TJ_DrawTool_C.h"
 #include <math.h>
+#include <stdlib.h>
 
 
 void constDistanceMoved(TJ_Point location, double radius, double dis, int isStartMove, pfv pFunc)
 {
-    static double previousAngle;
-    static TJ_Point previousPoint;
-    double angle, distance;
+    static float           previousAngle;
+    static float*           vertexBuffer = NULL;
+    static TJ_Point         previousPoint;
+    float                  angle,
+                            distance,
+                            newDis = 0.0;
+    
+    if (vertexBuffer == NULL) {
+        vertexBuffer = malloc(64 * 2 * sizeof(float));
+    }
     
     if (isStartMove) {
         previousPoint = location;
@@ -31,11 +39,19 @@ void constDistanceMoved(TJ_Point location, double radius, double dis, int isStar
         return;
     }else if (distance > dis) {
         int count = distance / dis;
+        if (count < 64) {
+            newDis = dis;
+        }else {
+            count = 64;
+            newDis = distance / 64;
+        }
         for (int i = 0; i < count; i++) {
-            previousPoint = newPoint(previousPoint, location, dis);
-            if (pFunc != NULL) {
-                pFunc(previousPoint);
-            }
+            previousPoint = newPoint(previousPoint, location, newDis);
+            vertexBuffer[2*i + 0] = previousPoint.x;
+            vertexBuffer[2*i + 1] = previousPoint.y;
+        }
+        if (pFunc != NULL) {
+            pFunc(vertexBuffer, count);
         }
     }
     previousAngle = angle;
@@ -72,7 +88,6 @@ TJ_Point newPoint(TJ_Point lastLocation, TJ_Point location, double distance)
     newPoint.y = y0;
     return newPoint;
 }
-
 
 
 
