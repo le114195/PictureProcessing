@@ -168,8 +168,6 @@ typedef struct {
     return self;
 }
 
-
-
 -(void)layoutSubviews
 {
     [EAGLContext setCurrentContext:context];
