@@ -11,6 +11,7 @@
 #import "TJOpenglesBrushView.h"
 #import "PaintTypeView.h"
 #import "PaintTypeModel.h"
+#import "TJOpengles3D.h"
 
 
 
@@ -43,22 +44,13 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-//    TJOpenglesDemo1 *demo1 = [[TJOpenglesDemo1 alloc] initWithFrame:CGRectMake(0, 64, Screen_Width, Screen_Height - 64)];
-//    [self.view addSubview:demo1];
+
     
     
-    TJOpenglesBrushView *brushView = [[TJOpenglesBrushView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
-    [self.view addSubview:brushView];
+    [self demo2];
+
     
-    // Define a starting color
-    CGColorRef color = [UIColor colorWithHue:(CGFloat)2.0 / (CGFloat)kPaletteSize
-                                  saturation:kSaturation
-                                  brightness:kBrightness
-                                       alpha:1.0].CGColor;
-    const CGFloat *components = CGColorGetComponents(color);
     
-    // Defer to the OpenGL view to set the brush color
-    [brushView setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
     
     
     [self paintTypeViewConfigure];
@@ -114,6 +106,37 @@
 
 
 
+
+#pragma mark - 测试
+- (void)demo1
+{
+    TJOpenglesDemo1 *demo1 = [[TJOpenglesDemo1 alloc] initWithFrame:CGRectMake(0, 64, Screen_Width, Screen_Height - 64)];
+    [self.view addSubview:demo1];
+}
+
+
+- (void)brush
+{
+    TJOpenglesBrushView *brushView = [[TJOpenglesBrushView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:brushView];
+    
+    // Define a starting color
+    CGColorRef color = [UIColor colorWithHue:(CGFloat)2.0 / (CGFloat)kPaletteSize
+                                  saturation:kSaturation
+                                  brightness:kBrightness
+                                       alpha:1.0].CGColor;
+    const CGFloat *components = CGColorGetComponents(color);
+    
+    // Defer to the OpenGL view to set the brush color
+    [brushView setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
+}
+
+- (void)demo2
+{
+    TJOpengles3D *demo2 = [[TJOpengles3D alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:demo2];
+    
+}
 
 
 

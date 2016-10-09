@@ -264,6 +264,9 @@
 		75CEE6191D99467F00E6A772 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEE60E1D99467F00E6A772 /* ViewController+MASAdditions.m */; };
 		75CEE61C1D99474500E6A772 /* PaintTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEE61B1D99474500E6A772 /* PaintTypeModel.m */; };
 		75D96E001D9A51AE0055D3DA /* TJ_DrawTool_C.c in Sources */ = {isa = PBXBuildFile; fileRef = 75D96DFE1D9A51AE0055D3DA /* TJ_DrawTool_C.c */; };
+		75F2C2821DA9329F0013E519 /* TJOpengles3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C2811DA9329F0013E519 /* TJOpengles3D.m */; };
+		75F2C28A1DA9387B0013E519 /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C2841DA9387B0013E519 /* GLESMath.c */; };
+		75F2C28B1DA9387B0013E519 /* GLESUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C2871DA9387B0013E519 /* GLESUtils.m */; };
 		75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */; };
 		75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75FB69CD1D7F11AE00FF880F /* DrawController.mm */; };
 		75FE84E01D7AB73100E45DBE /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */; };
@@ -756,6 +759,14 @@
 		75CEE61B1D99474500E6A772 /* PaintTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintTypeModel.m; sourceTree = "<group>"; };
 		75D96DFE1D9A51AE0055D3DA /* TJ_DrawTool_C.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TJ_DrawTool_C.c; sourceTree = "<group>"; };
 		75D96DFF1D9A51AE0055D3DA /* TJ_DrawTool_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DrawTool_C.h; sourceTree = "<group>"; };
+		75F2C2801DA9329F0013E519 /* TJOpengles3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpengles3D.h; sourceTree = "<group>"; };
+		75F2C2811DA9329F0013E519 /* TJOpengles3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpengles3D.m; sourceTree = "<group>"; };
+		75F2C2841DA9387B0013E519 /* GLESMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
+		75F2C2851DA9387B0013E519 /* GLESMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESMath.h; sourceTree = "<group>"; };
+		75F2C2861DA9387B0013E519 /* GLESUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESUtils.h; sourceTree = "<group>"; };
+		75F2C2871DA9387B0013E519 /* GLESUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLESUtils.m; sourceTree = "<group>"; };
+		75F2C2881DA9387B0013E519 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		75F2C2891DA9387B0013E519 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpenGL.cpp; sourceTree = "<group>"; };
 		75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJOpenGL.hpp; sourceTree = "<group>"; };
 		75FB69CC1D7F11AE00FF880F /* DrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawController.h; sourceTree = "<group>"; };
@@ -801,6 +812,7 @@
 		7531A4301D95016B006BC913 /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				75F2C2831DA9387B0013E519 /* Utils */,
 				7531A4311D95016B006BC913 /* Controller */,
 				7531A4321D95016B006BC913 /* View */,
 			);
@@ -827,6 +839,8 @@
 				7531A43B1D95020F006BC913 /* TJOpenglesDemo1.m */,
 				7531A43D1D9503FA006BC913 /* TJOpenglesBrushView.h */,
 				7531A43E1D9503FA006BC913 /* TJOpenglesBrushView.m */,
+				75F2C2801DA9329F0013E519 /* TJOpengles3D.h */,
+				75F2C2811DA9329F0013E519 /* TJOpengles3D.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1504,6 +1518,19 @@
 			path = c_tool;
 			sourceTree = "<group>";
 		};
+		75F2C2831DA9387B0013E519 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				75F2C2841DA9387B0013E519 /* GLESMath.c */,
+				75F2C2851DA9387B0013E519 /* GLESMath.h */,
+				75F2C2861DA9387B0013E519 /* GLESUtils.h */,
+				75F2C2871DA9387B0013E519 /* GLESUtils.m */,
+				75F2C2881DA9387B0013E519 /* Quaternion.h */,
+				75F2C2891DA9387B0013E519 /* Vector.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		75F9EDA51D84E498001BA4DC /* opengl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1686,6 +1713,7 @@
 				7579B1C61D82484B007B0F74 /* GPUImageErosionFilter.m in Sources */,
 				7579B1D21D82484B007B0F74 /* GPUImageGaussianBlurFilter.m in Sources */,
 				7579B1F21D82484B007B0F74 /* GPUImageLuminanceRangeFilter.m in Sources */,
+				75F2C2821DA9329F0013E519 /* TJOpengles3D.m in Sources */,
 				7579B1E41D82484B007B0F74 /* GPUImageHueFilter.m in Sources */,
 				7579B2371D82484B007B0F74 /* GPUImageToneCurveFilter.m in Sources */,
 				75CEE6161D99467F00E6A772 /* NSArray+MASAdditions.m in Sources */,
@@ -1756,6 +1784,7 @@
 				7579B1CE1D82484B007B0F74 /* GPUImageFourInputFilter.m in Sources */,
 				7579B1AF1D82484B007B0F74 /* GPUImageColorBlendFilter.m in Sources */,
 				7579B1C41D82484B007B0F74 /* GPUImageDivideBlendFilter.m in Sources */,
+				75F2C28B1DA9387B0013E519 /* GLESUtils.m in Sources */,
 				7579B19D1D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				75FE84E31D7AB75800E45DBE /* TJOpencvBase.cpp in Sources */,
 				7579B1DF1D82484B007B0F74 /* GPUImageHistogramFilter.m in Sources */,
@@ -1779,6 +1808,7 @@
 				7579B1D61D82484B007B0F74 /* GPUImageGrayscaleFilter.m in Sources */,
 				7579B1C51D82484B007B0F74 /* GPUImageEmbossFilter.m in Sources */,
 				7579B2281D82484B007B0F74 /* GPUImageSolarizeFilter.m in Sources */,
+				75F2C28A1DA9387B0013E519 /* GLESMath.c in Sources */,
 				7560A97F1D8FC7DE0056AB99 /* TestBaseVC.mm in Sources */,
 				7579B2261D82484B007B0F74 /* GPUImageSoftEleganceFilter.m in Sources */,
 				7579B1DE1D82484B007B0F74 /* GPUImageHistogramEqualizationFilter.m in Sources */,
