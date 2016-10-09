@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES3/gl.h>
 
 #define TJ_STRING_ES(x) @ #x
 
