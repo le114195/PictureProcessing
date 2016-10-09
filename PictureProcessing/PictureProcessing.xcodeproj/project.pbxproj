@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750FAE721DAA8F7D00A49248 /* TJOpenglesRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 750FAE711DAA8F7D00A49248 /* TJOpenglesRect.m */; };
+		7521501E1DAA7FFE00C633AD /* TJOpenglesTrangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7521501D1DAA7FFE00C633AD /* TJOpenglesTrangle.m */; };
 		7531A4361D950197006BC913 /* TJ_GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531A4351D950197006BC913 /* TJ_GLProgram.m */; };
 		7531A4391D9501F2006BC913 /* TJOpenGLContrtoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531A4381D9501F2006BC913 /* TJOpenGLContrtoller.m */; };
 		7531A43C1D95020F006BC913 /* TJOpenglesDemo1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531A43B1D95020F006BC913 /* TJOpenglesDemo1.m */; };
@@ -278,6 +280,10 @@
 		750F800A1D616A39004BF41A /* BlockHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockHeader.h; sourceTree = "<group>"; };
 		750F800B1D616AA4004BF41A /* SizeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizeHeader.h; sourceTree = "<group>"; };
 		750F800C1D616AD8004BF41A /* FileHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileHeader.h; sourceTree = "<group>"; };
+		750FAE701DAA8F7D00A49248 /* TJOpenglesRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglesRect.h; sourceTree = "<group>"; };
+		750FAE711DAA8F7D00A49248 /* TJOpenglesRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglesRect.m; sourceTree = "<group>"; };
+		7521501C1DAA7FFE00C633AD /* TJOpenglesTrangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglesTrangle.h; sourceTree = "<group>"; };
+		7521501D1DAA7FFE00C633AD /* TJOpenglesTrangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglesTrangle.m; sourceTree = "<group>"; };
 		7531A4341D950197006BC913 /* TJ_GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_GLProgram.h; sourceTree = "<group>"; };
 		7531A4351D950197006BC913 /* TJ_GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_GLProgram.m; sourceTree = "<group>"; };
 		7531A4371D9501F2006BC913 /* TJOpenGLContrtoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenGLContrtoller.h; sourceTree = "<group>"; };
@@ -841,6 +847,10 @@
 				7531A43E1D9503FA006BC913 /* TJOpenglesBrushView.m */,
 				75F2C2801DA9329F0013E519 /* TJOpengles3D.h */,
 				75F2C2811DA9329F0013E519 /* TJOpengles3D.m */,
+				7521501C1DAA7FFE00C633AD /* TJOpenglesTrangle.h */,
+				7521501D1DAA7FFE00C633AD /* TJOpenglesTrangle.m */,
+				750FAE701DAA8F7D00A49248 /* TJOpenglesRect.h */,
+				750FAE711DAA8F7D00A49248 /* TJOpenglesRect.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1689,6 +1699,7 @@
 				7579B1EF1D82484B007B0F74 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				7579B1EE1D82484B007B0F74 /* GPUImageLineGenerator.m in Sources */,
 				7579B20C1D82484B007B0F74 /* GPUImagePinchDistortionFilter.m in Sources */,
+				7521501E1DAA7FFE00C633AD /* TJOpenglesTrangle.m in Sources */,
 				7579B1C01D82484B007B0F74 /* GPUImageDilationFilter.m in Sources */,
 				7579B1FF1D82484B007B0F74 /* GPUImageMovieWriter.m in Sources */,
 				7579B23E1D82484B007B0F74 /* GPUImageUIElement.m in Sources */,
@@ -1777,6 +1788,7 @@
 				75CEE6101D99467F00E6A772 /* MASCompositeConstraint.m in Sources */,
 				7579B22D1D82484B007B0F74 /* GPUImageStretchDistortionFilter.m in Sources */,
 				7579B1F41D82484B007B0F74 /* GPUImageLuminosity.m in Sources */,
+				750FAE721DAA8F7D00A49248 /* TJOpenglesRect.m in Sources */,
 				7579B2201D82484B007B0F74 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
 				7579B1A81D82484B007B0F74 /* GPUImageBuffer.m in Sources */,
 				7579B2461D82484B007B0F74 /* GPUImageWhiteBalanceFilter.m in Sources */,

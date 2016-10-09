@@ -100,6 +100,8 @@ NSString *const TJ_TriangleFragmentShaderString = TJ_STRING_ES
     
     [self.mProgram addAttribute:@"Position"];
     [self.mProgram use];
+    
+    
     GLuint positionSlot = [self.mProgram attributeIndex:@"Position"];
     
     //坐标数组
