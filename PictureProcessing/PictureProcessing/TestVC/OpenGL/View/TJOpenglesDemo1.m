@@ -177,6 +177,7 @@ NSString *const TJ_TriangleFragmentShaderString = TJ_STRING_ES
     // 将 _colorRenderBuffer 装配到 GL_COLOR_ATTACHMENT0 这个装配点上
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                               GL_RENDERBUFFER, self.myColorRenderBuffer);
+
 }
 
 
@@ -189,4 +190,8 @@ NSString *const TJ_TriangleFragmentShaderString = TJ_STRING_ES
 }
 
 
+
+#pragma mark - test
+ 
+ 
 @end
