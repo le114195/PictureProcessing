@@ -12,6 +12,7 @@
 #import "PaintTypeView.h"
 #import "PaintTypeModel.h"
 #import "TJOpengles3D.h"
+#import "TJOpenglesNewRect.h"
 
 
 
@@ -47,7 +48,7 @@
 
     
     
-    [self demo2];
+    [self demo5];
 
     
     
@@ -139,6 +140,11 @@
 }
 
 
+- (void)demo5
+{
+    TJOpenglesNewRect *demo4 = [[TJOpenglesNewRect alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:demo4];
+}
 
 
 @end

@@ -264,6 +264,7 @@
 		75CEE6191D99467F00E6A772 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEE60E1D99467F00E6A772 /* ViewController+MASAdditions.m */; };
 		75CEE61C1D99474500E6A772 /* PaintTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEE61B1D99474500E6A772 /* PaintTypeModel.m */; };
 		75D96E001D9A51AE0055D3DA /* TJ_DrawTool_C.c in Sources */ = {isa = PBXBuildFile; fileRef = 75D96DFE1D9A51AE0055D3DA /* TJ_DrawTool_C.c */; };
+		75EAA14E1DAB23B800087B65 /* TJOpenglesNewRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 75EAA14D1DAB23B800087B65 /* TJOpenglesNewRect.m */; };
 		75F2C2821DA9329F0013E519 /* TJOpengles3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C2811DA9329F0013E519 /* TJOpengles3D.m */; };
 		75F2C28A1DA9387B0013E519 /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C2841DA9387B0013E519 /* GLESMath.c */; };
 		75F2C28B1DA9387B0013E519 /* GLESUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C2871DA9387B0013E519 /* GLESUtils.m */; };
@@ -759,6 +760,8 @@
 		75CEE61B1D99474500E6A772 /* PaintTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintTypeModel.m; sourceTree = "<group>"; };
 		75D96DFE1D9A51AE0055D3DA /* TJ_DrawTool_C.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TJ_DrawTool_C.c; sourceTree = "<group>"; };
 		75D96DFF1D9A51AE0055D3DA /* TJ_DrawTool_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DrawTool_C.h; sourceTree = "<group>"; };
+		75EAA14C1DAB23B800087B65 /* TJOpenglesNewRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglesNewRect.h; sourceTree = "<group>"; };
+		75EAA14D1DAB23B800087B65 /* TJOpenglesNewRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglesNewRect.m; sourceTree = "<group>"; };
 		75F2C2801DA9329F0013E519 /* TJOpengles3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpengles3D.h; sourceTree = "<group>"; };
 		75F2C2811DA9329F0013E519 /* TJOpengles3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpengles3D.m; sourceTree = "<group>"; };
 		75F2C2841DA9387B0013E519 /* GLESMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
@@ -841,6 +844,8 @@
 				7531A43E1D9503FA006BC913 /* TJOpenglesBrushView.m */,
 				75F2C2801DA9329F0013E519 /* TJOpengles3D.h */,
 				75F2C2811DA9329F0013E519 /* TJOpengles3D.m */,
+				75EAA14C1DAB23B800087B65 /* TJOpenglesNewRect.h */,
+				75EAA14D1DAB23B800087B65 /* TJOpenglesNewRect.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1754,6 +1759,7 @@
 				7579B1B81D82484B007B0F74 /* GPUImageColourFASTSamplingOperation.m in Sources */,
 				7579B1F61D82484B007B0F74 /* GPUImageMaskFilter.m in Sources */,
 				7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */,
+				75EAA14E1DAB23B800087B65 /* TJOpenglesNewRect.m in Sources */,
 				7579B2231D82484B007B0F74 /* GPUImageSkinToneFilter.m in Sources */,
 				7579B1C31D82484B007B0F74 /* GPUImageDissolveBlendFilter.m in Sources */,
 				7579B22C1D82484B007B0F74 /* GPUImageStillCamera.m in Sources */,

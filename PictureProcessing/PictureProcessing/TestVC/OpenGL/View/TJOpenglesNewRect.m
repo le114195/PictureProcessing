@@ -1,56 +1,41 @@
 //
-//  TJOpengles3D.m
+//  TJOpenglesNewRect.m
 //  PictureProcessing
 //
-//  Created by 勒俊 on 2016/10/8.
+//  Created by 勒俊 on 2016/10/10.
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import "TJOpengles3D.h"
-#import "TJ_GLProgram.h"
+#import "TJOpenglesNewRect.h"
 #import <GLKit/GLKit.h>
 #import "GLESUtils.h"
 #import "GLESMath.h"
 
 
 
-NSString *const TJ_3DVertexShaderString = TJ_STRING_ES
+NSString *const TJ_NewRectVertexShaderString = TJ_STRING_ES
 (
- attribute vec4 position;
- attribute vec4 positionColor;
- uniform mat4 projectionMatrix;
- uniform mat4 modelViewMatrix;
- 
- varying lowp vec4 varyColor;
- 
- void main()
- {
-    varyColor = positionColor;
-    
-    vec4 vPos;
-    vPos = projectionMatrix * modelViewMatrix * position;
-    gl_Position = vPos;
+ attribute vec4 Position;
+ void main(void) {
+     gl_Position = Position;
  }
-);
+ );
 
 
-NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
+NSString *const TJ_NewRectFragmentShaderString = TJ_STRING_ES
 (
  
- varying lowp vec4 varyColor;
- void main()
- {
-    gl_FragColor = varyColor;
+ precision mediump float;
+ void main(void) {
+     gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
  }
-
-);
-
-
+ 
+ );
 
 
-@interface TJOpengles3D ()
 
 
+@interface TJOpenglesNewRect ()
 
 @property (nonatomic , strong) EAGLContext* myContext;
 @property (nonatomic , strong) CAEAGLLayer* myEagLayer;
@@ -62,15 +47,12 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
 @property (nonatomic , assign) GLuint myColorRenderBuffer;
 @property (nonatomic , assign) GLuint myColorFrameBuffer;
 
-- (void)setupLayer;
-
 
 @end
 
 
 
-
-@implementation TJOpengles3D
+@implementation TJOpenglesNewRect
 {
     float degree;
     float yDegree;
@@ -112,7 +94,7 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
     [self setupFrameBuffer];
     
     [self render];
-
+    
 }
 
 - (void)render {
@@ -130,7 +112,7 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
         glDeleteProgram(self.myProgram);
         self.myProgram = 0;
     }
-    self.myProgram = [self loadShaders:TJ_3DVertexShaderString frag:TJ_3DFragmentShaderString];
+    self.myProgram = [self loadShaders:TJ_NewRectVertexShaderString frag:TJ_NewRectFragmentShaderString];
     
     glLinkProgram(self.myProgram);
     GLint linkSuccess;
@@ -149,22 +131,20 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
     
     GLuint indices[] =
     {
-        0, 3, 2,
-        0, 1, 3,
-        0, 2, 4,
-        0, 4, 1,
-        2, 3, 4,
-        1, 4, 3,
+        0, 2, 1,
+        1, 3, 2,
     };
     
-
+    
+    GLuint positionSlot = glGetAttribLocation(self.myProgram, "Position");
+    
+    //坐标数组
     GLfloat attrArr[] =
     {
-        -0.5f, 0.5f, 0.0f,      1.0f, 0.0f, 1.0f, //左上
-        0.5f, 0.5f, 0.0f,       1.0f, 0.0f, 1.0f, //右上
-        -0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f, //左下
-        0.5f, -0.5f, 0.0f,      1.0f, 1.0f, 1.0f, //右下
-        0.0f, 0.0f, 1.0f,      0.0f, 1.0f, 0.0f, //顶点
+        -0.5f,  0.5f,   0.0f,       //左上
+        -0.5f,  -0.5f,  0.0f,       //左下
+        0.5f,   0.5f,   0.0f,       //右上
+        0.5f,   -0.5f,  0.0f,       //右下
     };
     
     
@@ -173,56 +153,19 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
     }
     glBindBuffer(GL_ARRAY_BUFFER, _myVertices);
     glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrArr, GL_DYNAMIC_DRAW);
-
-    
-    GLuint position = glGetAttribLocation(self.myProgram, "position");
-    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, NULL);
-    glEnableVertexAttribArray(position);
-    
-    GLuint positionColor = glGetAttribLocation(self.myProgram, "positionColor");
-    glVertexAttribPointer(positionColor, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (float *)NULL + 3);
-    glEnableVertexAttribArray(positionColor);
-    
-    GLuint projectionMatrixSlot = glGetUniformLocation(self.myProgram, "projectionMatrix");
-    GLuint modelViewMatrixSlot = glGetUniformLocation(self.myProgram, "modelViewMatrix");
-    
-    float width = self.frame.size.width;
-    float height = self.frame.size.height;
     
     
-    KSMatrix4 _projectionMatrix;
-    ksMatrixLoadIdentity(&_projectionMatrix);
-    float aspect = width / height; //长宽比
+    
+    glVertexAttribPointer(positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, NULL);
+    glEnableVertexAttribArray(positionSlot);
     
     
-    ksPerspective(&_projectionMatrix, 30.0, aspect, 5.0f, 20.0f); //透视变换，视角30°
-    
-    //设置glsl里面的投影矩阵
-    glUniformMatrix4fv(projectionMatrixSlot, 1, GL_FALSE, (GLfloat*)&_projectionMatrix.m[0][0]);
-    
-    glEnable(GL_CULL_FACE);
-    
-    //平移
-    KSMatrix4 _modelViewMatrix;
-    ksMatrixLoadIdentity(&_modelViewMatrix);
-    ksTranslate(&_modelViewMatrix, 0.0, 0.0, -10.0);
-    
-    
-    //旋转
-    KSMatrix4 _rotationMatrix;
-    ksMatrixLoadIdentity(&_rotationMatrix);
-    ksRotate(&_rotationMatrix, degree, 1.0, 0.0, 0.0); //绕X轴
-    ksRotate(&_rotationMatrix, yDegree, 0.0, 1.0, 0.0); //绕Y轴
-    
-    //把变换矩阵相乘，注意先后顺序
-    ksMatrixMultiply(&_modelViewMatrix, &_rotationMatrix, &_modelViewMatrix);
-    //    ksMatrixMultiply(&_modelViewMatrix, &_modelViewMatrix, &_rotationMatrix);
-    
-    // Load the model-view matrix
-    glUniformMatrix4fv(modelViewMatrixSlot, 1, GL_FALSE, (GLfloat*)&_modelViewMatrix.m[0][0]);
+    glClearColor(0, 1.0, 0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
     
     glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, indices);
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
+    
 }
 
 - (BOOL)validate:(GLuint)_programId {
@@ -336,5 +279,6 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
     glDeleteRenderbuffers(1, &_myColorRenderBuffer);
     self.myColorRenderBuffer = 0;
 }
+
 
 @end
