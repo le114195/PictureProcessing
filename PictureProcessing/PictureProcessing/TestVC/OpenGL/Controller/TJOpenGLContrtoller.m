@@ -15,6 +15,7 @@
 #import "TJOpenglesTrangle.h"
 #import "TJOpenglesRect.h"
 #import "TJOpenglesNewRect.h"
+#import "TJopenglesText2D1.h"
 
 
 
@@ -47,7 +48,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    [self demo4];
+    [self demo6];
 
     
     
@@ -105,8 +106,6 @@
 
 
 
-
-
 #pragma mark - 测试
 - (void)demo1
 {
@@ -160,6 +159,13 @@
     TJOpenglesNewRect *demo4 = [[TJOpenglesNewRect alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
     [self.view addSubview:demo4];
 }
+
+- (void)demo6
+{
+    TJopenglesText2D1 *demo6 = [[TJopenglesText2D1 alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:demo6];
+}
+
 
 
 @end
