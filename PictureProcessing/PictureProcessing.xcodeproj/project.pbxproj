@@ -249,6 +249,7 @@
 		7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */; };
 		7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */; };
 		7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B11D5CBEF500D6F31B /* TestCell.m */; };
+		759545611DAD24C00031B4C7 /* TJOpenglesNewRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 759545601DAD24C00031B4C7 /* TJOpenglesNewRect.m */; };
 		75C3998C1D87FEC200C67F3D /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 75C3998B1D87FEC200C67F3D /* Particle.png */; };
 		75C43EB11D61A908002F25EF /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C43EB01D61A908002F25EF /* opencv2.framework */; };
 		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
@@ -728,6 +729,8 @@
 		7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7594A7B01D5CBEF500D6F31B /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
 		7594A7B11D5CBEF500D6F31B /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
+		7595455F1DAD24C00031B4C7 /* TJOpenglesNewRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglesNewRect.h; sourceTree = "<group>"; };
+		759545601DAD24C00031B4C7 /* TJOpenglesNewRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglesNewRect.m; sourceTree = "<group>"; };
 		75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
 		75C3998B1D87FEC200C67F3D /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 		75C43EB01D61A908002F25EF /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
@@ -841,6 +844,8 @@
 		7531A4321D95016B006BC913 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7595455F1DAD24C00031B4C7 /* TJOpenglesNewRect.h */,
+				759545601DAD24C00031B4C7 /* TJOpenglesNewRect.m */,
 				7531A43A1D95020F006BC913 /* TJOpenglesDemo1.h */,
 				7531A43B1D95020F006BC913 /* TJOpenglesDemo1.m */,
 				7531A43D1D9503FA006BC913 /* TJOpenglesBrushView.h */,
@@ -1761,6 +1766,7 @@
 				7579B2251D82484B007B0F74 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				7579B1D91D82484B007B0F74 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
 				7579B23B1D82484B007B0F74 /* GPUImageTwoInputFilter.m in Sources */,
+				759545611DAD24C00031B4C7 /* TJOpenglesNewRect.m in Sources */,
 				7579B1F81D82484B007B0F74 /* GPUImageMissEtikateFilter.m in Sources */,
 				7579B1B81D82484B007B0F74 /* GPUImageColourFASTSamplingOperation.m in Sources */,
 				7579B1F61D82484B007B0F74 /* GPUImageMaskFilter.m in Sources */,

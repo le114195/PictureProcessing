@@ -14,6 +14,7 @@
 #import "TJOpengles3D.h"
 #import "TJOpenglesTrangle.h"
 #import "TJOpenglesRect.h"
+#import "TJOpenglesNewRect.h"
 
 
 
@@ -45,9 +46,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
-    
-
-    
     
     [self demo4];
 
@@ -157,6 +155,11 @@
 }
 
 
+- (void)demo5
+{
+    TJOpenglesNewRect *demo4 = [[TJOpenglesNewRect alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:demo4];
+}
 
 
 @end
