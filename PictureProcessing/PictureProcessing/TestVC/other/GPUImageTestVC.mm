@@ -89,13 +89,23 @@
     
     
     
-    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
     
+    
+    self.sepiaFilter = [[GPUImageBulgeDistortionFilter alloc] init];
+    
+    [self.sepiaFilter setValue:@0.15 forKey:@"radius"];
+    [self.sepiaFilter setValue:@1.5 forKey:@"scale"];
+    
+    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
     
     
 
 }
 
+
+//GPUImageSwirlFilter:旋转扭曲
+//GPUImageBulgeDistortionFilter:膨胀扭曲
+//GPUImagePinchDistortionFilter:收缩扭曲
 
 - (GPUImageTest *)tjGPU
 {
