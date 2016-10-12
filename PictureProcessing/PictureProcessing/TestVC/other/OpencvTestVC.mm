@@ -26,6 +26,16 @@
     
     [self openCVTest];
     
+    
+    
+    /*
+    
+    CIDetector *faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:context options:@{CIDetectorAccuracy: CIDetectorAccuracyHigh}];
+    NSArray *faces = [faceDetector featuresInImage:image];
+    
+    
+     */
+    
     // Do any additional setup after loading the view.
 }
 
