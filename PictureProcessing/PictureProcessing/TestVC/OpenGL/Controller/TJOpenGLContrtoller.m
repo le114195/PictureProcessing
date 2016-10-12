@@ -12,7 +12,10 @@
 #import "PaintTypeView.h"
 #import "PaintTypeModel.h"
 #import "TJOpengles3D.h"
+#import "TJOpenglesTrangle.h"
+#import "TJOpenglesRect.h"
 #import "TJOpenglesNewRect.h"
+#import "TJopenglesText2D1.h"
 
 
 
@@ -45,10 +48,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-
-    
-    
-    [self demo5];
+    [self demo6];
 
     
     
@@ -106,8 +106,6 @@
 
 
 
-
-
 #pragma mark - 测试
 - (void)demo1
 {
@@ -136,7 +134,23 @@
 {
     TJOpengles3D *demo2 = [[TJOpengles3D alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
     [self.view addSubview:demo2];
+}
+
+
+/** 对图片进行透视、平移和旋转 */
+- (void)demo3
+{
+    TJOpenglesTrangle *demo3 = [[TJOpenglesTrangle alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
     
+    [self.view addSubview:demo3];
+}
+
+
+/** 多边形 */
+- (void)demo4
+{
+    TJOpenglesRect *demo4 = [[TJOpenglesRect alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:demo4];
 }
 
 
@@ -145,6 +159,13 @@
     TJOpenglesNewRect *demo4 = [[TJOpenglesNewRect alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
     [self.view addSubview:demo4];
 }
+
+- (void)demo6
+{
+    TJopenglesText2D1 *demo6 = [[TJopenglesText2D1 alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    [self.view addSubview:demo6];
+}
+
 
 
 @end

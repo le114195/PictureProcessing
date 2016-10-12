@@ -1,54 +1,51 @@
 //
-//  TJOpengles3D.m
+//  TJopenglesText2D1.m
 //  PictureProcessing
 //
-//  Created by 勒俊 on 2016/10/8.
+//  Created by 勒俊 on 2016/10/11.
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import "TJOpengles3D.h"
-#import "TJ_GLProgram.h"
+#import "TJopenglesText2D1.h"
 #import <GLKit/GLKit.h>
-#import "GLESUtils.h"
-#import "GLESMath.h"
 
 
-
-NSString *const TJ_3DVertexShaderString = TJ_STRING_ES
+NSString *const TJ_Text2D1VertexShaderString = TJ_STRING_ES
 (
  attribute vec4 position;
- attribute vec4 positionColor;
- uniform mat4 projectionMatrix;
- uniform mat4 modelViewMatrix;
+ attribute vec2 textCoordinate;
  
- varying lowp vec4 varyColor;
+ varying lowp vec2 varyTextCoord;
  
  void main()
- {
-    varyColor = positionColor;
-    
-    vec4 vPos;
-    vPos = projectionMatrix * modelViewMatrix * position;
-    gl_Position = vPos;
- }
-);
+{
+    varyTextCoord = textCoordinate;
+    gl_Position = position;
+}
+ );
 
 
-NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
+NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
 (
  
- varying lowp vec4 varyColor;
+ varying lowp vec2 varyTextCoord;
+ 
+ uniform sampler2D colorMap;
+ 
+
  void main()
- {
-    gl_FragColor = varyColor;
- }
+{
+    gl_FragColor = texture2D(colorMap, varyTextCoord);
+}
 
-);
+ 
+ );
 
 
 
 
-@interface TJOpengles3D ()
+
+@interface TJopenglesText2D1 ()
 
 
 
@@ -62,7 +59,7 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
 @property (nonatomic , assign) GLuint myColorRenderBuffer;
 @property (nonatomic , assign) GLuint myColorFrameBuffer;
 
-- (void)setupLayer;
+
 
 
 @end
@@ -70,15 +67,9 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
 
 
 
-@implementation TJOpengles3D
-{
-    float degree;
-    float yDegree;
-    BOOL bX;
-    BOOL bY;
-    NSTimer* myTimer;
-    
-}
+@implementation TJopenglesText2D1
+
+
 
 + (Class)layerClass
 {
@@ -112,7 +103,7 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
     [self setupFrameBuffer];
     
     [self render];
-
+    
 }
 
 - (void)render {
@@ -120,7 +111,7 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
     glClear(GL_COLOR_BUFFER_BIT);
     
     CGFloat scale = [[UIScreen mainScreen] scale];
-    glViewport(self.frame.origin.x * scale, self.frame.origin.y * scale, self.frame.size.width * scale, self.frame.size.height * scale);
+    glViewport(0, 0, self.frame.size.width * scale, self.frame.size.height * scale);
     
     
     if (self.myProgram) {
@@ -130,7 +121,7 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
         glDeleteProgram(self.myProgram);
         self.myProgram = 0;
     }
-    self.myProgram = [self loadShaders:TJ_3DVertexShaderString frag:TJ_3DFragmentShaderString];
+    self.myProgram = [self loadShaders:TJ_Text2D1VertexShaderString frag:TJ_Text2D1FragmentShaderString];
     
     glLinkProgram(self.myProgram);
     GLint linkSuccess;
@@ -147,81 +138,39 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
         glUseProgram(self.myProgram);
     }
     
-    GLuint indices[] =
-    {
-        0, 3, 2,
-        0, 1, 3,
-        0, 2, 4,
-        0, 4, 1,
-        2, 3, 4,
-        1, 4, 3,
-    };
-    
-
+    //坐标数组
     GLfloat attrArr[] =
     {
-        -0.5f, 0.5f, 0.0f,      1.0f, 0.0f, 1.0f, //左上
-        0.5f, 0.5f, 0.0f,       1.0f, 0.0f, 1.0f, //右上
-        -0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f, //左下
-        0.5f, -0.5f, 0.0f,      1.0f, 1.0f, 1.0f, //右下
-        0.0f, 0.0f, 1.0f,      0.0f, 1.0f, 0.0f, //顶点
+        1.0f, -1.0f, 0.0f,     1.0f, 0.0f,
+        -1.0f, 1.0f, 0.0f,     0.0f, 1.0f,
+        -1.0f, -1.0f, 0.0f,    0.0f, 0.0f,
+        1.0f, 1.0f, 0.0f,      1.0f, 1.0f,
+        -1.0f, 1.0f, 0.0f,     0.0f, 1.0f,
+        1.0f, -1.0f, 0.0f,     1.0f, 0.0f,
     };
     
+    GLuint  vertexBuffer;
     
-    if (self.myVertices == 0) {
-        glGenBuffers(1, &_myVertices);
-    }
-    glBindBuffer(GL_ARRAY_BUFFER, _myVertices);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrArr, GL_DYNAMIC_DRAW);
-
+    glGenBuffers(1, &vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrArr, GL_STATIC_DRAW);
+    
     
     GLuint position = glGetAttribLocation(self.myProgram, "position");
-    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, NULL);
+    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
     glEnableVertexAttribArray(position);
     
-    GLuint positionColor = glGetAttribLocation(self.myProgram, "positionColor");
-    glVertexAttribPointer(positionColor, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (float *)NULL + 3);
-    glEnableVertexAttribArray(positionColor);
+    GLuint textCoor = glGetAttribLocation(self.myProgram, "textCoordinate");
+    glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
+    glEnableVertexAttribArray(textCoor);
     
-    GLuint projectionMatrixSlot = glGetUniformLocation(self.myProgram, "projectionMatrix");
-    GLuint modelViewMatrixSlot = glGetUniformLocation(self.myProgram, "modelViewMatrix");
+    [self setupTexture:@"sj_20160705_28.JPG"];
     
-    float width = self.frame.size.width;
-    float height = self.frame.size.height;
+    glClearColor(0, 0.0, 0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
     
-    
-    KSMatrix4 _projectionMatrix;
-    ksMatrixLoadIdentity(&_projectionMatrix);
-    float aspect = width / height; //长宽比
-    
-    
-    ksPerspective(&_projectionMatrix, 30.0, aspect, 5.0f, 20.0f); //透视变换，视角30°
-    
-    //设置glsl里面的投影矩阵
-    glUniformMatrix4fv(projectionMatrixSlot, 1, GL_FALSE, (GLfloat*)&_projectionMatrix.m[0][0]);
-    
-    glEnable(GL_CULL_FACE);
-    
-    //平移
-    KSMatrix4 _modelViewMatrix;
-    ksMatrixLoadIdentity(&_modelViewMatrix);
-    ksTranslate(&_modelViewMatrix, 0.0, 0.0, -10.0);
-    
-    
-    //旋转
-    KSMatrix4 _rotationMatrix;
-    ksMatrixLoadIdentity(&_rotationMatrix);
-    ksRotate(&_rotationMatrix, degree, 1.0, 0.0, 0.0); //绕X轴
-    ksRotate(&_rotationMatrix, yDegree, 0.0, 1.0, 0.0); //绕Y轴
-    
-    //把变换矩阵相乘，注意先后顺序
-    ksMatrixMultiply(&_modelViewMatrix, &_rotationMatrix, &_modelViewMatrix);
-    //    ksMatrixMultiply(&_modelViewMatrix, &_modelViewMatrix, &_rotationMatrix);
-    
-    // Load the model-view matrix
-    glUniformMatrix4fv(modelViewMatrixSlot, 1, GL_FALSE, (GLfloat*)&_modelViewMatrix.m[0][0]);
-    
-    glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(indices[0]), GL_UNSIGNED_INT, indices);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
 }
 
@@ -334,5 +283,49 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
     glDeleteRenderbuffers(1, &_myColorRenderBuffer);
     self.myColorRenderBuffer = 0;
 }
+
+
+- (GLuint)setupTexture:(NSString *)fileName {
+    // 1获取图片的CGImageRef
+    CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
+    if (!spriteImage) {
+        NSLog(@"Failed to load image %@", fileName);
+        exit(1);
+    }
+    
+    // 2 读取图片的大小
+    size_t width = CGImageGetWidth(spriteImage);
+    size_t height = CGImageGetHeight(spriteImage);
+    
+    GLubyte * spriteData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte)); //rgba共4个byte
+    
+    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
+                                                       CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
+    
+    // 3在CGContextRef上绘图
+    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), spriteImage);
+    
+    CGContextRelease(spriteContext);
+    
+    // 4绑定纹理到默认的纹理ID（这里只有一张图片，故而相当于默认于片元着色器里面的colorMap，如果有多张图不可以这么做）
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
+    float fw = width, fh = height;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+    
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    free(spriteData);
+    return 0;
+}
+
+
+
 
 @end
