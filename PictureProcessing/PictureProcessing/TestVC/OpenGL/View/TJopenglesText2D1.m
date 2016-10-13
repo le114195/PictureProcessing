@@ -15,6 +15,9 @@ NSString *const TJ_Text2D1VertexShaderString = TJ_STRING_ES
  attribute vec4 position;
  attribute vec2 textCoordinate;
  
+ uniform mat4 projectionMatrix;
+ uniform mat4 modelViewMatrix;
+ 
  varying lowp vec2 varyTextCoord;
  
  void main()
@@ -32,11 +35,16 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
  
  uniform sampler2D colorMap;
  
-
  void main()
-{
-    gl_FragColor = texture2D(colorMap, varyTextCoord);
-}
+ {
+    highp vec2 textureCoordinateToUse = varyTextCoord;
+    
+    if (textureCoordinateToUse.x < 0.1 && textureCoordinateToUse.y < 0.1){
+        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+    }else {
+        gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
+    }
+ }
 
  
  );
@@ -141,12 +149,12 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
     //坐标数组
     GLfloat attrArr[] =
     {
-        1.0f, -1.0f, 0.0f,     1.0f, 0.0f,
-        -1.0f, 1.0f, 0.0f,     0.0f, 1.0f,
-        -1.0f, -1.0f, 0.0f,    0.0f, 0.0f,
-        1.0f, 1.0f, 0.0f,      1.0f, 1.0f,
-        -1.0f, 1.0f, 0.0f,     0.0f, 1.0f,
-        1.0f, -1.0f, 0.0f,     1.0f, 0.0f,
+        0.5f, -0.5f, 0.0f,     1.0f, 1.0f,
+        -0.5f, 0.5f, 0.0f,     0.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f,    0.0f, 1.0f,
+        0.5f, 0.5f, 0.0f,      1.0f, 0.0f,
+        -0.5f, 0.5f, 0.0f,     0.0f, 0.0f,
+        0.5f, -0.5f, 0.0f,     1.0f, 1.0f,
     };
     
     GLuint  vertexBuffer;
@@ -165,6 +173,7 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
     glEnableVertexAttribArray(textCoor);
     
     [self setupTexture:@"sj_20160705_28.JPG"];
+    
     
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);

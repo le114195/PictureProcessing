@@ -8,6 +8,10 @@
 
 #import "TestBaseVC.h"
 
+
+#define BottomViewHeight       0
+#define EditNaviHeight         64
+
 @interface TestBaseVC ()
 
 @end
@@ -99,6 +103,29 @@
         [_slider3 addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _slider3;
+}
+
+
+
+/** 设置editImageView的frame */
+- (void)resetEditImageViewFrame {
+    if (self.srcImageView.image) {
+        CGFloat screen_height = Screen_Height - (EditNaviHeight + BottomViewHeight);
+        CGFloat imageWidth = self.srcImageView.image.size.width;
+        CGFloat imageHeight = self.srcImageView.image.size.height;
+        CGFloat imageRate = imageWidth / imageHeight;
+        
+        if (imageRate >= Screen_Width / screen_height) {
+            imageHeight = imageHeight * Screen_Width / imageWidth;
+            imageWidth = Screen_Width;
+        }else {
+            imageWidth = imageWidth * screen_height / imageHeight;
+            imageHeight = screen_height;
+        }
+        self.srcImageView.frame = CGRectMake((Screen_Width - imageWidth) / 2, EditNaviHeight + (Screen_Height - imageHeight - (EditNaviHeight + BottomViewHeight)) / 2, imageWidth, imageHeight);
+    }else {
+        self.srcImageView.frame = CGRectMake(0, (Screen_Height - Screen_Width) / 2, Screen_Width, Screen_Width);
+    }
 }
 
 
