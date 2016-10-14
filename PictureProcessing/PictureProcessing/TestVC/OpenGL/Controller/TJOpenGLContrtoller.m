@@ -16,6 +16,7 @@
 #import "TJOpenglesRect.h"
 #import "TJOpenglesNewRect.h"
 #import "TJopenglesText2D1.h"
+#import "TJOpenglesCurve.h"
 
 
 
@@ -48,7 +49,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    [self demo6];
+    [self demo7];
 
     
     
@@ -166,6 +167,40 @@
     [self.view addSubview:demo6];
 }
 
+
+- (void)demo7
+{
+    UIImage *image = [UIImage imageNamed:@"sj_20160705_17.JPG"];
+    TJOpenglesCurve *curve = [[TJOpenglesCurve alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
+    [self.view addSubview:curve];
+}
+
+
+
+/** 设置editImageView的frame */
+- (CGRect)resetImageViewFrameWithImage:(UIImage *)image top:(CGFloat)top bottom:(CGFloat)bottom {
+    
+    CGRect      newRect;
+    if (!image) {
+        newRect = CGRectMake(0, (Screen_Height - Screen_Width) / 2, Screen_Width, Screen_Width);
+    }else {
+    
+        CGFloat screen_height = Screen_Height - (top + bottom);
+        CGFloat imageWidth = image.size.width;
+        CGFloat imageHeight = image.size.height;
+        CGFloat imageRate = imageWidth / imageHeight;
+        
+        if (imageRate >= Screen_Width / screen_height) {
+            imageHeight = imageHeight * Screen_Width / imageWidth;
+            imageWidth = Screen_Width;
+        }else {
+            imageWidth = imageWidth * screen_height / imageHeight;
+            imageHeight = screen_height;
+        }
+        newRect = CGRectMake((Screen_Width - imageWidth) / 2, top + (Screen_Height - imageHeight - (top + bottom)) / 2, imageWidth, imageHeight);
+    }
+    return newRect;
+}
 
 
 @end
