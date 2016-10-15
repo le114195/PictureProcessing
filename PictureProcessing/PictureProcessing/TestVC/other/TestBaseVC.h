@@ -29,4 +29,9 @@
 
 - (void)sliderValueChange:(UISlider *)slider;
 
+
+/** 设置editImageView的frame */
+- (void)resetEditImageViewFrame;
+
+
 @end

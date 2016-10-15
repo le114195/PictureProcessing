@@ -1,16 +1,16 @@
 //
-//  TJopenglesText2D1.m
+//  TJOpenglesCurve.m
 //  PictureProcessing
 //
-//  Created by 勒俊 on 2016/10/11.
+//  Created by 勒俊 on 2016/10/13.
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import "TJopenglesText2D1.h"
+#import "TJOpenglesCurve.h"
 #import <GLKit/GLKit.h>
 
 
-NSString *const TJ_Text2D1VertexShaderString = TJ_STRING_ES
+NSString *const TJ_CurveVertexShaderString = TJ_STRING_ES
 (
  attribute vec4 position;
  attribute vec2 textCoordinate;
@@ -28,46 +28,48 @@ NSString *const TJ_Text2D1VertexShaderString = TJ_STRING_ES
  );
 
 
-NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
+NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 (
  
  varying lowp vec2 varyTextCoord;
- 
  uniform sampler2D colorMap;
+ uniform highp float aspectRatio;
  
  void main()
  {
-    highp vec2 textureCoordinateToUse = varyTextCoord;
-    
-    if (textureCoordinateToUse.x < 0.1 && textureCoordinateToUse.y < 0.1){
-        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-    }else {
-        gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
-    }
+     highp vec2 center = vec2(0.5, 0.5);
+     highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - center.y) * aspectRatio + center.y);
+     
+     highp float dist = distance(center, textureCoordinateToUse);
+     
+     if (dist < 0.2){
+         
+         textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.2 - dist) * (0.2 - dist), textureCoordinateToUse.y);
+         
+         gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
+         
+     }else {
+         gl_FragColor = texture2D(colorMap, varyTextCoord);
+     }
  }
-
+ 
  
  );
 
 
 
 
+@interface TJOpenglesCurve ()
 
-@interface TJopenglesText2D1 ()
-
-
+@property (nonatomic, strong) UIImage           *image;
 
 @property (nonatomic , strong) EAGLContext* myContext;
 @property (nonatomic , strong) CAEAGLLayer* myEagLayer;
 @property (nonatomic , assign) GLuint       myProgram;
 @property (nonatomic , assign) GLuint       myVertices;
 
-
-
 @property (nonatomic , assign) GLuint myColorRenderBuffer;
 @property (nonatomic , assign) GLuint myColorFrameBuffer;
-
-
 
 
 @end
@@ -75,7 +77,11 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
 
 
 
-@implementation TJopenglesText2D1
+@implementation TJOpenglesCurve
+{
+
+    CGImageRef rfImage;
+}
 
 
 
@@ -83,6 +89,19 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
 {
     return [CAEAGLLayer class];
 }
+
+
+- (instancetype)initWithFrame:(CGRect)frame image:(UIImage *)image
+{
+    if ([super initWithFrame:frame]) {
+        
+        self.backgroundColor = [UIColor whiteColor];
+        self.image = image;
+        
+    }
+    return self;
+}
+
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -112,7 +131,11 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
     
     [self render];
     
+    
 }
+
+
+
 
 - (void)render {
     glClearColor(0, 0.0, 0, 1.0);
@@ -129,7 +152,7 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
         glDeleteProgram(self.myProgram);
         self.myProgram = 0;
     }
-    self.myProgram = [self loadShaders:TJ_Text2D1VertexShaderString frag:TJ_Text2D1FragmentShaderString];
+    self.myProgram = [self loadShaders:TJ_CurveVertexShaderString frag:TJ_CurveFragmentShaderString];
     
     glLinkProgram(self.myProgram);
     GLint linkSuccess;
@@ -146,15 +169,18 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
         glUseProgram(self.myProgram);
     }
     
+    
+    
+    
     //坐标数组
     GLfloat attrArr[] =
     {
-        0.5f, -0.5f, 0.0f,     1.0f, 1.0f,
-        -0.5f, 0.5f, 0.0f,     0.0f, 0.0f,
-        -0.5f, -0.5f, 0.0f,    0.0f, 1.0f,
-        0.5f, 0.5f, 0.0f,      1.0f, 0.0f,
-        -0.5f, 0.5f, 0.0f,     0.0f, 0.0f,
-        0.5f, -0.5f, 0.0f,     1.0f, 1.0f,
+        1.0f, -1.0f, 0.0f,     1.0f, 1.0f,
+        -1.0f, 1.0f, 0.0f,     0.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,    0.0f, 1.0f,
+        1.0f, 1.0f, 0.0f,      1.0f, 0.0f,
+        -1.0f, 1.0f, 0.0f,     0.0f, 0.0f,
+        1.0f, -1.0f, 0.0f,     1.0f, 1.0f,
     };
     
     GLuint  vertexBuffer;
@@ -172,14 +198,14 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
     glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
     glEnableVertexAttribArray(textCoor);
     
-    [self setupTexture:@"sj_20160705_28.JPG"];
+    [self setupTexture:@"image003.jpg"];
     
     
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
     glDrawArrays(GL_TRIANGLES, 0, 6);
-
+    
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
 }
 
@@ -296,23 +322,23 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
 
 - (GLuint)setupTexture:(NSString *)fileName {
     // 1获取图片的CGImageRef
-    CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
-    if (!spriteImage) {
+    rfImage = self.image.CGImage;
+    if (!rfImage) {
         NSLog(@"Failed to load image %@", fileName);
         exit(1);
     }
     
     // 2 读取图片的大小
-    size_t width = CGImageGetWidth(spriteImage);
-    size_t height = CGImageGetHeight(spriteImage);
+    size_t width = CGImageGetWidth(rfImage);
+    size_t height = CGImageGetHeight(rfImage);
     
     GLubyte * spriteData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte)); //rgba共4个byte
     
     CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
-                                                       CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
+                                                       CGImageGetColorSpace(rfImage), kCGImageAlphaPremultipliedLast);
     
     // 3在CGContextRef上绘图
-    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), spriteImage);
+    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), rfImage);
     
     CGContextRelease(spriteContext);
     
@@ -327,14 +353,74 @@ NSString *const TJ_Text2D1FragmentShaderString = TJ_STRING_ES
     
     float fw = width, fh = height;
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
-    
     glBindTexture(GL_TEXTURE_2D, 0);
+    
+    
+    GLuint aspectRatioLocation = glGetUniformLocation(self.myProgram, "aspectRatio");
+    glUniform1f(aspectRatioLocation, fh/fw);
     
     free(spriteData);
     return 0;
 }
 
 
+- (UIImage*)cropImage
+{
+    
+    CGSize ImgSize = self.image.size;
+    
+    NSInteger myDataLength = ImgSize.width * ImgSize.height * 4;
+    GLubyte * buffer = (GLubyte*) malloc(myDataLength);
+    memset(buffer, 0, myDataLength);
+    
+    
+    glPixelStorei(GL_PACK_ALIGNMENT, 4);
+    glReadPixels(0,
+                 0,
+                 ImgSize.width,
+                 ImgSize.height,
+                 GL_RGBA,
+                 GL_UNSIGNED_BYTE,
+                 buffer);
+    
+    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL,
+                                                              buffer,
+                                                              myDataLength,
+                                                              NULL);
+    
+    CGImageRef iref = CGImageCreate(ImgSize.width,
+                                    ImgSize.height,
+                                    8,
+                                    32,
+                                    ImgSize.width * 4,
+                                    CGColorSpaceCreateDeviceRGB(),
+                                    kCGBitmapByteOrderDefault | kCGImageAlphaLast,
+                                    provider,
+                                    NULL,
+                                    NO,
+                                    kCGRenderingIntentDefault);
+    
+    
+    size_t wi         = CGImageGetWidth(iref);
+    size_t he        = CGImageGetHeight(iref);
+    UIGraphicsBeginImageContext(CGSizeMake(wi, he));
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(ctx, CGRectMake(0.0, 0.0, wi, he), iref);
+    UIImage* outputImage =  UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGDataProviderRelease(provider);
+    CGImageRelease(iref);
+    free(buffer);
+    buffer = NULL;
+    return outputImage;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self cropImage];
+
+}
 
 
 @end
