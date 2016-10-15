@@ -94,18 +94,27 @@
     self.sepiaFilter = [[GPUImageBulgeDistortionFilter alloc] init];
     
     [self.sepiaFilter setValue:@0.15 forKey:@"radius"];
-    [self.sepiaFilter setValue:@1.5 forKey:@"scale"];
     
-    self.srcImageView.image = [self.sepiaFilter imageByFilteringImage:self.originImage];
+    [self.sepiaFilter setValue:@-0.1 forKey:@"scale"];
     
-    
+    __block UIImage *renderImg = self.originImage;
+    for (int i = 0; i < 30; i++) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            renderImg = [self.sepiaFilter imageByFilteringImage:renderImg];
+            self.srcImageView.image = renderImg;
+        });
+        
+        
+    }
 
 }
 
 
 //GPUImageSwirlFilter:旋转扭曲
 //GPUImageBulgeDistortionFilter:膨胀扭曲
-//GPUImagePinchDistortionFilter:收缩扭曲
+
+//GPUImagePinchDistortionFilter
+
 
 - (GPUImageTest *)tjGPU
 {
