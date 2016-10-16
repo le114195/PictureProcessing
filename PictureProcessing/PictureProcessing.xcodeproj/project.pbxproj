@@ -274,6 +274,7 @@
 		75E191961DB3140F00635091 /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 75E191901DB3140F00635091 /* GLESMath.c */; };
 		75E191971DB3140F00635091 /* GLESUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E191931DB3140F00635091 /* GLESUtils.m */; };
 		75E1919B1DB3146C00635091 /* OpenglTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E1919A1DB3146C00635091 /* OpenglTool.m */; };
+		75E1919D1DB3201900635091 /* IMG_0963.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 75E1919C1DB3201900635091 /* IMG_0963.PNG */; };
 		75F2C2821DA9329F0013E519 /* TJOpengles3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F2C2811DA9329F0013E519 /* TJOpengles3D.m */; };
 		75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */; };
 		75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75FB69CD1D7F11AE00FF880F /* DrawController.mm */; };
@@ -788,6 +789,7 @@
 		75E191951DB3140F00635091 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		75E191991DB3146C00635091 /* OpenglTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenglTool.h; sourceTree = "<group>"; };
 		75E1919A1DB3146C00635091 /* OpenglTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenglTool.m; sourceTree = "<group>"; };
+		75E1919C1DB3201900635091 /* IMG_0963.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0963.PNG; sourceTree = "<group>"; };
 		75F2C2801DA9329F0013E519 /* TJOpengles3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpengles3D.h; sourceTree = "<group>"; };
 		75F2C2811DA9329F0013E519 /* TJOpengles3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpengles3D.m; sourceTree = "<group>"; };
 		75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpenGL.cpp; sourceTree = "<group>"; };
@@ -900,6 +902,7 @@
 		75382D721D93D05C00B14F77 /* ImagePath */ = {
 			isa = PBXGroup;
 			children = (
+				75E1919C1DB3201900635091 /* IMG_0963.PNG */,
 				75E1918D1DB30DB300635091 /* image001.png */,
 				754E99141D960C0F00ABAA2B /* sj_20160705_1.JPG */,
 				754E99151D960C0F00ABAA2B /* sj_20160705_2.JPG */,
@@ -1727,6 +1730,7 @@
 				7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */,
 				7556F7DC1D5CA0AA008CC401 /* Main.storyboard in Resources */,
 				754E994E1D960C0F00ABAA2B /* sj_20160705_30.JPG in Resources */,
+				75E1919D1DB3201900635091 /* IMG_0963.PNG in Resources */,
 				754E993F1D960C0F00ABAA2B /* sj_20160705_14.JPG in Resources */,
 				754E99481D960C0F00ABAA2B /* sj_20160705_23.JPG in Resources */,
 				754E99471D960C0F00ABAA2B /* sj_20160705_22.JPG in Resources */,

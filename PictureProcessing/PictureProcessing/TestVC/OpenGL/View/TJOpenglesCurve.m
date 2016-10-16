@@ -38,23 +38,22 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
  
  void main()
  {
-//     highp vec2 center = vec2(0.5, 0.5);
-//     highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - center.y) * aspectRatio + center.y);
-//     
-//     highp float dist = distance(center, textureCoordinateToUse);
-//     
-//     if (dist < 0.2){
-//         
-//         textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.2 - dist) * (0.2 - dist), textureCoordinateToUse.y);
-//         
-//         gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
-//         
-//     }else {
-//         gl_FragColor = texture2D(colorMap, varyTextCoord);
-//     }
-//     
+     highp vec2 center = vec2(0.5, 0.5);
+     highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - center.y) * aspectRatio + center.y);
      
-     gl_FragColor = texture2D(colorMap, varyTextCoord);
+     highp float dist = distance(center, textureCoordinateToUse);
+     
+     if (dist < 0.2){
+         
+         textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.2 - dist) * (0.2 - dist), textureCoordinateToUse.y);
+         
+         gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
+         
+     }else {
+         gl_FragColor = texture2D(colorMap, varyTextCoord);
+     }
+     
+
  }
  
  

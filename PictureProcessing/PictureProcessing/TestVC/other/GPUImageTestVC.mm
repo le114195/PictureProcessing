@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imgName = @"sj_20160705_1.JPG";
+    self.imgName = @"IMG_0963.PNG";
     
     
     [self gpuImageTest];
@@ -91,20 +91,8 @@
 //    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];
     
     
-    self.specialFilter = [[GPUImageBulgeDistortionFilter alloc] init];
+    self.specialFilter = [[GPUImageGlassSphereFilter alloc] init];
     
-    [self.specialFilter setValue:@0.15 forKey:@"radius"];
-    
-    [self.specialFilter setValue:@-0.1 forKey:@"scale"];
-    
-    __block UIImage *renderImg = self.originImage;
-    for (int i = 0; i < 30; i++) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            renderImg = [self.specialFilter imageByFilteringImage:renderImg];
-            self.srcImageView.image = renderImg;
-        });
-    }
-    self.specialFilter = [[TJGPUCurveFilter alloc] init];
     self.srcImageView.image = [self.specialFilter imageByFilteringImage:self.originImage];
 
 }
