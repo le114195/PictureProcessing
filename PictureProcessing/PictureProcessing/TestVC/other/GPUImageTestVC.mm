@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imgName = @"image005.png";
+    self.imgName = @"sj_20160705_1.JPG";
     
     
     [self gpuImageTest];
@@ -91,60 +91,31 @@
 //    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];
     
     
+    self.specialFilter = [[GPUImageBulgeDistortionFilter alloc] init];
     
+    [self.specialFilter setValue:@0.15 forKey:@"radius"];
     
-    
-<<<<<<< HEAD
-    self.sepiaFilter = [[GPUImageBulgeDistortionFilter alloc] init];
-    
-    [self.sepiaFilter setValue:@0.15 forKey:@"radius"];
-    
-    [self.sepiaFilter setValue:@-0.1 forKey:@"scale"];
+    [self.specialFilter setValue:@-0.1 forKey:@"scale"];
     
     __block UIImage *renderImg = self.originImage;
     for (int i = 0; i < 30; i++) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            renderImg = [self.sepiaFilter imageByFilteringImage:renderImg];
+            renderImg = [self.specialFilter imageByFilteringImage:renderImg];
             self.srcImageView.image = renderImg;
         });
-        
-        
     }
-=======
     self.specialFilter = [[TJGPUCurveFilter alloc] init];
-    
-//    
-//    [self.specialFilter setValue:[NSValue valueWithCGPoint:CGPointMake(0.5, 0.5)] forKey:@"center"];
-//    [self.specialFilter setValue:@0.5 forKey:@"radius"];
-    
-
-//    __block UIImage *renderImg = self.originImage;
-//    
-//    for (int i = 0; i < 5; i++) {
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            renderImg = [self.specialFilter imageByFilteringImage:renderImg];
-//            self.srcImageView.image = renderImg;
-//        });
-//    }
-    
     self.srcImageView.image = [self.specialFilter imageByFilteringImage:self.originImage];
->>>>>>> 8add7c19f2fbe43971f82c6ba7b4b15256311871
 
 }
 
 
 //GPUImageSwirlFilter:旋转扭曲
 //GPUImageBulgeDistortionFilter:膨胀扭曲
-<<<<<<< HEAD
-
-//GPUImagePinchDistortionFilter
-
-=======
 //GPUImagePinchDistortionFilter:收缩扭曲
 //GPUImageStretchDistortionFilter
 //GPUImageSphereRefractionFilter
 //GPUImageGlassSphereFilter
->>>>>>> 8add7c19f2fbe43971f82c6ba7b4b15256311871
 
 - (GPUImageTest *)tjGPU
 {
