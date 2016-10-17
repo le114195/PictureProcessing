@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imgName = @"image005.png";
+    self.imgName = @"IMG_0963.PNG";
     
     
     [self gpuImageTest];
@@ -91,24 +91,7 @@
 //    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];
     
     
-    
-    
-    
-    self.specialFilter = [[TJGPUCurveFilter alloc] init];
-    
-//    
-//    [self.specialFilter setValue:[NSValue valueWithCGPoint:CGPointMake(0.5, 0.5)] forKey:@"center"];
-//    [self.specialFilter setValue:@0.5 forKey:@"radius"];
-    
-
-//    __block UIImage *renderImg = self.originImage;
-//    
-//    for (int i = 0; i < 5; i++) {
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            renderImg = [self.specialFilter imageByFilteringImage:renderImg];
-//            self.srcImageView.image = renderImg;
-//        });
-//    }
+    self.specialFilter = [[GPUImageGlassSphereFilter alloc] init];
     
     self.srcImageView.image = [self.specialFilter imageByFilteringImage:self.originImage];
 

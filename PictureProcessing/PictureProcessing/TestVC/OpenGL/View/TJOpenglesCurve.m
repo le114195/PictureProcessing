@@ -8,6 +8,7 @@
 
 #import "TJOpenglesCurve.h"
 #import <GLKit/GLKit.h>
+#import "OpenglTool.h"
 
 
 NSString *const TJ_CurveVertexShaderString = TJ_STRING_ES
@@ -51,6 +52,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
      }else {
          gl_FragColor = texture2D(colorMap, varyTextCoord);
      }
+     
+
  }
  
  
@@ -70,6 +73,10 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 
 @property (nonatomic , assign) GLuint myColorRenderBuffer;
 @property (nonatomic , assign) GLuint myColorFrameBuffer;
+
+
+@property (nonatomic, assign) CGFloat       ImgWidth;
+@property (nonatomic, assign) CGFloat       ImgHeight;
 
 
 @end
@@ -142,6 +149,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glClear(GL_COLOR_BUFFER_BIT);
     
     CGFloat scale = [[UIScreen mainScreen] scale];
+    self.ImgWidth = self.frame.size.width * scale;
+    self.ImgHeight = self.frame.size.height * scale;
     glViewport(0, 0, self.frame.size.width * scale, self.frame.size.height * scale);
     
     
@@ -364,61 +373,12 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 }
 
 
-- (UIImage*)cropImage
-{
-    
-    CGSize ImgSize = self.image.size;
-    
-    NSInteger myDataLength = ImgSize.width * ImgSize.height * 4;
-    GLubyte * buffer = (GLubyte*) malloc(myDataLength);
-    memset(buffer, 0, myDataLength);
-    
-    
-    glPixelStorei(GL_PACK_ALIGNMENT, 4);
-    glReadPixels(0,
-                 0,
-                 ImgSize.width,
-                 ImgSize.height,
-                 GL_RGBA,
-                 GL_UNSIGNED_BYTE,
-                 buffer);
-    
-    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL,
-                                                              buffer,
-                                                              myDataLength,
-                                                              NULL);
-    
-    CGImageRef iref = CGImageCreate(ImgSize.width,
-                                    ImgSize.height,
-                                    8,
-                                    32,
-                                    ImgSize.width * 4,
-                                    CGColorSpaceCreateDeviceRGB(),
-                                    kCGBitmapByteOrderDefault | kCGImageAlphaLast,
-                                    provider,
-                                    NULL,
-                                    NO,
-                                    kCGRenderingIntentDefault);
-    
-    
-    size_t wi         = CGImageGetWidth(iref);
-    size_t he        = CGImageGetHeight(iref);
-    UIGraphicsBeginImageContext(CGSizeMake(wi, he));
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(ctx, CGRectMake(0.0, 0.0, wi, he), iref);
-    UIImage* outputImage =  UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    CGDataProviderRelease(provider);
-    CGImageRelease(iref);
-    free(buffer);
-    buffer = NULL;
-    return outputImage;
-}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self cropImage];
+    UIImage *image;
+    image = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
+    NSLog(@"%@", NSStringFromCGSize(image.size));
 
 }
 
