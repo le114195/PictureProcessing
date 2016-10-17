@@ -91,7 +91,7 @@
 //    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];
     
     
-    self.specialFilter = [[GPUImageGlassSphereFilter alloc] init];
+    self.specialFilter = [[GPUImageBulgeDistortionFilter alloc] init];
     
     self.srcImageView.image = [self.specialFilter imageByFilteringImage:self.originImage];
 

@@ -31,41 +31,29 @@ NSString *const TJ_CurveVertexShaderString = TJ_STRING_ES
 
 NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 (
- 
  varying lowp vec2 varyTextCoord;
  uniform sampler2D colorMap;
  uniform highp float aspectRatio;
+ uniform highp float rateX;
+ uniform highp float rateY;
+ uniform highp float radius;
  
- uniform highp vec2 location;
  uniform highp vec2 previousLocation;
  
  void main()
  {
-<<<<<<< HEAD
-     highp vec2 center = vec2(0.5, 0.5);
-     highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - center.y) * aspectRatio + center.y);
-     highp float dist = distance(center, textureCoordinateToUse);
-     if (dist < 0.2){
-         textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.2 - dist) * (0.2 - dist), textureCoordinateToUse.y);
-         
-=======
      highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - previousLocation.y) * aspectRatio + previousLocation.y);
      highp float dist = distance(previousLocation, textureCoordinateToUse);
-     if (dist < 0.15){
-         textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.15 - dist) * 0.1, textureCoordinateToUse.y);
->>>>>>> 2214c8e12d9abfb1493b56d951d40574a8488d3d
-         gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
-         
-     }else {
-         gl_FragColor = texture2D(colorMap, varyTextCoord);
+     textureCoordinateToUse = varyTextCoord;
+     if (dist < radius){
+         textureCoordinateToUse = vec2(textureCoordinateToUse.x + rateX * (radius - dist) * 0.08, textureCoordinateToUse.y + rateY * (radius - dist) * 0.08);
      }
+     gl_FragColor = texture2D(colorMap, textureCoordinateToUse );
  }
+
  );
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 2214c8e12d9abfb1493b56d951d40574a8488d3d
 @interface TJOpenglesCurve ()
 
 @property (nonatomic, strong) UIImage           *image;
@@ -170,9 +158,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     
     if (self.myProgram) {
-        //        if (![self validate:self.myProgram]) {
-        //            NSLog(@"Failed to validate program: %d", self.myProgram);
-        //        }
         glDeleteProgram(self.myProgram);
         self.myProgram = 0;
     }
@@ -199,19 +184,35 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     GLuint aspectRatioLocation = glGetUniformLocation(self.myProgram, "aspectRatio");
     glUniform1f(aspectRatioLocation, self.ImgHeight/self.ImgWidth);
     
-    GLuint locationLocation = glGetUniformLocation(self.myProgram, "location");
-    GLfloat positionArray[2];
-    positionArray[0] = self.locationPoint.x;
-    positionArray[1] = self.locationPoint.y;
-    glUniform2fv(locationLocation, 1, positionArray);
+    GLuint radiusLocation = glGetUniformLocation(self.myProgram, "radius");
+    glUniform1f(radiusLocation, 0.15);
+    
+    
+    float rateX = 0, rateY = 0, angle;
+    if (self.previousPoint.y == self.locationPoint.y) {
+        if (self.previousPoint.x > self.locationPoint.x) {
+            rateX = 1;
+        }else {
+            rateX = -1;
+        }
+    }else {
+        angle = atan((self.locationPoint.y - self.previousPoint.y)/(self.locationPoint.x - self.previousPoint.x));
+        rateX = cos(angle);
+        rateY = sin(angle);
+    }
+    
+    GLuint rateXLocation = glGetUniformLocation(self.myProgram, "rateX");
+    glUniform1f(rateXLocation, rateX);
+    
+    GLuint rateYLocation = glGetUniformLocation(self.myProgram, "rateY");
+    glUniform1f(rateYLocation, rateY);
     
     
     GLuint previousLocationLocation = glGetUniformLocation(self.myProgram, "previousLocation");
-    GLfloat positionArray2[2];
-    positionArray2[0] = self.previousPoint.x;
-    positionArray2[1] = self.previousPoint.y;
-    glUniform2fv(previousLocationLocation, 1, positionArray2);
-    
+    GLfloat positionArray[2];
+    positionArray[0] = self.previousPoint.x;
+    positionArray[1] = self.previousPoint.y;
+    glUniform2fv(previousLocationLocation, 1, positionArray);
     
     //坐标数组
     GLfloat attrArr[] =
@@ -419,12 +420,12 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     UITouch*			touch = [[event touchesForView:self] anyObject];
     
     CGPoint location = [touch locationInView:self];
-    self.locationPoint = CGPointMake(location.x/self.bounds.size.width, 0.5);
+    self.locationPoint = CGPointMake(location.x/self.bounds.size.width, location.y/self.bounds.size.height);
     
-    if (sqrt((location.x - _location.x)*(location.x - _location.x) + (location.y - _location.y)*(location.y - _location.y)) < 2) {
+    if (sqrt((location.x - _location.x)*(location.x - _location.x) + (location.y - _location.y)*(location.y - _location.y)) < 5) {
         return;
     }
-    self.previousPoint = CGPointMake(_location.x/self.bounds.size.width, 0.5);
+    self.previousPoint = CGPointMake(_location.x/self.bounds.size.width, location.y/self.bounds.size.height);
     _location = location;
     [self render];
 }
