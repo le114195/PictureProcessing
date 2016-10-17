@@ -170,7 +170,7 @@
 
 - (void)demo7
 {
-    UIImage *image = [UIImage imageNamed:@"IMG_0963.PNG"];
+    UIImage *image = [UIImage imageNamed:@"imageTest002.png"];
     TJOpenglesCurve *curve = [[TJOpenglesCurve alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
     [self.view addSubview:curve];
 }
