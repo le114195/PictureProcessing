@@ -40,23 +40,14 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
  {
      highp vec2 center = vec2(0.5, 0.5);
      highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - center.y) * aspectRatio + center.y);
-     
      highp float dist = distance(center, textureCoordinateToUse);
-     
      if (dist < 0.2){
-         
          textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.2 - dist) * (0.2 - dist), textureCoordinateToUse.y);
-         
          gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
-         
      }else {
          gl_FragColor = texture2D(colorMap, varyTextCoord);
      }
-     
-
  }
- 
- 
  );
 
 
@@ -277,7 +268,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     // 设置描绘属性，在这里设置不维持渲染内容以及颜色格式为 RGBA8
     self.myEagLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+                                          [NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 }
 
 
@@ -379,7 +370,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     UIImage *image;
     image = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
     NSLog(@"%@", NSStringFromCGSize(image.size));
-
 }
 
 
