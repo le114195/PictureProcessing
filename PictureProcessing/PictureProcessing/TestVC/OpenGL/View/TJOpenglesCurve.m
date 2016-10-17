@@ -9,7 +9,7 @@
 #import "TJOpenglesCurve.h"
 #import <GLKit/GLKit.h>
 #import "OpenglTool.h"
-
+#import "TJ_DrawTool.h"
 
 NSString *const TJ_CurveVertexShaderString = TJ_STRING_ES
 (
@@ -36,21 +36,22 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
  uniform sampler2D colorMap;
  uniform highp float aspectRatio;
  
+ uniform highp vec2 location;
+ uniform highp vec2 previousLocation;
+ 
  void main()
  {
-     highp vec2 center = vec2(0.5, 0.5);
-     highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - center.y) * aspectRatio + center.y);
-     highp float dist = distance(center, textureCoordinateToUse);
-     if (dist < 0.2){
-         textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.2 - dist) * (0.2 - dist), textureCoordinateToUse.y);
+     highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - previousLocation.y) * aspectRatio + previousLocation.y);
+     highp float dist = distance(previousLocation, textureCoordinateToUse);
+     if (dist < 0.15){
+         textureCoordinateToUse = vec2(textureCoordinateToUse.x + (0.15 - dist) * 0.1, textureCoordinateToUse.y);
          gl_FragColor = texture2D(colorMap, textureCoordinateToUse);
+         
      }else {
          gl_FragColor = texture2D(colorMap, varyTextCoord);
      }
  }
  );
-
-
 
 
 @interface TJOpenglesCurve ()
@@ -70,6 +71,13 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 @property (nonatomic, assign) CGFloat       ImgHeight;
 
 
+@property (nonatomic, strong) UIImage       *renderImg;
+
+
+@property (nonatomic, assign) CGPoint       locationPoint;
+@property (nonatomic, assign) CGPoint       previousPoint;
+
+
 @end
 
 
@@ -77,8 +85,11 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 
 @implementation TJOpenglesCurve
 {
-
-    CGImageRef rfImage;
+    CGImageRef      rfImage;
+    BOOL            firstTouch;
+    CGPoint         _location;
+    CGPoint         _previousLocation;
+    
 }
 
 
@@ -95,7 +106,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         
         self.backgroundColor = [UIColor whiteColor];
         self.image = image;
-        
+        self.renderImg = image;
     }
     return self;
 }
@@ -127,15 +138,16 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     [self setupFrameBuffer];
     
+    [self setupShaders];
+    
     [self render];
     
     
 }
 
 
-
-
-- (void)render {
+- (void)setupShaders
+{
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
@@ -168,8 +180,25 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     else {
         glUseProgram(self.myProgram);
     }
+}
+
+- (void)render {
+    
+    GLuint aspectRatioLocation = glGetUniformLocation(self.myProgram, "aspectRatio");
+    glUniform1f(aspectRatioLocation, self.ImgHeight/self.ImgWidth);
+    
+    GLuint locationLocation = glGetUniformLocation(self.myProgram, "location");
+    GLfloat positionArray[2];
+    positionArray[0] = self.locationPoint.x;
+    positionArray[1] = self.locationPoint.y;
+    glUniform2fv(locationLocation, 1, positionArray);
     
     
+    GLuint previousLocationLocation = glGetUniformLocation(self.myProgram, "previousLocation");
+    GLfloat positionArray2[2];
+    positionArray2[0] = self.previousPoint.x;
+    positionArray2[1] = self.previousPoint.y;
+    glUniform2fv(previousLocationLocation, 1, positionArray2);
     
     
     //坐标数组
@@ -182,7 +211,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         -1.0f, 1.0f, 0.0f,     0.0f, 0.0f,
         1.0f, -1.0f, 0.0f,     1.0f, 1.0f,
     };
-    
     GLuint  vertexBuffer;
     
     glGenBuffers(1, &vertexBuffer);
@@ -198,7 +226,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
     glEnableVertexAttribArray(textCoor);
     
-    [self setupTexture:@"image003.jpg"];
+    [self setupTexture:self.renderImg];
     
     
     glClearColor(0, 0.0, 0, 1.0);
@@ -207,6 +235,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glDrawArrays(GL_TRIANGLES, 0, 6);
     
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
+    
+    self.renderImg = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
 }
 
 - (BOOL)validate:(GLuint)_programId {
@@ -320,11 +350,10 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 }
 
 
-- (GLuint)setupTexture:(NSString *)fileName {
+- (GLuint)setupTexture:(UIImage *)image {
     // 1获取图片的CGImageRef
-    rfImage = self.image.CGImage;
+    rfImage = image.CGImage;
     if (!rfImage) {
-        NSLog(@"Failed to load image %@", fileName);
         exit(1);
     }
     
@@ -355,22 +384,41 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
     glBindTexture(GL_TEXTURE_2D, 0);
     
-    
-    GLuint aspectRatioLocation = glGetUniformLocation(self.myProgram, "aspectRatio");
-    glUniform1f(aspectRatioLocation, fh/fw);
-    
     free(spriteData);
     return 0;
 }
 
 
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+
+
+// Handles the start of a touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UIImage *image;
-    image = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
-    NSLog(@"%@", NSStringFromCGSize(image.size));
+    UITouch*            touch = [[event touchesForView:self] anyObject];
+    firstTouch = YES;
+    // Convert touch point from UIView referential to OpenGL one (upside-down flip)
+    _location = [touch locationInView:self];
 }
+
+// Handles the continuation of a touch.
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch*			touch = [[event touchesForView:self] anyObject];
+    
+    CGPoint location = [touch locationInView:self];
+    self.locationPoint = CGPointMake(location.x/self.bounds.size.width, 0.5);
+    
+    if (sqrt((location.x - _location.x)*(location.x - _location.x) + (location.y - _location.y)*(location.y - _location.y)) < 2) {
+        return;
+    }
+    self.previousPoint = CGPointMake(_location.x/self.bounds.size.width, 0.5);
+    _location = location;
+    [self render];
+}
+
+
+
 
 
 @end

@@ -239,6 +239,7 @@
 		7579B2481D82484B007B0F74 /* GPUImageZoomBlurFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B19A1D82484B007B0F74 /* GPUImageZoomBlurFilter.m */; };
 		7579B2621D828CFA007B0F74 /* Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7579B2601D828CFA007B0F74 /* Draw.cpp */; };
 		7589311E1DB45B9B0024083B /* IMG_0963.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 7589311D1DB45B9B0024083B /* IMG_0963.PNG */; };
+		7589312E1DB4ACD80024083B /* imageTest002.png in Resources */ = {isa = PBXBuildFile; fileRef = 7589312D1DB4ACD80024083B /* imageTest002.png */; };
 		758B0F9E1D6E92510010D9B4 /* UIColor+Conver16.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0F9B1D6E92510010D9B4 /* UIColor+Conver16.m */; };
 		758B0F9F1D6E92510010D9B4 /* UIView+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0F9D1D6E92510010D9B4 /* UIView+Size.m */; };
 		758B0FA51D6EAF3C0010D9B4 /* UIImage+SaveToTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0FA41D6EAF3C0010D9B4 /* UIImage+SaveToTool.m */; };
@@ -716,6 +717,7 @@
 		7579B2601D828CFA007B0F74 /* Draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Draw.cpp; sourceTree = "<group>"; };
 		7579B2611D828CFA007B0F74 /* Draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Draw.hpp; sourceTree = "<group>"; };
 		7589311D1DB45B9B0024083B /* IMG_0963.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0963.PNG; sourceTree = "<group>"; };
+		7589312D1DB4ACD80024083B /* imageTest002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageTest002.png; sourceTree = "<group>"; };
 		758B0F9A1D6E92510010D9B4 /* UIColor+Conver16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Conver16.h"; sourceTree = "<group>"; };
 		758B0F9B1D6E92510010D9B4 /* UIColor+Conver16.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Conver16.m"; sourceTree = "<group>"; };
 		758B0F9C1D6E92510010D9B4 /* UIView+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Size.h"; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 				75382D721D93D05C00B14F77 /* ImagePath */,
 				7560A96E1D8FBE7B0056AB99 /* test128.png */,
 				7589311D1DB45B9B0024083B /* IMG_0963.PNG */,
+				7589312D1DB4ACD80024083B /* imageTest002.png */,
 				7560A96C1D8FBE1E0056AB99 /* test1.png */,
 				75C3998B1D87FEC200C67F3D /* Particle.png */,
 				7579B0391D82484B007B0F74 /* Lib */,
@@ -1725,6 +1728,7 @@
 				7560A96D1D8FBE1E0056AB99 /* test1.png in Resources */,
 				754E99371D960C0F00ABAA2B /* sj_20160705_6.JPG in Resources */,
 				7556F7E11D5CA0AA008CC401 /* LaunchScreen.storyboard in Resources */,
+				7589312E1DB4ACD80024083B /* imageTest002.png in Resources */,
 				7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */,
 				7556F7DC1D5CA0AA008CC401 /* Main.storyboard in Resources */,
 				754E994E1D960C0F00ABAA2B /* sj_20160705_30.JPG in Resources */,
