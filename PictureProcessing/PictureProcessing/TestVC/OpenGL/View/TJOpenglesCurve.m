@@ -128,14 +128,14 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         rectH = 5;
         
         rectLength = rectW * rectH;
-        GLfloat rate = 2.0;
+        GLfloat rate = 2.0/(rectW - 1);
         attrArr = (GLfloat *)malloc(5 * rectLength * sizeof(GLfloat));
         for (int i = 0; i < rectLength; i++) {
-            attrArr[i * 5] = -1 + rate * (i%rectW)/rectW;
+            attrArr[i * 5] = -1 + rate * (i%rectW);
             attrArr[i * 5 + 1] = 1 - (i/rectW) * rate;
             attrArr[i * 5 + 2] = 0;
-            attrArr[i * 5 + 3] = (i%2) * rate * 0.5;
-            attrArr[i * 5 + 4] = (i/2) * rate * 0.5;
+            attrArr[i * 5 + 3] = (i%rectW) * rate * 0.5;
+            attrArr[i * 5 + 4] = (i/rectW) * rate * 0.5;
         }
         
         indices = (GLint *)malloc((rectW - 1) * (rectH - 1) * 2 * 3 * sizeof(GLint));
@@ -284,7 +284,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, indices);
+    glDrawElements(GL_TRIANGLES, (rectW - 1)*(rectH - 1)*6, GL_UNSIGNED_INT, indices);
     
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
     
