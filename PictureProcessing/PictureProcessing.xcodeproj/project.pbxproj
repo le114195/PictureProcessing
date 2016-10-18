@@ -63,6 +63,7 @@
 		7560A97E1D8FC7DE0056AB99 /* OpencvTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7560A9781D8FC7DE0056AB99 /* OpencvTestVC.mm */; };
 		7560A97F1D8FC7DE0056AB99 /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7560A97A1D8FC7DE0056AB99 /* TestBaseVC.mm */; };
 		756B2E721DAF6EF10065A109 /* TJOpenglesCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 756B2E711DAF6EF10065A109 /* TJOpenglesCurve.m */; };
+		756B360A1DB5B8EC00B3D0FC /* imageTest003.png in Resources */ = {isa = PBXBuildFile; fileRef = 756B36091DB5B8EC00B3D0FC /* imageTest003.png */; };
 		7579B19B1D82484B007B0F74 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7579B03D1D82484B007B0F74 /* Info.plist */; };
 		7579B19C1D82484B007B0F74 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0401D82484B007B0F74 /* GLProgram.m */; };
 		7579B19D1D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B0441D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m */; };
@@ -363,6 +364,7 @@
 		7560A97A1D8FC7DE0056AB99 /* TestBaseVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBaseVC.mm; sourceTree = "<group>"; };
 		756B2E701DAF6EF10065A109 /* TJOpenglesCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglesCurve.h; sourceTree = "<group>"; };
 		756B2E711DAF6EF10065A109 /* TJOpenglesCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglesCurve.m; sourceTree = "<group>"; };
+		756B36091DB5B8EC00B3D0FC /* imageTest003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageTest003.png; sourceTree = "<group>"; };
 		7579B03C1D82484B007B0F74 /* GPUImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramework.h; sourceTree = "<group>"; };
 		7579B03D1D82484B007B0F74 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7579B03E1D82484B007B0F74 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -950,6 +952,7 @@
 			children = (
 				75382D721D93D05C00B14F77 /* ImagePath */,
 				7560A96E1D8FBE7B0056AB99 /* test128.png */,
+				756B36091DB5B8EC00B3D0FC /* imageTest003.png */,
 				7589311D1DB45B9B0024083B /* IMG_0963.PNG */,
 				7589312D1DB4ACD80024083B /* imageTest002.png */,
 				7560A96C1D8FBE1E0056AB99 /* test1.png */,
@@ -1709,6 +1712,7 @@
 				7560A96F1D8FBE7B0056AB99 /* test128.png in Resources */,
 				754E993B1D960C0F00ABAA2B /* sj_20160705_10.JPG in Resources */,
 				754E993A1D960C0F00ABAA2B /* sj_20160705_9.JPG in Resources */,
+				756B360A1DB5B8EC00B3D0FC /* imageTest003.png in Resources */,
 				754E99391D960C0F00ABAA2B /* sj_20160705_8.JPG in Resources */,
 				755CB1771D8690D9000AC00A /* 01.png in Resources */,
 				7579B19B1D82484B007B0F74 /* Info.plist in Resources */,
