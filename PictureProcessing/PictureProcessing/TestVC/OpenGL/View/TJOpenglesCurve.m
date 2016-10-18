@@ -124,8 +124,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         self.image = image;
         self.renderImg = image;
         
-        rectW = 5;
-        rectH = 5;
+        rectW = 50;
+        rectH = 50;
         
         rectLength = rectW * rectH;
         GLfloat rate = 2.0/(rectW - 1);
@@ -273,18 +273,15 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     
     for (int i = 0; i < rectLength; i++) {
-        NSLog(@"%f, %f, %f, %f, %f", attrArr[i * 5], attrArr[i * 5 + 1], attrArr[i * 5 + 2], attrArr[i * 5 + 3], attrArr[i * 5 + 4]);
+        
     }
-    
-    
-    
     
     [self setupTexture:self.renderImg];
     
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glDrawElements(GL_TRIANGLES, (rectW - 1)*(rectH - 1)*6, GL_UNSIGNED_INT, indices);
+    glDrawElements(GL_TRIANGLES, (rectW - 1)*(rectH - 1) * 6, GL_UNSIGNED_INT, indices);
     
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
     
