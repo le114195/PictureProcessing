@@ -34,28 +34,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 (
  varying lowp vec2 varyTextCoord;
  uniform sampler2D colorMap;
- uniform highp float aspectRatio;
- uniform highp float rateX;
- uniform highp float rateY;
- uniform highp float radius;
- 
- uniform highp vec2 center;
- 
  void main()
  {
-//     highp vec2 textureCoordinateToUse = vec2(varyTextCoord.x, (varyTextCoord.y - center.y) * aspectRatio + center.y);
-//     highp float dist = distance(center, textureCoordinateToUse);
-//     textureCoordinateToUse = varyTextCoord;
-//     if (dist < radius){
-//         textureCoordinateToUse -= center;
-//         
-//         highp float percent = (radius - dist) / radius;
-//         percent = percent;
-//         
-//         textureCoordinateToUse = vec2(textureCoordinateToUse.x + rateX * percent * 0.01, textureCoordinateToUse.y + rateY * percent * 0.01);
-//
-//         textureCoordinateToUse += center;
-//     }
      gl_FragColor = texture2D(colorMap, varyTextCoord);
  }
 
@@ -95,8 +75,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 {
     CGImageRef      rfImage;
     BOOL            firstTouch;
-    CGPoint         _location;
-    CGPoint         _previousLocation;
+    CGPoint         previousLocation;
     
     GLint           rectW;
     GLint           rectH;
@@ -105,6 +84,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     GLfloat         *attrArr;
     
     GLint           *indices;
+    
+    GLfloat         aspectRatio;
     
 }
 
@@ -120,26 +101,30 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 {
     if ([super initWithFrame:frame]) {
         
+        firstTouch = YES;
+        
         self.backgroundColor = [UIColor whiteColor];
         self.image = image;
         self.renderImg = image;
         
+        aspectRatio = image.size.height / image.size.width;
+        
         rectW = 100;
-        rectH = 100;
+        rectH = rectW * (image.size.width / image.size.height);
         
         rectLength = rectW * rectH;
-        GLfloat rate = 2.0/(rectW - 1);
+        GLfloat rateX = 2.0/(rectW - 1);
+        CGFloat rateY = 2.0/(rectH - 1);
         attrArr = (GLfloat *)malloc(5 * rectLength * sizeof(GLfloat));
         for (int i = 0; i < rectLength; i++) {
-            attrArr[i * 5] = -1 + rate * (i%rectW);
-            attrArr[i * 5 + 1] = 1 - (i/rectW) * rate;
+            attrArr[i * 5] = -1 + rateX * (i%rectW);
+            attrArr[i * 5 + 1] = 1 - (i/rectW) * rateY;
             attrArr[i * 5 + 2] = 0;
-            attrArr[i * 5 + 3] = (i%rectW) * rate * 0.5;
-            attrArr[i * 5 + 4] = (i/rectW) * rate * 0.5;
+            attrArr[i * 5 + 3] = (i%rectW) * rateX * 0.5;
+            attrArr[i * 5 + 4] = (i/rectW) * rateY * 0.5;
         }
         
         indices = (GLint *)malloc((rectW - 1) * (rectH - 1) * 2 * 3 * sizeof(GLint));
-        
         for (int i = 0; i < (rectW - 1) * (rectH - 1); i++) {
             indices[i * 6] = i / (rectW - 1) * rectW + i%(rectW - 1);
             indices[i * 6 + 1] = i / (rectW - 1) * rectW + rectW + i%(rectW - 1);
@@ -149,7 +134,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
             indices[i * 6 + 4] = i / (rectW - 1) * rectW + i%(rectW - 1) + 1;
             indices[i * 6 + 5] = i / (rectW - 1) * rectW + rectW + i%(rectW - 1) + 1;
         }
-        
     }
     return self;
 }
@@ -189,112 +173,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 }
 
 
-- (void)setupShaders
-{
-    glClearColor(0, 0.0, 0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    CGFloat scale = [[UIScreen mainScreen] scale];
-    self.ImgWidth = self.frame.size.width * scale;
-    self.ImgHeight = self.frame.size.height * scale;
-    glViewport(0, 0, self.frame.size.width * scale, self.frame.size.height * scale);
-    
-    
-    if (self.myProgram) {
-        glDeleteProgram(self.myProgram);
-        self.myProgram = 0;
-    }
-    self.myProgram = [self loadShaders:TJ_CurveVertexShaderString frag:TJ_CurveFragmentShaderString];
-    
-    glLinkProgram(self.myProgram);
-    GLint linkSuccess;
-    glGetProgramiv(self.myProgram, GL_LINK_STATUS, &linkSuccess);
-    if (linkSuccess == GL_FALSE) {
-        GLchar messages[256];
-        glGetProgramInfoLog(self.myProgram, sizeof(messages), 0, &messages[0]);
-        NSString *messageString = [NSString stringWithUTF8String:messages];
-        NSLog(@"error%@", messageString);
-        
-        return ;
-    }
-    else {
-        glUseProgram(self.myProgram);
-    }
-}
 
-- (void)render {
-
-    GLuint aspectRatioLocation = glGetUniformLocation(self.myProgram, "aspectRatio");
-    glUniform1f(aspectRatioLocation, self.ImgHeight/self.ImgWidth);
-    
-    GLuint radiusLocation = glGetUniformLocation(self.myProgram, "radius");
-    glUniform1f(radiusLocation, 0.25);
-    
-    
-    float rateX = 0, rateY = 0;
-    if (self.previousPoint.y == self.locationPoint.y) {
-        if (self.previousPoint.x > self.locationPoint.x) {
-            rateX = 1;
-        }else {
-            rateX = -1;
-        }
-    }else {
-        float dis = sqrt((self.locationPoint.x - self.previousPoint.x)*(self.locationPoint.x - self.previousPoint.x) + (self.locationPoint.y - self.previousPoint.y)*(self.locationPoint.y - self.previousPoint.y));
-        rateX = (self.previousPoint.x - self.locationPoint.x)/dis;
-        rateY = (self.previousPoint.y - self.locationPoint.y)/dis;
-    }
-    
-    GLuint rateXLocation = glGetUniformLocation(self.myProgram, "rateX");
-    glUniform1f(rateXLocation, rateX);
-    
-    GLuint rateYLocation = glGetUniformLocation(self.myProgram, "rateY");
-    glUniform1f(rateYLocation, rateY);
-    
-    GLuint previousLocationLocation = glGetUniformLocation(self.myProgram, "center");
-    GLfloat positionArray[2];
-    positionArray[0] = self.previousPoint.x;
-    positionArray[1] = self.previousPoint.y;
-    glUniform2fv(previousLocationLocation, 1, positionArray);
-    
-    
-    GLuint  vertexBuffer;
-    
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, rectLength * 5 * sizeof(GLfloat), attrArr, GL_STATIC_DRAW);
-    
-    
-    GLuint position = glGetAttribLocation(self.myProgram, "position");
-    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
-    glEnableVertexAttribArray(position);
-    
-    GLuint textCoor = glGetAttribLocation(self.myProgram, "textCoordinate");
-    glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
-    glEnableVertexAttribArray(textCoor);
-    
-    
-    CGPoint centerPoint = CGPointMake((self.previousPoint.x - 0.5) * 2, (0.5 - self.previousPoint.y) * 2);
-    
-    GLfloat     dist = 0, radius = 0.35;
-    for (int i = 0; i < rectLength; i++) {
-        dist = sqrt((attrArr[i * 5] - centerPoint.x)*(attrArr[i * 5] - centerPoint.x) + (attrArr[i * 5 + 1] - centerPoint.y)*(attrArr[i * 5 + 1] - centerPoint.y));
-        if (dist < radius) {
-            attrArr[i * 5] = attrArr[i * 5] - rateX * (radius - dist) / radius * 0.01;
-            attrArr[i * 5 + 1] = attrArr[i * 5 + 1] + rateY * (radius - dist) / radius * 0.01;
-        }
-    }
-    
-    [self setupTexture:self.renderImg];
-    
-    glClearColor(0, 0.0, 0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    glDrawElements(GL_TRIANGLES, (rectW - 1)*(rectH - 1) * 6, GL_UNSIGNED_INT, indices);
-    
-    [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
-    
-//    self.renderImg = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
-}
 
 - (BOOL)validate:(GLuint)_programId {
     GLint logLength, status;
@@ -398,13 +277,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 }
 
 
-- (void)destoryRenderAndFrameBuffer
-{
-    glDeleteFramebuffers(1, &_myColorFrameBuffer);
-    self.myColorFrameBuffer = 0;
-    glDeleteRenderbuffers(1, &_myColorRenderBuffer);
-    self.myColorRenderBuffer = 0;
-}
 
 
 - (GLuint)setupTexture:(UIImage *)image {
@@ -447,6 +319,126 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 
 
 
+- (void)setupShaders
+{
+    glClearColor(0, 0.0, 0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    self.ImgWidth = self.frame.size.width * scale;
+    self.ImgHeight = self.frame.size.height * scale;
+    glViewport(0, 0, self.frame.size.width * scale, self.frame.size.height * scale);
+    
+    
+    if (self.myProgram) {
+        glDeleteProgram(self.myProgram);
+        self.myProgram = 0;
+    }
+    self.myProgram = [self loadShaders:TJ_CurveVertexShaderString frag:TJ_CurveFragmentShaderString];
+    
+    glLinkProgram(self.myProgram);
+    GLint linkSuccess;
+    glGetProgramiv(self.myProgram, GL_LINK_STATUS, &linkSuccess);
+    if (linkSuccess == GL_FALSE) {
+        GLchar messages[256];
+        glGetProgramInfoLog(self.myProgram, sizeof(messages), 0, &messages[0]);
+        NSString *messageString = [NSString stringWithUTF8String:messages];
+        NSLog(@"error%@", messageString);
+        
+        return ;
+    }
+    else {
+        glUseProgram(self.myProgram);
+    }
+}
+
+- (void)render {
+    
+    [self resetAttr];
+    
+    GLuint  vertexBuffer;
+    glGenBuffers(1, &vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, rectLength * 5 * sizeof(GLfloat), attrArr, GL_STATIC_DRAW);
+    
+    GLuint position = glGetAttribLocation(self.myProgram, "position");
+    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
+    glEnableVertexAttribArray(position);
+    
+    GLuint textCoor = glGetAttribLocation(self.myProgram, "textCoordinate");
+    glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
+    glEnableVertexAttribArray(textCoor);
+    
+    
+    
+    [self setupTexture:self.renderImg];
+    
+    glClearColor(0, 0.0, 0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    glDrawElements(GL_TRIANGLES, (rectW - 1)*(rectH - 1) * 6, GL_UNSIGNED_INT, indices);
+    
+    [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
+    
+    //    self.renderImg = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
+}
+
+/** 布局三角面片 */
+- (void)resetAttr
+{
+    if (firstTouch) {
+        return;
+    }
+    float rateX = 0, rateY = 0;
+    if (self.previousPoint.y == self.locationPoint.y) {
+        if (self.previousPoint.x > self.locationPoint.x) {
+            rateX = 1;
+        }else {
+            rateX = -1;
+        }
+    }else {
+        float dis = sqrt((self.locationPoint.x - self.previousPoint.x)*(self.locationPoint.x - self.previousPoint.x) + (self.locationPoint.y - self.previousPoint.y)*(self.locationPoint.y - self.previousPoint.y));
+        rateX = (self.previousPoint.x - self.locationPoint.x)/dis;
+        rateY = (self.previousPoint.y - self.locationPoint.y)/dis;
+    }
+    
+    CGPoint centerPoint = CGPointMake((self.previousPoint.x - 0.5) * 2, (0.5 - self.previousPoint.y) * 2);
+    
+    GLfloat     dist = 0, radius = 0.35, percent;
+    for (int i = 0; i < rectLength; i++) {
+        float converY = (attrArr[i * 5 + 1] - centerPoint.y) * aspectRatio + centerPoint.y;
+        dist = sqrt((attrArr[i * 5] - centerPoint.x)*(attrArr[i * 5] - centerPoint.x) + (converY - centerPoint.y)*(converY - centerPoint.y));
+        if (dist < radius) {
+            percent = sqrt((radius - dist) / radius);
+            attrArr[i * 5] = attrArr[i * 5] - rateX * percent * 0.01;
+            attrArr[i * 5 + 1] = attrArr[i * 5 + 1] + rateY * percent * 0.01;
+            
+            //边界处理
+            if (i%rectW == 0) {//左边界
+                if (attrArr[i * 5] > -1) {
+                    attrArr[i * 5] = -1;
+                }
+            }
+            if (i%rectW == rectW - 1) {//右边界
+                if (attrArr[i * 5] < 1) {
+                    attrArr[i * 5] = 1;
+                }
+            }
+            if (i/rectW == 0) {//上边界
+                if (attrArr[i * 5 + 1] < 1) {
+                    attrArr[i * 5 + 1] = 1;
+                }
+            }
+            if (i/rectW == rectH - 1) {//下边界
+                if (attrArr[i * 5 + 1] > -1) {
+                    attrArr[i * 5 + 1] = -1;
+                }
+            }
+        }
+    }
+}
+
+
 
 
 // Handles the start of a touch
@@ -455,29 +447,35 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     UITouch*            touch = [[event touchesForView:self] anyObject];
     firstTouch = YES;
     // Convert touch point from UIView referential to OpenGL one (upside-down flip)
-    _location = [touch locationInView:self];
-    
-    self.previousPoint = CGPointMake(_location.x/self.bounds.size.width, _location.y/self.bounds.size.height);
+    CGPoint location = [touch locationInView:self];
+    previousLocation = location;
+    self.locationPoint = CGPointMake(location.x/self.bounds.size.width, location.y/self.bounds.size.height);
     
 }
 
 // Handles the continuation of a touch.
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    firstTouch = NO;
     UITouch*			touch = [[event touchesForView:self] anyObject];
-    
     CGPoint location = [touch locationInView:self];
     self.locationPoint = CGPointMake(location.x/self.bounds.size.width, location.y/self.bounds.size.height);
     
-    if (sqrt((location.x - _location.x)*(location.x - _location.x) + (location.y - _location.y)*(location.y - _location.y)) < 5) {
+    if (sqrt((location.x - previousLocation.x)*(location.x - previousLocation.x) + (location.y - previousLocation.y)*(location.y - previousLocation.y)) < 3) {
         return;
     }
-    self.previousPoint = CGPointMake(_location.x/self.bounds.size.width, _location.y/self.bounds.size.height);
-    _location = location;
+    self.previousPoint = CGPointMake(previousLocation.x/self.bounds.size.width, previousLocation.y/self.bounds.size.height);
+    previousLocation = location;
     [self render];
 }
 
-
+- (void)destoryRenderAndFrameBuffer
+{
+    glDeleteFramebuffers(1, &_myColorFrameBuffer);
+    self.myColorFrameBuffer = 0;
+    glDeleteRenderbuffers(1, &_myColorRenderBuffer);
+    self.myColorRenderBuffer = 0;
+}
 
 
 
