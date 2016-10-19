@@ -409,9 +409,11 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         float converY = (attrArr[i * 5 + 1] - centerPoint.y) * aspectRatio + centerPoint.y;
         dist = sqrt((attrArr[i * 5] - centerPoint.x)*(attrArr[i * 5] - centerPoint.x) + (converY - centerPoint.y)*(converY - centerPoint.y));
         if (dist < radius) {
-            percent = sqrt((radius - dist) / radius);
-            attrArr[i * 5] = attrArr[i * 5] - rateX * percent * 0.01;
-            attrArr[i * 5 + 1] = attrArr[i * 5 + 1] + rateY * percent * 0.01;
+            percent = (radius - dist) / radius * 0.1;
+            percent = percent * percent;
+            
+            attrArr[i * 5] = attrArr[i * 5] - rateX * percent * 0.1;
+            attrArr[i * 5 + 1] = attrArr[i * 5 + 1] + rateY * percent * 0.1;
             
             //边界处理
             if (i%rectW == 0) {//左边界
