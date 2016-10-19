@@ -124,8 +124,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         self.image = image;
         self.renderImg = image;
         
-        rectW = 50;
-        rectH = 50;
+        rectW = 100;
+        rectH = 100;
         
         rectLength = rectW * rectH;
         GLfloat rate = 2.0/(rectW - 1);
@@ -149,6 +149,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
             indices[i * 6 + 4] = i / (rectW - 1) * rectW + i%(rectW - 1) + 1;
             indices[i * 6 + 5] = i / (rectW - 1) * rectW + rectW + i%(rectW - 1) + 1;
         }
+        
     }
     return self;
 }
@@ -272,8 +273,15 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glEnableVertexAttribArray(textCoor);
     
     
+    CGPoint centerPoint = CGPointMake((self.previousPoint.x - 0.5) * 2, (0.5 - self.previousPoint.y) * 2);
+    
+    GLfloat     dist = 0, radius = 0.35;
     for (int i = 0; i < rectLength; i++) {
-        
+        dist = sqrt((attrArr[i * 5] - centerPoint.x)*(attrArr[i * 5] - centerPoint.x) + (attrArr[i * 5 + 1] - centerPoint.y)*(attrArr[i * 5 + 1] - centerPoint.y));
+        if (dist < radius) {
+            attrArr[i * 5] = attrArr[i * 5] - rateX * (radius - dist) / radius * 0.01;
+            attrArr[i * 5 + 1] = attrArr[i * 5 + 1] + rateY * (radius - dist) / radius * 0.01;
+        }
     }
     
     [self setupTexture:self.renderImg];
@@ -285,7 +293,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
     
-    self.renderImg = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
+//    self.renderImg = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
 }
 
 - (BOOL)validate:(GLuint)_programId {
@@ -451,9 +459,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     self.previousPoint = CGPointMake(_location.x/self.bounds.size.width, _location.y/self.bounds.size.height);
     
-    [self render];
-    
-    
 }
 
 // Handles the continuation of a touch.
@@ -469,7 +474,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     }
     self.previousPoint = CGPointMake(_location.x/self.bounds.size.width, _location.y/self.bounds.size.height);
     _location = location;
-//    [self render];
+    [self render];
 }
 
 
