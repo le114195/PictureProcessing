@@ -13,10 +13,14 @@
 #import "TJOpenGLContrtoller.h"
 #import "TJOpenglCurveVC.h"
 #import "TJOpenglBrushVC.h"
+#import "ImagePicker.h"
+
+#import "FaceDetectVC.h"
+
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-
+@property (nonatomic, strong) ImagePicker       *imgPicker;
 
 @property (nonatomic, weak) UITableView         *tableView;
 
@@ -31,13 +35,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别"];
     
     [self tableViewConfigure];
-    
-    
-    
-    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -80,6 +80,13 @@
 
 #pragma mark - set/get
 
+- (ImagePicker *)imgPicker
+{
+    if (!_imgPicker) {
+        _imgPicker = [[ImagePicker alloc] init];
+    }
+    return _imgPicker;
+}
 
 
 
@@ -120,6 +127,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(self)weakSelf = self;
     switch (indexPath.row) {
         case 0:{//OpenCVTest
             OpencvTestVC *opencv = [[OpencvTestVC alloc] init];
@@ -146,17 +154,21 @@
             [self.navigationController pushViewController:brushVC animated:YES];
             break;
         }
+        case 5:{
+            [self.imgPicker getOriginImage:self completion:^(id responseObject) {
+                UIImage *image = (UIImage *)responseObject;
+                FaceDetectVC *faceVC = [FaceDetectVC picture:image];
+                [weakSelf.navigationController pushViewController:faceVC animated:YES];
+            }];
+            break;
+        }
+            
+            
         default:
             break;
     }
 }
 
 #pragma mark - 私有方法
-
-
-
-
-
-
 
 @end

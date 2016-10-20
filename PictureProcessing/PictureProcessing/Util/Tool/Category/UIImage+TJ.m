@@ -1,14 +1,14 @@
 //
-//  UIImage+SaveToTool.m
+//  UIImage+TJ.m
 //  PictureProcessing
 //
-//  Created by 勒俊 on 16/8/25.
+//  Created by 勒俊 on 2016/10/20.
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import "UIImage+SaveToTool.h"
+#import "UIImage+TJ.h"
 
-@implementation UIImage (SaveToTool)
+@implementation UIImage (TJ)
 
 
 - (void)saveImageWithImgName:(NSString *)imgName imageType:(int)imageType
@@ -22,6 +22,7 @@
     }
     [fileManager createFileAtPath:[NSString stringWithFormat:@"%@/%@", ToolDirectory, imgName] contents:imageData attributes:nil];
 }
+
 
 
 @end
