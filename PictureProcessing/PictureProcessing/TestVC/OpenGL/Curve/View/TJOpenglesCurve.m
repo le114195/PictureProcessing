@@ -54,21 +54,16 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 @property (nonatomic , assign) GLuint myColorRenderBuffer;
 @property (nonatomic , assign) GLuint myColorFrameBuffer;
 
-
 @property (nonatomic, assign) CGFloat       ImgWidth;
 @property (nonatomic, assign) CGFloat       ImgHeight;
 
-
 @property (nonatomic, strong) UIImage       *renderImg;
-
 
 @property (nonatomic, assign) CGPoint       locationPoint;
 @property (nonatomic, assign) CGPoint       previousPoint;
 
 
 @end
-
-
 
 
 @implementation TJOpenglesCurve
@@ -86,10 +81,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     GLint           *indices;
     
     GLfloat         aspectRatio;
-    
 }
-
-
 
 + (Class)layerClass
 {
@@ -303,7 +295,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     // 4绑定纹理到默认的纹理ID（这里只有一张图片，故而相当于默认于片元着色器里面的colorMap，如果有多张图不可以这么做）
     glBindTexture(GL_TEXTURE_2D, 0);
     
-    
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -370,7 +361,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glEnableVertexAttribArray(textCoor);
     
     
-    
     [self setupTexture:self.renderImg];
     
     glClearColor(0, 0.0, 0, 1.0);
@@ -412,8 +402,8 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
             percent = (radius - dist) / radius * 0.1;
             percent = percent * percent;
             
-            attrArr[i * 5] = attrArr[i * 5] - rateX * percent * 0.1;
-            attrArr[i * 5 + 1] = attrArr[i * 5 + 1] + rateY * percent * 0.1;
+            attrArr[i * 5] = attrArr[i * 5] - rateX * percent;
+            attrArr[i * 5 + 1] = attrArr[i * 5 + 1] + rateY * percent;
             
             //边界处理
             if (i%rectW == 0) {//左边界

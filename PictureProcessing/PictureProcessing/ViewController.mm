@@ -14,6 +14,8 @@
 #import "CoreImageList.h"
 #import "DrawController.h"
 #import "TJOpenGLContrtoller.h"
+#import "TJOpenglCurveVC.h"
+#import "TJOpenglBrushVC.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -32,7 +34,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest", @"画布", @"OpenGL"];
+    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest", @"画布", @"OpenGL", @"扭曲", @"画笔"];
     
     [self tableViewConfigure];
     
@@ -138,7 +140,6 @@
             [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
-            
         case 3:{
         
             DrawController *drawVC = [[DrawController alloc] init];
@@ -146,9 +147,18 @@
             break;
         }
         case 4:{
-        
             TJOpenGLContrtoller *openglEsVC = [[TJOpenGLContrtoller alloc] init];
             [self.navigationController pushViewController:openglEsVC animated:YES];
+            break;
+        }
+        case 5:{
+            TJOpenglCurveVC *curveVC = [[TJOpenglCurveVC alloc] init];
+            [self.navigationController pushViewController:curveVC animated:YES];
+            break;
+        }
+        case 6:{
+            TJOpenglBrushVC *brushVC = [[TJOpenglBrushVC alloc] init];
+            [self.navigationController pushViewController:brushVC animated:YES];
             break;
         }
         default:

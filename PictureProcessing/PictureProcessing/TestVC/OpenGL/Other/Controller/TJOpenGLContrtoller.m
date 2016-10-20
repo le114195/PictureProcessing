@@ -20,17 +20,7 @@
 
 
 
-#define kBrightness             1.0
-#define kSaturation             0.45
 
-#define kPaletteHeight			30
-#define kPaletteSize			5
-#define kMinEraseInterval		0.5
-
-// Padding for margins
-#define kLeftMargin				10.0
-#define kTopMargin				10.0
-#define kRightMargin			10.0
 
 
 
@@ -48,12 +38,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
-    
-    [self demo7];
-
-    
-    
-    
     
     [self paintTypeViewConfigure];
     
@@ -115,21 +99,7 @@
 }
 
 
-- (void)brush
-{
-    TJOpenglesBrushView *brushView = [[TJOpenglesBrushView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
-    [self.view addSubview:brushView];
-    
-    // Define a starting color
-    CGColorRef color = [UIColor colorWithHue:(CGFloat)2.0 / (CGFloat)kPaletteSize
-                                  saturation:kSaturation
-                                  brightness:kBrightness
-                                       alpha:1.0].CGColor;
-    const CGFloat *components = CGColorGetComponents(color);
-    
-    // Defer to the OpenGL view to set the brush color
-    [brushView setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
-}
+
 
 - (void)demo2
 {
@@ -168,41 +138,7 @@
 }
 
 
-- (void)demo7
-{
-    UIImage *image = [UIImage imageNamed:@"imageTest002.png"];
-//    UIImage *image = [UIImage imageNamed:@"sj_20160705_1.JPG"];
-    
-    TJOpenglesCurve *curve = [[TJOpenglesCurve alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
-    [self.view addSubview:curve];
-}
 
-
-
-/** 设置editImageView的frame */
-- (CGRect)resetImageViewFrameWithImage:(UIImage *)image top:(CGFloat)top bottom:(CGFloat)bottom {
-    
-    CGRect      newRect;
-    if (!image) {
-        newRect = CGRectMake(0, (Screen_Height - Screen_Width) / 2, Screen_Width, Screen_Width);
-    }else {
-    
-        CGFloat screen_height = Screen_Height - (top + bottom);
-        CGFloat imageWidth = image.size.width;
-        CGFloat imageHeight = image.size.height;
-        CGFloat imageRate = imageWidth / imageHeight;
-        
-        if (imageRate >= Screen_Width / screen_height) {
-            imageHeight = imageHeight * Screen_Width / imageWidth;
-            imageWidth = Screen_Width;
-        }else {
-            imageWidth = imageWidth * screen_height / imageHeight;
-            imageHeight = screen_height;
-        }
-        newRect = CGRectMake((Screen_Width - imageWidth) / 2, top + (Screen_Height - imageHeight - (top + bottom)) / 2, imageWidth, imageHeight);
-    }
-    return newRect;
-}
 
 
 @end
