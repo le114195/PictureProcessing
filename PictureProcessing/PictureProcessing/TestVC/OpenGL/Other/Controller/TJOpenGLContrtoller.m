@@ -99,8 +99,6 @@
 }
 
 
-
-
 - (void)demo2
 {
     TJOpengles3D *demo2 = [[TJOpengles3D alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];

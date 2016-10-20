@@ -8,7 +8,6 @@
 
 #import "GPUImageTestVC.h"
 #import "GPUImageTest.h"
-#import "TJCustomFilter.h"
 
 
 @interface GPUImageTestVC ()

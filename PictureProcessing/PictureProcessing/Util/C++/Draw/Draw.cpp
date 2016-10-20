@@ -136,8 +136,6 @@ void TJDraw::drawCircleFill(cv::Mat &srcMat, cv::Point center, float r)
     }
 }
 
-
-
 void TJDraw::drawPolygon(cv::Point point, cv::Mat &srcMat, int width)
 {
     this->pointVec.push_back(point);
@@ -158,8 +156,6 @@ void TJDraw::drawPolygon(cv::Point point, cv::Mat &srcMat, int width)
         }
     }
 }
-
-
 
 
 void TJDraw::clearPointVec()

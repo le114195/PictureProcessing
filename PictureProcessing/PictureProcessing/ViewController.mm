@@ -9,10 +9,7 @@
 #import "ViewController.h"
 #import "TestCell.h"
 #import "OpencvTestVC.h"
-#import "CoreImageVCTest.h"
 #import "GPUImageTestVC.h"
-#import "CoreImageList.h"
-#import "DrawController.h"
 #import "TJOpenGLContrtoller.h"
 #import "TJOpenglCurveVC.h"
 #import "TJOpenglBrushVC.h"
@@ -34,7 +31,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"CoreImageTest", @"GPUImageTest", @"画布", @"OpenGL", @"扭曲", @"画笔"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔"];
     
     [self tableViewConfigure];
     
@@ -123,40 +120,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     switch (indexPath.row) {
         case 0:{//OpenCVTest
             OpencvTestVC *opencv = [[OpencvTestVC alloc] init];
             [self.navigationController pushViewController:opencv animated:YES];
             break;
         }
-        case 1:{//CoreImageTest
-            CoreImageList *coreImageVC = [[CoreImageList alloc] init];
-            [self.navigationController pushViewController:coreImageVC animated:YES];
-            break;
-        }
-        case 2:{
+        case 1:{
             GPUImageTestVC *gpuVC = [[GPUImageTestVC alloc] init];
             [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
-        case 3:{
-        
-            DrawController *drawVC = [[DrawController alloc] init];
-            [self.navigationController pushViewController:drawVC animated:YES];
-            break;
-        }
-        case 4:{
+        case 2:{
             TJOpenGLContrtoller *openglEsVC = [[TJOpenGLContrtoller alloc] init];
             [self.navigationController pushViewController:openglEsVC animated:YES];
             break;
         }
-        case 5:{
+        case 3:{
             TJOpenglCurveVC *curveVC = [[TJOpenglCurveVC alloc] init];
             [self.navigationController pushViewController:curveVC animated:YES];
             break;
         }
-        case 6:{
+        case 4:{
             TJOpenglBrushVC *brushVC = [[TJOpenglBrushVC alloc] init];
             [self.navigationController pushViewController:brushVC animated:YES];
             break;

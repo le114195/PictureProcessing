@@ -14,7 +14,7 @@ typedef void(^DrawCompletionBlock)(NSArray *array);
 
 @interface TJ_DrawTool : NSObject
 
-
+/** 根据移动的轨迹返回一组等距离的点 */
 + (void)constDisDraw:(CGPoint)location radius:(double)radius dis:(double)dis isStartMove:(BOOL)isStartMove completion:(DrawCompletionBlock)completion;
 
 
