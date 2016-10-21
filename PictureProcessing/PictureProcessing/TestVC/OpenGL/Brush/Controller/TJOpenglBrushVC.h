@@ -6,8 +6,8 @@
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import "TJOpenglBaseVC.h"
+#import "TJ_PictureBaseVC.h"
 
-@interface TJOpenglBrushVC : TJOpenglBaseVC
+@interface TJOpenglBrushVC : TJ_PictureBaseVC
 
 @end

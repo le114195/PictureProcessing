@@ -18,6 +18,9 @@
 #import "FaceDetectVC.h"
 
 
+#import "TJGIFController.h"
+
+
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) ImagePicker       *imgPicker;
@@ -35,7 +38,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片"];
     
     [self tableViewConfigure];
     // Do any additional setup after loading the view, typically from a nib.
@@ -162,7 +165,11 @@
             }];
             break;
         }
-            
+        case 6:{
+            TJGIFController *gifVC = [[TJGIFController alloc] init];
+            [self.navigationController pushViewController:gifVC animated:YES];
+            break;
+        }
             
         default:
             break;
