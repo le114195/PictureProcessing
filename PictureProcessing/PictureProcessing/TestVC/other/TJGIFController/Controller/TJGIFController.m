@@ -20,23 +20,16 @@
     [super viewDidLoad];
 
     
-    [self encodeGif];
     
+    [self encodeGif];
     
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
-    
-    
-    
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 
 /** 分解gif图片 */
