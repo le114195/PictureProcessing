@@ -370,7 +370,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
     
-    //    self.renderImg = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
+//        self.renderImg = [OpenglTool tj_glTOImageWithSize:CGSizeMake(self.ImgWidth, self.ImgHeight)];
 }
 
 /** 布局三角面片 */
