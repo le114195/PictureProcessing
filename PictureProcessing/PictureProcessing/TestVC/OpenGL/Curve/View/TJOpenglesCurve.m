@@ -10,6 +10,8 @@
 #import <GLKit/GLKit.h>
 #import "OpenglTool.h"
 #import "TJ_DrawTool.h"
+#import "TJ_Opengl_C.h"
+
 
 NSString *const TJ_CurveVertexShaderString = TJ_STRING_ES
 (
@@ -103,29 +105,13 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         
         rectW = 100;
         rectH = rectW * (image.size.width / image.size.height);
-        
         rectLength = rectW * rectH;
-        GLfloat rateX = 2.0/(rectW - 1);
-        CGFloat rateY = 2.0/(rectH - 1);
         attrArr = (GLfloat *)malloc(5 * rectLength * sizeof(GLfloat));
-        for (int i = 0; i < rectLength; i++) {
-            attrArr[i * 5] = -1 + rateX * (i%rectW);
-            attrArr[i * 5 + 1] = 1 - (i/rectW) * rateY;
-            attrArr[i * 5 + 2] = 0;
-            attrArr[i * 5 + 3] = (i%rectW) * rateX * 0.5;
-            attrArr[i * 5 + 4] = (i/rectW) * rateY * 0.5;
-        }
+        configure_attrArr(attrArr, rectW, rectH);
         
         indices = (GLint *)malloc((rectW - 1) * (rectH - 1) * 2 * 3 * sizeof(GLint));
-        for (int i = 0; i < (rectW - 1) * (rectH - 1); i++) {
-            indices[i * 6] = i / (rectW - 1) * rectW + i%(rectW - 1);
-            indices[i * 6 + 1] = i / (rectW - 1) * rectW + rectW + i%(rectW - 1);
-            indices[i * 6 + 2] = i / (rectW - 1) * rectW + rectW +  + i%(rectW - 1) + 1;
-            
-            indices[i * 6 + 3] = i / (rectW - 1) * rectW + i%(rectW - 1);
-            indices[i * 6 + 4] = i / (rectW - 1) * rectW + i%(rectW - 1) + 1;
-            indices[i * 6 + 5] = i / (rectW - 1) * rectW + rectW + i%(rectW - 1) + 1;
-        }
+        configure_indices(indices, rectW, rectH);
+        
     }
     return self;
 }
@@ -442,7 +428,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     CGPoint location = [touch locationInView:self];
     previousLocation = location;
     self.locationPoint = CGPointMake(location.x/self.bounds.size.width, location.y/self.bounds.size.height);
-    
 }
 
 // Handles the continuation of a touch.

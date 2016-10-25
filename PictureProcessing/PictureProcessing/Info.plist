@@ -45,5 +45,10 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>相册</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

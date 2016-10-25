@@ -320,7 +320,18 @@
 		7579B2471D82484B007B0F74 /* GPUImageXYDerivativeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B1981D82484B007B0F74 /* GPUImageXYDerivativeFilter.m */; };
 		7579B2481D82484B007B0F74 /* GPUImageZoomBlurFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7579B19A1D82484B007B0F74 /* GPUImageZoomBlurFilter.m */; };
 		7579B2621D828CFA007B0F74 /* Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7579B2601D828CFA007B0F74 /* Draw.cpp */; };
-		759238191DBDB1EA0013A5C4 /* OpenglTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 759238181DBDB1EA0013A5C4 /* OpenglTool.m */; };
+		75887DD71DBEE63A008757CC /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DCB1DBEE63A008757CC /* AFHTTPSessionManager.m */; };
+		75887DD81DBEE63A008757CC /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DCE1DBEE63A008757CC /* AFNetworkReachabilityManager.m */; };
+		75887DD91DBEE63A008757CC /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DD01DBEE63A008757CC /* AFSecurityPolicy.m */; };
+		75887DDA1DBEE63A008757CC /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DD21DBEE63A008757CC /* AFURLRequestSerialization.m */; };
+		75887DDB1DBEE63A008757CC /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DD41DBEE63A008757CC /* AFURLResponseSerialization.m */; };
+		75887DDC1DBEE63A008757CC /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DD61DBEE63A008757CC /* AFURLSessionManager.m */; };
+		75887DFB1DBEF850008757CC /* SSHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DF81DBEF850008757CC /* SSHTTP.m */; };
+		75887DFC1DBEF850008757CC /* TJSSHTTPBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DFA1DBEF850008757CC /* TJSSHTTPBase.m */; };
+		75887E021DBEFB14008757CC /* TJSessionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DFF1DBEFB14008757CC /* TJSessionDelegate.m */; };
+		75887E031DBEFB14008757CC /* TJURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887E011DBEFB14008757CC /* TJURLSession.m */; };
+		75887E061DBF2B35008757CC /* TJ_Opengl_C.c in Sources */ = {isa = PBXBuildFile; fileRef = 75887E041DBF2B35008757CC /* TJ_Opengl_C.c */; };
+		759238191DBDB1EA0013A5C4 /* OpenglTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759238181DBDB1EA0013A5C4 /* OpenglTool.mm */; };
 		7594A7A01D5CBBEA00D6F31B /* OpenCVDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7901D5CBBEA00D6F31B /* OpenCVDemo.cpp */; };
 		7594A7A11D5CBBEA00D6F31B /* CoreImgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7941D5CBBEA00D6F31B /* CoreImgeTest.m */; };
 		7594A7A21D5CBBEA00D6F31B /* GPUImageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7971D5CBBEA00D6F31B /* GPUImageTest.m */; };
@@ -882,9 +893,32 @@
 		7579B19A1D82484B007B0F74 /* GPUImageZoomBlurFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageZoomBlurFilter.m; sourceTree = "<group>"; };
 		7579B2601D828CFA007B0F74 /* Draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Draw.cpp; sourceTree = "<group>"; };
 		7579B2611D828CFA007B0F74 /* Draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Draw.hpp; sourceTree = "<group>"; };
+		75887DCA1DBEE63A008757CC /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		75887DCB1DBEE63A008757CC /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		75887DCC1DBEE63A008757CC /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		75887DCD1DBEE63A008757CC /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		75887DCE1DBEE63A008757CC /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		75887DCF1DBEE63A008757CC /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		75887DD01DBEE63A008757CC /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		75887DD11DBEE63A008757CC /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		75887DD21DBEE63A008757CC /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		75887DD31DBEE63A008757CC /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		75887DD41DBEE63A008757CC /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		75887DD51DBEE63A008757CC /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		75887DD61DBEE63A008757CC /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		75887DF71DBEF850008757CC /* SSHTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHTTP.h; sourceTree = "<group>"; };
+		75887DF81DBEF850008757CC /* SSHTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHTTP.m; sourceTree = "<group>"; };
+		75887DF91DBEF850008757CC /* TJSSHTTPBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJSSHTTPBase.h; sourceTree = "<group>"; };
+		75887DFA1DBEF850008757CC /* TJSSHTTPBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJSSHTTPBase.m; sourceTree = "<group>"; };
+		75887DFE1DBEFB14008757CC /* TJSessionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJSessionDelegate.h; sourceTree = "<group>"; };
+		75887DFF1DBEFB14008757CC /* TJSessionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJSessionDelegate.m; sourceTree = "<group>"; };
+		75887E001DBEFB14008757CC /* TJURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJURLSession.h; sourceTree = "<group>"; };
+		75887E011DBEFB14008757CC /* TJURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJURLSession.m; sourceTree = "<group>"; };
+		75887E041DBF2B35008757CC /* TJ_Opengl_C.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TJ_Opengl_C.c; sourceTree = "<group>"; };
+		75887E051DBF2B35008757CC /* TJ_Opengl_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_Opengl_C.h; sourceTree = "<group>"; };
 		758B0FA01D6E927F0010D9B4 /* CategoryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
 		759238171DBDB1EA0013A5C4 /* OpenglTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenglTool.h; sourceTree = "<group>"; };
-		759238181DBDB1EA0013A5C4 /* OpenglTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenglTool.m; sourceTree = "<group>"; };
+		759238181DBDB1EA0013A5C4 /* OpenglTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenglTool.mm; sourceTree = "<group>"; };
 		7594A78B1D5CBADA00D6F31B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7594A7901D5CBBEA00D6F31B /* OpenCVDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenCVDemo.cpp; sourceTree = "<group>"; };
 		7594A7911D5CBBEA00D6F31B /* OpenCVDemo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenCVDemo.hpp; sourceTree = "<group>"; };
@@ -1358,6 +1392,8 @@
 			children = (
 				755763C31DB8A70900B581D8 /* TJ_DrawTool_C.c */,
 				755763C41DB8A70900B581D8 /* TJ_DrawTool_C.h */,
+				75887E041DBF2B35008757CC /* TJ_Opengl_C.c */,
+				75887E051DBF2B35008757CC /* TJ_Opengl_C.h */,
 			);
 			path = c_tool;
 			sourceTree = "<group>";
@@ -1381,7 +1417,7 @@
 			isa = PBXGroup;
 			children = (
 				759238171DBDB1EA0013A5C4 /* OpenglTool.h */,
-				759238181DBDB1EA0013A5C4 /* OpenglTool.m */,
+				759238181DBDB1EA0013A5C4 /* OpenglTool.mm */,
 				755763ED1DB8BFC500B581D8 /* ImagePicker.h */,
 				755763EE1DB8BFC500B581D8 /* ImagePicker.m */,
 				755763CF1DB8A70900B581D8 /* TJ_DrawTool.h */,
@@ -1453,6 +1489,7 @@
 		7579B0391D82484B007B0F74 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				75887DC91DBEE63A008757CC /* AFNetworking */,
 				75CEE5F41D99467F00E6A772 /* Masonry */,
 				7579B03A1D82484B007B0F74 /* gpuimage */,
 			);
@@ -1834,9 +1871,53 @@
 			path = Draw;
 			sourceTree = "<group>";
 		};
+		75887DC91DBEE63A008757CC /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				75887DCA1DBEE63A008757CC /* AFHTTPSessionManager.h */,
+				75887DCB1DBEE63A008757CC /* AFHTTPSessionManager.m */,
+				75887DCC1DBEE63A008757CC /* AFNetworking.h */,
+				75887DCD1DBEE63A008757CC /* AFNetworkReachabilityManager.h */,
+				75887DCE1DBEE63A008757CC /* AFNetworkReachabilityManager.m */,
+				75887DCF1DBEE63A008757CC /* AFSecurityPolicy.h */,
+				75887DD01DBEE63A008757CC /* AFSecurityPolicy.m */,
+				75887DD11DBEE63A008757CC /* AFURLRequestSerialization.h */,
+				75887DD21DBEE63A008757CC /* AFURLRequestSerialization.m */,
+				75887DD31DBEE63A008757CC /* AFURLResponseSerialization.h */,
+				75887DD41DBEE63A008757CC /* AFURLResponseSerialization.m */,
+				75887DD51DBEE63A008757CC /* AFURLSessionManager.h */,
+				75887DD61DBEE63A008757CC /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		75887DF61DBEF850008757CC /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				75887DF71DBEF850008757CC /* SSHTTP.h */,
+				75887DF81DBEF850008757CC /* SSHTTP.m */,
+				75887DF91DBEF850008757CC /* TJSSHTTPBase.h */,
+				75887DFA1DBEF850008757CC /* TJSSHTTPBase.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		75887DFD1DBEFB14008757CC /* TJSession */ = {
+			isa = PBXGroup;
+			children = (
+				75887DFE1DBEFB14008757CC /* TJSessionDelegate.h */,
+				75887DFF1DBEFB14008757CC /* TJSessionDelegate.m */,
+				75887E001DBEFB14008757CC /* TJURLSession.h */,
+				75887E011DBEFB14008757CC /* TJURLSession.m */,
+			);
+			path = TJSession;
+			sourceTree = "<group>";
+		};
 		7594A78C1D5CBBEA00D6F31B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				75887DFD1DBEFB14008757CC /* TJSession */,
+				75887DF61DBEF850008757CC /* NetWork */,
 				75C43EB51D62AD97002F25EF /* Const */,
 				750F80091D616A2B004BF41A /* Header */,
 				7594A78D1D5CBBEA00D6F31B /* C++ */,
@@ -2184,6 +2265,7 @@
 				7557639D1DB863B500B581D8 /* TJOpenGLContrtoller.m in Sources */,
 				75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */,
 				7579B1B21D82484B007B0F74 /* GPUImageColorDodgeBlendFilter.m in Sources */,
+				75887DDC1DBEE63A008757CC /* AFURLSessionManager.m in Sources */,
 				7579B1B71D82484B007B0F74 /* GPUImageColourFASTFeatureDetector.m in Sources */,
 				7579B21D1D82484B007B0F74 /* GPUImageScreenBlendFilter.m in Sources */,
 				7579B1FB1D82484B007B0F74 /* GPUImageMotionBlurFilter.m in Sources */,
@@ -2216,6 +2298,7 @@
 				7579B1E81D82484B007B0F74 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				7579B1A51D82484B007B0F74 /* GPUImageBilateralFilter.m in Sources */,
 				7556F7D91D5CA0AA008CC401 /* ViewController.mm in Sources */,
+				75887DDA1DBEE63A008757CC /* AFURLRequestSerialization.m in Sources */,
 				7579B1AE1D82484B007B0F74 /* GPUImageClosingFilter.m in Sources */,
 				75CEE6121D99467F00E6A772 /* MASConstraintMaker.m in Sources */,
 				7579B1B61D82484B007B0F74 /* GPUImageColorPackingFilter.m in Sources */,
@@ -2226,10 +2309,12 @@
 				75E191961DB3140F00635091 /* GLESMath.c in Sources */,
 				7579B1B51D82484B007B0F74 /* GPUImageColorMatrixFilter.m in Sources */,
 				7579B2341D82484B007B0F74 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
+				75887E021DBEFB14008757CC /* TJSessionDelegate.m in Sources */,
 				7579B1D71D82484B007B0F74 /* GPUImageHalftoneFilter.m in Sources */,
 				755763A11DB863B500B581D8 /* TJOpenglesNewRect.m in Sources */,
 				75FE84E61D7AB7D900E45DBE /* TJPixel.cpp in Sources */,
 				7579B2161D82484B007B0F74 /* GPUImageRGBClosingFilter.m in Sources */,
+				75887E031DBEFB14008757CC /* TJURLSession.m in Sources */,
 				7560A97E1D8FC7DE0056AB99 /* OpencvTestVC.mm in Sources */,
 				7594A7A11D5CBBEA00D6F31B /* CoreImgeTest.m in Sources */,
 				7579B2141D82484B007B0F74 /* GPUImageRawDataInput.m in Sources */,
@@ -2271,10 +2356,11 @@
 				7557639B1DB863B500B581D8 /* PaintTypeModel.m in Sources */,
 				7579B2461D82484B007B0F74 /* GPUImageWhiteBalanceFilter.m in Sources */,
 				7579B1D51D82484B007B0F74 /* GPUImageGlassSphereFilter.m in Sources */,
-				759238191DBDB1EA0013A5C4 /* OpenglTool.m in Sources */,
+				759238191DBDB1EA0013A5C4 /* OpenglTool.mm in Sources */,
 				7579B1CE1D82484B007B0F74 /* GPUImageFourInputFilter.m in Sources */,
 				7579B1AF1D82484B007B0F74 /* GPUImageColorBlendFilter.m in Sources */,
 				7579B1C41D82484B007B0F74 /* GPUImageDivideBlendFilter.m in Sources */,
+				75887DFC1DBEF850008757CC /* TJSSHTTPBase.m in Sources */,
 				755763B41DB86BAE00B581D8 /* TJOpenglBrushVC.m in Sources */,
 				7579B19D1D82484B007B0F74 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				75FE84E31D7AB75800E45DBE /* TJOpencvBase.cpp in Sources */,
@@ -2305,9 +2391,11 @@
 				7579B1DE1D82484B007B0F74 /* GPUImageHistogramEqualizationFilter.m in Sources */,
 				7579B1AC1D82484B007B0F74 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				7560A97C1D8FC7DE0056AB99 /* CoreImageVCTest.mm in Sources */,
+				75887DD81DBEE63A008757CC /* AFNetworkReachabilityManager.m in Sources */,
 				7579B23A1D82484B007B0F74 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				7579B22A1D82484B007B0F74 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				7560A97B1D8FC7DE0056AB99 /* CoreImageList.mm in Sources */,
+				75887DDB1DBEE63A008757CC /* AFURLResponseSerialization.m in Sources */,
 				7579B1E11D82484B007B0F74 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				7579B20B1D82484B007B0F74 /* GPUImagePicture.m in Sources */,
 				7579B1C91D82484B007B0F74 /* GPUImageFalseColorFilter.m in Sources */,
@@ -2330,6 +2418,7 @@
 				7579B1CF1D82484B007B0F74 /* GPUImageFramebuffer.m in Sources */,
 				7579B2241D82484B007B0F74 /* GPUImageSmoothToonFilter.m in Sources */,
 				7579B2291D82484B007B0F74 /* GPUImageSolidColorGenerator.m in Sources */,
+				75887DD71DBEE63A008757CC /* AFHTTPSessionManager.m in Sources */,
 				7579B2051D82484B007B0F74 /* GPUImageOpeningFilter.m in Sources */,
 				7579B1EA1D82484B007B0F74 /* GPUImageLaplacianFilter.m in Sources */,
 				7579B1D31D82484B007B0F74 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
@@ -2347,6 +2436,7 @@
 				7579B2081D82484B007B0F74 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */,
 				7579B1D01D82484B007B0F74 /* GPUImageFramebufferCache.m in Sources */,
+				75887E061DBF2B35008757CC /* TJ_Opengl_C.c in Sources */,
 				755763EA1DB8BB4100B581D8 /* UIImage+TJ.m in Sources */,
 				7579B1E21D82484B007B0F74 /* GPUImageHSBFilter.m in Sources */,
 				7579B2481D82484B007B0F74 /* GPUImageZoomBlurFilter.m in Sources */,
@@ -2382,7 +2472,9 @@
 				7579B2301D82484B007B0F74 /* GPUImageTextureInput.m in Sources */,
 				7579B1E51D82484B007B0F74 /* GPUImageiOSBlurFilter.m in Sources */,
 				7557639E1DB863B500B581D8 /* TJOpengles3D.m in Sources */,
+				75887DFB1DBEF850008757CC /* SSHTTP.m in Sources */,
 				7556F7D31D5CA0AA008CC401 /* main.m in Sources */,
+				75887DD91DBEE63A008757CC /* AFSecurityPolicy.m in Sources */,
 				7579B2381D82484B007B0F74 /* GPUImageToonFilter.m in Sources */,
 				7579B23C1D82484B007B0F74 /* GPUImageTwoPassFilter.m in Sources */,
 				7579B2431D82484B007B0F74 /* GPUImageVignetteFilter.m in Sources */,
@@ -2520,10 +2612,16 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Lib",
 				);
 				GCC_PREFIX_HEADER = PictureProcessing/PrefixHeader.pch;
 				INFOPLIST_FILE = PictureProcessing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Lib/MGFaceppSDK",
+					"$(PROJECT_DIR)/Lib/ios_libs/static_libs",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2542,10 +2640,16 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Lib",
 				);
 				GCC_PREFIX_HEADER = PictureProcessing/PrefixHeader.pch;
 				INFOPLIST_FILE = PictureProcessing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Lib/MGFaceppSDK",
+					"$(PROJECT_DIR)/Lib/ios_libs/static_libs",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";

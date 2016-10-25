@@ -7,8 +7,25 @@
 //
 
 #import "FaceDetectVC.h"
+#import "TJSSHTTPBase.h"
+#import "TJURLSession.h"
+
+
+
+#define MG_LICENSE_KEY      @"Rm3aQg1NkP80SzrrdjzPQ1KYIqi7KMLo"
+#define MG_LICENSE_SECRE    @"qzUA0fnbKwedUPDvrDm8F8R25tbam8bO"
+
+
 
 @interface FaceDetectVC ()
+
+
+@property (nonatomic, weak) UIView          *face_rectV;
+
+@property (nonatomic, assign) CGFloat       ImgRateW;
+@property (nonatomic, assign) CGFloat       ImgRateH;
+
+
 
 @end
 
@@ -24,7 +41,55 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
+    [dict setValue:MG_LICENSE_SECRE forKey:@"api_secret"];
+    [dict setValue:@1 forKey:@"return_landmark"];
+    
+    NSString *url = @"https://api.megvii.com/facepp/v3/detect";
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_7.JPG" ofType:nil];
+    
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    
+    self.srcImgView.image = image;
+    self.srcImgView.frame = [self resetImageViewFrameWithImage:image top:64 bottom:0];
+    
+    self.ImgRateW = image.size.width / self.srcImgView.bounds.size.width;
+    self.ImgRateH = image.size.height / self.srcImgView.bounds.size.height;
+    
+    
+    NSData *data = UIImageJPEGRepresentation(image, 1.0);
+    
+    [data writeToFile:[NSString stringWithFormat:@"%@/%@", ToolDirectory, @"1234.jpg"] atomically:YES];
+    
+    path = [NSString stringWithFormat:@"%@/%@", ToolDirectory, @"1234.jpg"];
+    
+    UIView *face_rectV = [[UIView alloc] init];
+    self.face_rectV = face_rectV;
+    [self.srcImgView addSubview:face_rectV];
+    self.face_rectV.backgroundColor = [UIColor redColor];
+    
+    
+    [TJURLSession postWithUrl:url parameters:dict paths:@[path] fieldName:@"image_file" completion:^(id responseObject, int status) {
+        
+        NSLog(@"%@", responseObject);
+        
+        NSArray *array = [responseObject valueForKey:@"faces"];
+        
+        NSDictionary *face = [array firstObject];
+        
+        NSDictionary *face_rectangle = [face valueForKey:@"face_rectangle"];
+        
+        CGFloat height = [[face_rectangle valueForKey:@"height"] floatValue];
+        CGFloat left = [[face_rectangle valueForKey:@"left"] floatValue];
+        CGFloat top = [[face_rectangle valueForKey:@"top"] floatValue];
+        CGFloat width = [[face_rectangle valueForKey:@"width"] floatValue];
+        
+        self.face_rectV.frame = CGRectMake(left / self.ImgRateW, top / self.ImgRateH, width / self.ImgRateW, height / self.ImgRateH);
+        
+    }];
+    
     
     
 //    [self faceTextByImage:self.srcImg];
@@ -37,70 +102,12 @@
 }
 
 
-- (void)faceTextByImage:(UIImage *)image{
-    
-    //识别图片:
-    CIImage *ciimage = [CIImage imageWithCGImage:image.CGImage];
-    //设置识别参数
-    NSDictionary* opts = [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh forKey:CIDetectorAccuracy];
-    //声明一个CIDetector，并设定识别类型
-    CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
-                                              context:nil options:opts];
-    //取得识别结果
-    NSArray* features = [detector featuresInImage:ciimage];
-    UIView *resultView = [[UIView alloc] initWithFrame:self.srcImgView.frame];
-    [self.view addSubview:resultView];
-    //标出脸部,眼睛和嘴:
-    for (CIFaceFeature *faceFeature in features){
-        // 标出脸部
-        CGFloat faceWidth = faceFeature.bounds.size.width;
-        UIView* faceView = [[UIView alloc] initWithFrame:faceFeature.bounds];
-        faceView.layer.borderWidth = 1;
-        faceView.layer.borderColor = [[UIColor redColor] CGColor];
-        [resultView addSubview:faceView];
-        
-        // 标出左眼
-        if(faceFeature.hasLeftEyePosition) {
-            UIView* leftEyeView = [[UIView alloc] initWithFrame:
-                                   CGRectMake(faceFeature.leftEyePosition.x-faceWidth*0.15,
-                                              faceFeature.leftEyePosition.y-faceWidth*0.15, faceWidth*0.3, faceWidth*0.3)];
-            [leftEyeView setBackgroundColor:[[UIColor blueColor] colorWithAlphaComponent:0.3]];
-            [leftEyeView setCenter:faceFeature.leftEyePosition];
-            leftEyeView.layer.cornerRadius = faceWidth*0.15;
-            [resultView addSubview:leftEyeView];
-        }
-        
-        // 标出右眼
-        if(faceFeature.hasRightEyePosition) {
-            UIView* rightEyeView = [[UIView alloc] initWithFrame:
-                                    CGRectMake(faceFeature.rightEyePosition.x-faceWidth*0.15,
-                                               faceFeature.rightEyePosition.y-faceWidth*0.15, faceWidth*0.3, faceWidth*0.3)];
-            [rightEyeView setBackgroundColor:[[UIColor blueColor] colorWithAlphaComponent:0.3]];
-            [rightEyeView setCenter:faceFeature.rightEyePosition];
-            rightEyeView.layer.cornerRadius = faceWidth*0.15;
-            [resultView addSubview:rightEyeView];
-        }
-        // 标出嘴部
-        if(faceFeature.hasMouthPosition) {
-            UIView* mouth = [[UIView alloc] initWithFrame:
-                             CGRectMake(faceFeature.mouthPosition.x-faceWidth*0.2,
-                                        faceFeature.mouthPosition.y-faceWidth*0.2, faceWidth*0.4, faceWidth*0.4)];
-            [mouth setBackgroundColor:[[UIColor greenColor] colorWithAlphaComponent:0.3]];
-            [mouth setCenter:faceFeature.mouthPosition];
-            mouth.layer.cornerRadius = faceWidth*0.2;
-            [resultView addSubview:mouth];
-        }
-    }
-    //得到的坐标点中，y值是从下开始的。比如说图片的高度为300，左眼的y值为100，说明左眼距离底部的高度为100，换成我们习惯的，距离顶部的距离就是200，这一点需要注意
-    [resultView setTransform:CGAffineTransformMakeScale(1, -1)];
-}
-
 
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self faceTextByImage:self.srcImg];
+    
 }
 
 

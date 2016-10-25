@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 
 
 @interface OpenglTool : NSObject
@@ -15,6 +16,7 @@
 
 /** 从opengl es中读取gpu中的数据，并保存为UIImage */
 + (UIImage *)tj_glTOImageWithSize:(CGSize)ImgSize;
+
 
 
 

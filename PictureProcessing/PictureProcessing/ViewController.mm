@@ -158,11 +158,8 @@
             break;
         }
         case 5:{
-            [self.imgPicker getOriginImage:self completion:^(id responseObject) {
-                UIImage *image = (UIImage *)responseObject;
-                FaceDetectVC *faceVC = [FaceDetectVC picture:image];
-                [weakSelf.navigationController pushViewController:faceVC animated:YES];
-            }];
+            FaceDetectVC *faceVC = [[FaceDetectVC alloc] init];;
+            [weakSelf.navigationController pushViewController:faceVC animated:YES];
             break;
         }
         case 6:{

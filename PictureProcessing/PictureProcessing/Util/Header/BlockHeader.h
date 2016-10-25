@@ -18,6 +18,10 @@ block();\
 dispatch_sync(dispatch_get_main_queue(), block);\
 }
 
+#import <UIKit/UIKit.h>
+
+typedef void(^CompletionBlock)(id responseObject, int status);
+typedef void(^TJDownloaderProgressBlock)(NSInteger receivedSize, NSInteger expectedSize);
 
 
 
