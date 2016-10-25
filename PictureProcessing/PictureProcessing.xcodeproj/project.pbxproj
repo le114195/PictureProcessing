@@ -331,6 +331,7 @@
 		75887E021DBEFB14008757CC /* TJSessionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DFF1DBEFB14008757CC /* TJSessionDelegate.m */; };
 		75887E031DBEFB14008757CC /* TJURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887E011DBEFB14008757CC /* TJURLSession.m */; };
 		75887E061DBF2B35008757CC /* TJ_Opengl_C.c in Sources */ = {isa = PBXBuildFile; fileRef = 75887E041DBF2B35008757CC /* TJ_Opengl_C.c */; };
+		75887E0C1DBF342B008757CC /* TJ_OpenglBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887E0B1DBF342B008757CC /* TJ_OpenglBaseView.m */; };
 		759238191DBDB1EA0013A5C4 /* OpenglTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759238181DBDB1EA0013A5C4 /* OpenglTool.mm */; };
 		7594A7A01D5CBBEA00D6F31B /* OpenCVDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7901D5CBBEA00D6F31B /* OpenCVDemo.cpp */; };
 		7594A7A11D5CBBEA00D6F31B /* CoreImgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7941D5CBBEA00D6F31B /* CoreImgeTest.m */; };
@@ -916,6 +917,8 @@
 		75887E011DBEFB14008757CC /* TJURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJURLSession.m; sourceTree = "<group>"; };
 		75887E041DBF2B35008757CC /* TJ_Opengl_C.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TJ_Opengl_C.c; sourceTree = "<group>"; };
 		75887E051DBF2B35008757CC /* TJ_Opengl_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_Opengl_C.h; sourceTree = "<group>"; };
+		75887E0A1DBF342B008757CC /* TJ_OpenglBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_OpenglBaseView.h; sourceTree = "<group>"; };
+		75887E0B1DBF342B008757CC /* TJ_OpenglBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_OpenglBaseView.m; sourceTree = "<group>"; };
 		758B0FA01D6E927F0010D9B4 /* CategoryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
 		759238171DBDB1EA0013A5C4 /* OpenglTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenglTool.h; sourceTree = "<group>"; };
 		759238181DBDB1EA0013A5C4 /* OpenglTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenglTool.mm; sourceTree = "<group>"; };
@@ -1451,6 +1454,8 @@
 		755763E11DB8B84900B581D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				75887E0A1DBF342B008757CC /* TJ_OpenglBaseView.h */,
+				75887E0B1DBF342B008757CC /* TJ_OpenglBaseView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2370,6 +2375,7 @@
 				7557639A1DB863B500B581D8 /* TJOpenglesCurve.m in Sources */,
 				7579B1DA1D82484B007B0F74 /* GPUImageHazeFilter.m in Sources */,
 				7579B1E91D82484B007B0F74 /* GPUImageLanczosResamplingFilter.m in Sources */,
+				75887E0C1DBF342B008757CC /* TJ_OpenglBaseView.m in Sources */,
 				7594A7A21D5CBBEA00D6F31B /* GPUImageTest.m in Sources */,
 				7579B2421D82484B007B0F74 /* GPUImageView.m in Sources */,
 				7579B1A71D82484B007B0F74 /* GPUImageBrightnessFilter.m in Sources */,

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJ_OpenglBaseView.h"
 
-@interface TJOpenglesCurve : UIView
+@interface TJOpenglesCurve : TJ_OpenglBaseView
 
 - (instancetype)initWithFrame:(CGRect)frame image:(UIImage *)image;
 
