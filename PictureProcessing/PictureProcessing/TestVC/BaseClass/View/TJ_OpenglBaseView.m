@@ -15,6 +15,19 @@
 
 
 
+- (void)setPoint:(CGPoint)point name:(NSString *)name
+{
+    GLuint location = glGetUniformLocation(self.myProgram, [name UTF8String]);
+    GLfloat array[2];
+    array[0] = point.x;
+    array[1] = point.y;
+    glUniform2fv(location, 1, array);
+}
+
+
+
+
+
 - (void)layoutSubviews
 {
     [self setupLayer];
@@ -29,19 +42,6 @@
     
     [self setupShaders];
 }
-
-
-
-- (void)destoryRenderAndFrameBuffer
-{
-    glDeleteFramebuffers(1, &_myColorFrameBuffer);
-    self.myColorFrameBuffer = 0;
-    glDeleteRenderbuffers(1, &_myColorRenderBuffer);
-    self.myColorRenderBuffer = 0;
-}
-
-
-
 
 
 - (void)setupLayer
@@ -60,7 +60,7 @@
 
 - (void)setupContext {
     // 指定 OpenGL 渲染 API 的版本，在这里我们使用 OpenGL ES 2.0
-    EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2;
+    EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES3;
     EAGLContext* context = [[EAGLContext alloc] initWithAPI:api];
     if (!context) {
         NSLog(@"Failed to initialize OpenGLES 2.0 context");
@@ -99,6 +99,8 @@
 
 
 
+
+#pragma mark - 着色器
 
 - (void)setupShaders
 {
@@ -179,8 +181,20 @@
 }
 
 
+- (void)destoryRenderAndFrameBuffer
+{
+    glDeleteFramebuffers(1, &_myColorFrameBuffer);
+    self.myColorFrameBuffer = 0;
+    glDeleteRenderbuffers(1, &_myColorRenderBuffer);
+    self.myColorRenderBuffer = 0;
+}
 
 
+- (void)dealloc
+{
+    [self destoryRenderAndFrameBuffer];
+    [self validate:self.myProgram];
+}
 
 
 

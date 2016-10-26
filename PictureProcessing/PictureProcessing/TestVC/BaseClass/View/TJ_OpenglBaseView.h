@@ -44,4 +44,8 @@
 - (GLuint)loadShaders:(NSString *)vert frag:(NSString *)frag;
 
 
+/** 片段着色器：设置点的变量 */
+- (void)setPoint:(CGPoint)point name:(NSString *)name;
+
+
 @end

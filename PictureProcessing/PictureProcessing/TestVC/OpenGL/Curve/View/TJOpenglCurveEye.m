@@ -34,9 +34,33 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 (
  varying lowp vec2 varyTextCoord;
  uniform sampler2D colorMap;
+ 
+ uniform highp vec2 eye_top;
+ uniform highp vec2 eye_bottom;
+ uniform highp vec2 eye_left_corner;
+ uniform highp vec2 eye_right_corner;
+ uniform highp vec2 eyebrow_lower_middle;
+ 
+ uniform highp vec2 eye_direction;
+ 
  void main()
  {
-     gl_FragColor = texture2D(colorMap, varyTextCoord);
+     
+     highp float x = varyTextCoord.x;
+     highp float y = varyTextCoord.y;
+
+     highp float dir_x = eye_direction.x;
+     highp float dir_y = eye_direction.y;
+     
+//     dir_y = 2 * dir_y;
+     
+     if (dir_y < -y){
+         gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+     }else {
+         gl_FragColor = texture2D(colorMap, varyTextCoord);
+     }
+
+     
  }
  
  );
@@ -47,9 +71,13 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 
 @interface TJOpenglCurveEye ()
 
+@property (nonatomic, assign) CGPoint       eye_top;
+@property (nonatomic, assign) CGPoint       eye_bottom;
+@property (nonatomic, assign) CGPoint       eye_left_corner;
+@property (nonatomic, assign) CGPoint       eye_right_corner;
+@property (nonatomic, assign) CGPoint       eyebrow_lower_middle;
 
-
-
+@property (nonatomic, assign) CGPoint       eye_direction;
 
 
 @end
@@ -96,8 +124,8 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
         
         aspectRatio = image.size.height / image.size.width;
         
-        rectW = 100;
-        rectH = rectW * (image.size.width / image.size.height);
+        rectW = 2;
+        rectH = 2;
         
         rectLength = rectW * rectH;
         attrArr = (GLfloat *)malloc(5 * rectLength * sizeof(GLfloat));
@@ -106,6 +134,11 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
         
         indices = (GLint *)malloc((rectW - 1) * (rectH - 1) * 2 * 3 * sizeof(GLint));
         configure_indices(indices, rectW, rectH);
+     
+        
+        
+        self.eye_direction = CGPointMake(0, 0);
+        
         
     }
     return self;
@@ -183,6 +216,16 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, rectLength * 5 * sizeof(GLfloat), attrArr, GL_STATIC_DRAW);
     
+    
+    [self setPoint:self.eye_top name:@"eye_top"];
+    [self setPoint:self.eye_bottom name:@"eye_bottom"];
+    [self setPoint:self.eye_left_corner name:@"eye_left_corner"];
+    [self setPoint:self.eye_right_corner name:@"eye_right_corner"];
+    [self setPoint:self.eyebrow_lower_middle name:@"eyebrow_lower_middle"];
+    
+    [self setPoint:self.eye_direction name:@"eye_direction"];
+    
+    
     GLuint position = glGetAttribLocation(self.myProgram, "position");
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
     glEnableVertexAttribArray(position);
@@ -218,7 +261,7 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 
 - (void)getFaceFreature
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_7.JPG" ofType:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_9.JPG" ofType:nil];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
@@ -231,22 +274,9 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
         
         NSLog(@"%@", responseObject);
         
-        CGFloat rateW = self.ImgWidth / self.bounds.size.width;
-        CGFloat rateH = self.ImgHeight / self.bounds.size.height;
-        
         NSArray *array = [responseObject valueForKey:@"faces"];
         NSDictionary *face = [array firstObject];
         NSDictionary *face_rectangle = [face valueForKey:@"face_rectangle"];
-        
-        CGFloat height = [[face_rectangle valueForKey:@"height"] floatValue];
-        CGFloat left = [[face_rectangle valueForKey:@"left"] floatValue];
-        CGFloat top = [[face_rectangle valueForKey:@"top"] floatValue];
-        CGFloat width = [[face_rectangle valueForKey:@"width"] floatValue];
-        
-        UIView *faceView = [[UIView alloc] initWithFrame:CGRectMake(left / rateW, top / rateH, width / rateW, height / rateH)];
-        [self addSubview:faceView];
-        faceView.backgroundColor = [UIColor redColor];
-        
         
         
         
@@ -258,21 +288,48 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
         NSDictionary *left_eye_left_corner = [landmark valueForKey:@"left_eye_left_corner"];
         NSDictionary *left_eye_right_corner = [landmark valueForKey:@"left_eye_right_corner"];
         
-        CGPoint eye_top = CGPointMake([[left_eye_top valueForKey:@"x"] floatValue], [[left_eye_top valueForKey:@"y"] floatValue]);
-        CGPoint eye_bottom = CGPointMake([[left_eye_bottom valueForKey:@"x"] floatValue], [[left_eye_bottom valueForKey:@"y"] floatValue]);
-        
-        CGPoint eye_left_corner = CGPointMake([[left_eye_left_corner valueForKey:@"x"] floatValue], [[left_eye_left_corner valueForKey:@"y"] floatValue]);
-        CGPoint eye_right_corner = CGPointMake([[left_eye_right_corner valueForKey:@"x"] floatValue], [[left_eye_right_corner valueForKey:@"y"] floatValue]);
+        NSDictionary *left_eyebrow_lower_middle = [landmark valueForKey:@"left_eyebrow_lower_middle"];
         
         
-        UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(eye_left_corner.x / rateW, eye_top.y / rateH, (eye_right_corner.x - eye_left_corner.x) / rateH, (eye_bottom.y - eye_top.y) / rateH)];
-        [self addSubview:redView];
-        redView.backgroundColor = [UIColor redColor];
+        _eye_top = CGPointMake([[left_eye_top valueForKey:@"x"] floatValue], [[left_eye_top valueForKey:@"y"] floatValue]);
+        _eye_bottom = CGPointMake([[left_eye_bottom valueForKey:@"x"] floatValue], [[left_eye_bottom valueForKey:@"y"] floatValue]);
         
-        eye_top = CGPointMake(eye_top.x / self.ImgWidth * 2 - 1, 1 - eye_top.y / self.ImgHeight * 2);
-        eye_bottom = CGPointMake(eye_bottom.x / self.ImgWidth * 2 - 1, 1 - eye_bottom.y / self.ImgHeight * 2);
-        eye_left_corner = CGPointMake(eye_left_corner.x / self.ImgWidth * 2 - 1, 1 - eye_left_corner.y / self.ImgHeight * 2);
-        eye_right_corner = CGPointMake(eye_right_corner.x / self.ImgWidth * 2 - 1, 1 - eye_right_corner.y / self.ImgHeight * 2);
+        _eye_left_corner = CGPointMake([[left_eye_left_corner valueForKey:@"x"] floatValue], [[left_eye_left_corner valueForKey:@"y"] floatValue]);
+        _eye_right_corner = CGPointMake([[left_eye_right_corner valueForKey:@"x"] floatValue], [[left_eye_right_corner valueForKey:@"y"] floatValue]);
+        
+        _eyebrow_lower_middle = CGPointMake([[left_eyebrow_lower_middle valueForKey:@"x"] floatValue], [[left_eyebrow_lower_middle valueForKey:@"y"] floatValue]);
+        
+
+        _eye_top = CGPointMake(_eye_top.x / self.ImgWidth, _eye_top.y / self.ImgHeight);
+        _eye_bottom = CGPointMake(_eye_bottom.x / self.ImgWidth, _eye_bottom.y / self.ImgHeight);
+        _eye_left_corner = CGPointMake(_eye_left_corner.x / self.ImgWidth, _eye_left_corner.y / self.ImgHeight);
+        _eye_right_corner = CGPointMake(_eye_right_corner.x / self.ImgWidth, _eye_right_corner.y / self.ImgHeight);
+        
+        _eyebrow_lower_middle = CGPointMake(_eyebrow_lower_middle.x / self.ImgWidth, _eyebrow_lower_middle.y / self.ImgHeight);
+        
+        self.eye_direction = CGPointMake(_eyebrow_lower_middle.x - _eye_top.x, _eyebrow_lower_middle.y - _eye_top.y);
+        
+        _eye_top = CGPointMake((_eye_top.x + _eyebrow_lower_middle.x) * 0.5, (_eye_top.y + _eyebrow_lower_middle.y) * 0.5);
+        
+        
+        
+        //        _eye_bottom = CGPointMake(_eye_top.x + (_eyebrow_lower_middle.x - _eye_top.x) * 0.2, _eye_top.y + (_eyebrow_lower_middle.y - _eye_top.y) * 0.2);
+        
+        
+        
+        NSLog(@"_eye_top = %@", NSStringFromCGPoint(_eye_top));
+        NSLog(@"_eye_bottom = %@", NSStringFromCGPoint(_eye_bottom));
+        NSLog(@"_eye_left_corner = %@", NSStringFromCGPoint(_eye_left_corner));
+        NSLog(@"_eye_right_corner = %@", NSStringFromCGPoint(_eye_right_corner));
+        NSLog(@"_eyebrow_lower_middle = %@", NSStringFromCGPoint(_eyebrow_lower_middle));
+        
+        
+        
+        /*
+        CGFloat offset = (eyebrow_lower_middle.y - eye_top.y) * 0.5;
+        CGFloat dist = sqrt((eye_top.x - eye_bottom.x)*(eye_top.x - eye_bottom.x) + (eye_top.y - eye_bottom.y)*(eye_top.y - eye_bottom.y));
+        
+        NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
         
         
         for (int i = 0; i < rectLength; i++)
@@ -281,23 +338,26 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
             float y = attrArr[i * 5 + 1];
             
             if (x > MIN(eye_left_corner.x, eye_right_corner.x) &&
-                x > MAX(eye_left_corner.x, eye_right_corner.x) &&
+                x < MAX(eye_left_corner.x, eye_right_corner.x) &&
                 y > MIN(eye_top.y, eye_bottom.y) &&
-                y < MAX(eye_top.y, eye_bottom.y)
+                y < MAX(eye_top.y + offset, eye_bottom.y)
                 ) {
                 attrArr[i * 5 + 1] = eye_bottom.y;
             }
             
         }
-        
-        
+        NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+         */
+         
+        [self render];
     }];
-    
-    
-    
-    
 }
 
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self getFaceFreature];
+}
 
 
 
