@@ -16,16 +16,6 @@
     
 }
 
-@property (nonatomic , strong) EAGLContext      *myContext;
-@property (nonatomic , strong) CAEAGLLayer      *myEagLayer;
-@property (nonatomic , assign) GLuint           myProgram;
-
-@property (nonatomic , assign) GLuint           myColorRenderBuffer;
-@property (nonatomic , assign) GLuint           myColorFrameBuffer;
-
-
-@property (nonatomic, assign) CGFloat           ImgWidth;
-@property (nonatomic, assign) CGFloat           ImgHeight;
 
 
 @end

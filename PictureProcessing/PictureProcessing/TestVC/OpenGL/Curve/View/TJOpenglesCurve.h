@@ -8,7 +8,7 @@
 
 #import "TJ_OpenglBaseView.h"
 
-@interface TJOpenglesCurve : TJ_OpenglBaseView
+@interface TJOpenglesCurve : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame image:(UIImage *)image;
 
