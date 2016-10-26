@@ -45,23 +45,23 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 
 @interface TJOpenglesCurve ()
 
-@property (nonatomic, strong) UIImage           *image;
+@property (nonatomic, strong) UIImage           *originImg;
 
-@property (nonatomic , strong) EAGLContext* myContext;
-@property (nonatomic , strong) CAEAGLLayer* myEagLayer;
-@property (nonatomic , assign) GLuint       myProgram;
-@property (nonatomic , assign) GLuint       myVertices;
+@property (nonatomic , strong) EAGLContext      *myContext;
+@property (nonatomic , strong) CAEAGLLayer      *myEagLayer;
+@property (nonatomic , assign) GLuint           myProgram;
+@property (nonatomic , assign) GLuint           myVertices;
 
-@property (nonatomic , assign) GLuint myColorRenderBuffer;
-@property (nonatomic , assign) GLuint myColorFrameBuffer;
+@property (nonatomic , assign) GLuint           myColorRenderBuffer;
+@property (nonatomic , assign) GLuint           myColorFrameBuffer;
 
-@property (nonatomic, assign) CGFloat       ImgWidth;
-@property (nonatomic, assign) CGFloat       ImgHeight;
+@property (nonatomic, assign) CGFloat           ImgWidth;
+@property (nonatomic, assign) CGFloat           ImgHeight;
 
-@property (nonatomic, strong) UIImage       *renderImg;
+@property (nonatomic, strong) UIImage           *renderImg;
 
-@property (nonatomic, assign) CGPoint       locationPoint;
-@property (nonatomic, assign) CGPoint       previousPoint;
+@property (nonatomic, assign) CGPoint           locationPoint;
+@property (nonatomic, assign) CGPoint           previousPoint;
 
 
 @end
@@ -97,8 +97,13 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
         firstTouch = YES;
         
         self.backgroundColor = [UIColor whiteColor];
-        self.image = image;
+        self.originImg = image;
         self.renderImg = image;
+        
+        
+        self.ImgWidth = image.size.width;
+        self.ImgHeight = image.size.height;
+        
         
         aspectRatio = image.size.height / image.size.width;
         
@@ -303,8 +308,6 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     glClear(GL_COLOR_BUFFER_BIT);
     
     CGFloat scale = [[UIScreen mainScreen] scale];
-    self.ImgWidth = self.frame.size.width * scale;
-    self.ImgHeight = self.frame.size.height * scale;
     glViewport(0, 0, self.frame.size.width * scale, self.frame.size.height * scale);
     
     
