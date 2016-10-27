@@ -480,4 +480,11 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 }
 
 
+- (void)dealloc
+{
+    free(attrArr);
+    free(indices);
+}
+
+
 @end

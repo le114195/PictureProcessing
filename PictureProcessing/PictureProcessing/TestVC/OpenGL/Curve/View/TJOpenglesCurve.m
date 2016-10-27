@@ -462,7 +462,11 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
 
 
 
-
+- (void)dealloc
+{
+    free(attrArr);
+    free(indices);
+}
 
 
 @end
