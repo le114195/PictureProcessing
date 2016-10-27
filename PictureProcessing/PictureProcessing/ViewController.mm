@@ -41,6 +41,8 @@
     self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛"];
     
     [self tableViewConfigure];
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -69,6 +69,9 @@
 
 - (void)curveEye
 {
+    //sj_20160705_12.JPG
+    //sj_20160705_9.JPG
+    //sj_20160705_14.JPG
     UIImage *image = [UIImage imageNamed:@"sj_20160705_9.JPG"];
     TJOpenglCurveEye *curveEye = [[TJOpenglCurveEye alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
     [self.view addSubview:curveEye];
