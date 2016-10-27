@@ -341,6 +341,7 @@
 		756493811DC0398400FEAF3C /* IMG_0931.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 756493801DC0398400FEAF3C /* IMG_0931.JPG */; };
 		756493841DC0399400FEAF3C /* image005.png in Resources */ = {isa = PBXBuildFile; fileRef = 756493821DC0399400FEAF3C /* image005.png */; };
 		756493851DC0399400FEAF3C /* images001.png in Resources */ = {isa = PBXBuildFile; fileRef = 756493831DC0399400FEAF3C /* images001.png */; };
+		75710BDE1DC1F9B00089A366 /* TJOpenglesCurveEyebrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 75710BDD1DC1F9B00089A366 /* TJOpenglesCurveEyebrow.m */; };
 		7579B2621D828CFA007B0F74 /* Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7579B2601D828CFA007B0F74 /* Draw.cpp */; };
 		75887DFB1DBEF850008757CC /* SSHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DF81DBEF850008757CC /* SSHTTP.m */; };
 		75887DFC1DBEF850008757CC /* TJSSHTTPBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 75887DFA1DBEF850008757CC /* TJSSHTTPBase.m */; };
@@ -941,6 +942,8 @@
 		756493801DC0398400FEAF3C /* IMG_0931.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_0931.JPG; path = ImagePath/IMG_0931.JPG; sourceTree = SOURCE_ROOT; };
 		756493821DC0399400FEAF3C /* image005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image005.png; path = ImagePath/image005.png; sourceTree = SOURCE_ROOT; };
 		756493831DC0399400FEAF3C /* images001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = images001.png; path = ImagePath/images001.png; sourceTree = SOURCE_ROOT; };
+		75710BDC1DC1F9B00089A366 /* TJOpenglesCurveEyebrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglesCurveEyebrow.h; sourceTree = "<group>"; };
+		75710BDD1DC1F9B00089A366 /* TJOpenglesCurveEyebrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglesCurveEyebrow.m; sourceTree = "<group>"; };
 		7579B2601D828CFA007B0F74 /* Draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Draw.cpp; sourceTree = "<group>"; };
 		7579B2611D828CFA007B0F74 /* Draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Draw.hpp; sourceTree = "<group>"; };
 		75887DF71DBEF850008757CC /* SSHTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHTTP.h; sourceTree = "<group>"; };
@@ -1179,6 +1182,8 @@
 				756493021DC0392A00FEAF3C /* TJOpenglCurveEye.m */,
 				755763811DB863B500B581D8 /* TJOpenglesCurve.h */,
 				755763821DB863B500B581D8 /* TJOpenglesCurve.m */,
+				75710BDC1DC1F9B00089A366 /* TJOpenglesCurveEyebrow.h */,
+				75710BDD1DC1F9B00089A366 /* TJOpenglesCurveEyebrow.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2383,6 +2388,7 @@
 				7558E8451DBF94CB00E7EDA5 /* GPUImageColorMatrixFilter.m in Sources */,
 				7558E8DC1DBF94CB00E7EDA5 /* MASConstraintMaker.m in Sources */,
 				7558E87E1DBF94CB00E7EDA5 /* GPUImageLineGenerator.m in Sources */,
+				75710BDE1DC1F9B00089A366 /* TJOpenglesCurveEyebrow.m in Sources */,
 				7558E8B11DBF94CB00E7EDA5 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				7558E8B21DBF94CB00E7EDA5 /* GPUImageSketchFilter.m in Sources */,
 				7558E8301DBF94CB00E7EDA5 /* GPUImageAddBlendFilter.m in Sources */,
