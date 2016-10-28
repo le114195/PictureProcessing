@@ -58,6 +58,10 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
 @property (nonatomic, assign) CGPoint       eyebrow_left_corner;
 @property (nonatomic, assign) CGPoint       eyebrow_right_corner;
 
+
+/** 眼睛的顶部 */
+@property (nonatomic, assign) CGPoint       eye_top;
+
 /** 左眼：左眼角 */
 @property (nonatomic, assign) CGPoint       eye_left_corner;
 
@@ -262,6 +266,7 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         NSDictionary *left_eyebrow_left_corner = [landmark valueForKey:@"left_eyebrow_left_corner"];
         NSDictionary *left_eyebrow_right_corner = [landmark valueForKey:@"left_eyebrow_right_corner"];
         
+        NSDictionary *left_eye_top = [landmark valueForKey:@"left_eye_top"];
         NSDictionary *left_eye_left_corner = [landmark valueForKey:@"left_eye_left_corner"];
         NSDictionary *left_eye_right_corner = [landmark valueForKey:@"left_eye_right_corner"];
         
@@ -275,6 +280,7 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         _eyebrow_left_corner = CGPointMake([[left_eyebrow_left_corner valueForKey:@"x"] floatValue], [[left_eyebrow_left_corner valueForKey:@"y"] floatValue]);
         _eyebrow_right_corner = CGPointMake([[left_eyebrow_right_corner valueForKey:@"x"] floatValue], [[left_eyebrow_right_corner valueForKey:@"y"] floatValue]);
         
+        _eye_top = CGPointMake([[left_eye_top valueForKey:@"x"] floatValue], [[left_eye_top valueForKey:@"y"] floatValue]);
         _eye_left_corner = CGPointMake([[left_eye_left_corner valueForKey:@"x"] floatValue], [[left_eye_left_corner valueForKey:@"y"] floatValue]);
         _eye_right_corner = CGPointMake([[left_eye_right_corner valueForKey:@"x"] floatValue], [[left_eye_right_corner valueForKey:@"y"] floatValue]);
         
@@ -291,9 +297,9 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         _eyebrow_left_corner = CGPointMake(_eyebrow_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_left_corner.y / self.ImgWidth * 2);
         _eyebrow_right_corner = CGPointMake(_eyebrow_right_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_right_corner.y / self.ImgWidth * 2);
         
+        _eye_top = CGPointMake(_eye_top.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_top.y / self.ImgWidth * 2);
         _eye_left_corner = CGPointMake(_eye_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_left_corner.y / self.ImgWidth * 2);
         _eye_right_corner = CGPointMake(_eye_right_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_right_corner.y / self.ImgWidth * 2);
-        
         
         
         
@@ -328,6 +334,27 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
 - (void)algorithm1
 {
     
+    //直线：Ax + By + C = 0;
+    //方向：_eye_left_corner指向_eye_right_corner
+    //经过点_eye_top与_eyebrow_lower_middle的中点
+    CGPoint point0 = CGPointMake((_eye_top.x + _eyebrow_lower_middle.x) * 0.5, (_eye_top.y + _eyebrow_lower_middle.y) * 0.5);
+    CGFloat A, B, C;
+    if (_eye_left_corner.x == _eye_right_corner.x) {
+        A = 1;
+        B = 0;
+        C = -point0.x;
+    }else {
+        
+        NSLog(@"offsetY = %f", (_eye_left_corner.y - _eye_right_corner.y));
+        NSLog(@"offsetX = %f", (_eye_left_corner.x - _eye_right_corner.x));
+        
+        A = - (_eye_left_corner.y - _eye_right_corner.y) / (_eye_left_corner.x - _eye_right_corner.x);
+        B = 1;
+        C = - (point0.y + A * point0.x);
+    }
+    
+
+    
     for (int i = 0; i < rectLength; i++)
     {
         attrArr[i * 5 + 1] *= aspectRatio;
@@ -335,14 +362,13 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         float x = attrArr[i * 5];
         float y = attrArr[i * 5 + 1];
         
-        if (sqrt((self.eyebrow_center.x - x)*(self.eyebrow_center.x - x) + (self.eyebrow_center.y - y)*(self.eyebrow_center.y - y)) < 0.1) {
-            
-            attrArr[i * 5 + 1] -= self.move_dist * self.eyebrow_direction.y;
-            attrArr[i * 5] -= self.move_dist * self.eyebrow_direction.x;
+        if (sqrt((self.eyebrow_center.x - x)*(self.eyebrow_center.x - x) + (self.eyebrow_center.y - y)*(self.eyebrow_center.y - y)) < 0.1 &&
+            (A * x + B * y + C) > 0
+            ) {
+            attrArr[i * 5] += self.move_dist * 1 / sqrt((A/B) * (A/B) + B * B);
+            attrArr[i * 5 + 1] += self.move_dist * (B/A) / sqrt((A/B) * (A/B) + B * B);
         }
-        
         attrArr[i * 5 + 1] *= (1 / aspectRatio);
-        
     }
     
 }
