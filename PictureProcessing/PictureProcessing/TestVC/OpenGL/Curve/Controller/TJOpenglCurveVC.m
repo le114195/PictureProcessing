@@ -9,6 +9,9 @@
 #import "TJOpenglCurveVC.h"
 #import "TJOpenglesCurve.h"
 #import "TJOpenglCurveEye.h"
+#import "TJOpenglesCurveEyebrow.h"
+
+
 
 @interface TJOpenglCurveVC ()
 
@@ -31,7 +34,7 @@
             break;
         }
         case 2:{
-            
+            [curveVC eyebrow];
             break;
         }
             
@@ -73,11 +76,23 @@
     //sj_20160705_9.JPG
     //sj_20160705_14.JPG
     //sj_20160705_10.JPG
-    UIImage *image = [UIImage imageNamed:@"sj_20160705_10.JPG"];
+    UIImage *image = [UIImage imageNamed:@"sj_20160705_9.JPG"];
     TJOpenglCurveEye *curveEye = [[TJOpenglCurveEye alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
     [self.view addSubview:curveEye];
     
 }
+
+
+
+//TJOpenglesCurveEyebrow
+- (void)eyebrow
+{
+    UIImage *image = [UIImage imageNamed:@"sj_20160705_9.JPG"];
+    TJOpenglesCurveEyebrow *curveEyebrow = [[TJOpenglesCurveEyebrow alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
+    [self.view addSubview:curveEyebrow];
+}
+
+
 
 
 

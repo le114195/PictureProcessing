@@ -38,7 +38,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛"];
     
     [self tableViewConfigure];
     
@@ -171,6 +171,11 @@
         }
         case 7:{
             TJOpenglCurveVC *curveVC = [TJOpenglCurveVC curveWithType:1];
+            [self.navigationController pushViewController:curveVC animated:YES];
+            break;
+        }
+        case 8:{
+            TJOpenglCurveVC *curveVC = [TJOpenglCurveVC curveWithType:2];
             [self.navigationController pushViewController:curveVC animated:YES];
             break;
         }

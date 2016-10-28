@@ -292,13 +292,11 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 
 - (void)getFaceFreature
 {
-    
-    
     //sj_20160705_12.JPG
     //sj_20160705_9.JPG
     //sj_20160705_14.JPG
     //sj_20160705_10.JPG
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_10.JPG" ofType:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_9.JPG" ofType:nil];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
@@ -361,7 +359,6 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 - (void)algorithm2
 {
     CGFloat dist = sqrt((_eye_top.x - _eye_bottom.x)*(_eye_top.x - _eye_bottom.x) + (_eye_top.y - _eye_bottom.y)*(_eye_top.y - _eye_bottom.y));
-    CGFloat radius = sqrt((_eye_bottom.x - _eyebrow_lower_middle.x)*(_eye_bottom.x - _eyebrow_lower_middle.x) + (_eye_bottom.y - _eyebrow_lower_middle.y)*(_eye_bottom.y - _eyebrow_lower_middle.y));
     
     //直线方程：Ax + By + C = 0;两个点_eye_left_corner，_eye_right_corner
     CGFloat A, B, C;
