@@ -30,5 +30,4 @@ void configure_indices(GLint *indices, GLint rectW, GLint rectH);
 
 
 
-
 #endif /* TJ_Opengl_C_h */

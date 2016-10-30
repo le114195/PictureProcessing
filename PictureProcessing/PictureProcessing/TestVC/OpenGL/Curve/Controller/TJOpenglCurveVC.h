@@ -10,4 +10,7 @@
 
 @interface TJOpenglCurveVC : TJ_PictureBaseVC
 
++ (instancetype)curveWithType:(int)type;
+
+
 @end

@@ -12,10 +12,20 @@
 @implementation TJ_OpenglBaseView
 
 
-+ (Class)layerClass
+
+
+
+- (void)setPoint:(CGPoint)point name:(NSString *)name
 {
-    return [CAEAGLLayer class];
+    GLuint location = glGetUniformLocation(self.myProgram, [name UTF8String]);
+    GLfloat array[2];
+    array[0] = point.x;
+    array[1] = point.y;
+    glUniform2fv(location, 1, array);
 }
+
+
+
 
 
 - (void)layoutSubviews
@@ -31,7 +41,6 @@
     [self setupFrameBuffer];
     
     [self setupShaders];
-    
 }
 
 
@@ -51,7 +60,7 @@
 
 - (void)setupContext {
     // 指定 OpenGL 渲染 API 的版本，在这里我们使用 OpenGL ES 2.0
-    EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2;
+    EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES3;
     EAGLContext* context = [[EAGLContext alloc] initWithAPI:api];
     if (!context) {
         NSLog(@"Failed to initialize OpenGLES 2.0 context");
@@ -90,7 +99,41 @@
 
 
 
-#pragma mark - 着色器的编译和连接
+
+#pragma mark - 着色器
+
+- (void)setupShaders
+{
+    glClearColor(0, 0.0, 0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    glViewport(0, 0, self.frame.size.width * scale, self.frame.size.height * scale);
+    
+    
+    if (self.myProgram) {
+        glDeleteProgram(self.myProgram);
+        self.myProgram = 0;
+    }
+    self.myProgram = [self loadShaders:VertexShaderString frag:FragmentShaderString];
+    
+    glLinkProgram(self.myProgram);
+    GLint linkSuccess;
+    glGetProgramiv(self.myProgram, GL_LINK_STATUS, &linkSuccess);
+    if (linkSuccess == GL_FALSE) {
+        GLchar messages[256];
+        glGetProgramInfoLog(self.myProgram, sizeof(messages), 0, &messages[0]);
+        NSString *messageString = [NSString stringWithUTF8String:messages];
+        NSLog(@"error%@", messageString);
+        
+        return ;
+    }
+    else {
+        glUseProgram(self.myProgram);
+    }
+}
+
+
 - (GLuint)loadShaders:(NSString *)vert frag:(NSString *)frag {
     GLuint verShader, fragShader;
     GLint program = glCreateProgram();
@@ -118,35 +161,6 @@
 }
 
 
-- (void)setupShaders
-{
-    glClearColor(0, 0.0, 0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    glViewport(0, 0, self.ImgWidth, self.ImgHeight);
-    
-    if (self.myProgram) {
-        glDeleteProgram(self.myProgram);
-        self.myProgram = 0;
-    }
-    self.myProgram = [self loadShaders:VertexShaderString frag:FragmentShaderString];
-    
-    glLinkProgram(self.myProgram);
-    GLint linkSuccess;
-    glGetProgramiv(self.myProgram, GL_LINK_STATUS, &linkSuccess);
-    if (linkSuccess == GL_FALSE) {
-        GLchar messages[256];
-        glGetProgramInfoLog(self.myProgram, sizeof(messages), 0, &messages[0]);
-        NSString *messageString = [NSString stringWithUTF8String:messages];
-        NSLog(@"error%@", messageString);
-        
-        return ;
-    }
-    else {
-        glUseProgram(self.myProgram);
-    }
-}
-
 - (BOOL)validate:(GLuint)_programId {
     GLint logLength, status;
     
@@ -166,6 +180,7 @@
     return YES;
 }
 
+
 - (void)destoryRenderAndFrameBuffer
 {
     glDeleteFramebuffers(1, &_myColorFrameBuffer);
@@ -177,9 +192,10 @@
 
 - (void)dealloc
 {
-    [self validate:self.myProgram];
     [self destoryRenderAndFrameBuffer];
+    [self validate:self.myProgram];
 }
+
 
 
 @end

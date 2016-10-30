@@ -13,6 +13,8 @@
 
 
 
+#define MG_LICENSE_KEY      @"Rm3aQg1NkP80SzrrdjzPQ1KYIqi7KMLo"
+#define MG_LICENSE_SECRE    @"qzUA0fnbKwedUPDvrDm8F8R25tbam8bO"
 
 
 #endif /* ConstHeader_h */
