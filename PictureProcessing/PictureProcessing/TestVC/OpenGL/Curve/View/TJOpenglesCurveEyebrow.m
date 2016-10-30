@@ -237,7 +237,9 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
     //sj_20160705_9.JPG
     //sj_20160705_14.JPG
     //sj_20160705_10.JPG
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_9.JPG" ofType:nil];
+    //sj_20160705_19.JPG
+    //sj_20160705_11.JPG
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_11.JPG" ofType:nil];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
@@ -357,13 +359,13 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
     //直线2：Ax + By + C2 = 0; 经过点_eyebrow_right_corner
     CGFloat C2 = -(_eyebrow_right_corner.y + A*_eyebrow_right_corner.x);
     
-    //直线3：-Ax + By + C3 = 0; 经过点_eyebrow_left_corner 朝(-A, 1)的反方向移动0.1*self.move_dist
-    CGFloat C3 = -(_eyebrow_left_corner.y - A*_eyebrow_left_corner.x);
+    //直线3：-(1/A)x + By + C3 = 0; 经过点_eyebrow_left_corner 朝(-A, 1)的反方向移动0.1*self.move_dist
+    CGFloat C3 = -(_eyebrow_left_corner.y - (1/A)*_eyebrow_left_corner.x);
     
-    //直线4：-Ax + By + C4 = 0; 经过点_eyebrow_right_corner和_right_eyebrow_left_corner的中点
+    //直线4：-(1/A)x + By + C4 = 0; 经过点_eyebrow_right_corner和_right_eyebrow_left_corner的中点
     CGPoint point4 = CGPointMake(_eyebrow_right_corner.x + 0.2 * (_right_eyebrow_left_corner.x - _eyebrow_right_corner.x),
                                  _eyebrow_right_corner.y + 0.2 * (_right_eyebrow_left_corner.y - _eyebrow_right_corner.y));
-    CGFloat C4 = -(point4.y - A*point4.x);
+    CGFloat C4 = -(point4.y - (1/A)*point4.x);
     
     for (int i = 0; i < rectLength; i++)
     {
@@ -392,8 +394,8 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         
         
         if ((A * x + B * y + C)*(C - C2) > 0 &&
-            (-A * x + B * y + C3)*(C3 - C4) > 0 &&
-            (-A * x + B * y + C4) * (C3 - C4) < 0 &&
+            (-(1/A) * x + B * y + C3)*(C3 - C4) > 0 &&
+            (-(1/A) * x + B * y + C4) * (C3 - C4) < 0 &&
             dist00 < self.move_dist * 3)
         {
             
