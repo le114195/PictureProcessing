@@ -229,7 +229,7 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     //sj_20160705_14.JPG
     //sj_20160705_10.JPG
     //sj_20160705_19.JPG
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_19.JPG" ofType:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_11.JPG" ofType:nil];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
