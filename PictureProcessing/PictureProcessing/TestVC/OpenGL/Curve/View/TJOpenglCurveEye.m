@@ -50,9 +50,7 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 @property (nonatomic, assign) CGPoint       eye_left_corner;
 @property (nonatomic, assign) CGPoint       eye_right_corner;
 
-@property (nonatomic, assign) CGPoint       eyebrow_lower_middle;
 
-@property (nonatomic, assign) CGPoint       eye_center;
 
 
 
@@ -222,14 +220,16 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 
 
 
+
 - (void)getFaceFreature
 {
-    //sj_20160705_12.JPG
+    //IMG_0991.JPG
+    //IMG_0992.JPG
+    //IMG_0994.JPG
+    //IMG_4619.JPG
+    //IMG_0944.JPG
     //sj_20160705_9.JPG
-    //sj_20160705_14.JPG
-    //sj_20160705_10.JPG
-    //sj_20160705_19.JPG
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_11.JPG" ofType:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"IMG_0994.JPG" ofType:nil];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
@@ -250,9 +250,6 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
         NSDictionary *left_eye_bottom = [landmark valueForKey:@"left_eye_bottom"];
         NSDictionary *left_eye_left_corner = [landmark valueForKey:@"left_eye_left_corner"];
         NSDictionary *left_eye_right_corner = [landmark valueForKey:@"left_eye_right_corner"];
-        NSDictionary *left_eye_center = [landmark valueForKey:@"left_eye_center"];
-        
-        NSDictionary *left_eyebrow_lower_middle = [landmark valueForKey:@"left_eyebrow_lower_middle"];
         
         
         
@@ -260,23 +257,29 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
         _eye_bottom = CGPointMake([[left_eye_bottom valueForKey:@"x"] floatValue], [[left_eye_bottom valueForKey:@"y"] floatValue]);
         _eye_left_corner = CGPointMake([[left_eye_left_corner valueForKey:@"x"] floatValue], [[left_eye_left_corner valueForKey:@"y"] floatValue]);
         _eye_right_corner = CGPointMake([[left_eye_right_corner valueForKey:@"x"] floatValue], [[left_eye_right_corner valueForKey:@"y"] floatValue]);
-        _eye_center = CGPointMake([[left_eye_center valueForKey:@"x"] floatValue], [[left_eye_center valueForKey:@"y"] floatValue]);
+
         
-        _eyebrow_lower_middle = CGPointMake([[left_eyebrow_lower_middle valueForKey:@"x"] floatValue], [[left_eyebrow_lower_middle valueForKey:@"y"] floatValue]);
+        TJ_GLPoint gl_eye_top, gl_eye_bottom, gl_eye_left_corner, gl_eye_right_corner;
+        gl_eye_top.x = _eye_top.x;
+        gl_eye_top.y = _eye_top.y;
         
+        gl_eye_bottom.x = _eye_bottom.x;
+        gl_eye_bottom.y = _eye_bottom.y;
         
+        gl_eye_left_corner.x = _eye_left_corner.x;
+        gl_eye_left_corner.y = _eye_left_corner.y;
+        
+        gl_eye_right_corner.x = _eye_right_corner.x;
+        gl_eye_right_corner.y = _eye_right_corner.y;
+        
+        tj_curve_eye(attrArr, rectLength, self.ImgWidth, self.ImgHeight, gl_eye_top, gl_eye_bottom, gl_eye_left_corner, gl_eye_right_corner);
         
         _eye_top = CGPointMake(_eye_top.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_top.y / self.ImgWidth * 2);
         _eye_bottom = CGPointMake(_eye_bottom.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_bottom.y / self.ImgWidth * 2);
         _eye_left_corner = CGPointMake(_eye_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_left_corner.y / self.ImgWidth * 2);
         _eye_right_corner = CGPointMake(_eye_right_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_right_corner.y / self.ImgWidth * 2);
-        _eye_center = CGPointMake(_eye_center.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_center.y / self.ImgWidth * 2);
-        _eyebrow_lower_middle = CGPointMake(_eyebrow_lower_middle.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_lower_middle.y / self.ImgWidth * 2);
+        
 
-        
-        
-        [self algorithm3];
-        
         
         [self render];
     }];
@@ -289,12 +292,21 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 }
 
 
-#pragma mark -- 杂眼睛算法
+#pragma mark -- 眨眼睛算法
+
+
+
+
+
+
+
+
+
 - (void)algorithm3
 {
     CGFloat dist = sqrt((_eye_top.x - _eye_bottom.x)*(_eye_top.x - _eye_bottom.x) + (_eye_top.y - _eye_bottom.y)*(_eye_top.y - _eye_bottom.y));
     
-    //直线方程：Ax + By + C = 0;两个点_eye_left_corner，_eye_right_corner
+    //直线方程：Ax + By + C = 0;方向向量_eye_left_corner指向_eye_right_corner
     CGFloat A, B, C;
     if (_eye_left_corner.x == _eye_right_corner.x) {
         A = 1;
@@ -326,6 +338,12 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     
     CGFloat percent;
     CGFloat edgeRate;
+    CGFloat direction;
+    if (A > 0) {
+        direction = 1;
+    }else {
+        direction = -1;
+    }
     
     for (int i = 0; i < rectLength; i++)
     {
@@ -346,19 +364,23 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
             edgeRate = sqrt(edgeRate);
             edgeRate = sqrt(edgeRate);
             
+            if (A < 0) {
+                edgeRate = edgeRate * -1;
+            }
+            
             if (A*x + B*y + C > 0) {
                 if (dist00 < topDist) {
-                    attrArr[i * 5] -= edgeRate * dist00 * A / sqrt(A*A + B*B);
-                    attrArr[i * 5 + 1] -= edgeRate * dist00 * B / sqrt(A*A + B*B);
+                    attrArr[i * 5] -= edgeRate * dist00 * B / sqrt((1/A)*(1/A) + B*B) * direction;
+                    attrArr[i * 5 + 1] -= edgeRate * dist00 * (1/A) / sqrt((1/A)*(1/A) + B*B) * direction;
                 }else if (dist00 < dist + topDist - bottomDist) {
                     percent = topDist / dist00;
 
-                    attrArr[i * 5] -= edgeRate * percent * topDist * A / sqrt(A*A + B*B);
-                    attrArr[i * 5 + 1] -= edgeRate * percent * topDist * B / sqrt(A*A + B*B);
+                    attrArr[i * 5] -= edgeRate * percent * topDist * B / sqrt((1/A)*(1/A) + B*B) * direction;
+                    attrArr[i * 5 + 1] -= edgeRate * percent * topDist * (1/A) / sqrt((1/A)*(1/A) + B*B) * direction;
                 }
             }else if (A*x + B*y + C < 0 && dist00 < bottomDist) {
-                attrArr[i * 5] += dist00 * A / sqrt(A*A + B*B);
-                attrArr[i * 5 + 1] += dist00 * B / sqrt(A*A + B*B);
+                attrArr[i * 5] += dist00 * B / sqrt((1/A)*(1/A) + B*B) * direction;
+                attrArr[i * 5 + 1] += dist00 * (1/A) / sqrt((1/A)*(1/A) + B*B) * direction;
             }
             
             
@@ -420,8 +442,8 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
                     attrArr[i * 5 + 1] -= edgeRate * percent * topDist * B / sqrt(A*A + B*B);
                 }
             }else if (A*x + B*y + C < 0 && dist00 < bottomDist) {
-                attrArr[i * 5] += dist00 * A / sqrt(A*A + B*B);
-                attrArr[i * 5 + 1] += dist00 * B / sqrt(A*A + B*B);
+                attrArr[i * 5] -= dist00 * A / sqrt(A*A + B*B);
+                attrArr[i * 5 + 1] -= dist00 * B / sqrt(A*A + B*B);
             }
         }
         attrArr[i * 5 + 1] *= (1/aspectRatio);

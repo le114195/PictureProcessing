@@ -52,9 +52,6 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
 @property (nonatomic, assign) CGPoint       eyebrow_lower_middle;
 
 
-@property (nonatomic, assign) CGPoint       eyebrow_lower_right_quarter;
-@property (nonatomic, assign) CGPoint       eyebrow_upper_right_quarter;
-
 @property (nonatomic, assign) CGPoint       eyebrow_left_corner;
 @property (nonatomic, assign) CGPoint       eyebrow_right_corner;
 
@@ -233,13 +230,15 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
 {
     
     
-    //sj_20160705_12.JPG
+    //IMG_0991.JPG
+    //IMG_0992.JPG
+    //IMG_0994.JPG
+    //IMG_4619.JPG
+    //IMG_0944.JPG
     //sj_20160705_9.JPG
     //sj_20160705_14.JPG
-    //sj_20160705_10.JPG
-    //sj_20160705_19.JPG
-    //sj_20160705_11.JPG
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_11.JPG" ofType:nil];
+    //sj_20160705_26.JPG
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_26.JPG" ofType:nil];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
@@ -256,12 +255,8 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         
         NSDictionary *landmark = [face valueForKey:@"landmark"];
         
-        
         NSDictionary *left_eyebrow_upper_middle = [landmark valueForKey:@"left_eyebrow_upper_middle"];
         NSDictionary *left_eyebrow_lower_middle = [landmark valueForKey:@"left_eyebrow_lower_middle"];
-        
-        NSDictionary *left_eyebrow_lower_right_quarter = [landmark valueForKey:@"left_eyebrow_lower_right_quarter"];
-        NSDictionary *left_eyebrow_upper_right_quarter = [landmark valueForKey:@"left_eyebrow_upper_right_quarter"];
         
         NSDictionary *left_eyebrow_left_corner = [landmark valueForKey:@"left_eyebrow_left_corner"];
         NSDictionary *left_eyebrow_right_corner = [landmark valueForKey:@"left_eyebrow_right_corner"];
@@ -276,9 +271,6 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         _eyebrow_upper_middle = CGPointMake([[left_eyebrow_upper_middle valueForKey:@"x"] floatValue], [[left_eyebrow_upper_middle valueForKey:@"y"] floatValue]);
         _eyebrow_lower_middle = CGPointMake([[left_eyebrow_lower_middle valueForKey:@"x"] floatValue], [[left_eyebrow_lower_middle valueForKey:@"y"] floatValue]);
         
-        _eyebrow_lower_right_quarter = CGPointMake([[left_eyebrow_lower_right_quarter valueForKey:@"x"] floatValue], [[left_eyebrow_lower_right_quarter valueForKey:@"y"] floatValue]);
-        _eyebrow_upper_right_quarter = CGPointMake([[left_eyebrow_upper_right_quarter valueForKey:@"x"] floatValue], [[left_eyebrow_upper_right_quarter valueForKey:@"y"] floatValue]);
-        
         _eyebrow_left_corner = CGPointMake([[left_eyebrow_left_corner valueForKey:@"x"] floatValue], [[left_eyebrow_left_corner valueForKey:@"y"] floatValue]);
         _eyebrow_right_corner = CGPointMake([[left_eyebrow_right_corner valueForKey:@"x"] floatValue], [[left_eyebrow_right_corner valueForKey:@"y"] floatValue]);
         
@@ -289,30 +281,44 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         _eye_right_corner = CGPointMake([[left_eye_right_corner valueForKey:@"x"] floatValue], [[left_eye_right_corner valueForKey:@"y"] floatValue]);
         
         
+        TJ_GLPoint tj_eye_top, tj_eyebrow_upper_middle, tj_eyebrow_lower_middle, tj_eyebrow_left_corner, tj_eyebrow_right_corner;
+        
+        tj_eye_top.x = _eye_top.x;
+        tj_eye_top.y = _eye_top.y;
+        
+        tj_eyebrow_upper_middle.x = _eyebrow_upper_middle.x;
+        tj_eyebrow_upper_middle.y = _eyebrow_upper_middle.y;
+        
+        tj_eyebrow_lower_middle.x = _eyebrow_lower_middle.x;
+        tj_eyebrow_lower_middle.y = _eyebrow_lower_middle.y;
+        
+        tj_eyebrow_left_corner.x = _eyebrow_left_corner.x;
+        tj_eyebrow_left_corner.y = _eyebrow_left_corner.y;
+        
+        tj_eyebrow_right_corner.x = _eyebrow_right_corner.x;
+        tj_eyebrow_right_corner.y = _eyebrow_right_corner.y;
+        
+        tj_curve_eyebrow(attrArr, rectLength, self.ImgWidth, self.ImgHeight, tj_eye_top, tj_eyebrow_upper_middle, tj_eyebrow_lower_middle, tj_eyebrow_left_corner, tj_eyebrow_right_corner);
         
         
-        
-        _eyebrow_upper_middle = CGPointMake(_eyebrow_upper_middle.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_upper_middle.y / self.ImgWidth * 2);
-        _eyebrow_lower_middle = CGPointMake(_eyebrow_lower_middle.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_lower_middle.y / self.ImgWidth * 2);
-        
-        _eyebrow_lower_right_quarter = CGPointMake(_eyebrow_lower_right_quarter.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_lower_right_quarter.y / self.ImgWidth * 2);
-        _eyebrow_upper_right_quarter = CGPointMake(_eyebrow_upper_right_quarter.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_upper_right_quarter.y / self.ImgWidth * 2);
-        
-        _eyebrow_left_corner = CGPointMake(_eyebrow_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_left_corner.y / self.ImgWidth * 2);
-        _eyebrow_right_corner = CGPointMake(_eyebrow_right_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_right_corner.y / self.ImgWidth * 2);
-        
-        _right_eyebrow_left_corner = CGPointMake(_right_eyebrow_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _right_eyebrow_left_corner.y / self.ImgWidth * 2);
-        
-        _eye_top = CGPointMake(_eye_top.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_top.y / self.ImgWidth * 2);
-        _eye_left_corner = CGPointMake(_eye_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_left_corner.y / self.ImgWidth * 2);
-        _eye_right_corner = CGPointMake(_eye_right_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_right_corner.y / self.ImgWidth * 2);
-        
-        
-        
-        self.move_dist = sqrt((_eyebrow_left_corner.x - _eyebrow_right_corner.x)*(_eyebrow_left_corner.x - _eyebrow_right_corner.x) + (_eyebrow_left_corner.y - _eyebrow_right_corner.y)*(_eyebrow_left_corner.y - _eyebrow_right_corner.y)) * 0.2;
-        
-        
-        [self algorithm2];
+//        
+//        _eyebrow_upper_middle = CGPointMake(_eyebrow_upper_middle.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_upper_middle.y / self.ImgWidth * 2);
+//        _eyebrow_lower_middle = CGPointMake(_eyebrow_lower_middle.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_lower_middle.y / self.ImgWidth * 2);
+//        
+//        _eyebrow_left_corner = CGPointMake(_eyebrow_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_left_corner.y / self.ImgWidth * 2);
+//        _eyebrow_right_corner = CGPointMake(_eyebrow_right_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eyebrow_right_corner.y / self.ImgWidth * 2);
+//        
+//        _right_eyebrow_left_corner = CGPointMake(_right_eyebrow_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _right_eyebrow_left_corner.y / self.ImgWidth * 2);
+//        
+//        _eye_top = CGPointMake(_eye_top.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_top.y / self.ImgWidth * 2);
+//        _eye_left_corner = CGPointMake(_eye_left_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_left_corner.y / self.ImgWidth * 2);
+//        _eye_right_corner = CGPointMake(_eye_right_corner.x / self.ImgWidth * 2 - 1, aspectRatio - _eye_right_corner.y / self.ImgWidth * 2);
+//        
+//        
+//        self.move_dist = sqrt((_eyebrow_left_corner.x - _eyebrow_right_corner.x)*(_eyebrow_left_corner.x - _eyebrow_right_corner.x) + (_eyebrow_left_corner.y - _eyebrow_right_corner.y)*(_eyebrow_left_corner.y - _eyebrow_right_corner.y)) * 0.2;
+//        
+//        
+//        [self algorithm3];
         
         [self render];
     }];
@@ -326,10 +332,89 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
 
 
 
+- (void)algorithm3
+{
+    //直线：Ax + By + C = 0;
+    //方向：_eye_left_corner指向_eye_right_corner
+    //经过点_eye_top与_eyebrow_lower_middle的中点
+    CGPoint point0 = CGPointMake((_eye_top.x + _eyebrow_lower_middle.x) * 0.5, (_eye_top.y + _eyebrow_lower_middle.y) * 0.5);
+    CGFloat A, B, C;
+    if (_eyebrow_left_corner.x == _eyebrow_right_corner.x) {
+        A = 1;
+        B = 0;
+        C = -point0.x;
+    }else {
+        A = - (_eyebrow_left_corner.y - _eyebrow_right_corner.y) / (_eyebrow_left_corner.x - _eyebrow_right_corner.x);
+        B = 1;
+        C = - (point0.y + A * point0.x);
+    }
 
-
-
-
+    
+    //直线2：Ax + By + C2 = 0; 经过点_eyebrow_right_corner
+    CGFloat C2 = -(_eyebrow_right_corner.y + A*_eyebrow_right_corner.x);
+    
+    //直线3：-(1/A)x + By + C3 = 0; 经过点_eyebrow_left_corner 朝(-A, 1)的反方向移动0.1*self.move_dist
+    CGFloat C3 = -(_eyebrow_left_corner.y - (1/A)*_eyebrow_left_corner.x);
+    
+    //直线4：-(1/A)x + By + C4 = 0; 经过点_eyebrow_right_corner和_right_eyebrow_left_corner的中点
+    CGPoint point4 = CGPointMake(_eyebrow_right_corner.x + 0.2 * (_eyebrow_right_corner.x - _eyebrow_left_corner.x),
+                                 _eyebrow_right_corner.y + 0.2 * (_eyebrow_right_corner.y - _eyebrow_left_corner.y));
+    CGFloat C4 = -(point4.y - (1/A)*point4.x);
+    
+    
+    CGFloat move_direction;
+    
+    if (A > 0) {
+        move_direction = 1;
+    }else {
+        move_direction = -1;
+    }
+    
+    
+    for (int i = 0; i < rectLength; i++)
+    {
+        attrArr[i * 5 + 1] *= aspectRatio;
+        
+        float x = attrArr[i * 5];
+        float y = attrArr[i * 5 + 1];
+        
+        //点到直线1的距离
+        CGFloat dist00 = fabs(A*x + B*y + C2) / sqrt(A*A + B*B);
+        
+        //眉毛的最左边到眉毛的最右边的距离
+        CGFloat totalDist = sqrt(2) * sqrt((_eyebrow_left_corner.x - _eyebrow_right_corner.x)*(_eyebrow_left_corner.x - _eyebrow_right_corner.x) + (_eyebrow_left_corner.y - _eyebrow_right_corner.y)*(_eyebrow_left_corner.y - _eyebrow_right_corner.y));
+        CGFloat dist11 = sqrt((x - _eyebrow_right_corner.x)*(x - _eyebrow_right_corner.x) + (y - _eyebrow_right_corner.y)*(y - _eyebrow_right_corner.y));
+        
+        CGFloat percent = (self.move_dist * 3 - dist00) / (self.move_dist * 3);
+        if (percent < 0) {
+            percent = 0;
+        }
+        percent = sqrt(percent);
+        
+        CGFloat percent2 =(totalDist - dist11) / totalDist;
+        if (percent2 < 0) {
+            percent2 = 0;
+        }
+        
+        
+        if ((A * x + B * y + C)*(C - C2) > 0 &&
+            (-(1/A) * x + B * y + C3)*(C3 - C4) > 0 &&
+            (-(1/A) * x + B * y + C4) * (C3 - C4) < 0 &&
+            dist00 < self.move_dist * 3)
+        {
+            if (dist00 < sqrt((_eyebrow_upper_middle.x - _eyebrow_lower_middle.x)*(_eyebrow_upper_middle.x - _eyebrow_lower_middle.x) + (_eyebrow_upper_middle.y - _eyebrow_lower_middle.y)*(_eyebrow_upper_middle.y - _eyebrow_lower_middle.y))) {
+                attrArr[i * 5] += percent2 * self.move_dist * B / sqrt((1/A) * (1/A) + B * B) * move_direction;
+                attrArr[i * 5 + 1] += percent2 * self.move_dist * (B/A) / sqrt((1/A) * (1/A) + B * B) * move_direction;
+                
+            }else {
+                attrArr[i * 5] += percent2 * percent * self.move_dist * B / sqrt((1/A) * (1/A) + B * B) * move_direction;
+                attrArr[i * 5 + 1] += percent2 * percent * self.move_dist * (1/A) / sqrt((1/A) * (1/A) + B * B) * move_direction;
+            }
+        }
+        attrArr[i * 5 + 1] *= (1 / aspectRatio);
+    }
+    
+}
 
 
 - (void)algorithm2
@@ -344,10 +429,6 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
         B = 0;
         C = -point0.x;
     }else {
-        
-        NSLog(@"offsetY = %f", (_eye_left_corner.y - _eye_right_corner.y));
-        NSLog(@"offsetX = %f", (_eye_left_corner.x - _eye_right_corner.x));
-        
         A = - (_eye_left_corner.y - _eye_right_corner.y) / (_eye_left_corner.x - _eye_right_corner.x);
         B = 1;
         C = - (point0.y + A * point0.x);
@@ -360,8 +441,8 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
     CGFloat C3 = -(_eyebrow_left_corner.y - (1/A)*_eyebrow_left_corner.x);
     
     //直线4：-(1/A)x + By + C4 = 0; 经过点_eyebrow_right_corner和_right_eyebrow_left_corner的中点
-    CGPoint point4 = CGPointMake(_eyebrow_right_corner.x + 0.2 * (_right_eyebrow_left_corner.x - _eyebrow_right_corner.x),
-                                 _eyebrow_right_corner.y + 0.2 * (_right_eyebrow_left_corner.y - _eyebrow_right_corner.y));
+    CGPoint point4 = CGPointMake(_eyebrow_right_corner.x + 0.3 * (_eye_right_corner.x - _eye_left_corner.x),
+                                 _eyebrow_right_corner.y + 0.3 * (_eye_right_corner.y - _eye_left_corner.y));
     CGFloat C4 = -(point4.y - (1/A)*point4.x);
 
     
@@ -396,7 +477,6 @@ NSString *const TJ_EyebrowFragmentShaderString = TJ_STRING_ES
             (-(1/A) * x + B * y + C4) * (C3 - C4) < 0 &&
             dist00 < self.move_dist * 3)
         {
-            
             if (dist00 < sqrt((_eyebrow_upper_middle.x - _eyebrow_lower_middle.x)*(_eyebrow_upper_middle.x - _eyebrow_lower_middle.x) + (_eyebrow_upper_middle.y - _eyebrow_lower_middle.y)*(_eyebrow_upper_middle.y - _eyebrow_lower_middle.y))) {
                 attrArr[i * 5] += percent2 * self.move_dist * B / sqrt((1/A) * (1/A) + B * B);
                 attrArr[i * 5 + 1] += percent2 * self.move_dist * (B/A) / sqrt((1/A) * (1/A) + B * B);
