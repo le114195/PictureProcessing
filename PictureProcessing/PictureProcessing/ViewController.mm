@@ -17,8 +17,10 @@
 
 #import "FaceDetectVC.h"
 
-
 #import "TJGIFController.h"
+#import "TJ_CameraController.h"
+#import "GPUVideoCameraController.h"
+
 
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -38,7 +40,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机"];
     
     [self tableViewConfigure];
     
@@ -177,6 +179,18 @@
         case 8:{
             TJOpenglCurveVC *curveVC = [TJOpenglCurveVC curveWithType:2];
             [self.navigationController pushViewController:curveVC animated:YES];
+            
+            break;
+        }
+        case 9:{
+            TJ_CameraController *cameraVC = [[TJ_CameraController alloc] init];
+            [self.navigationController pushViewController:cameraVC animated:YES];
+            break;
+        }
+        case 10:{
+            
+            GPUVideoCameraController *gpuVC = [[GPUVideoCameraController alloc] init];
+            [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
             
