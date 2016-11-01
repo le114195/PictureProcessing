@@ -308,6 +308,13 @@
 		75FE84E01D7AB73100E45DBE /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */; };
 		75FE84E31D7AB75800E45DBE /* TJOpencvBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84E11D7AB75800E45DBE /* TJOpencvBase.cpp */; };
 		75FE84E61D7AB7D900E45DBE /* TJPixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84E41D7AB7D900E45DBE /* TJPixel.cpp */; };
+		75FF91C71DC82DEC0020CBD4 /* TJ_CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FF91C61DC82DEC0020CBD4 /* TJ_CameraController.m */; };
+		75FF91CD1DC82E930020CBD4 /* photograph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FF91C91DC82E930020CBD4 /* photograph@2x.png */; };
+		75FF91CE1DC82E930020CBD4 /* photograph@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FF91CA1DC82E930020CBD4 /* photograph@3x.png */; };
+		75FF91CF1DC82E930020CBD4 /* photograph_Select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FF91CB1DC82E930020CBD4 /* photograph_Select@2x.png */; };
+		75FF91D01DC82E930020CBD4 /* photograph_Select@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FF91CC1DC82E930020CBD4 /* photograph_Select@3x.png */; };
+		75FF91D91DC87B370020CBD4 /* GPUVideoCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FF91D81DC87B370020CBD4 /* GPUVideoCameraController.m */; };
+		75FF91DE1DC883C40020CBD4 /* GPUImageBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FF91DD1DC883C40020CBD4 /* GPUImageBeautifyFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -876,6 +883,16 @@
 		75FE84E21D7AB75800E45DBE /* TJOpencvBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJOpencvBase.hpp; sourceTree = "<group>"; };
 		75FE84E41D7AB7D900E45DBE /* TJPixel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJPixel.cpp; sourceTree = "<group>"; };
 		75FE84E51D7AB7D900E45DBE /* TJPixel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJPixel.hpp; sourceTree = "<group>"; };
+		75FF91C51DC82DEC0020CBD4 /* TJ_CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CameraController.h; sourceTree = "<group>"; };
+		75FF91C61DC82DEC0020CBD4 /* TJ_CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CameraController.m; sourceTree = "<group>"; };
+		75FF91C91DC82E930020CBD4 /* photograph@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photograph@2x.png"; sourceTree = "<group>"; };
+		75FF91CA1DC82E930020CBD4 /* photograph@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photograph@3x.png"; sourceTree = "<group>"; };
+		75FF91CB1DC82E930020CBD4 /* photograph_Select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photograph_Select@2x.png"; sourceTree = "<group>"; };
+		75FF91CC1DC82E930020CBD4 /* photograph_Select@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photograph_Select@3x.png"; sourceTree = "<group>"; };
+		75FF91D71DC87B370020CBD4 /* GPUVideoCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUVideoCameraController.h; sourceTree = "<group>"; };
+		75FF91D81DC87B370020CBD4 /* GPUVideoCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUVideoCameraController.m; sourceTree = "<group>"; };
+		75FF91DC1DC883C40020CBD4 /* GPUImageBeautifyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyFilter.h; sourceTree = "<group>"; };
+		75FF91DD1DC883C40020CBD4 /* GPUImageBeautifyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -924,6 +941,7 @@
 		7556218C1DB9ACD300294C41 /* TestPicture */ = {
 			isa = PBXGroup;
 			children = (
+				75FF91C81DC82E930020CBD4 /* Camera */,
 				7556218D1DB9ACD300294C41 /* brushTexture */,
 				755621941DB9ACD300294C41 /* curve */,
 			);
@@ -1766,6 +1784,7 @@
 		7560A9701D8FC7DE0056AB99 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				75FF91C21DC82DD00020CBD4 /* Camera */,
 				755621A21DB9B80000294C41 /* TJGIFController */,
 				755763BE1DB8A4DD00B581D8 /* FaceDetect */,
 				7560A9711D8FC7DE0056AB99 /* CoreImageList.h */,
@@ -1828,6 +1847,7 @@
 		7594A78C1D5CBBEA00D6F31B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				75FF91DB1DC883B30020CBD4 /* GPUClass */,
 				75887DFD1DBEFB14008757CC /* TJSession */,
 				75887DF61DBEF850008757CC /* NetWork */,
 				75C43EB51D62AD97002F25EF /* Const */,
@@ -1957,6 +1977,53 @@
 			path = Grammar;
 			sourceTree = "<group>";
 		};
+		75FF91C21DC82DD00020CBD4 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				75FF91C31DC82DD00020CBD4 /* Controller */,
+				75FF91C41DC82DD00020CBD4 /* View */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		75FF91C31DC82DD00020CBD4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75FF91C51DC82DEC0020CBD4 /* TJ_CameraController.h */,
+				75FF91C61DC82DEC0020CBD4 /* TJ_CameraController.m */,
+				75FF91D71DC87B370020CBD4 /* GPUVideoCameraController.h */,
+				75FF91D81DC87B370020CBD4 /* GPUVideoCameraController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		75FF91C41DC82DD00020CBD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75FF91C81DC82E930020CBD4 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				75FF91C91DC82E930020CBD4 /* photograph@2x.png */,
+				75FF91CA1DC82E930020CBD4 /* photograph@3x.png */,
+				75FF91CB1DC82E930020CBD4 /* photograph_Select@2x.png */,
+				75FF91CC1DC82E930020CBD4 /* photograph_Select@3x.png */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		75FF91DB1DC883B30020CBD4 /* GPUClass */ = {
+			isa = PBXGroup;
+			children = (
+				75FF91DC1DC883C40020CBD4 /* GPUImageBeautifyFilter.h */,
+				75FF91DD1DC883C40020CBD4 /* GPUImageBeautifyFilter.m */,
+			);
+			path = GPUClass;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1988,7 +2055,7 @@
 				TargetAttributes = {
 					7556F7CD1D5CA0AA008CC401 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 26LY5L23G8;
+						DevelopmentTeam = Y2328J5Z6H;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -2017,6 +2084,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7556219E1DB9ACD400294C41 /* test128.png in Resources */,
+				75FF91CE1DC82E930020CBD4 /* photograph@3x.png in Resources */,
 				755621A01DB9ACD400294C41 /* imageTest003.png in Resources */,
 				756BE4811DC6F37500E08D86 /* IMG_4619.JPG in Resources */,
 				7556219D1DB9ACD400294C41 /* test1.png in Resources */,
@@ -2039,10 +2107,12 @@
 				755621A11DB9ACD400294C41 /* IMG_0963.PNG in Resources */,
 				7558E9831DBF952B00E7EDA5 /* sj_20160705_1.JPG in Resources */,
 				7558E9881DBF952B00E7EDA5 /* sj_20160705_14.JPG in Resources */,
+				75FF91D01DC82E930020CBD4 /* photograph_Select@3x.png in Resources */,
 				7558E9861DBF952B00E7EDA5 /* sj_20160705_12.JPG in Resources */,
 				7558E98E1DBF952B00E7EDA5 /* sj_20160705_2.JPG in Resources */,
 				7558E99E1DBF952B00E7EDA5 /* sj_20160705_7.JPG in Resources */,
 				7558E9841DBF952B00E7EDA5 /* sj_20160705_10.JPG in Resources */,
+				75FF91CF1DC82E930020CBD4 /* photograph_Select@2x.png in Resources */,
 				755621991DB9ACD400294C41 /* brush01.png in Resources */,
 				7558E9921DBF952B00E7EDA5 /* sj_20160705_23.JPG in Resources */,
 				7558E9961DBF952B00E7EDA5 /* sj_20160705_28.JPG in Resources */,
@@ -2058,6 +2128,7 @@
 				7558E8D91DBF94CB00E7EDA5 /* Info.plist in Resources */,
 				7558E9851DBF952B00E7EDA5 /* sj_20160705_11.JPG in Resources */,
 				7558E9891DBF952B00E7EDA5 /* sj_20160705_15.JPG in Resources */,
+				75FF91CD1DC82E930020CBD4 /* photograph@2x.png in Resources */,
 				7558E98F1DBF952B00E7EDA5 /* sj_20160705_20.JPG in Resources */,
 				7558E99B1DBF952B00E7EDA5 /* sj_20160705_4.JPG in Resources */,
 				7556219C1DB9ACD400294C41 /* Particle.png in Resources */,
@@ -2128,6 +2199,7 @@
 				7558E8BB1DBF94CB00E7EDA5 /* GPUImageSphereRefractionFilter.m in Sources */,
 				7558E82F1DBF94CB00E7EDA5 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				7558E8631DBF94CB00E7EDA5 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
+				75FF91C71DC82DEC0020CBD4 /* TJ_CameraController.m in Sources */,
 				7558E8DA1DBF94CB00E7EDA5 /* MASCompositeConstraint.m in Sources */,
 				7558E8771DBF94CB00E7EDA5 /* GPUImageKuwaharaFilter.m in Sources */,
 				7560A97E1D8FC7DE0056AB99 /* OpencvTestVC.mm in Sources */,
@@ -2209,6 +2281,7 @@
 				7558E88E1DBF94CB00E7EDA5 /* GPUImageMovieComposition.m in Sources */,
 				7558E85F1DBF94CB00E7EDA5 /* GPUImageFramebuffer.m in Sources */,
 				7560A97F1D8FC7DE0056AB99 /* TestBaseVC.mm in Sources */,
+				75FF91D91DC87B370020CBD4 /* GPUVideoCameraController.m in Sources */,
 				7558E8A01DBF94CB00E7EDA5 /* GPUImagePolarPixellateFilter.m in Sources */,
 				7558E85C1DBF94CB00E7EDA5 /* GPUImageFilterGroup.m in Sources */,
 				7558E87A1DBF94CB00E7EDA5 /* GPUImageLaplacianFilter.m in Sources */,
@@ -2307,6 +2380,7 @@
 				7558E8B01DBF94CB00E7EDA5 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
 				7558E8511DBF94CB00E7EDA5 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				7558E83A1DBF94CB00E7EDA5 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
+				75FF91DE1DC883C40020CBD4 /* GPUImageBeautifyFilter.m in Sources */,
 				7558E8CA1DBF94CB00E7EDA5 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				7558E8831DBF94CB00E7EDA5 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				7558E88C1DBF94CB00E7EDA5 /* GPUImageMotionDetector.m in Sources */,
@@ -2434,7 +2508,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 26LY5L23G8;
+				DEVELOPMENT_TEAM = Y2328J5Z6H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2452,8 +2526,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba5ebbd8-bfd4-4159-95b7-055622c75636";
-				PROVISIONING_PROFILE_SPECIFIER = PhotostaresDevel20160912;
+				PROVISIONING_PROFILE = "02404653-6b53-4ff0-a635-95247691fa6a";
+				PROVISIONING_PROFILE_SPECIFIER = iOS_Development;
 			};
 			name = Debug;
 		};
@@ -2463,7 +2537,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 26LY5L23G8;
+				DEVELOPMENT_TEAM = Y2328J5Z6H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2481,8 +2555,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba5ebbd8-bfd4-4159-95b7-055622c75636";
-				PROVISIONING_PROFILE_SPECIFIER = PhotostaresDevel20160912;
+				PROVISIONING_PROFILE = "02404653-6b53-4ff0-a635-95247691fa6a";
+				PROVISIONING_PROFILE_SPECIFIER = iOS_Development;
 			};
 			name = Release;
 		};

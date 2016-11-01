@@ -78,7 +78,7 @@
     //IMG_4619.JPG
     //IMG_0944.JPG
     //sj_20160705_9.JPG
-    UIImage *image = [UIImage imageNamed:@"IMG_0994.JPG"];
+    UIImage *image = [UIImage imageNamed:@"IMG_0992.JPG"];
     TJOpenglCurveEye *curveEye = [[TJOpenglCurveEye alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
     [self.view addSubview:curveEye];
     
@@ -98,7 +98,7 @@
     //sj_20160705_9.JPG
     //sj_20160705_14.JPG
     //sj_20160705_26.JPG
-    UIImage *image = [UIImage imageNamed:@"sj_20160705_26.JPG"];
+    UIImage *image = [UIImage imageNamed:@"IMG_0991.JPG"];
     TJOpenglesCurveEyebrow *curveEyebrow = [[TJOpenglesCurveEyebrow alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
     [self.view addSubview:curveEyebrow];
 }

@@ -229,7 +229,7 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     //IMG_4619.JPG
     //IMG_0944.JPG
     //sj_20160705_9.JPG
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"IMG_0994.JPG" ofType:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"IMG_0992.JPG" ofType:nil];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
@@ -382,8 +382,6 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
                 attrArr[i * 5] += dist00 * B / sqrt((1/A)*(1/A) + B*B) * direction;
                 attrArr[i * 5 + 1] += dist00 * (1/A) / sqrt((1/A)*(1/A) + B*B) * direction;
             }
-            
-            
         }
         attrArr[i * 5 + 1] *= (1/aspectRatio);
     }

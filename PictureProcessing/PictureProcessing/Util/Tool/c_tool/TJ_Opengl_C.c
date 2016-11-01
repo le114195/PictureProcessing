@@ -234,7 +234,7 @@ void tj_curve_eyebrow(GLfloat *attrArr, GLuint rectLength, double ImgWidth, doub
         
         if ((A * x + B * y + C)*(C - C2) > 0 &&
             (-(1/A) * x + B * y + C3)*(C3 - C4) > 0 &&
-            (-(1/A) * x + B * y + C4) * (C3 - C4) < 0 &&
+            (-(1/A) * x + B * y + C4)*(C3 - C4) < 0 &&
             dist00 < move_dist * 3)
         {
             if (dist00 < sqrt((_eyebrow_upper_middle.x - _eyebrow_lower_middle.x)*(_eyebrow_upper_middle.x - _eyebrow_lower_middle.x) + (_eyebrow_upper_middle.y - _eyebrow_lower_middle.y)*(_eyebrow_upper_middle.y - _eyebrow_lower_middle.y))) {
