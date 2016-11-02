@@ -10,6 +10,7 @@
 #import "GPUImageBeautifyFilter.h"
 #import "GPUImage.h"
 #import "Masonry.h"
+#import "TJ_GPUBeautifyFilter.h"
 
 @interface GPUVideoCameraController ()<GPUImageVideoCameraDelegate,AVCaptureMetadataOutputObjectsDelegate>
 
@@ -83,7 +84,10 @@
 
 - (void)beautify {
     [self.videoCamera removeAllTargets];
-    GPUImageBeautifyFilter *beautifyFilter = [[GPUImageBeautifyFilter alloc] init];
+
+    //GPUImageBeautifyFilter *beautifyFilter = [[GPUImageBeautifyFilter alloc] init];
+    TJ_GPUBeautifyFilter *beautifyFilter = [[TJ_GPUBeautifyFilter alloc] init];
+    
     [self.videoCamera addTarget:beautifyFilter];
     [beautifyFilter addTarget:self.filterView];
 }

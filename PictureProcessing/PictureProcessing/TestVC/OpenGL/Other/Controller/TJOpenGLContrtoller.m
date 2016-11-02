@@ -17,6 +17,7 @@
 #import "TJOpenglesNewRect.h"
 #import "TJopenglesText2D1.h"
 #import "TJOpenglesCurve.h"
+#import "TJ_TextureTest.h"
 
 
 
@@ -39,7 +40,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    [self paintTypeViewConfigure];
+    [self textureTest];
     
     
     // Do any additional setup after loading the view.
@@ -136,6 +137,21 @@
 }
 
 
+
+
+/** 纹理测试 */
+- (void)textureTest
+{
+    //IMG_0991.JPG
+    //IMG_0992.JPG
+    //IMG_0994.JPG
+    //IMG_4619.JPG
+    //IMG_0944.JPG
+    //sj_20160705_9.JPG
+    UIImage *image = [UIImage imageNamed:@"IMG_0994.JPG"];
+    TJ_TextureTest *texture = [[TJ_TextureTest alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
+    [self.view addSubview:texture];
+}
 
 
 

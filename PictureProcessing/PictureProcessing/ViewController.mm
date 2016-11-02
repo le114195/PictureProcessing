@@ -21,6 +21,8 @@
 #import "TJ_CameraController.h"
 #import "GPUVideoCameraController.h"
 
+#import "TJ_BlurController.h"
+
 
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -40,7 +42,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波"];
     
     [self tableViewConfigure];
     
@@ -193,6 +195,13 @@
             [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
+            
+        case 11:{
+            TJ_BlurController *BTest = [[TJ_BlurController alloc] init];
+            [self.navigationController pushViewController:BTest animated:YES];
+            break;
+        }
+            
             
         default:
             break;
