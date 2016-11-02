@@ -1,15 +1,15 @@
 //
-//  GPUImageBeautifyFilter.m
-//  BeautifyFaceDemo
+//  TJ_GPUBeautifyFilter.m
+//  PictureProcessing
 //
-//  Created by guikz on 16/4/28.
-//  Copyright © 2016年 guikz. All rights reserved.
+//  Created by 勒俊 on 2016/11/2.
+//  Copyright © 2016年 勒俊. All rights reserved.
 //
 
-#import "GPUImageBeautifyFilter.h"
+#import "TJ_GPUBeautifyFilter.h"
 
-// Internal CombinationFilter(It should not be used outside)
-@interface GPUImageCombinationFilter : GPUImageThreeInputFilter
+
+@interface GPUImageCombinationFilter1 : GPUImageTwoInputFilter
 {
     GLint smoothDegreeUniform;
 }
@@ -18,28 +18,26 @@
 
 @end
 
-NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
+NSString *const kGPUImageBeautify1FragmentShaderString = SHADER_STRING
 (
  varying highp vec2 textureCoordinate;
  varying highp vec2 textureCoordinate2;
- varying highp vec2 textureCoordinate3;
- 
+
  uniform sampler2D inputImageTexture;
  uniform sampler2D inputImageTexture2;
- uniform sampler2D inputImageTexture3;
+ 
  uniform mediump float smoothDegree;
  
  void main()
  {
      highp vec4 bilateral = texture2D(inputImageTexture, textureCoordinate);
-     highp vec4 canny = texture2D(inputImageTexture2, textureCoordinate2);
-     highp vec4 origin = texture2D(inputImageTexture3,textureCoordinate3);
+     highp vec4 origin = texture2D(inputImageTexture2,textureCoordinate2);
      highp vec4 smooth;
      lowp float r = origin.r;
      lowp float g = origin.g;
      lowp float b = origin.b;
      
-     if (canny.r < 0.2 && r > 0.3725 && g > 0.1568 && b > 0.0784 && r > b && (max(max(r, g), b) - min(min(r, g), b)) > 0.0588 && abs(r-g) > 0.0588) {
+     if (r > 0.3725 && g > 0.1568 && b > 0.0784 && r > b && (max(max(r, g), b) - min(min(r, g), b)) > 0.0588 && abs(r-g) > 0.0588) {
          smooth = (1.0 - smoothDegree) * (origin - bilateral) + bilateral;
      }
      else {
@@ -52,10 +50,10 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
  }
  );
 
-@implementation GPUImageCombinationFilter
+@implementation GPUImageCombinationFilter1
 
 - (id)init {
-    if (self = [super initWithFragmentShaderFromString:kGPUImageBeautifyFragmentShaderString]) {
+    if (self = [super initWithFragmentShaderFromString:kGPUImageBeautify1FragmentShaderString]) {
         smoothDegreeUniform = [filterProgram uniformIndex:@"smoothDegree"];
     }
     self.intensity = 0.5;
@@ -70,10 +68,8 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
 @end
 
 
+@implementation TJ_GPUBeautifyFilter
 
-
-
-@implementation GPUImageBeautifyFilter
 
 - (id)init;
 {
@@ -87,29 +83,21 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
     bilateralFilter.distanceNormalizationFactor = 4.0;
     [self addFilter:bilateralFilter];
     
-    // Second pass: edge detection
-    cannyEdgeFilter = [[GPUImageCannyEdgeDetectionFilter alloc] init];
-    [self addFilter:cannyEdgeFilter];
-    
     // Third pass: combination bilateral, edge detection and origin
-    combinationFilter = [[GPUImageCombinationFilter alloc] init];
+    combinationFilter = [[GPUImageCombinationFilter1 alloc] init];
     [self addFilter:combinationFilter];
-
     
     // Adjust HSB
     hsbFilter = [[GPUImageHSBFilter alloc] init];
-    //[hsbFilter adjustBrightness:1.1];
-    //[hsbFilter adjustSaturation:1.1];
     
     [hsbFilter adjustBrightness:1.0];
     [hsbFilter adjustSaturation:1.0];
     
     [bilateralFilter addTarget:combinationFilter];
-    [cannyEdgeFilter addTarget:combinationFilter];
     
     [combinationFilter addTarget:hsbFilter];
     
-    self.initialFilters = [NSArray arrayWithObjects:bilateralFilter,cannyEdgeFilter,combinationFilter,nil];
+    self.initialFilters = [NSArray arrayWithObjects:bilateralFilter,combinationFilter,nil];
     self.terminalFilter = hsbFilter;
     
     return self;
@@ -142,5 +130,7 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
         [currentFilter setInputFramebuffer:newInputFramebuffer atIndex:textureIndex];
     }
 }
+
+
 
 @end

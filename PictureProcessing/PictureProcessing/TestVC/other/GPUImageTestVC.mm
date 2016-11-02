@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imgName = @"IMG_0963.PNG";
+    self.imgName = @"bea1.jpg";
     
     
     [self gpuImageTest];
@@ -90,7 +90,10 @@
 //    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];
     
     
-    self.specialFilter = [[GPUImageBulgeDistortionFilter alloc] init];
+    self.specialFilter = [[GPUImageGaussianBlurFilter alloc] init];
+    
+    [self.specialFilter setValue:@4 forKey:@"blurRadiusInPixels"];
+    
     
     self.srcImageView.image = [self.specialFilter imageByFilteringImage:self.originImage];
 

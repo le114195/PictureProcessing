@@ -284,6 +284,7 @@ NSString *const TJ_CurveFragmentShaderString = TJ_STRING_ES
     
     CGContextRelease(spriteContext);
     
+
     // 4绑定纹理到默认的纹理ID（这里只有一张图片，故而相当于默认于片元着色器里面的colorMap，如果有多张图不可以这么做）
     glBindTexture(GL_TEXTURE_2D, 0);
     
