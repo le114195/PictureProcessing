@@ -14,14 +14,25 @@
 
 @interface GPUVideoCameraController ()<GPUImageVideoCameraDelegate,AVCaptureMetadataOutputObjectsDelegate>
 
+@property (nonatomic, strong) UIView                    *cameraView;
+
+
 @property (nonatomic, strong) GPUImageVideoCamera       *videoCamera;
 @property (nonatomic, strong) GPUImageView              *filterView;
 @property (nonatomic, strong) UIButton                  *beautifyButton;
-@property (strong, nonatomic) AVCaptureMetadataOutput   *medaDataOutput;
+
+//相片输出
+@property (nonatomic)AVCaptureStillImageOutput          *ImageOutPut;
+
 @property (strong, nonatomic) dispatch_queue_t          captureQueue;
 @property (nonatomic, strong) NSArray                   *faceObjects;
+    
+@property (nonatomic, strong) TJ_GPUBeautifyFilter      *beautifyFilter;
 
 
+@property (nonatomic, strong) UIImage                   *originImg;
+@property (nonatomic, strong) UIImage                   *renderImg;
+    
 @end
 
 @implementation GPUVideoCameraController
@@ -36,6 +47,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    self.cameraView = [[UIView alloc] initWithFrame:CGRectMake((Screen_Width - 240)*0.5, 64, 240, 320)];
+    self.cameraView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.cameraView];
     
     self.captureQueue = dispatch_queue_create("com.kimsungwhee.mosaiccamera.videoqueue", NULL);
     
@@ -47,10 +63,9 @@
     
     self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
     self.videoCamera.horizontallyMirrorRearFacingCamera = NO;
-    self.filterView = [[GPUImageView alloc] initWithFrame:self.view.frame];
-    self.filterView.center = self.view.center;
+    self.filterView = [[GPUImageView alloc] initWithFrame:self.cameraView.bounds];
     
-    [self.view addSubview:self.filterView];
+    [self.cameraView addSubview:self.filterView];
     
     [self.videoCamera addTarget:self.filterView];
     [self.videoCamera startCameraCapture];
@@ -70,14 +85,11 @@
     
     [self beautify];
     
-    //Meta data
-    self.medaDataOutput = [[AVCaptureMetadataOutput alloc] init];
-    if ([self.videoCamera.captureSession canAddOutput:self.medaDataOutput]) {
-        [self.videoCamera.captureSession addOutput:self.medaDataOutput];
-        
-        self.medaDataOutput.metadataObjectTypes = @[AVMetadataObjectTypeFace];
-        [self.medaDataOutput setMetadataObjectsDelegate:self queue:self.captureQueue];
+    self.ImageOutPut = [[AVCaptureStillImageOutput alloc] init];
+    if ([self.videoCamera.captureSession canAddOutput:self.ImageOutPut]) {
+        [self.videoCamera.captureSession addOutput:self.ImageOutPut];
     }
+
 }
 
 
@@ -86,15 +98,20 @@
     [self.videoCamera removeAllTargets];
 
     //GPUImageBeautifyFilter *beautifyFilter = [[GPUImageBeautifyFilter alloc] init];
-    TJ_GPUBeautifyFilter *beautifyFilter = [[TJ_GPUBeautifyFilter alloc] init];
+    self.beautifyFilter = [[TJ_GPUBeautifyFilter alloc] init];
     
-    [self.videoCamera addTarget:beautifyFilter];
-    [beautifyFilter addTarget:self.filterView];
+    [self.videoCamera addTarget:self.beautifyFilter];
+    [self.beautifyFilter addTarget:self.filterView];
 }
 
 
 
 - (void)beautifyButtonAction {
+    
+    
+    [self shutterCamera];
+    return;
+    
     NSLog(@"做个动画");
     [self.videoCamera rotateCamera];
     self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
@@ -141,46 +158,38 @@
 }
 
 
+#pragma mark - 点击事件
+/** 获取图片 */
+- (void)shutterCamera
+{
+    AVCaptureConnection * videoConnection = [self.ImageOutPut connectionWithMediaType:AVMediaTypeVideo];
+    if (!videoConnection) {
+        NSLog(@"take photo failed!");
+        return;
+    }
+    
+    [self.ImageOutPut captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+        if (imageDataSampleBuffer == NULL) {
+            return;
+        }
+        NSData * imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+        self.originImg = [UIImage imageWithData:imageData];
+        self.renderImg = [self.beautifyFilter imageByFilteringImage:self.originImg];
+
+    }];
+}
+    
 
 #pragma mark - GPUImageVideoCameraDelegate代理方法
-
 /** 用于输出图像 */
 //GPUImageVideoCameraDelegate
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer {
     
-    CIImage *sourceImage;
     
-    CVPixelBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     
-    sourceImage = [CIImage imageWithCVPixelBuffer:imageBuffer
-                                          options:nil];
-    
-    UIImage *image;
-    image = [self imageFromSampleBuffer:sampleBuffer];
 }
 
-- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
-{
-    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    CVPixelBufferLockBaseAddress(imageBuffer, 0);
-    uint8_t *baseAddress = (uint8_t*)CVPixelBufferGetBaseAddress(imageBuffer);
-    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-    size_t width = CVPixelBufferGetWidth(imageBuffer);
-    size_t height = CVPixelBufferGetHeight(imageBuffer);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
-                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    UIImage *image = [UIImage imageWithCGImage:quartzImage];
-    CGImageRelease(quartzImage);
-    if (image) {
-        //        NSLog(@"image ------------------------- %@",image);
-    }
-    return (image);
-}
+
 
 
 @end

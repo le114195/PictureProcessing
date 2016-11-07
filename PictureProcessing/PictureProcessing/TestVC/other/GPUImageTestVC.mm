@@ -8,6 +8,7 @@
 
 #import "GPUImageTestVC.h"
 #import "GPUImageTest.h"
+#import "GPUImageBeautifyFilter.h"
 
 
 @interface GPUImageTestVC ()
@@ -90,13 +91,9 @@
 //    self.srcImageView.image = [self.sepiaFilter imageFromCurrentFramebuffer];
     
     
-    self.specialFilter = [[GPUImageGaussianBlurFilter alloc] init];
-    
-    [self.specialFilter setValue:@4 forKey:@"blurRadiusInPixels"];
-    
-    
+    self.specialFilter = [[GPUImageBilateralFilter alloc] init];
     self.srcImageView.image = [self.specialFilter imageByFilteringImage:self.originImage];
-
+    
 }
 
 
