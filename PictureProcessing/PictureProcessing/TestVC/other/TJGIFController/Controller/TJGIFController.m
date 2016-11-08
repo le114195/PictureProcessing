@@ -12,6 +12,9 @@
 
 @interface TJGIFController ()
 
+@property(nonatomic, strong) NSMutableArray     *imageArrM;
+
+
 @end
 
 @implementation TJGIFController
@@ -20,8 +23,27 @@
     [super viewDidLoad];
 
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    [self encodeGif];
+    self.imageArrM = [NSMutableArray array];
+    
+    for (int i = 0; i < 13; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
+        [self.imageArrM addObject:image];
+    }
+    
+    
+    //650*366
+    UIImageView *gifImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, 325, 183)];
+    gifImageView.animationImages = self.imageArrM; //获取Gif图片列表
+    gifImageView.animationDuration = 2.5;     //执行一次完整动画所需的时长
+    gifImageView.animationRepeatCount = 100;  //动画重复次数
+    [gifImageView startAnimating];
+    [self.view addSubview:gifImageView];
+    
+    
+    
+//    [self encodeGif];
     
     // Do any additional setup after loading the view.
 }
@@ -83,7 +105,7 @@
 {
     //获取源数据image
     NSMutableArray *imgs = [NSMutableArray array];
-    for (int i = 0; i < 60; i++) {
+    for (int i = 0; i < 13; i++) {
         NSString *imgName = [NSString stringWithFormat:@"%d", i];
         [imgs addObject:[UIImage imageNamed:imgName]];
     }
@@ -118,7 +140,7 @@
     
     //设置gif的信息,播放间隔时间,基本数据,和delay时间
     NSDictionary *frameProperties = [NSDictionary
-                                     dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:0.05], (NSString *)kCGImagePropertyGIFDelayTime, nil]
+                                     dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:0.2], (NSString *)kCGImagePropertyGIFDelayTime, nil]
                                      forKey:(NSString *)kCGImagePropertyGIFDictionary];
     
     //设置gif信息
