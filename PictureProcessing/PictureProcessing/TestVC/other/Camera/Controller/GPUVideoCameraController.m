@@ -11,6 +11,7 @@
 #import "GPUImage.h"
 #import "Masonry.h"
 #import "TJ_GPUBeautifyFilter.h"
+#import "UIImage+TJ.h"
 
 @interface GPUVideoCameraController ()<GPUImageVideoCameraDelegate,AVCaptureMetadataOutputObjectsDelegate>
 
@@ -25,8 +26,8 @@
 //相片输出
 @property (nonatomic)AVCaptureStillImageOutput          *ImageOutPut;
 
+
 @property (strong, nonatomic) dispatch_queue_t          captureQueue;
-@property (nonatomic, strong) NSArray                   *faceObjects;
     
 @property (nonatomic, strong) TJ_GPUBeautifyFilter      *beautifyFilter;
 
@@ -39,6 +40,13 @@
 @property (nonatomic, strong)UIButton                   *flashButton;
 
 @property (nonatomic, assign)BOOL                       isflashOn;
+
+
+@property (nonatomic, weak) UIView                      *redView;
+
+
+@property (nonatomic, strong) UIImageView                 *showImgView;
+
 
 @end
 
@@ -56,7 +64,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     
-    self.cameraView = [[UIView alloc] initWithFrame:CGRectMake((Screen_Width - 240)*0.5, 64, 240, 320)];
+//    self.cameraView = [[UIView alloc] initWithFrame:CGRectMake((Screen_Width - 240)*0.5, 64, 240, 320)];
+    self.cameraView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.cameraView.center = self.view.center;
     self.cameraView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.cameraView];
@@ -64,7 +73,7 @@
     
     self.captureQueue = dispatch_queue_create("com.kimsungwhee.mosaiccamera.videoqueue", NULL);
     
-    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];;
+    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh cameraPosition:AVCaptureDevicePositionFront];;
     self.videoCamera.delegate = self;
     
     
@@ -88,10 +97,28 @@
     }
     
     
-    //遮罩图
-    self.coverImgView = [[UIImageView alloc] initWithFrame:self.cameraView.bounds];
-    [self.cameraView addSubview:self.coverImgView];
-    self.coverImgView.image = [UIImage imageNamed:@"coverImg"];
+    //人脸检测
+    AVCaptureMetadataOutput* metaDataOutput =[[AVCaptureMetadataOutput alloc] init];
+    if ([self.videoCamera.captureSession canAddOutput:metaDataOutput]) {
+        [self.videoCamera.captureSession addOutput:metaDataOutput];
+        
+        //_faceUICache =[NSMutableDictionary dictionary];
+        NSArray* supportTypes =metaDataOutput.availableMetadataObjectTypes;
+        
+        //NSLog(@"supports:%@",supportTypes);
+        if ([supportTypes containsObject:AVMetadataObjectTypeFace]) {
+            [metaDataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeFace]];
+            [metaDataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+            
+        }
+    }
+    
+    
+//    //遮罩图517 × 600
+//    self.coverImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 517 * 0.7, 600 * 0.7)];
+//    self.coverImgView.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
+//    [self.view addSubview:self.coverImgView];
+//    self.coverImgView.image = [UIImage imageNamed:@"coverImg"];
     
     
     [self customUI];
@@ -123,6 +150,16 @@
     [_flashButton addTarget:self action:@selector(FlashOn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_flashButton];
     
+    
+    
+    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    [self.view addSubview:redView];
+    self.redView = redView;
+    
+    redView.layer.borderColor = [UIColor redColor].CGColor;
+    redView.layer.borderWidth = 2.0;
+    
+    redView.backgroundColor = [UIColor clearColor];
 }
 
 
@@ -131,7 +168,6 @@
 - (void)beautify {
     [self.videoCamera removeAllTargets];
 
-    //GPUImageBeautifyFilter *beautifyFilter = [[GPUImageBeautifyFilter alloc] init];
     self.beautifyFilter = [[TJ_GPUBeautifyFilter alloc] init];
     
     [self.videoCamera addTarget:self.beautifyFilter];
@@ -182,6 +218,19 @@
 }
 
 
+#pragma mark - set/get
+
+- (UIImageView *)showImgView
+{
+    if (!_showImgView) {
+        _showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, 720 * 0.2, 1280 * 0.2)];
+        [self.view addSubview:_showImgView];
+    }
+    return _showImgView;
+}
+
+
+
 #pragma mark - 点击事件
 
 
@@ -212,6 +261,21 @@
 /** 获取图片 */
 - (void)shutterCamera
 {
+    [self outputImg:^(UIImage *outImg) {
+    
+        self.originImg = outImg;
+        self.renderImg = [self.beautifyFilter imageByFilteringImage:self.originImg];
+        
+        self.showImgView.image = outImg;
+        
+    }];
+    
+}
+
+
+/** 输出图片 */
+- (void)outputImg:(void(^)(UIImage * outImg))completion
+{
     AVCaptureConnection * videoConnection = [self.ImageOutPut connectionWithMediaType:AVMediaTypeVideo];
     if (!videoConnection) {
         NSLog(@"take photo failed!");
@@ -223,12 +287,15 @@
             return;
         }
         NSData * imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-        self.originImg = [UIImage imageWithData:imageData];
-        self.renderImg = [self.beautifyFilter imageByFilteringImage:self.originImg];
-
+        UIImage *image = [UIImage imageWithData:imageData];
+        if (completion) {
+            completion(image);
+        }
     }];
 }
-    
+
+
+
 
 - (void)FlashOn {
     
@@ -259,10 +326,29 @@
 //GPUImageVideoCameraDelegate
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer {
     
-    
-    
+
 }
 
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
+{
+    if (metadataObjects.count != 0)
+    {
+        AVMetadataFaceObject *ddd = [metadataObjects firstObject];
+
+        CGRect newRect = ddd.bounds;
+        
+        newRect.origin.x = self.view.bounds.size.width * ddd.bounds.origin.y;
+        newRect.origin.y = self.view.bounds.size.height * ddd.bounds.origin.x;
+        
+        newRect.size.height = self.view.bounds.size.width * ddd.bounds.size.height;
+        newRect.size.width = self.view.bounds.size.height * ddd.bounds.size.width;
+        
+        self.redView.frame = newRect;
+        
+        //在这里执行检测到人脸后要执行的代码
+        /*人脸数据存在metadataObjects这个数组里，数组中每一个元素对应一个metadataObject对象，该对象的各种属性对应人脸各种信息，具体可以查看API*/
+    }
+}
 
 
 

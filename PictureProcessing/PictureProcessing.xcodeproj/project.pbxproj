@@ -21,6 +21,7 @@
 		751AA5DC1DD076B100C6E1B9 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5CF1DD076B100C6E1B9 /* 7.png */; };
 		751AA5DD1DD076B100C6E1B9 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D01DD076B100C6E1B9 /* 8.png */; };
 		751AA5DE1DD076B100C6E1B9 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D11DD076B100C6E1B9 /* 9.png */; };
+		753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A2B4F1DD409F30003247A /* FaceDetectAPI.m */; };
 		755621991DB9ACD400294C41 /* brush01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7556218E1DB9ACD300294C41 /* brush01.png */; };
 		7556219A1DB9ACD400294C41 /* brush02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7556218F1DB9ACD300294C41 /* brush02.png */; };
 		7556219B1DB9ACD400294C41 /* brush03.png in Resources */ = {isa = PBXBuildFile; fileRef = 755621901DB9ACD300294C41 /* brush03.png */; };
@@ -61,7 +62,7 @@
 		755763DE1DB8B7B300B581D8 /* FaceDetectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 755763DD1DB8B7B300B581D8 /* FaceDetectVC.m */; };
 		755763E41DB8B85B00B581D8 /* TJ_BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755763E31DB8B85B00B581D8 /* TJ_BaseController.m */; };
 		755763E71DB8B8F700B581D8 /* TJ_PictureBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 755763E61DB8B8F700B581D8 /* TJ_PictureBaseVC.m */; };
-		755763EA1DB8BB4100B581D8 /* UIImage+TJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 755763E91DB8BB4100B581D8 /* UIImage+TJ.m */; };
+		755763EA1DB8BB4100B581D8 /* UIImage+TJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755763E91DB8BB4100B581D8 /* UIImage+TJ.mm */; };
 		755763EF1DB8BFC500B581D8 /* ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 755763EE1DB8BFC500B581D8 /* ImagePicker.m */; };
 		7558E6931DBF94B900E7EDA5 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7558E6921DBF94B900E7EDA5 /* opencv2.framework */; };
 		7558E8251DBF94CB00E7EDA5 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7558E6971DBF94CA00E7EDA5 /* AFHTTPSessionManager.m */; };
@@ -355,6 +356,8 @@
 		751AA5CF1DD076B100C6E1B9 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
 		751AA5D01DD076B100C6E1B9 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		751AA5D11DD076B100C6E1B9 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		753A2B4E1DD409F30003247A /* FaceDetectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectAPI.h; sourceTree = "<group>"; };
+		753A2B4F1DD409F30003247A /* FaceDetectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectAPI.m; sourceTree = "<group>"; };
 		75514F3B1D99652500AD957E /* ToolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolHeader.h; sourceTree = "<group>"; };
 		7556218E1DB9ACD300294C41 /* brush01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush01.png; sourceTree = "<group>"; };
 		7556218F1DB9ACD300294C41 /* brush02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush02.png; sourceTree = "<group>"; };
@@ -424,7 +427,7 @@
 		755763E51DB8B8F700B581D8 /* TJ_PictureBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_PictureBaseVC.h; sourceTree = "<group>"; };
 		755763E61DB8B8F700B581D8 /* TJ_PictureBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_PictureBaseVC.m; sourceTree = "<group>"; };
 		755763E81DB8BB4100B581D8 /* UIImage+TJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TJ.h"; sourceTree = "<group>"; };
-		755763E91DB8BB4100B581D8 /* UIImage+TJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TJ.m"; sourceTree = "<group>"; };
+		755763E91DB8BB4100B581D8 /* UIImage+TJ.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+TJ.mm"; sourceTree = "<group>"; };
 		755763ED1DB8BFC500B581D8 /* ImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePicker.h; sourceTree = "<group>"; };
 		755763EE1DB8BFC500B581D8 /* ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePicker.m; sourceTree = "<group>"; };
 		7558E6921DBF94B900E7EDA5 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
@@ -1287,7 +1290,7 @@
 				755763CC1DB8A70900B581D8 /* UIView+TJ.h */,
 				755763CD1DB8A70900B581D8 /* UIView+TJ.m */,
 				755763E81DB8BB4100B581D8 /* UIImage+TJ.h */,
-				755763E91DB8BB4100B581D8 /* UIImage+TJ.m */,
+				755763E91DB8BB4100B581D8 /* UIImage+TJ.mm */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2087,6 +2090,8 @@
 		75FF91C31DC82DD00020CBD4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				753A2B4E1DD409F30003247A /* FaceDetectAPI.h */,
+				753A2B4F1DD409F30003247A /* FaceDetectAPI.m */,
 				75FF91C51DC82DEC0020CBD4 /* TJ_CameraController.h */,
 				75FF91C61DC82DEC0020CBD4 /* TJ_CameraController.m */,
 				75FF91D71DC87B370020CBD4 /* GPUVideoCameraController.h */,
@@ -2400,6 +2405,7 @@
 				755763A01DB863B500B581D8 /* TJOpenglesDemo1.m in Sources */,
 				756493031DC0392A00FEAF3C /* TJOpenglCurveEye.m in Sources */,
 				7558E88E1DBF94CB00E7EDA5 /* GPUImageMovieComposition.m in Sources */,
+				753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */,
 				7558E85F1DBF94CB00E7EDA5 /* GPUImageFramebuffer.m in Sources */,
 				7560A97F1D8FC7DE0056AB99 /* TestBaseVC.mm in Sources */,
 				75FF91D91DC87B370020CBD4 /* GPUVideoCameraController.m in Sources */,
@@ -2456,7 +2462,7 @@
 				7558E8D51DBF94CB00E7EDA5 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				756642DA1DC9BDD500FB528B /* TJ_TextureTest.m in Sources */,
 				7558E8671DBF94CB00E7EDA5 /* GPUImageHalftoneFilter.m in Sources */,
-				755763EA1DB8BB4100B581D8 /* UIImage+TJ.m in Sources */,
+				755763EA1DB8BB4100B581D8 /* UIImage+TJ.mm in Sources */,
 				7558E8601DBF94CB00E7EDA5 /* GPUImageFramebufferCache.m in Sources */,
 				7558E83C1DBF94CB00E7EDA5 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				7558E8851DBF94CB00E7EDA5 /* GPUImageLuminosityBlendFilter.m in Sources */,
