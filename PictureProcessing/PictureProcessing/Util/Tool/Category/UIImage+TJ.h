@@ -13,7 +13,7 @@
 
 - (void)saveImageWithImgName:(NSString *)imgName imageType:(int)imageType;
 
-- (UIImage *)rotate;
+-(UIImage *)fixOrientation;
 
 
 @end

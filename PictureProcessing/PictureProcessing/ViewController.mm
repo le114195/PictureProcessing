@@ -24,6 +24,9 @@
 #import "TJ_BlurController.h"
 
 
+#import "TJMoreLayerController.h"
+
+
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -42,7 +45,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波", @"图层"];
     
     [self tableViewConfigure];
     
@@ -199,6 +202,13 @@
         case 11:{
             TJ_BlurController *BTest = [[TJ_BlurController alloc] init];
             [self.navigationController pushViewController:BTest animated:YES];
+            break;
+        }
+            
+        case 12:{
+            TJMoreLayerController *layerVC = [[TJMoreLayerController alloc] init];
+            [self.navigationController pushViewController:layerVC animated:YES];
+        
             break;
         }
             

@@ -12,6 +12,7 @@
 #import "Masonry.h"
 #import "TJ_GPUBeautifyFilter.h"
 #import "UIImage+TJ.h"
+#import "FaceDetectAPI.h"
 
 @interface GPUVideoCameraController ()<GPUImageVideoCameraDelegate,AVCaptureMetadataOutputObjectsDelegate>
 
@@ -45,8 +46,10 @@
 @property (nonatomic, weak) UIView                      *redView;
 
 
-@property (nonatomic, strong) UIImageView                 *showImgView;
+@property (nonatomic, strong) UIImageView               *showImgView;
 
+
+@property (nonatomic, strong) FaceDetectAPI             *detectAPI;
 
 @end
 
@@ -230,6 +233,15 @@
 }
 
 
+- (FaceDetectAPI *)detectAPI
+{
+    if (!_detectAPI) {
+        _detectAPI = [[FaceDetectAPI alloc] init];
+    }
+    return _detectAPI;
+}
+
+
 
 #pragma mark - 点击事件
 
@@ -262,12 +274,9 @@
 - (void)shutterCamera
 {
     [self outputImg:^(UIImage *outImg) {
-    
-        self.originImg = outImg;
+        UIImage *image = [outImg fixOrientation];
+        self.originImg = image;
         self.renderImg = [self.beautifyFilter imageByFilteringImage:self.originImg];
-        
-        self.showImgView.image = outImg;
-        
     }];
     
 }

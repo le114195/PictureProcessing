@@ -286,11 +286,6 @@
 		7558E99E1DBF952B00E7EDA5 /* sj_20160705_7.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7558E9411DBF952B00E7EDA5 /* sj_20160705_7.JPG */; };
 		7558E99F1DBF952B00E7EDA5 /* sj_20160705_8.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7558E9421DBF952B00E7EDA5 /* sj_20160705_8.JPG */; };
 		7558E9A01DBF952B00E7EDA5 /* sj_20160705_9.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7558E9431DBF952B00E7EDA5 /* sj_20160705_9.JPG */; };
-		7560A97B1D8FC7DE0056AB99 /* CoreImageList.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7560A9721D8FC7DE0056AB99 /* CoreImageList.mm */; };
-		7560A97C1D8FC7DE0056AB99 /* CoreImageVCTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7560A9741D8FC7DE0056AB99 /* CoreImageVCTest.mm */; };
-		7560A97D1D8FC7DE0056AB99 /* GPUImageTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7560A9761D8FC7DE0056AB99 /* GPUImageTestVC.mm */; };
-		7560A97E1D8FC7DE0056AB99 /* OpencvTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7560A9781D8FC7DE0056AB99 /* OpencvTestVC.mm */; };
-		7560A97F1D8FC7DE0056AB99 /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7560A97A1D8FC7DE0056AB99 /* TestBaseVC.mm */; };
 		756493031DC0392A00FEAF3C /* TJOpenglCurveEye.m in Sources */ = {isa = PBXBuildFile; fileRef = 756493021DC0392A00FEAF3C /* TJOpenglCurveEye.m */; };
 		756642D51DC99BE000FB528B /* TJ_GPUBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 756642D41DC99BE000FB528B /* TJ_GPUBeautifyFilter.m */; };
 		756642D71DC9BAFA00FB528B /* bea1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 756642D61DC9BAFA00FB528B /* bea1.jpg */; };
@@ -321,11 +316,16 @@
 		7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */; };
 		7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */; };
 		7594A7B21D5CBEF500D6F31B /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7594A7B11D5CBEF500D6F31B /* TestCell.m */; };
+		759827BC1DD572B300BAC896 /* CoreImageList.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827B31DD572B300BAC896 /* CoreImageList.mm */; };
+		759827BD1DD572B300BAC896 /* CoreImageVCTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827B51DD572B300BAC896 /* CoreImageVCTest.mm */; };
+		759827BE1DD572B300BAC896 /* GPUImageTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827B71DD572B300BAC896 /* GPUImageTestVC.mm */; };
+		759827BF1DD572B300BAC896 /* OpencvTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827B91DD572B300BAC896 /* OpencvTestVC.mm */; };
+		759827C01DD572B300BAC896 /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827BB1DD572B300BAC896 /* TestBaseVC.mm */; };
+		759827C71DD5730200BAC896 /* TJMoreLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759827C61DD5730200BAC896 /* TJMoreLayerController.m */; };
 		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
 		75E191961DB3140F00635091 /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 75E191901DB3140F00635091 /* GLESMath.c */; };
 		75E191971DB3140F00635091 /* GLESUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E191931DB3140F00635091 /* GLESUtils.m */; };
 		75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */; };
-		75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75FB69CD1D7F11AE00FF880F /* DrawController.mm */; };
 		75FE84E01D7AB73100E45DBE /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */; };
 		75FE84E31D7AB75800E45DBE /* TJOpencvBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84E11D7AB75800E45DBE /* TJOpencvBase.cpp */; };
 		75FE84E61D7AB7D900E45DBE /* TJPixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84E41D7AB7D900E45DBE /* TJPixel.cpp */; };
@@ -851,16 +851,6 @@
 		7558E9411DBF952B00E7EDA5 /* sj_20160705_7.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_7.JPG; sourceTree = "<group>"; };
 		7558E9421DBF952B00E7EDA5 /* sj_20160705_8.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_8.JPG; sourceTree = "<group>"; };
 		7558E9431DBF952B00E7EDA5 /* sj_20160705_9.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sj_20160705_9.JPG; sourceTree = "<group>"; };
-		7560A9711D8FC7DE0056AB99 /* CoreImageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageList.h; sourceTree = "<group>"; };
-		7560A9721D8FC7DE0056AB99 /* CoreImageList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageList.mm; sourceTree = "<group>"; };
-		7560A9731D8FC7DE0056AB99 /* CoreImageVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageVCTest.h; sourceTree = "<group>"; };
-		7560A9741D8FC7DE0056AB99 /* CoreImageVCTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageVCTest.mm; sourceTree = "<group>"; };
-		7560A9751D8FC7DE0056AB99 /* GPUImageTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageTestVC.h; sourceTree = "<group>"; };
-		7560A9761D8FC7DE0056AB99 /* GPUImageTestVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageTestVC.mm; sourceTree = "<group>"; };
-		7560A9771D8FC7DE0056AB99 /* OpencvTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpencvTestVC.h; sourceTree = "<group>"; };
-		7560A9781D8FC7DE0056AB99 /* OpencvTestVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpencvTestVC.mm; sourceTree = "<group>"; };
-		7560A9791D8FC7DE0056AB99 /* TestBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseVC.h; sourceTree = "<group>"; };
-		7560A97A1D8FC7DE0056AB99 /* TestBaseVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBaseVC.mm; sourceTree = "<group>"; };
 		756493011DC0392A00FEAF3C /* TJOpenglCurveEye.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglCurveEye.h; sourceTree = "<group>"; };
 		756493021DC0392A00FEAF3C /* TJOpenglCurveEye.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglCurveEye.m; sourceTree = "<group>"; };
 		756642D31DC99BE000FB528B /* TJ_GPUBeautifyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_GPUBeautifyFilter.h; sourceTree = "<group>"; };
@@ -912,6 +902,18 @@
 		7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7594A7B01D5CBEF500D6F31B /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
 		7594A7B11D5CBEF500D6F31B /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
+		759827B21DD572B300BAC896 /* CoreImageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageList.h; sourceTree = "<group>"; };
+		759827B31DD572B300BAC896 /* CoreImageList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageList.mm; sourceTree = "<group>"; };
+		759827B41DD572B300BAC896 /* CoreImageVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageVCTest.h; sourceTree = "<group>"; };
+		759827B51DD572B300BAC896 /* CoreImageVCTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreImageVCTest.mm; sourceTree = "<group>"; };
+		759827B61DD572B300BAC896 /* GPUImageTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageTestVC.h; sourceTree = "<group>"; };
+		759827B71DD572B300BAC896 /* GPUImageTestVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageTestVC.mm; sourceTree = "<group>"; };
+		759827B81DD572B300BAC896 /* OpencvTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpencvTestVC.h; sourceTree = "<group>"; };
+		759827B91DD572B300BAC896 /* OpencvTestVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpencvTestVC.mm; sourceTree = "<group>"; };
+		759827BA1DD572B300BAC896 /* TestBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseVC.h; sourceTree = "<group>"; };
+		759827BB1DD572B300BAC896 /* TestBaseVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBaseVC.mm; sourceTree = "<group>"; };
+		759827C51DD5730200BAC896 /* TJMoreLayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMoreLayerController.h; sourceTree = "<group>"; };
+		759827C61DD5730200BAC896 /* TJMoreLayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMoreLayerController.m; sourceTree = "<group>"; };
 		75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
 		75C43EB61D62ADAC002F25EF /* CorePara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePara.h; sourceTree = "<group>"; };
 		75C43EB71D62ADAC002F25EF /* CorePara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePara.m; sourceTree = "<group>"; };
@@ -923,8 +925,6 @@
 		75E191951DB3140F00635091 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpenGL.cpp; sourceTree = "<group>"; };
 		75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJOpenGL.hpp; sourceTree = "<group>"; };
-		75FB69CC1D7F11AE00FF880F /* DrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawController.h; sourceTree = "<group>"; };
-		75FB69CD1D7F11AE00FF880F /* DrawController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DrawController.mm; sourceTree = "<group>"; };
 		75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GrammarTest.cpp; sourceTree = "<group>"; };
 		75FE84DF1D7AB73100E45DBE /* GrammarTest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GrammarTest.hpp; sourceTree = "<group>"; };
 		75FE84E11D7AB75800E45DBE /* TJOpencvBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpencvBase.cpp; sourceTree = "<group>"; };
@@ -1856,19 +1856,11 @@
 		7560A9701D8FC7DE0056AB99 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				759827C11DD572EB00BAC896 /* MoreLayer */,
+				759827B11DD572B300BAC896 /* PictureProcess */,
 				75FF91C21DC82DD00020CBD4 /* Camera */,
 				755621A21DB9B80000294C41 /* TJGIFController */,
 				755763BE1DB8A4DD00B581D8 /* FaceDetect */,
-				7560A9711D8FC7DE0056AB99 /* CoreImageList.h */,
-				7560A9721D8FC7DE0056AB99 /* CoreImageList.mm */,
-				7560A9731D8FC7DE0056AB99 /* CoreImageVCTest.h */,
-				7560A9741D8FC7DE0056AB99 /* CoreImageVCTest.mm */,
-				7560A9751D8FC7DE0056AB99 /* GPUImageTestVC.h */,
-				7560A9761D8FC7DE0056AB99 /* GPUImageTestVC.mm */,
-				7560A9771D8FC7DE0056AB99 /* OpencvTestVC.h */,
-				7560A9781D8FC7DE0056AB99 /* OpencvTestVC.mm */,
-				7560A9791D8FC7DE0056AB99 /* TestBaseVC.h */,
-				7560A97A1D8FC7DE0056AB99 /* TestBaseVC.mm */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -1998,9 +1990,58 @@
 				755763DF1DB8B84900B581D8 /* BaseClass */,
 				7531A4301D95016B006BC913 /* OpenGL */,
 				7560A9701D8FC7DE0056AB99 /* other */,
-				75FB69CB1D7F119100FF880F /* Draw */,
 			);
 			path = TestVC;
+			sourceTree = "<group>";
+		};
+		759827B11DD572B300BAC896 /* PictureProcess */ = {
+			isa = PBXGroup;
+			children = (
+				759827B21DD572B300BAC896 /* CoreImageList.h */,
+				759827B31DD572B300BAC896 /* CoreImageList.mm */,
+				759827B41DD572B300BAC896 /* CoreImageVCTest.h */,
+				759827B51DD572B300BAC896 /* CoreImageVCTest.mm */,
+				759827B61DD572B300BAC896 /* GPUImageTestVC.h */,
+				759827B71DD572B300BAC896 /* GPUImageTestVC.mm */,
+				759827B81DD572B300BAC896 /* OpencvTestVC.h */,
+				759827B91DD572B300BAC896 /* OpencvTestVC.mm */,
+				759827BA1DD572B300BAC896 /* TestBaseVC.h */,
+				759827BB1DD572B300BAC896 /* TestBaseVC.mm */,
+			);
+			path = PictureProcess;
+			sourceTree = "<group>";
+		};
+		759827C11DD572EB00BAC896 /* MoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				759827C21DD572EB00BAC896 /* Controller */,
+				759827C31DD572EB00BAC896 /* Model */,
+				759827C41DD572EB00BAC896 /* View */,
+			);
+			path = MoreLayer;
+			sourceTree = "<group>";
+		};
+		759827C21DD572EB00BAC896 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				759827C51DD5730200BAC896 /* TJMoreLayerController.h */,
+				759827C61DD5730200BAC896 /* TJMoreLayerController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		759827C31DD572EB00BAC896 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		759827C41DD572EB00BAC896 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		75C43EB51D62AD97002F25EF /* Const */ = {
@@ -2040,15 +2081,6 @@
 				75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */,
 			);
 			path = opengl;
-			sourceTree = "<group>";
-		};
-		75FB69CB1D7F119100FF880F /* Draw */ = {
-			isa = PBXGroup;
-			children = (
-				75FB69CC1D7F11AE00FF880F /* DrawController.h */,
-				75FB69CD1D7F11AE00FF880F /* DrawController.mm */,
-			);
-			path = Draw;
 			sourceTree = "<group>";
 		};
 		75FE84DB1D7AB6FC00E45DBE /* OpnecvBase */ = {
@@ -2275,7 +2307,6 @@
 				755763D91DB8A70900B581D8 /* TJ_GLProgram.m in Sources */,
 				756642E31DC9CBE800FB528B /* TJ_BilateralTest.m in Sources */,
 				7557639D1DB863B500B581D8 /* TJOpenGLContrtoller.m in Sources */,
-				75FB69CE1D7F11AE00FF880F /* DrawController.mm in Sources */,
 				755763E71DB8B8F700B581D8 /* TJ_PictureBaseVC.m in Sources */,
 				7558E88F1DBF94CB00E7EDA5 /* GPUImageMovieWriter.m in Sources */,
 				7558E85A1DBF94CB00E7EDA5 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
@@ -2295,12 +2326,12 @@
 				7558E8E11DBF94CB00E7EDA5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				7558E8801DBF94CB00E7EDA5 /* GPUImageLookupFilter.m in Sources */,
 				7558E8401DBF94CB00E7EDA5 /* GPUImageColorBurnBlendFilter.m in Sources */,
-				7560A97D1D8FC7DE0056AB99 /* GPUImageTestVC.mm in Sources */,
 				75E191961DB3140F00635091 /* GLESMath.c in Sources */,
 				75887E021DBEFB14008757CC /* TJSessionDelegate.m in Sources */,
 				7558E83E1DBF94CB00E7EDA5 /* GPUImageClosingFilter.m in Sources */,
 				7558E8281DBF94CB00E7EDA5 /* AFURLRequestSerialization.m in Sources */,
 				7558E82A1DBF94CB00E7EDA5 /* AFURLSessionManager.m in Sources */,
+				759827C71DD5730200BAC896 /* TJMoreLayerController.m in Sources */,
 				7558E8AD1DBF94CB00E7EDA5 /* GPUImageScreenBlendFilter.m in Sources */,
 				755763A11DB863B500B581D8 /* TJOpenglesNewRect.m in Sources */,
 				75FE84E61D7AB7D900E45DBE /* TJPixel.cpp in Sources */,
@@ -2324,9 +2355,10 @@
 				7558E8631DBF94CB00E7EDA5 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				75FF91C71DC82DEC0020CBD4 /* TJ_CameraController.m in Sources */,
 				7558E8DA1DBF94CB00E7EDA5 /* MASCompositeConstraint.m in Sources */,
+				759827BC1DD572B300BAC896 /* CoreImageList.mm in Sources */,
 				7558E8771DBF94CB00E7EDA5 /* GPUImageKuwaharaFilter.m in Sources */,
-				7560A97E1D8FC7DE0056AB99 /* OpencvTestVC.mm in Sources */,
 				7594A7A11D5CBBEA00D6F31B /* CoreImgeTest.m in Sources */,
+				759827C01DD572B300BAC896 /* TestBaseVC.mm in Sources */,
 				7558E8451DBF94CB00E7EDA5 /* GPUImageColorMatrixFilter.m in Sources */,
 				7558E8DC1DBF94CB00E7EDA5 /* MASConstraintMaker.m in Sources */,
 				7558E87E1DBF94CB00E7EDA5 /* GPUImageLineGenerator.m in Sources */,
@@ -2407,18 +2439,16 @@
 				7558E88E1DBF94CB00E7EDA5 /* GPUImageMovieComposition.m in Sources */,
 				753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */,
 				7558E85F1DBF94CB00E7EDA5 /* GPUImageFramebuffer.m in Sources */,
-				7560A97F1D8FC7DE0056AB99 /* TestBaseVC.mm in Sources */,
 				75FF91D91DC87B370020CBD4 /* GPUVideoCameraController.m in Sources */,
 				7558E8A01DBF94CB00E7EDA5 /* GPUImagePolarPixellateFilter.m in Sources */,
 				7558E85C1DBF94CB00E7EDA5 /* GPUImageFilterGroup.m in Sources */,
 				7558E87A1DBF94CB00E7EDA5 /* GPUImageLaplacianFilter.m in Sources */,
 				7558E8B91DBF94CB00E7EDA5 /* GPUImageSolidColorGenerator.m in Sources */,
 				7558E8BD1DBF94CB00E7EDA5 /* GPUImageStretchDistortionFilter.m in Sources */,
-				7560A97C1D8FC7DE0056AB99 /* CoreImageVCTest.mm in Sources */,
 				7558E8341DBF94CB00E7EDA5 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
 				7558E8501DBF94CB00E7EDA5 /* GPUImageDilationFilter.m in Sources */,
+				759827BD1DD572B300BAC896 /* CoreImageVCTest.mm in Sources */,
 				7558E84C1DBF94CB00E7EDA5 /* GPUImageCrosshairGenerator.m in Sources */,
-				7560A97B1D8FC7DE0056AB99 /* CoreImageList.mm in Sources */,
 				7558E8B81DBF94CB00E7EDA5 /* GPUImageSolarizeFilter.m in Sources */,
 				7558E8781DBF94CB00E7EDA5 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				7558E8DE1DBF94CB00E7EDA5 /* MASViewAttribute.m in Sources */,
@@ -2454,12 +2484,14 @@
 				7558E89E1DBF94CB00E7EDA5 /* GPUImagePixellatePositionFilter.m in Sources */,
 				7558E8261DBF94CB00E7EDA5 /* AFNetworkReachabilityManager.m in Sources */,
 				75887E061DBF2B35008757CC /* TJ_Opengl_C.c in Sources */,
+				759827BF1DD572B300BAC896 /* OpencvTestVC.mm in Sources */,
 				7558E83B1DBF94CB00E7EDA5 /* GPUImageCGAColorspaceFilter.m in Sources */,
 				7558E87B1DBF94CB00E7EDA5 /* GPUImageLevelsFilter.m in Sources */,
 				7558E8B51DBF94CB00E7EDA5 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				7558E8471DBF94CB00E7EDA5 /* GPUImageColourFASTFeatureDetector.m in Sources */,
 				7558E8C11DBF94CB00E7EDA5 /* GPUImageTextureOutput.m in Sources */,
 				7558E8D51DBF94CB00E7EDA5 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
+				759827BE1DD572B300BAC896 /* GPUImageTestVC.mm in Sources */,
 				756642DA1DC9BDD500FB528B /* TJ_TextureTest.m in Sources */,
 				7558E8671DBF94CB00E7EDA5 /* GPUImageHalftoneFilter.m in Sources */,
 				755763EA1DB8BB4100B581D8 /* UIImage+TJ.mm in Sources */,
