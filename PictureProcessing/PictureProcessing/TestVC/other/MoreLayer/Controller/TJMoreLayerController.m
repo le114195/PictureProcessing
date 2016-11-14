@@ -73,6 +73,10 @@
         view.transform = CGAffineTransformScale(view.transform, pinchGesture.scale, pinchGesture.scale);
         pinchGesture.scale = 1;
     }
+    
+//    //缩放大小
+//    CGFloat scale = [(NSNumber *)[view valueForKeyPath:@"layer.transform.scale"] floatValue];
+//    NSLog(@"scale = %f", scale);
 }
 
 /** 旋转 */
@@ -83,6 +87,11 @@
         view.transform = CGAffineTransformRotate(view.transform, rotateGesture.rotation);
         [rotateGesture setRotation:0];
     }
+    
+//    //旋转角度获取方式
+//    CGFloat angle = [(NSNumber *)[view valueForKeyPath:@"layer.transform.rotation.z"] floatValue];
+//    NSLog(@"%f", angle);
+    
 }
 
 /** 平移 */
