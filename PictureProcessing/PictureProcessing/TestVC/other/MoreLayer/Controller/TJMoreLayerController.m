@@ -8,7 +8,7 @@
 
 #import "TJMoreLayerController.h"
 
-@interface TJMoreLayerController ()
+@interface TJMoreLayerController ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableArray            *ImgViewArrM;
 
@@ -25,16 +25,32 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
+    
+    //缩放
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
+    pinchGesture.delegate = self;
+    [self.view addGestureRecognizer:pinchGesture];
+    
+    
+    //旋转
+    UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAction:)];
+    rotationGesture.delegate = self;
+    [self.view addGestureRecognizer:rotationGesture];
+    
+    
+    //平移
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    [panGesture setMinimumNumberOfTouches:1];
+    [panGesture setMaximumNumberOfTouches:1];
+    [self.view addGestureRecognizer:panGesture];
+    
+    
     self.ImgViewArrM = [NSMutableArray array];
     
     self.testImgView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 70, 100)];
     [self.view addSubview:_testImgView];
     self.testImgView.backgroundColor = [UIColor redColor];
     
-    
-    CGAffineTransform transform =CGAffineTransformMakeRotation(M_PI * 0.3);
-    
-    self.testImgView.transform = transform;
     
     // Do any additional setup after loading the view.
 }
@@ -46,23 +62,46 @@
 
 
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+
+#pragma mark - 手势
+
+/** 缩放 */
+- (void)pinchAction:(UIPinchGestureRecognizer *)pinchGesture
 {
- 
-//    self.angle += 0.1;
-//    CGAffineTransform transform =CGAffineTransformMakeRotation(M_PI * self.angle);
-//    
-//    self.testImgView.transform = transform;
-    
-    
-    self.testImgView.center = CGPointMake(200, 250);
-    
-    NSLog(@"frame = %@", NSStringFromCGSize(self.testImgView.frame.size));
-    NSLog(@"bounds = %@", NSStringFromCGSize(self.testImgView.bounds.size));
-    
-    
+    UIView *view = self.testImgView;
+    if (pinchGesture.state == UIGestureRecognizerStateBegan || pinchGesture.state == UIGestureRecognizerStateChanged) {
+        view.transform = CGAffineTransformScale(view.transform, pinchGesture.scale, pinchGesture.scale);
+        pinchGesture.scale = 1;
+    }
 }
 
+/** 旋转 */
+- (void)rotateAction:(UIRotationGestureRecognizer *)rotateGesture
+{
+    UIView *view = self.testImgView;
+    if (rotateGesture.state == UIGestureRecognizerStateBegan || rotateGesture.state == UIGestureRecognizerStateChanged) {
+        view.transform = CGAffineTransformRotate(view.transform, rotateGesture.rotation);
+        [rotateGesture setRotation:0];
+    }
+}
+
+/** 平移 */
+- (void)panAction:(UIPanGestureRecognizer *)panGesture
+{
+    UIView *view = self.testImgView;
+    if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [panGesture translationInView:view.superview];
+        [view setCenter:(CGPoint){view.center.x + translation.x, view.center.y + translation.y}];
+        [panGesture setTranslation:CGPointZero inView:view.superview];
+    }
+}
+
+
+//同时识别多个手势
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
 
 
 
