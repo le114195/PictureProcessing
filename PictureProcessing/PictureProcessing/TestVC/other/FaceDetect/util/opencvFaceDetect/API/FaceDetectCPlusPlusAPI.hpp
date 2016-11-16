@@ -10,11 +10,7 @@
 #define FaceDetectCPlusPlusAPI_hpp
 
 #include <stdio.h>
-#include <string>
-#include <math.h>
-#include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
+#include "FaceFeature.hpp"
 
 
 class FaceDetectCPlusPlusAPI {
@@ -27,11 +23,52 @@ public:
     const std::string file_name_nose = "haarcascade_mcs_nose.xml";
     const std::string file_name_mouth = "haarcascade_mcs_mouth.xml";
     
+
+    /// the image to be displayed,shows rectangles around detected features.
+    cv::Mat displayImage;
+    
+    /// the image obtained after coloring the flood filled pixels as blue
+    cv::Mat floodfillImage;
+    
+    std::string basePath;
+    
+    cv::Rect faceRect;
+    
+    /// the bounding box of the left eye
+    cv::Rect eyeLeftRect;
+    
+    /// the bounding box of the right eye.
+    cv::Rect eyeRightRect;
+    
+    /// the bounding box of the mouth
+    cv::Rect mouthRect;
+    
+    /// the bounding box of the nose
+    cv::Rect noseRect;
+
     
     cv::Mat image;
     
     
-    int detectFeature(CvRect featureROI, cv::Rect* feature_box, std::string filePath);
+    FaceDetectCPlusPlusAPI(cv::Mat img, std::string dirPath);
+    
+    
+    void findFace();
+    
+    
+    void findLeftEye();
+    
+    
+    void findRightEye();
+    
+    
+    void findNose();
+    
+    
+    void findMouth();
+
+    
+    int detectFeature(CvRect featureROI, FaceFeature face_feature, cv::Rect* feature_box, std::string filePath);
     
     
     

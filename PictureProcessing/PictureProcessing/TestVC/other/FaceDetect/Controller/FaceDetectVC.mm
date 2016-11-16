@@ -9,7 +9,8 @@
 #import "FaceDetectVC.h"
 #import "TJSSHTTPBase.h"
 #import "TJURLSession.h"
-
+#import "FaceDetectCPlusPlusAPI.hpp"
+#import <opencv2/imgcodecs/ios.h>
 
 
 
@@ -39,8 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
     
+    [self openCVDetect];
     
     
 //    [self faceTextByImage:self.srcImg];
@@ -51,6 +52,36 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/** openCV人脸检测 */
+- (void)openCVDetect
+{
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_7.JPG" ofType:nil];
+    
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    
+    self.srcImgView.image = image;
+    self.srcImgView.frame = [self resetImageViewFrameWithImage:image top:64 bottom:0];
+    
+    
+    cv::Mat src;
+    UIImageToMat(image, src, 1);
+    
+    NSString *bundlePathString = [[[NSBundle mainBundle] bundlePath] stringByAppendingFormat:@"%@",@"/"];
+    
+    FaceDetectCPlusPlusAPI *detect = new FaceDetectCPlusPlusAPI(src, [bundlePathString cStringUsingEncoding:NSASCIIStringEncoding]);
+    
+    detect->findFace();
+    detect->findMouth();
+    
+    UIImage *image00 = MatToUIImage(detect->displayImage);
+    
+    self.srcImgView.image = image00;
+    
+    delete detect;
+}
+
 
 
 /** face++人脸检测 */
