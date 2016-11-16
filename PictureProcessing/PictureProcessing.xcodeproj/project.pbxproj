@@ -22,6 +22,7 @@
 		751AA5DD1DD076B100C6E1B9 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D01DD076B100C6E1B9 /* 8.png */; };
 		751AA5DE1DD076B100C6E1B9 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D11DD076B100C6E1B9 /* 9.png */; };
 		753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A2B4F1DD409F30003247A /* FaceDetectAPI.m */; };
+		7541382F1DD969D8000C7890 /* TJ_ImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7541382E1DD969D8000C7890 /* TJ_ImgView.m */; };
 		755621991DB9ACD400294C41 /* brush01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7556218E1DB9ACD300294C41 /* brush01.png */; };
 		7556219A1DB9ACD400294C41 /* brush02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7556218F1DB9ACD300294C41 /* brush02.png */; };
 		7556219B1DB9ACD400294C41 /* brush03.png in Resources */ = {isa = PBXBuildFile; fileRef = 755621901DB9ACD300294C41 /* brush03.png */; };
@@ -325,7 +326,6 @@
 		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
 		75E191961DB3140F00635091 /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 75E191901DB3140F00635091 /* GLESMath.c */; };
 		75E191971DB3140F00635091 /* GLESUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E191931DB3140F00635091 /* GLESUtils.m */; };
-		75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */; };
 		75FE84E01D7AB73100E45DBE /* GrammarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */; };
 		75FE84E31D7AB75800E45DBE /* TJOpencvBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84E11D7AB75800E45DBE /* TJOpencvBase.cpp */; };
 		75FE84E61D7AB7D900E45DBE /* TJPixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75FE84E41D7AB7D900E45DBE /* TJPixel.cpp */; };
@@ -358,6 +358,8 @@
 		751AA5D11DD076B100C6E1B9 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
 		753A2B4E1DD409F30003247A /* FaceDetectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectAPI.h; sourceTree = "<group>"; };
 		753A2B4F1DD409F30003247A /* FaceDetectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectAPI.m; sourceTree = "<group>"; };
+		7541382D1DD969D8000C7890 /* TJ_ImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_ImgView.h; sourceTree = "<group>"; };
+		7541382E1DD969D8000C7890 /* TJ_ImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_ImgView.m; sourceTree = "<group>"; };
 		75514F3B1D99652500AD957E /* ToolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolHeader.h; sourceTree = "<group>"; };
 		7556218E1DB9ACD300294C41 /* brush01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush01.png; sourceTree = "<group>"; };
 		7556218F1DB9ACD300294C41 /* brush02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush02.png; sourceTree = "<group>"; };
@@ -923,8 +925,6 @@
 		75E191931DB3140F00635091 /* GLESUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLESUtils.m; sourceTree = "<group>"; };
 		75E191941DB3140F00635091 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		75E191951DB3140F00635091 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
-		75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpenGL.cpp; sourceTree = "<group>"; };
-		75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TJOpenGL.hpp; sourceTree = "<group>"; };
 		75FE84DE1D7AB73100E45DBE /* GrammarTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GrammarTest.cpp; sourceTree = "<group>"; };
 		75FE84DF1D7AB73100E45DBE /* GrammarTest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GrammarTest.hpp; sourceTree = "<group>"; };
 		75FE84E11D7AB75800E45DBE /* TJOpencvBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TJOpencvBase.cpp; sourceTree = "<group>"; };
@@ -1236,6 +1236,7 @@
 		755763BE1DB8A4DD00B581D8 /* FaceDetect */ = {
 			isa = PBXGroup;
 			children = (
+				7574A5B21DDC0999009E65AA /* util */,
 				755763BF1DB8A4DD00B581D8 /* Controller */,
 				755763C01DB8A4DD00B581D8 /* View */,
 			);
@@ -1261,6 +1262,7 @@
 		755763C11DB8A70900B581D8 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				756C60D71DDAECF7002691B4 /* c++_tool */,
 				755763C21DB8A70900B581D8 /* c_tool */,
 				755763C51DB8A70900B581D8 /* Category */,
 				755763CE1DB8A70900B581D8 /* oc_tool */,
@@ -1894,6 +1896,28 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		756C60D71DDAECF7002691B4 /* c++_tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "c++_tool";
+			sourceTree = "<group>";
+		};
+		7574A5B21DDC0999009E65AA /* util */ = {
+			isa = PBXGroup;
+			children = (
+				7574A5B41DDC0999009E65AA /* opencvFaceDetect */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		7574A5B41DDC0999009E65AA /* opencvFaceDetect */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = opencvFaceDetect;
+			sourceTree = "<group>";
+		};
 		7579B02F1D8243A9007B0F74 /* SystemFramework */ = {
 			isa = PBXGroup;
 			children = (
@@ -1955,7 +1979,6 @@
 		7594A78D1D5CBBEA00D6F31B /* C++ */ = {
 			isa = PBXGroup;
 			children = (
-				75F9EDA51D84E498001BA4DC /* opengl */,
 				7579B25F1D828CE4007B0F74 /* Draw */,
 				75FE84DD1D7AB71400E45DBE /* Grammar */,
 				75FE84DB1D7AB6FC00E45DBE /* OpnecvBase */,
@@ -2033,6 +2056,8 @@
 		759827C31DD572EB00BAC896 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7541382D1DD969D8000C7890 /* TJ_ImgView.h */,
+				7541382E1DD969D8000C7890 /* TJ_ImgView.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2072,15 +2097,6 @@
 				75E1918F1DB3140F00635091 /* GLESMath */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		75F9EDA51D84E498001BA4DC /* opengl */ = {
-			isa = PBXGroup;
-			children = (
-				75F9EDA61D84E4B5001BA4DC /* TJOpenGL.cpp */,
-				75F9EDA71D84E4B5001BA4DC /* TJOpenGL.hpp */,
-			);
-			path = opengl;
 			sourceTree = "<group>";
 		};
 		75FE84DB1D7AB6FC00E45DBE /* OpnecvBase */ = {
@@ -2376,6 +2392,7 @@
 				7558E8CB1DBF94CB00E7EDA5 /* GPUImageTwoInputFilter.m in Sources */,
 				7558E8491DBF94CB00E7EDA5 /* GPUImageContext.m in Sources */,
 				7558E8591DBF94CB00E7EDA5 /* GPUImageFalseColorFilter.m in Sources */,
+				7541382F1DD969D8000C7890 /* TJ_ImgView.m in Sources */,
 				755763E41DB8B85B00B581D8 /* TJ_BaseController.m in Sources */,
 				7558E8991DBF94CB00E7EDA5 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				7558E8581DBF94CB00E7EDA5 /* GPUImageExposureFilter.m in Sources */,
@@ -2515,7 +2532,6 @@
 				755763EF1DB8BFC500B581D8 /* ImagePicker.m in Sources */,
 				7558E8C71DBF94CB00E7EDA5 /* GPUImageToneCurveFilter.m in Sources */,
 				7558E8CF1DBF94CB00E7EDA5 /* GPUImageUnsharpMaskFilter.m in Sources */,
-				75F9EDA81D84E4B5001BA4DC /* TJOpenGL.cpp in Sources */,
 				755763D71DB8A70900B581D8 /* UIView+TJ.m in Sources */,
 				7558E8711DBF94CB00E7EDA5 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				7558E8AE1DBF94CB00E7EDA5 /* GPUImageSepiaFilter.m in Sources */,

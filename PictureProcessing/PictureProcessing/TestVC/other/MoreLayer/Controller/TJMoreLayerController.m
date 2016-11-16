@@ -7,12 +7,14 @@
 //
 
 #import "TJMoreLayerController.h"
+#import "TJ_ImgView.h"
+#import "UIImage+TJ.h"
 
 @interface TJMoreLayerController ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableArray            *ImgViewArrM;
 
-@property (nonatomic, strong) UIImageView               *testImgView;
+@property (nonatomic, strong) TJ_ImgView                *testImgView;
 
 @property (nonatomic, assign) CGFloat                   angle;
 
@@ -24,7 +26,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
-    
     
     //缩放
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
@@ -40,17 +41,20 @@
     
     //平移
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    panGesture.delegate = self;
     [panGesture setMinimumNumberOfTouches:1];
-    [panGesture setMaximumNumberOfTouches:1];
+    [panGesture setMaximumNumberOfTouches:2];
     [self.view addGestureRecognizer:panGesture];
     
     
     self.ImgViewArrM = [NSMutableArray array];
-    
-    self.testImgView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 70, 100)];
+    self.testImgView = [[TJ_ImgView alloc] initWithFrame:CGRectMake(100, 100, 70, 100)];
     [self.view addSubview:_testImgView];
-    self.testImgView.backgroundColor = [UIColor redColor];
     
+    self.testImgView.layer.borderWidth = 1.0;
+    self.testImgView.layer.borderColor = [UIColor blueColor].CGColor;
+    
+    self.testImgView.backgroundColor = [UIColor redColor];
     
     // Do any additional setup after loading the view.
 }
@@ -68,36 +72,31 @@
 /** 缩放 */
 - (void)pinchAction:(UIPinchGestureRecognizer *)pinchGesture
 {
-    UIView *view = self.testImgView;
+    TJ_ImgView *view = self.testImgView;
+    if (view.tj_scale > 3.0 && pinchGesture.scale > 1.0) return;
+    if (view.tj_scale < 0.5 && pinchGesture.scale < 1.0) return;
+    
     if (pinchGesture.state == UIGestureRecognizerStateBegan || pinchGesture.state == UIGestureRecognizerStateChanged) {
         view.transform = CGAffineTransformScale(view.transform, pinchGesture.scale, pinchGesture.scale);
         pinchGesture.scale = 1;
     }
-    
-//    //缩放大小
-//    CGFloat scale = [(NSNumber *)[view valueForKeyPath:@"layer.transform.scale"] floatValue];
-//    NSLog(@"scale = %f", scale);
+    view.layer.borderWidth = 1.0 / view.tj_scale;
 }
 
 /** 旋转 */
 - (void)rotateAction:(UIRotationGestureRecognizer *)rotateGesture
 {
-    UIView *view = self.testImgView;
+    TJ_ImgView *view = self.testImgView;
     if (rotateGesture.state == UIGestureRecognizerStateBegan || rotateGesture.state == UIGestureRecognizerStateChanged) {
         view.transform = CGAffineTransformRotate(view.transform, rotateGesture.rotation);
         [rotateGesture setRotation:0];
     }
-    
-//    //旋转角度获取方式
-//    CGFloat angle = [(NSNumber *)[view valueForKeyPath:@"layer.transform.rotation.z"] floatValue];
-//    NSLog(@"%f", angle);
-    
 }
 
 /** 平移 */
 - (void)panAction:(UIPanGestureRecognizer *)panGesture
 {
-    UIView *view = self.testImgView;
+    TJ_ImgView *view = self.testImgView;
     if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [panGesture translationInView:view.superview];
         [view setCenter:(CGPoint){view.center.x + translation.x, view.center.y + translation.y}];
