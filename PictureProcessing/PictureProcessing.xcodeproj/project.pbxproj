@@ -346,6 +346,9 @@
 		759827C01DD572B300BAC896 /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827BB1DD572B300BAC896 /* TestBaseVC.mm */; };
 		759827C71DD5730200BAC896 /* TJMoreLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759827C61DD5730200BAC896 /* TJMoreLayerController.m */; };
 		75BA919D1DDC2EBD00B74EEF /* FaceFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BA919B1DDC2EBD00B74EEF /* FaceFeature.cpp */; };
+		75BA91A71DDC63C400B74EEF /* ptest3.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA91A51DDC63C400B74EEF /* ptest3.png */; };
+		75BA91AD1DDC6B3B00B74EEF /* expression1.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA91AC1DDC6B3B00B74EEF /* expression1.png */; };
+		75BA91AF1DDC6C4B00B74EEF /* rgba1475982568575c1000007m10000071.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA91AE1DDC6C4B00B74EEF /* rgba1475982568575c1000007m10000071.png */; };
 		75C43EB81D62ADAC002F25EF /* CorePara.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C43EB71D62ADAC002F25EF /* CorePara.m */; };
 		75E191961DB3140F00635091 /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 75E191901DB3140F00635091 /* GLESMath.c */; };
 		75E191971DB3140F00635091 /* GLESUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E191931DB3140F00635091 /* GLESUtils.m */; };
@@ -965,6 +968,9 @@
 		75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
 		75BA919B1DDC2EBD00B74EEF /* FaceFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceFeature.cpp; sourceTree = "<group>"; };
 		75BA919C1DDC2EBD00B74EEF /* FaceFeature.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FaceFeature.hpp; sourceTree = "<group>"; };
+		75BA91A51DDC63C400B74EEF /* ptest3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ptest3.png; sourceTree = "<group>"; };
+		75BA91AC1DDC6B3B00B74EEF /* expression1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression1.png; sourceTree = "<group>"; };
+		75BA91AE1DDC6C4B00B74EEF /* rgba1475982568575c1000007m10000071.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rgba1475982568575c1000007m10000071.png; sourceTree = "<group>"; };
 		75C43EB61D62ADAC002F25EF /* CorePara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePara.h; sourceTree = "<group>"; };
 		75C43EB71D62ADAC002F25EF /* CorePara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePara.m; sourceTree = "<group>"; };
 		75E191901DB3140F00635091 /* GLESMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
@@ -2247,6 +2253,9 @@
 		75FF91C81DC82E930020CBD4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				75BA91AE1DDC6C4B00B74EEF /* rgba1475982568575c1000007m10000071.png */,
+				75BA91AC1DDC6B3B00B74EEF /* expression1.png */,
+				75BA91A51DDC63C400B74EEF /* ptest3.png */,
 				751AA5C21DD0720500C6E1B9 /* coverImg.png */,
 				756642D61DC9BAFA00FB528B /* bea1.jpg */,
 				75FF91C91DC82E930020CBD4 /* photograph@2x.png */,
@@ -2369,6 +2378,7 @@
 				751AA5D21DD076B100C6E1B9 /* 0.png in Resources */,
 				7574A5D41DDC0EDB009E65AA /* haarcascade_fullbody.xml in Resources */,
 				7558E9881DBF952B00E7EDA5 /* sj_20160705_14.JPG in Resources */,
+				75BA91A71DDC63C400B74EEF /* ptest3.png in Resources */,
 				75FF91D01DC82E930020CBD4 /* photograph_Select@3x.png in Resources */,
 				751AA5D31DD076B100C6E1B9 /* 1.png in Resources */,
 				751AA5DC1DD076B100C6E1B9 /* 7.png in Resources */,
@@ -2388,6 +2398,7 @@
 				7558E9961DBF952B00E7EDA5 /* sj_20160705_28.JPG in Resources */,
 				758D6EDA1DC7181400693970 /* IMG_0944.JPG in Resources */,
 				751AA5C31DD0720500C6E1B9 /* coverImg.png in Resources */,
+				75BA91AD1DDC6B3B00B74EEF /* expression1.png in Resources */,
 				7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */,
 				758D6ED71DC711D200693970 /* IMG_0992.JPG in Resources */,
 				7558E99D1DBF952B00E7EDA5 /* sj_20160705_6.JPG in Resources */,
@@ -2415,6 +2426,7 @@
 				7556219A1DB9ACD400294C41 /* brush02.png in Resources */,
 				7558E9951DBF952B00E7EDA5 /* sj_20160705_26.JPG in Resources */,
 				7574A5E11DDC0EDB009E65AA /* haarcascade_righteye_2splits.xml in Resources */,
+				75BA91AF1DDC6C4B00B74EEF /* rgba1475982568575c1000007m10000071.png in Resources */,
 				7574A5D01DDC0EDB009E65AA /* haarcascade_frontalface_alt.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

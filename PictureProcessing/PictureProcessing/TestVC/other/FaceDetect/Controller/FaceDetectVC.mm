@@ -57,9 +57,9 @@
 - (void)openCVDetect
 {
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_7.JPG" ofType:nil];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_7.JPG" ofType:nil];
     
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    UIImage *image = [UIImage imageNamed:@"rgba1475982568575c1000007m10000071"];
     
     self.srcImgView.image = image;
     self.srcImgView.frame = [self resetImageViewFrameWithImage:image top:64 bottom:0];
@@ -78,6 +78,10 @@
     UIImage *image00 = MatToUIImage(detect->displayImage);
     
     self.srcImgView.image = image00;
+    
+    float width = detect->faceRect.width;
+    
+    NSLog(@"%f", width);
     
     delete detect;
 }
