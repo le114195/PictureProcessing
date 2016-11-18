@@ -163,7 +163,6 @@ NSString *const TJ_TextureTestFragmentShaderString = TJ_STRING_ES
     
     float fw = width, fh = height;
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
-    glBindTexture(GL_TEXTURE_2D, 0);
     
     free(spriteData);
     return 0;
@@ -181,7 +180,8 @@ NSString *const TJ_TextureTestFragmentShaderString = TJ_STRING_ES
     
     
     GLuint textureLocation = glGetUniformLocation(self.myProgram, "textureColor");
-    glUniform1i(textureLocation, 0);
+    glUniform1i(textureLocation, textureID);
+
     
     
     GLuint position = glGetAttribLocation(self.myProgram, "position");

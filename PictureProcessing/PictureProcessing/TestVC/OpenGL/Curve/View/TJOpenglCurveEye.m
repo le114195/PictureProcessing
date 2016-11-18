@@ -33,10 +33,10 @@ NSString *const TJ_CurveEyeVertexShaderString = TJ_STRING_ES
 NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 (
  varying lowp vec2 varyTextCoord;
- uniform sampler2D colorMap;
+ uniform sampler2D textureColor;
  void main()
  {
-     gl_FragColor = texture2D(colorMap, varyTextCoord);
+     gl_FragColor = texture2D(textureColor, varyTextCoord);
      
  }
  
@@ -49,8 +49,6 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 @property (nonatomic, assign) CGPoint       eye_bottom;
 @property (nonatomic, assign) CGPoint       eye_left_corner;
 @property (nonatomic, assign) CGPoint       eye_right_corner;
-
-
 
 
 
@@ -72,6 +70,8 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     GLint           *indices;
     
     GLfloat         aspectRatio;
+    
+    GLuint          textureID;
 }
 
 + (Class)layerClass
@@ -132,6 +132,9 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    [self setupTexture:self.renderImg];
+
     [self render];
 }
 
@@ -159,8 +162,9 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     
     CGContextRelease(spriteContext);
     
-    // 4绑定纹理到默认的纹理ID（这里只有一张图片，故而相当于默认于片元着色器里面的colorMap，如果有多张图不可以这么做）
-    glBindTexture(GL_TEXTURE_2D, 0);
+    glGenTextures(1, &textureID);
+    
+    glBindTexture(GL_TEXTURE_2D, textureID);
     
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
@@ -169,7 +173,17 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     
     float fw = width, fh = height;
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
-    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    
+    
+    //将纹理与片段着色器对应起来
+    GLuint textureLocation = glGetUniformLocation(self.myProgram, "textureColor");
+    glUniform1i(textureLocation, 0);
+    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    
+    
     
     free(spriteData);
     return 0;
@@ -194,9 +208,6 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     GLuint textCoor = glGetAttribLocation(self.myProgram, "textCoordinate");
     glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
     glEnableVertexAttribArray(textCoor);
-    
-    
-    [self setupTexture:self.renderImg];
     
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);

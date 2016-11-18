@@ -9,7 +9,8 @@
 #import "FaceDetectVC.h"
 #import "TJSSHTTPBase.h"
 #import "TJURLSession.h"
-
+#import "FaceDetectCPlusPlusAPI.hpp"
+#import <opencv2/imgcodecs/ios.h>
 
 
 
@@ -39,6 +40,57 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    [self openCVDetect];
+    
+    
+//    [self faceTextByImage:self.srcImg];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/** openCV人脸检测 */
+- (void)openCVDetect
+{
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"sj_20160705_7.JPG" ofType:nil];
+    
+    UIImage *image = [UIImage imageNamed:@"rgba1475982568575c1000007m10000071"];
+    
+    self.srcImgView.image = image;
+    self.srcImgView.frame = [self resetImageViewFrameWithImage:image top:64 bottom:0];
+    
+    
+    cv::Mat src;
+    UIImageToMat(image, src, 1);
+    
+    NSString *bundlePathString = [[[NSBundle mainBundle] bundlePath] stringByAppendingFormat:@"%@",@"/"];
+    
+    FaceDetectCPlusPlusAPI *detect = new FaceDetectCPlusPlusAPI(src, [bundlePathString cStringUsingEncoding:NSASCIIStringEncoding]);
+    
+    detect->findFace();
+    detect->findMouth();
+    
+    UIImage *image00 = MatToUIImage(detect->displayImage);
+    
+    self.srcImgView.image = image00;
+    
+    float width = detect->faceRect.width;
+    
+    NSLog(@"%f", width);
+    
+    delete detect;
+}
+
+
+
+/** face++人脸检测 */
+- (void)facePlusDetect
+{
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:MG_LICENSE_KEY forKey:@"api_key"];
     [dict setValue:MG_LICENSE_SECRE forKey:@"api_secret"];
@@ -86,24 +138,13 @@
         self.face_rectV.frame = CGRectMake(left / self.ImgRateW, top / self.ImgRateH, width / self.ImgRateW, height / self.ImgRateH);
         
     }];
-    
-    
-    
-//    [self faceTextByImage:self.srcImg];
-    // Do any additional setup after loading the view.
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    
     
 }
 

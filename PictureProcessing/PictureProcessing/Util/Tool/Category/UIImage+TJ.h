@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface UIImage (TJ)
 
 
 - (void)saveImageWithImgName:(NSString *)imgName imageType:(int)imageType;
+
+-(UIImage *)fixOrientation;
 
 
 @end
