@@ -2308,7 +2308,7 @@
 				TargetAttributes = {
 					7556F7CD1D5CA0AA008CC401 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Y2328J5Z6H;
+						DevelopmentTeam = 26LY5L23G8;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -2808,7 +2808,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y2328J5Z6H;
+				DEVELOPMENT_TEAM = 26LY5L23G8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2826,8 +2826,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02404653-6b53-4ff0-a635-95247691fa6a";
-				PROVISIONING_PROFILE_SPECIFIER = iOS_Development;
+				PROVISIONING_PROFILE = "cb603f80-56e6-4e09-9a69-b2d090a1b873";
+				PROVISIONING_PROFILE_SPECIFIER = photostarsDevel20161026;
 			};
 			name = Debug;
 		};
@@ -2837,7 +2837,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y2328J5Z6H;
+				DEVELOPMENT_TEAM = 26LY5L23G8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2855,8 +2855,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.imsiper.tj.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02404653-6b53-4ff0-a635-95247691fa6a";
-				PROVISIONING_PROFILE_SPECIFIER = iOS_Development;
+				PROVISIONING_PROFILE = "cb603f80-56e6-4e09-9a69-b2d090a1b873";
+				PROVISIONING_PROFILE_SPECIFIER = photostarsDevel20161026;
 			};
 			name = Release;
 		};
