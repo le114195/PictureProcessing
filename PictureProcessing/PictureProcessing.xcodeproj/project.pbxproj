@@ -21,6 +21,7 @@
 		751AA5DC1DD076B100C6E1B9 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5CF1DD076B100C6E1B9 /* 7.png */; };
 		751AA5DD1DD076B100C6E1B9 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D01DD076B100C6E1B9 /* 8.png */; };
 		751AA5DE1DD076B100C6E1B9 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D11DD076B100C6E1B9 /* 9.png */; };
+		7533E69E1DE3F48500968E89 /* TJ_CacheController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7533E69D1DE3F48500968E89 /* TJ_CacheController.m */; };
 		753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A2B4F1DD409F30003247A /* FaceDetectAPI.m */; };
 		7541382F1DD969D8000C7890 /* TJ_ImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7541382E1DD969D8000C7890 /* TJ_ImgView.m */; };
 		755621991DB9ACD400294C41 /* brush01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7556218E1DB9ACD300294C41 /* brush01.png */; };
@@ -382,6 +383,8 @@
 		751AA5CF1DD076B100C6E1B9 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
 		751AA5D01DD076B100C6E1B9 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		751AA5D11DD076B100C6E1B9 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		7533E69C1DE3F48500968E89 /* TJ_CacheController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CacheController.h; sourceTree = "<group>"; };
+		7533E69D1DE3F48500968E89 /* TJ_CacheController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CacheController.m; sourceTree = "<group>"; };
 		753A2B4E1DD409F30003247A /* FaceDetectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectAPI.h; sourceTree = "<group>"; };
 		753A2B4F1DD409F30003247A /* FaceDetectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectAPI.m; sourceTree = "<group>"; };
 		7541382D1DD969D8000C7890 /* TJ_ImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_ImgView.h; sourceTree = "<group>"; };
@@ -1059,6 +1062,39 @@
 				75F2C2831DA9387B0013E519 /* Utils */,
 			);
 			path = OpenGL;
+			sourceTree = "<group>";
+		};
+		7533E6981DE3F46700968E89 /* TJ_NSCache */ = {
+			isa = PBXGroup;
+			children = (
+				7533E6991DE3F46700968E89 /* Controller */,
+				7533E69A1DE3F46700968E89 /* Model */,
+				7533E69B1DE3F46700968E89 /* View */,
+			);
+			path = TJ_NSCache;
+			sourceTree = "<group>";
+		};
+		7533E6991DE3F46700968E89 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7533E69C1DE3F48500968E89 /* TJ_CacheController.h */,
+				7533E69D1DE3F48500968E89 /* TJ_CacheController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7533E69A1DE3F46700968E89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7533E69B1DE3F46700968E89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7556218C1DB9ACD300294C41 /* TestPicture */ = {
@@ -1912,6 +1948,7 @@
 		7560A9701D8FC7DE0056AB99 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				7533E6981DE3F46700968E89 /* TJ_NSCache */,
 				759827C11DD572EB00BAC896 /* MoreLayer */,
 				759827B11DD572B300BAC896 /* PictureProcess */,
 				75FF91C21DC82DD00020CBD4 /* Camera */,
@@ -2602,6 +2639,7 @@
 				7558E8D11DBF94CB00E7EDA5 /* GPUImageVideoCamera.m in Sources */,
 				7558E84F1DBF94CB00E7EDA5 /* GPUImageDifferenceBlendFilter.m in Sources */,
 				7558E89D1DBF94CB00E7EDA5 /* GPUImagePixellateFilter.m in Sources */,
+				7533E69E1DE3F48500968E89 /* TJ_CacheController.m in Sources */,
 				7558E8841DBF94CB00E7EDA5 /* GPUImageLuminosity.m in Sources */,
 				7558E8371DBF94CB00E7EDA5 /* GPUImageBrightnessFilter.m in Sources */,
 				7558E8A61DBF94CB00E7EDA5 /* GPUImageRGBClosingFilter.m in Sources */,
