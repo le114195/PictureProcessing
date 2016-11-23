@@ -14,7 +14,6 @@
 
 
 
-
 @interface FaceDetectVC ()
 
 
@@ -22,7 +21,6 @@
 
 @property (nonatomic, assign) CGFloat       ImgRateW;
 @property (nonatomic, assign) CGFloat       ImgRateH;
-
 
 
 @end
@@ -41,7 +39,8 @@
     [super viewDidLoad];
     
     
-    [self openCVDetect];
+//    [self openCVDetect];
+
     
     
 //    [self faceTextByImage:self.srcImg];
@@ -52,6 +51,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 /** openCV人脸检测 */
 - (void)openCVDetect

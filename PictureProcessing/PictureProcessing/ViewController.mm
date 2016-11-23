@@ -25,6 +25,9 @@
 
 
 #import "TJMoreLayerController.h"
+#import "TJ_CacheController.h"
+
+#import "ImgTOVideoVC.h"
 
 
 
@@ -45,7 +48,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波", @"图层"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频"];
     
     [self tableViewConfigure];
     
@@ -211,8 +214,16 @@
         
             break;
         }
-            
-            
+        case 13:{
+            TJ_CacheController *cahceVC = [[TJ_CacheController alloc] init];
+            [self.navigationController pushViewController:cahceVC animated:YES];
+            break;
+        }
+        case 14:{
+            ImgTOVideoVC *ivVC = [[ImgTOVideoVC alloc] init];
+            [self.navigationController pushViewController:ivVC animated:YES];
+            break;
+        }
         default:
             break;
     }
