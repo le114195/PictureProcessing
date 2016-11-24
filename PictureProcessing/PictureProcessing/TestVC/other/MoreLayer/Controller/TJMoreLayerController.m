@@ -27,17 +27,16 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
+    
     //缩放
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
     pinchGesture.delegate = self;
     [self.view addGestureRecognizer:pinchGesture];
     
-    
     //旋转
     UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAction:)];
     rotationGesture.delegate = self;
     [self.view addGestureRecognizer:rotationGesture];
-    
     
     //平移
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
@@ -46,15 +45,29 @@
     [panGesture setMaximumNumberOfTouches:2];
     [self.view addGestureRecognizer:panGesture];
     
-    
     self.ImgViewArrM = [NSMutableArray array];
-    self.testImgView = [[TJ_ImgView alloc] initWithFrame:CGRectMake(100, 100, 70, 100)];
+    self.testImgView = [[TJ_ImgView alloc] initWithFrame:CGRectMake(0, 64, 325, 183)];
     [self.view addSubview:_testImgView];
     
     self.testImgView.layer.borderWidth = 1.0;
     self.testImgView.layer.borderColor = [UIColor blueColor].CGColor;
     
     self.testImgView.backgroundColor = [UIColor redColor];
+    
+    
+    
+    NSMutableArray *imgArrM = [NSMutableArray array];
+    
+    for (int i = 0; i < 13; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
+        [imgArrM addObject:image];
+    }
+    self.testImgView.animationImages = imgArrM; //获取Gif图片列表
+    self.testImgView.animationDuration = 2.5;     //执行一次完整动画所需的时长
+    self.testImgView.animationRepeatCount = 100;  //动画重复次数
+    [self.testImgView startAnimating];
+    
+    
     
     // Do any additional setup after loading the view.
 }
@@ -89,6 +102,7 @@
     TJ_ImgView *view = self.testImgView;
     if (rotateGesture.state == UIGestureRecognizerStateBegan || rotateGesture.state == UIGestureRecognizerStateChanged) {
         view.transform = CGAffineTransformRotate(view.transform, rotateGesture.rotation);
+        NSLog(@"%f", rotateGesture.rotation);
         [rotateGesture setRotation:0];
     }
 }

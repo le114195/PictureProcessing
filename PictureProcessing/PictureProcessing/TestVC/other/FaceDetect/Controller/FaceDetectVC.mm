@@ -10,18 +10,21 @@
 #import "TJSSHTTPBase.h"
 #import "TJURLSession.h"
 #import "FaceDetectCPlusPlusAPI.hpp"
+
+#import <TJSDM/FaceLandmarkInterface.h>
+
 #import <opencv2/imgcodecs/ios.h>
+#import <opencv2/opencv.hpp>
+
+#import "TJ_PointConver.h"
 
 
 
 @interface FaceDetectVC ()
 
-
 @property (nonatomic, weak) UIView          *face_rectV;
-
 @property (nonatomic, assign) CGFloat       ImgRateW;
 @property (nonatomic, assign) CGFloat       ImgRateH;
-
 
 @end
 
@@ -38,9 +41,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    CGPoint point = CGPointMake(Screen_Width * 0.5, 100);
+    
+    
+    CGPoint newpoint = [TJ_PointConver tj_angle:M_PI_2 point:CGPointMake(point.x - Screen_Width * 0.5, point.y - Screen_Height * 0.5 - point.y)];
+    
+    NSLog(@"%@", NSStringFromCGPoint(newpoint));
+    
     
 //    [self openCVDetect];
 
+    
+    FaceLandmarkInterface *face = [[FaceLandmarkInterface alloc] init];
+    
+    UIImage *image = [UIImage imageNamed:@"sj_20160705_1.JPG"];
+    NSArray *keyPoint = [face getLanmarkPointFromUIImage:image];
+    
+    
+    cv::Mat orMat;
+    UIImageToMat(image, orMat);
+    // 转为3通道
+    cv::Mat rsMat;
+    if(orMat.channels()==4){
+        cv::cvtColor(orMat, rsMat, CV_BGRA2BGR);
+    }else if(orMat.channels()==3){
+        orMat.copyTo(rsMat);
+    }else if(orMat.channels()==1){
+        cv::cvtColor(orMat, rsMat, CV_GRAY2BGR);
+    }else{
+        orMat.copyTo(rsMat);
+    }
+    
+    int sizePoint = (int)keyPoint.count/2;
+    for (int i = 0; i < sizePoint; i++) {
+        int x = [keyPoint[i] intValue];
+        int y = [keyPoint[i + sizePoint] intValue];
+        
+        std::stringstream ss;
+        ss << i;
+        cv::putText(rsMat, ss.str(), cv::Point(x, y), 0.5, 0.5, cv::Scalar(0, 0, 255));
+        cv::circle(rsMat, cv::Point(x, y), 2, cv::Scalar(0, 0, 255), -1);
+    }
+    
+    UIImage *resImage = MatToUIImage(rsMat);
+    
+    
+    self.srcImgView.image = resImage;
     
     
 //    [self faceTextByImage:self.srcImg];
