@@ -9,14 +9,14 @@
 #import "TJMoreLayerController.h"
 #import "UIImage+TJ.h"
 #import "TJ_PosterView.h"
-#import "TJ_PosterContaintView.h"
+#import "TJ_PosterContainerView.h"
 
 
 @interface TJMoreLayerController ()
 
 @property (nonatomic, strong) NSMutableArray                *ImgViewArrM;
 
-@property (nonatomic, weak) TJ_PosterContaintView           *containtView;
+@property (nonatomic, weak) TJ_PosterContainerView           *containtView;
 
 
 
@@ -44,7 +44,7 @@
 
 - (void)containtViewConfigure
 {
-    TJ_PosterContaintView *containtView = [[TJ_PosterContaintView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Width)];
+    TJ_PosterContainerView *containtView = [[TJ_PosterContainerView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Width)];
     [containtView setCenter:self.view.center];
     [self.view addSubview:containtView];
     self.containtView = containtView;

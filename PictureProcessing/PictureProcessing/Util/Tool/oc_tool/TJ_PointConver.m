@@ -22,7 +22,11 @@
     if (point.x == 0) {
         totalAngle = point.y / fabs(point.y) * M_PI_2 + angle;
     }else {
-        totalAngle = atan(point.y / point.x) + angle;
+        if (point.x > 0) {
+            totalAngle = atan(point.y / point.x) + angle;
+        }else {
+            totalAngle = M_PI + atan(point.y / point.x) + angle;
+        }
     }
     CGFloat r = sqrt(point.x * point.x + point.y * point.y);
     return CGPointMake(r * cos(totalAngle), r * sin(totalAngle));

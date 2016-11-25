@@ -11,12 +11,13 @@
 #import "TJURLSession.h"
 #import "FaceDetectCPlusPlusAPI.hpp"
 
-#import <TJSDM/FaceLandmarkInterface.h>
 
 #import <opencv2/imgcodecs/ios.h>
 #import <opencv2/opencv.hpp>
 
 #import "TJ_PointConver.h"
+#import "TJ_PosterContainerView.h"
+#import "GDataXMLNode.h"
 
 
 
@@ -25,6 +26,9 @@
 @property (nonatomic, weak) UIView          *face_rectV;
 @property (nonatomic, assign) CGFloat       ImgRateW;
 @property (nonatomic, assign) CGFloat       ImgRateH;
+
+
+@property (nonatomic, weak) TJ_PosterContainerView           *containtView;
 
 @end
 
@@ -41,23 +45,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGPoint point = CGPointMake(Screen_Width * 0.5, 100);
     
-    
-    CGPoint newpoint = [TJ_PointConver tj_angle:M_PI_2 point:CGPointMake(point.x - Screen_Width * 0.5, point.y - Screen_Height * 0.5 - point.y)];
-    
-    NSLog(@"%@", NSStringFromCGPoint(newpoint));
-    
-    
-//    [self openCVDetect];
+}
 
-    
-    FaceLandmarkInterface *face = [[FaceLandmarkInterface alloc] init];
-    
-    UIImage *image = [UIImage imageNamed:@"sj_20160705_1.JPG"];
-    NSArray *keyPoint = [face getLanmarkPointFromUIImage:image];
-    
-    
+
+
+- (UIImage *)drawImgWithImage:(UIImage *)image pointArr:(NSArray *)pointArr
+{
     cv::Mat orMat;
     UIImageToMat(image, orMat);
     // 转为3通道
@@ -72,10 +66,10 @@
         orMat.copyTo(rsMat);
     }
     
-    int sizePoint = (int)keyPoint.count/2;
+    int sizePoint = (int)pointArr.count/2;
     for (int i = 0; i < sizePoint; i++) {
-        int x = [keyPoint[i] intValue];
-        int y = [keyPoint[i + sizePoint] intValue];
+        int x = [pointArr[i] intValue];
+        int y = [pointArr[i + sizePoint] intValue];
         
         std::stringstream ss;
         ss << i;
@@ -85,18 +79,66 @@
     
     UIImage *resImage = MatToUIImage(rsMat);
     
-    
-    self.srcImgView.image = resImage;
-    
-    
-//    [self faceTextByImage:self.srcImg];
-    // Do any additional setup after loading the view.
+    return resImage;
 }
+
+
+
+- (void)decodeXml
+{
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    NSString *xmlPath = [[NSBundle mainBundle] pathForResource:@"1479719953719c400010m400010.xml" ofType:nil];
+    
+    NSString *content = [[NSString alloc] initWithContentsOfFile:xmlPath encoding:NSUTF8StringEncoding error:nil];
+    GDataXMLDocument *document =  [[GDataXMLDocument alloc] initWithXMLString:content options:0 error:nil];
+    GDataXMLElement *rootElement = [document rootElement];
+    
+    NSArray *array = [rootElement children];
+    
+    for (GDataXMLElement *element in array) {
+        
+        NSMutableDictionary *eleDict = [NSMutableDictionary dictionary];
+        [eleDict setValue:[[element.attributes firstObject] stringValue] forKey:@"time"];
+        
+        NSMutableArray *dictArr = [NSMutableArray array];
+        
+        NSArray *eleArr = [element children];
+    
+        for (GDataXMLElement *imgEle in eleArr) {
+            // 根据标签名判断
+            NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+            // 标签名
+            tempDic[@"nodeName"] = [imgEle name];
+            // 标签内容
+            if([imgEle stringValue].length != 0){
+                tempDic[@"nodeValue"] = [imgEle stringValue];
+            }
+            // 标签属性
+            for (int i = 0; i < imgEle.attributes.count; i++) {
+                NSString *key = [imgEle.attributes[i] name];
+                NSString *value = [imgEle.attributes[i] stringValue];
+                tempDic[key] = value;
+            }
+            [dictArr addObject:tempDic];
+        }
+        [eleDict setValue:dictArr forKey:@"result"];
+        [arrM addObject:eleDict];
+    }
+    
+    NSLog(@"%@", arrM);
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+
 
 
 

@@ -17,4 +17,7 @@
 -(UIImage *)fixOrientation;
 
 
+- (void)drawAtCenter:(CGPoint)center Alpha:(CGFloat) alpha withTranslation:(CGPoint)translation radian:(CGFloat)radian scale:(CGFloat)scale;
+
+
 @end
