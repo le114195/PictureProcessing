@@ -30,6 +30,7 @@
 @property (nonatomic, assign) CGFloat           tj_scale;
 
 
+@property (nonatomic, assign) CGSize            tj_size;
 
 
 

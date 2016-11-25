@@ -42,6 +42,8 @@
             
             model.tj_angle = [[dataDict valueForKey:@"angle"] floatValue];
             model.tj_scale = [[dataDict valueForKey:@"scale"] floatValue];
+            
+            model.tj_size = CGSizeMake([[dataDict valueForKey:@"width"] floatValue], [[dataDict valueForKey:@"height"] floatValue]);
         }
         
         [arrM addObject:model];
