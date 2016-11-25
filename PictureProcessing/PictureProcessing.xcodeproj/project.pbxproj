@@ -24,7 +24,6 @@
 		751AA5DE1DD076B100C6E1B9 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D11DD076B100C6E1B9 /* 9.png */; };
 		7533E69E1DE3F48500968E89 /* TJ_CacheController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7533E69D1DE3F48500968E89 /* TJ_CacheController.m */; };
 		7539141B1DE809FB00B9B527 /* TJGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 7539141A1DE809FB00B9B527 /* TJGif.m */; };
-		7539141F1DE814A700B9B527 /* TJPosterBGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7539141E1DE814A700B9B527 /* TJPosterBGModel.m */; };
 		753914221DE814B800B9B527 /* TJPosterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 753914211DE814B800B9B527 /* TJPosterModel.m */; };
 		753914261DE8307700B9B527 /* TJSDM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753914251DE8307700B9B527 /* TJSDM.framework */; };
 		7539142E1DE831F500B9B527 /* 1479719953719c400010m400010.xml in Resources */ = {isa = PBXBuildFile; fileRef = 753914281DE831F500B9B527 /* 1479719953719c400010m400010.xml */; };
@@ -410,8 +409,6 @@
 		7533E69D1DE3F48500968E89 /* TJ_CacheController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CacheController.m; sourceTree = "<group>"; };
 		753914191DE809FB00B9B527 /* TJGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJGif.h; sourceTree = "<group>"; };
 		7539141A1DE809FB00B9B527 /* TJGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJGif.m; sourceTree = "<group>"; };
-		7539141D1DE814A700B9B527 /* TJPosterBGModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJPosterBGModel.h; sourceTree = "<group>"; };
-		7539141E1DE814A700B9B527 /* TJPosterBGModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPosterBGModel.m; sourceTree = "<group>"; };
 		753914201DE814B800B9B527 /* TJPosterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJPosterModel.h; sourceTree = "<group>"; };
 		753914211DE814B800B9B527 /* TJPosterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPosterModel.m; sourceTree = "<group>"; };
 		753914251DE8307700B9B527 /* TJSDM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TJSDM.framework; sourceTree = "<group>"; };
@@ -1172,8 +1169,6 @@
 		7539141C1DE8149700B9B527 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7539141D1DE814A700B9B527 /* TJPosterBGModel.h */,
-				7539141E1DE814A700B9B527 /* TJPosterBGModel.m */,
 				753914201DE814B800B9B527 /* TJPosterModel.h */,
 				753914211DE814B800B9B527 /* TJPosterModel.m */,
 			);
@@ -2780,7 +2775,6 @@
 				754411BC1DE6B5FE005F4C9C /* TJ_PosterView.m in Sources */,
 				755763A01DB863B500B581D8 /* TJOpenglesDemo1.m in Sources */,
 				756493031DC0392A00FEAF3C /* TJOpenglCurveEye.m in Sources */,
-				7539141F1DE814A700B9B527 /* TJPosterBGModel.m in Sources */,
 				7558E88E1DBF94CB00E7EDA5 /* GPUImageMovieComposition.m in Sources */,
 				753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */,
 				7558E85F1DBF94CB00E7EDA5 /* GPUImageFramebuffer.m in Sources */,

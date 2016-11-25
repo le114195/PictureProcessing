@@ -17,6 +17,7 @@
 #import "GDataXMLNode.h"
 #import "UIImage+TJ.h"
 #import "TJ_PointConver.h"
+#import "TJPosterModel.h"
 
 
 
@@ -100,40 +101,39 @@
     
     NSArray *array = [rootDict valueForKey:@"ImgArray"];
     
-    NSDictionary *dict = [array firstObject];
+    NSDictionary *dict = array[3];
     
-    NSArray *result = [dict valueForKey:@"result"];
     
-    for (NSDictionary *dataDict in result) {
+    NSArray *modelArray = [TJPosterModel modelWithDict:dict];
+    
+    
+    for (TJPosterModel *model in modelArray) {
         
-        NSString *nodeName = [dataDict valueForKey:@"nodeName"];
-        
-        if ([nodeName isEqualToString:@"TJBackgroundLayer"]) {
+        if ([model.nodeName isEqualToString:@"TJBackgroundLayer"]) {
             
             TJ_PosterView *posterBGView = [[TJ_PosterView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Width)];
             posterBGView.userInteractionEnabled = NO;
             [self.containerView addSubview:posterBGView];
-            posterBGView.image = [UIImage imageNamed:[dataDict valueForKey:@"title"]];
+            posterBGView.image = [UIImage imageNamed:model.title];
             
-        }else if ([nodeName isEqualToString:@"TJFaceLayer"]) {
+        }else if ([model.nodeName isEqualToString:@"TJFaceLayer"]) {
+            
+            TJPosterModel *bgModel = [modelArray firstObject];
             
             TJ_PosterView *posterView = [[TJ_PosterView alloc] initWithFrame:CGRectMake(0, 0, self.tj_image.size.width * (Screen_Width / backWidth), self.tj_image.size.height * (Screen_Width / backWidth))];
             [posterView setCenter:CGPointMake(backWidth * 0.5 * (Screen_Width / backWidth), backHeight * 0.5 * (Screen_Width / backWidth))];
             [self.containerView addSubview:posterView];
             posterView.image = self.tj_image;
             
+            posterView.transform = CGAffineTransformRotate(posterView.transform, model.tj_angle);
             
-            CGFloat angle = -1 * M_PI_4 * 0.5;
-            posterView.transform = CGAffineTransformRotate(posterView.transform, angle);
+            point_8 = [TJ_PointConver tj_conver:point_8 scale:1 angle:model.tj_angle];
             
-            point_8 = [TJ_PointConver tj_conver:point_8 scale:1 angle:angle];
-            
-            CGPoint offset = CGPointMake((point_8.x + 12) * (Screen_Width / backWidth), (point_8.y - 128) * (Screen_Width / backWidth));
+            CGPoint offset = CGPointMake((point_8.x - bgModel.location.x) * (Screen_Width / backWidth), (point_8.y - bgModel.location.y) * (Screen_Width / backWidth));
             [posterView setCenter:CGPointMake(posterView.center.x - offset.x, posterView.center.y - offset.y)];
         }
     }
 }
-
 
 
 - (NSDictionary *)decodeXml

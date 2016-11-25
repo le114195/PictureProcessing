@@ -15,14 +15,25 @@
 
 
 /** 脸的宽度 */
-@property (nonatomic, assign) CGFloat           width;
+@property (nonatomic, assign) CGFloat           faceWidth;
+
+
+@property (nonatomic, copy) NSString            *nodeName;
 
 
 @property (nonatomic, copy) NSString            *title;
 
-@property (nonatomic, assign) CGFloat           angle;
 
-@property (nonatomic, assign) CGFloat           scale;
+@property (nonatomic, assign) CGFloat           tj_angle;
+
+
+@property (nonatomic, assign) CGFloat           tj_scale;
+
+
+
+
+
++ (NSArray *)modelWithDict:(NSDictionary *)dict;
 
 
 @end
