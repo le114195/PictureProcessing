@@ -9,8 +9,6 @@
 #include "TJ_Opengl_C.h"
 #include <math.h>
 
-
-
 void configure_attrArr(GLfloat *attrArr, GLint rectW, GLint rectH)
 {
     GLfloat rateX = 2.0/(rectW - 1);
@@ -36,7 +34,6 @@ void configure_indices(GLint *indices, GLint rectW, GLint rectH)
         indices[i * 6 + 5] = i / (rectW - 1) * rectW + rectW + i%(rectW - 1) + 1;
     }
 }
-
 
 void tj_curve_eye(GLfloat *attrArr, GLuint rectLength, double ImgWidth, double ImgHeight, TJ_GLPoint eye_top, TJ_GLPoint eye_bottom, TJ_GLPoint eye_left_corner, TJ_GLPoint eye_right_corner)
 {

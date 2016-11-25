@@ -23,11 +23,14 @@
 		751AA5DD1DD076B100C6E1B9 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D01DD076B100C6E1B9 /* 8.png */; };
 		751AA5DE1DD076B100C6E1B9 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5D11DD076B100C6E1B9 /* 9.png */; };
 		7533E69E1DE3F48500968E89 /* TJ_CacheController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7533E69D1DE3F48500968E89 /* TJ_CacheController.m */; };
+		753914111DE7CC6D00B9B527 /* expression1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7539140C1DE7CC6D00B9B527 /* expression1.png */; };
+		753914121DE7CC6D00B9B527 /* expression2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7539140D1DE7CC6D00B9B527 /* expression2.png */; };
+		753914131DE7CC6D00B9B527 /* expression3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7539140E1DE7CC6D00B9B527 /* expression3.png */; };
+		753914141DE7CC6D00B9B527 /* expression4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7539140F1DE7CC6D00B9B527 /* expression4.png */; };
+		753914151DE7CC6D00B9B527 /* expression_face.png in Resources */ = {isa = PBXBuildFile; fileRef = 753914101DE7CC6D00B9B527 /* expression_face.png */; };
 		753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A2B4F1DD409F30003247A /* FaceDetectAPI.m */; };
 		753AD03F1DE535D3009A2A9C /* ImgTOVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 753AD03E1DE535D3009A2A9C /* ImgTOVideoVC.m */; };
 		753AD0411DE5361E009A2A9C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753AD0401DE5361E009A2A9C /* MediaPlayer.framework */; };
-		7541382F1DD969D8000C7890 /* TJ_ImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7541382E1DD969D8000C7890 /* TJ_ImgView.m */; };
-		754411541DE679E5005F4C9C /* TJSDM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754411531DE679E5005F4C9C /* TJSDM.framework */; };
 		754411571DE679FC005F4C9C /* haar_roboman_ff_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 754411551DE679FC005F4C9C /* haar_roboman_ff_alt2.xml */; };
 		754411581DE679FC005F4C9C /* roboman-landmark-model.bin in Resources */ = {isa = PBXBuildFile; fileRef = 754411561DE679FC005F4C9C /* roboman-landmark-model.bin */; };
 		754411AB1DE67C53005F4C9C /* face_123456.png in Resources */ = {isa = PBXBuildFile; fileRef = 754411AA1DE67C53005F4C9C /* face_123456.png */; };
@@ -35,6 +38,9 @@
 		754411B01DE68EFD005F4C9C /* TJ_PointConver.m in Sources */ = {isa = PBXBuildFile; fileRef = 754411AF1DE68EFD005F4C9C /* TJ_PointConver.m */; };
 		754411B41DE6B2BE005F4C9C /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 754411B31DE6B2BE005F4C9C /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		754411B61DE6B3B7005F4C9C /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 754411B51DE6B3B7005F4C9C /* libxml2.2.tbd */; };
+		754411BC1DE6B5FE005F4C9C /* TJ_PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754411BB1DE6B5FE005F4C9C /* TJ_PosterView.m */; };
+		754411C51DE6B728005F4C9C /* TJ_PosterContaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754411C41DE6B728005F4C9C /* TJ_PosterContaintView.m */; };
+		754411CD1DE6D297005F4C9C /* TJSDM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754411CC1DE6D297005F4C9C /* TJSDM.framework */; };
 		755621991DB9ACD400294C41 /* brush01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7556218E1DB9ACD300294C41 /* brush01.png */; };
 		7556219A1DB9ACD400294C41 /* brush02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7556218F1DB9ACD300294C41 /* brush02.png */; };
 		7556219B1DB9ACD400294C41 /* brush03.png in Resources */ = {isa = PBXBuildFile; fileRef = 755621901DB9ACD300294C41 /* brush03.png */; };
@@ -398,14 +404,16 @@
 		751AA5D11DD076B100C6E1B9 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
 		7533E69C1DE3F48500968E89 /* TJ_CacheController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_CacheController.h; sourceTree = "<group>"; };
 		7533E69D1DE3F48500968E89 /* TJ_CacheController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_CacheController.m; sourceTree = "<group>"; };
+		7539140C1DE7CC6D00B9B527 /* expression1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression1.png; sourceTree = "<group>"; };
+		7539140D1DE7CC6D00B9B527 /* expression2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression2.png; sourceTree = "<group>"; };
+		7539140E1DE7CC6D00B9B527 /* expression3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression3.png; sourceTree = "<group>"; };
+		7539140F1DE7CC6D00B9B527 /* expression4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression4.png; sourceTree = "<group>"; };
+		753914101DE7CC6D00B9B527 /* expression_face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression_face.png; sourceTree = "<group>"; };
 		753A2B4E1DD409F30003247A /* FaceDetectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectAPI.h; sourceTree = "<group>"; };
 		753A2B4F1DD409F30003247A /* FaceDetectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectAPI.m; sourceTree = "<group>"; };
 		753AD03D1DE535D3009A2A9C /* ImgTOVideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgTOVideoVC.h; sourceTree = "<group>"; };
 		753AD03E1DE535D3009A2A9C /* ImgTOVideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgTOVideoVC.m; sourceTree = "<group>"; };
 		753AD0401DE5361E009A2A9C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		7541382D1DD969D8000C7890 /* TJ_ImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_ImgView.h; sourceTree = "<group>"; };
-		7541382E1DD969D8000C7890 /* TJ_ImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_ImgView.m; sourceTree = "<group>"; };
-		754411531DE679E5005F4C9C /* TJSDM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TJSDM.framework; sourceTree = "<group>"; };
 		754411551DE679FC005F4C9C /* haar_roboman_ff_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haar_roboman_ff_alt2.xml; sourceTree = "<group>"; };
 		754411561DE679FC005F4C9C /* roboman-landmark-model.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "roboman-landmark-model.bin"; sourceTree = "<group>"; };
 		754411AA1DE67C53005F4C9C /* face_123456.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_123456.png; sourceTree = "<group>"; };
@@ -415,6 +423,11 @@
 		754411B21DE6B2BE005F4C9C /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		754411B31DE6B2BE005F4C9C /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		754411B51DE6B3B7005F4C9C /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		754411BA1DE6B5FE005F4C9C /* TJ_PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_PosterView.h; sourceTree = "<group>"; };
+		754411BB1DE6B5FE005F4C9C /* TJ_PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_PosterView.m; sourceTree = "<group>"; };
+		754411C31DE6B728005F4C9C /* TJ_PosterContaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_PosterContaintView.h; sourceTree = "<group>"; };
+		754411C41DE6B728005F4C9C /* TJ_PosterContaintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ_PosterContaintView.m; sourceTree = "<group>"; };
+		754411CC1DE6D297005F4C9C /* TJSDM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TJSDM.framework; sourceTree = "<group>"; };
 		75514F3B1D99652500AD957E /* ToolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolHeader.h; sourceTree = "<group>"; };
 		7556218E1DB9ACD300294C41 /* brush01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush01.png; sourceTree = "<group>"; };
 		7556218F1DB9ACD300294C41 /* brush02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush02.png; sourceTree = "<group>"; };
@@ -1033,10 +1046,10 @@
 			files = (
 				754411B61DE6B3B7005F4C9C /* libxml2.2.tbd in Frameworks */,
 				753AD0411DE5361E009A2A9C /* MediaPlayer.framework in Frameworks */,
-				754411541DE679E5005F4C9C /* TJSDM.framework in Frameworks */,
 				755621AC1DB9B8CE00294C41 /* ImageIO.framework in Frameworks */,
 				755621AA1DB9B8B200294C41 /* MobileCoreServices.framework in Frameworks */,
 				7558E6931DBF94B900E7EDA5 /* opencv2.framework in Frameworks */,
+				754411CD1DE6D297005F4C9C /* TJSDM.framework in Frameworks */,
 				7594A7AB1D5CBC6700D6F31B /* OpenGLES.framework in Frameworks */,
 				7594A7AF1D5CBC7900D6F31B /* CoreMedia.framework in Frameworks */,
 				7594A7AD1D5CBC7100D6F31B /* CoreVideo.framework in Frameworks */,
@@ -1136,6 +1149,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7539140B1DE7CC6D00B9B527 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				7539140C1DE7CC6D00B9B527 /* expression1.png */,
+				7539140D1DE7CC6D00B9B527 /* expression2.png */,
+				7539140E1DE7CC6D00B9B527 /* expression3.png */,
+				7539140F1DE7CC6D00B9B527 /* expression4.png */,
+				753914101DE7CC6D00B9B527 /* expression_face.png */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		753AD03A1DE535B6009A2A9C /* video */ = {
 			isa = PBXGroup;
 			children = (
@@ -1164,9 +1189,9 @@
 		753AD0AF1DE5843A009A2A9C /* sdm */ = {
 			isa = PBXGroup;
 			children = (
+				754411CC1DE6D297005F4C9C /* TJSDM.framework */,
 				754411551DE679FC005F4C9C /* haar_roboman_ff_alt2.xml */,
 				754411561DE679FC005F4C9C /* roboman-landmark-model.bin */,
-				754411531DE679E5005F4C9C /* TJSDM.framework */,
 			);
 			path = sdm;
 			sourceTree = "<group>";
@@ -1411,6 +1436,7 @@
 		755763BE1DB8A4DD00B581D8 /* FaceDetect */ = {
 			isa = PBXGroup;
 			children = (
+				7539140B1DE7CC6D00B9B527 /* resource */,
 				7574A5B21DDC0999009E65AA /* util */,
 				755763BF1DB8A4DD00B581D8 /* Controller */,
 				755763C01DB8A4DD00B581D8 /* View */,
@@ -2280,8 +2306,6 @@
 		759827C31DD572EB00BAC896 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7541382D1DD969D8000C7890 /* TJ_ImgView.h */,
-				7541382E1DD969D8000C7890 /* TJ_ImgView.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2289,6 +2313,10 @@
 		759827C41DD572EB00BAC896 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				754411BA1DE6B5FE005F4C9C /* TJ_PosterView.h */,
+				754411BB1DE6B5FE005F4C9C /* TJ_PosterView.m */,
+				754411C31DE6B728005F4C9C /* TJ_PosterContaintView.h */,
+				754411C41DE6B728005F4C9C /* TJ_PosterContaintView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2468,6 +2496,7 @@
 				751AA5D61DD076B100C6E1B9 /* 12.png in Resources */,
 				7556219E1DB9ACD400294C41 /* test128.png in Resources */,
 				7574A5DA1DDC0EDB009E65AA /* haarcascade_mcs_lefteye.xml in Resources */,
+				753914151DE7CC6D00B9B527 /* expression_face.png in Resources */,
 				75FF91CE1DC82E930020CBD4 /* photograph@3x.png in Resources */,
 				7574A5DB1DDC0EDB009E65AA /* haarcascade_mcs_mouth.xml in Resources */,
 				755621A01DB9ACD400294C41 /* imageTest003.png in Resources */,
@@ -2475,6 +2504,7 @@
 				7556219D1DB9ACD400294C41 /* test1.png in Resources */,
 				7556219B1DB9ACD400294C41 /* brush03.png in Resources */,
 				7574A5D51DDC0EDB009E65AA /* haarcascade_lefteye_2splits.xml in Resources */,
+				753914141DE7CC6D00B9B527 /* expression4.png in Resources */,
 				7574A5DE1DDC0EDB009E65AA /* haarcascade_mcs_righteye.xml in Resources */,
 				7558E9871DBF952B00E7EDA5 /* sj_20160705_13.JPG in Resources */,
 				7574A5D71DDC0EDB009E65AA /* haarcascade_mcs_eyepair_big.xml in Resources */,
@@ -2496,6 +2526,7 @@
 				751AA5D81DD076B100C6E1B9 /* 3.png in Resources */,
 				751AA5DB1DD076B100C6E1B9 /* 6.png in Resources */,
 				7556219F1DB9ACD400294C41 /* imageTest002.png in Resources */,
+				753914131DE7CC6D00B9B527 /* expression3.png in Resources */,
 				7558E98D1DBF952B00E7EDA5 /* sj_20160705_19.JPG in Resources */,
 				754411581DE679FC005F4C9C /* roboman-landmark-model.bin in Resources */,
 				7558E99A1DBF952B00E7EDA5 /* sj_20160705_31.JPG in Resources */,
@@ -2503,6 +2534,7 @@
 				7558E9941DBF952B00E7EDA5 /* sj_20160705_25.JPG in Resources */,
 				755621A11DB9ACD400294C41 /* IMG_0963.PNG in Resources */,
 				751AA5D71DD076B100C6E1B9 /* 2.png in Resources */,
+				753914121DE7CC6D00B9B527 /* expression2.png in Resources */,
 				756642D71DC9BAFA00FB528B /* bea1.jpg in Resources */,
 				7558E9831DBF952B00E7EDA5 /* sj_20160705_1.JPG in Resources */,
 				751AA5D21DD076B100C6E1B9 /* 0.png in Resources */,
@@ -2529,6 +2561,7 @@
 				7558E9961DBF952B00E7EDA5 /* sj_20160705_28.JPG in Resources */,
 				758D6EDA1DC7181400693970 /* IMG_0944.JPG in Resources */,
 				751AA5C31DD0720500C6E1B9 /* coverImg.png in Resources */,
+				753914111DE7CC6D00B9B527 /* expression1.png in Resources */,
 				75BA91AD1DDC6B3B00B74EEF /* expression1.png in Resources */,
 				7556F7DE1D5CA0AA008CC401 /* Assets.xcassets in Resources */,
 				758D6ED71DC711D200693970 /* IMG_0992.JPG in Resources */,
@@ -2648,7 +2681,6 @@
 				7558E8CB1DBF94CB00E7EDA5 /* GPUImageTwoInputFilter.m in Sources */,
 				7558E8491DBF94CB00E7EDA5 /* GPUImageContext.m in Sources */,
 				7558E8591DBF94CB00E7EDA5 /* GPUImageFalseColorFilter.m in Sources */,
-				7541382F1DD969D8000C7890 /* TJ_ImgView.m in Sources */,
 				755763E41DB8B85B00B581D8 /* TJ_BaseController.m in Sources */,
 				7558E8991DBF94CB00E7EDA5 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				7558E8581DBF94CB00E7EDA5 /* GPUImageExposureFilter.m in Sources */,
@@ -2698,6 +2730,7 @@
 				75FE84E31D7AB75800E45DBE /* TJOpencvBase.cpp in Sources */,
 				7558E8B41DBF94CB00E7EDA5 /* GPUImageSmoothToonFilter.m in Sources */,
 				7558E8961DBF94CB00E7EDA5 /* GPUImageOutput.m in Sources */,
+				754411C51DE6B728005F4C9C /* TJ_PosterContaintView.m in Sources */,
 				7558E8971DBF94CB00E7EDA5 /* GPUImageOverlayBlendFilter.m in Sources */,
 				7557639A1DB863B500B581D8 /* TJOpenglesCurve.m in Sources */,
 				75887E0C1DBF342B008757CC /* TJ_OpenglBaseView.m in Sources */,
@@ -2707,6 +2740,7 @@
 				7558E8C31DBF94CB00E7EDA5 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				7558E8441DBF94CB00E7EDA5 /* GPUImageColorLocalBinaryPatternFilter.m in Sources */,
 				7558E8421DBF94CB00E7EDA5 /* GPUImageColorDodgeBlendFilter.m in Sources */,
+				754411BC1DE6B5FE005F4C9C /* TJ_PosterView.m in Sources */,
 				755763A01DB863B500B581D8 /* TJOpenglesDemo1.m in Sources */,
 				756493031DC0392A00FEAF3C /* TJOpenglCurveEye.m in Sources */,
 				7558E88E1DBF94CB00E7EDA5 /* GPUImageMovieComposition.m in Sources */,
@@ -2947,7 +2981,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 26LY5L23G8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2980,7 +3014,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 26LY5L23G8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
