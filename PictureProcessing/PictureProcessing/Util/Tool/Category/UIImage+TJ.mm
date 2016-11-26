@@ -105,4 +105,24 @@
 
 
 
+
+
+- (void)drawAtCenter:(CGPoint)center Alpha:(CGFloat) alpha withTranslation:(CGPoint)translation radian:(CGFloat)radian scale:(CGFloat)scale {
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, center.x + translation.x, center.y + translation.y);
+    CGContextScaleCTM(context, scale, scale);
+    CGContextRotateCTM(context, radian);
+    [self drawAtCenter:CGPointZero Alpha:alpha];
+    
+    CGContextRestoreGState(context);
+}
+
+- (void) drawAtCenter:(CGPoint) center Alpha:(CGFloat) alpha {
+    CGPoint point = CGPointMake(center.x - self.size.width / 2, center.y - self.size.height / 2);
+    [self drawAtPoint:point blendMode:kCGBlendModeNormal alpha:alpha];
+}
+
+
 @end

@@ -19,7 +19,6 @@ void constDistanceMoved(TJ_Point location, double radius, double dis, int isStar
     float                  angle,
                             distance,
                             newDis = 0.0;
-    
     if (vertexBuffer == NULL) {
         vertexBuffer = malloc(64 * 2 * sizeof(float));
     }

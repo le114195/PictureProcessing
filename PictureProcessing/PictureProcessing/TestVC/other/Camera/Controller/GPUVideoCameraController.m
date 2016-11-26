@@ -178,10 +178,6 @@
 }
 
 
-
-
-
-
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     // Map UIDeviceOrientation to UIInterfaceOrientation.
@@ -278,7 +274,6 @@
         self.originImg = image;
         self.renderImg = [self.beautifyFilter imageByFilteringImage:self.originImg];
     }];
-    
 }
 
 
@@ -345,6 +340,11 @@
         AVMetadataFaceObject *ddd = [metadataObjects firstObject];
 
         CGRect newRect = ddd.bounds;
+        
+        
+        NSLog(@"rollAngle = %f", ddd.rollAngle);
+        NSLog(@"yawAngle = %f", ddd.yawAngle);
+        
         
         newRect.origin.x = self.view.bounds.size.width * ddd.bounds.origin.y;
         newRect.origin.y = self.view.bounds.size.height * ddd.bounds.origin.x;

@@ -9,7 +9,6 @@
 #import "TJOpenglBrushVC.h"
 #import "TJOpenglesBrushView.h"
 
-
 #define kBrightness             1.0
 #define kSaturation             0.45
 

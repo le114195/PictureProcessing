@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<TJExpressionTemplate backWidth="1024.0" backHeight="1024.0">
+    <Image time="0.5">
+        <TJBackgroundLayer title="expression1" imageType="1" flip="0" locationX="-11" locationY="121"></TJBackgroundLayer>
+        <TJFaceLayer width="529" height="688" centerX="0" centerY="0" referenceObject="1" angle="0" imageType="0" filp="0" lock="0" faceWidth="376"></TJFaceLayer>
+    </Image>
+    <Image time="1.0">
+        <TJBackgroundLayer title="expression2" imageType="1" flip="0" locationX="-11" locationY="121"></TJBackgroundLayer>
+        <TJFaceLayer width="529" height="688" centerX="0" centerY="0" referenceObject="1" angle="-0.26" imageType="0" filp="0" lock="0" faceWidth="376"></TJFaceLayer>
+    </Image>
+    <Image time="1.0">
+        <TJBackgroundLayer title="expression3" imageType="1" flip="0" locationX="-11" locationY="121"></TJBackgroundLayer>
+        <TJFaceLayer width="529" height="688" centerX="0" centerY="0" referenceObject="1" angle="-0.52" imageType="0" filp="0" lock="0" faceWidth="376"></TJFaceLayer>
+    </Image>
+    <Image time="1.0">
+        <TJBackgroundLayer title="expression4" imageType="1" flip="0" locationX="-11" locationY="130"></TJBackgroundLayer>
+        <TJFaceLayer width="529" height="688" centerX="0" centerY="0" referenceObject="1" angle="-0.78" imageType="0" filp="0" lock="0" faceWidth="376"></TJFaceLayer>
+    </Image>
+</TJExpressionTemplate>

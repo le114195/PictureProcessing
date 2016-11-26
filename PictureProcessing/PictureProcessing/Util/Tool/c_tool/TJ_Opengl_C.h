@@ -20,9 +20,6 @@ typedef struct{
     double y;
 } TJ_GLPoint;
 
-
-
-
 /** 将一个二维图片用三角面片表示
  *  attrArr：表示三角面片中的所有的点 
  *  rectW：表示一行有多少个点
