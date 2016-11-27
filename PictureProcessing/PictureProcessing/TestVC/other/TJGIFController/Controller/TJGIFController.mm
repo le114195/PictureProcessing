@@ -111,11 +111,11 @@
     [self pictureWithDict:dict];
     
     
-//    for (NSDictionary *modelDict in array) {
-//        NSArray *modelArray = [TJPosterModel modelWithDict:modelDict faceImg:self.tj_image point8:point_8 backWidth:backWidth backHeight:backHeight];
-//        UIImage *newImg = [self drawImageWithPosterModels:modelArray];
-//        [self.ImgArray addObject:newImg];
-//    }
+    for (NSDictionary *modelDict in array) {
+        NSArray *modelArray = [TJPosterModel modelWithDict:modelDict faceImg:self.tj_image point8:point_8 backWidth:backWidth backHeight:backHeight];
+        UIImage *newImg = [self drawImageWithPosterModels:modelArray];
+        [self.ImgArray addObject:newImg];
+    }
 }
 
 - (void)pictureWithDict:(NSDictionary*)dict
@@ -137,13 +137,6 @@
             [posterView setCenter:CGPointMake(backWidth * 0.5 * (Screen_Width / backWidth), backHeight * 0.5 * (Screen_Width / backWidth))];
             [self.containerView addSubview:posterView];
             posterView.image = self.tj_image;
-            model.tj_image = self.tj_image;
-            model.tj_size = self.tj_image.size;
-            
-            
-//            point_8 = [TJ_PointConver tj_conver:point_8 scale:model.tj_scale angle:model.tj_angle];
-//            
-//            CGPoint offset = CGPointMake((point_8.x - model.location.x) * (Screen_Width / backWidth), (point_8.y - model.location.y) * (Screen_Width / backWidth));
             
             //缩放
             posterView.transform = CGAffineTransformScale(posterView.transform, model.tj_scale, model.tj_scale);
@@ -152,9 +145,6 @@
             posterView.transform = CGAffineTransformRotate(posterView.transform, model.tj_angle);
             
             //平移
-//            [posterView setCenter:CGPointMake(posterView.center.x - offset.x, posterView.center.y - offset.y)];
-//            model.tj_center = CGPointMake(posterView.center.x / (Screen_Width / backWidth) - backWidth * 0.5, posterView.center.y / (Screen_Width / backWidth) - backHeight * 0.5);
-            
             [posterView setCenter:CGPointMake((model.tj_center.x + backWidth * 0.5) * (Screen_Width / backWidth), (model.tj_center.y + backHeight * 0.5) * (Screen_Width / backWidth))];
             
         }
