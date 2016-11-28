@@ -33,8 +33,20 @@
 @property (nonatomic, assign) CGSize            tj_size;
 
 
+@property (nonatomic, assign) CGPoint           tj_center;
 
-+ (NSArray *)modelWithDict:(NSDictionary *)dict;
+
+/** 
+ *  0：jpg
+ *  1：png
+ */
+@property (nonatomic, assign) int               ImgType;
+
+@property (nonatomic, strong) UIImage           *tj_image;
+
+
+
++ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight;
 
 
 @end

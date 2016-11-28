@@ -7,11 +7,12 @@
 //
 
 #import "TJPosterModel.h"
+#import "TJ_PointConver.h"
 
 @implementation TJPosterModel
 
 
-+ (NSArray *)modelWithDict:(NSDictionary *)dict
++ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight
 {
     
     NSMutableArray *arrM = [NSMutableArray array];
@@ -27,23 +28,44 @@
         NSString *nodeName = [dataDict valueForKey:@"nodeName"];
         model.nodeName = nodeName;
         
-        if ([nodeName isEqualToString:@"TJBackgroundLayer"]) {
+        model.ImgType = [[dataDict valueForKey:@"imageType"] intValue];
+        
+        
+        if ([nodeName isEqualToString:@"TJFaceLayer"]) {
+            model.tj_image = faceImg;
+        }else {
+            if (model.ImgType) {
+                model.tj_image = [UIImage imageNamed:[NSString stringWithFormat:@"rgba%@.png", model.title]];
+            }else {
+                model.tj_image = [UIImage imageNamed:[NSString stringWithFormat:@"rgba%@.jpg", model.title]];
+            }
+        }
+        
+        model.tj_angle = [[dataDict valueForKey:@"angle"] floatValue];
+        model.tj_scale = [[dataDict valueForKey:@"scale"] floatValue];
+        
+        //TODO:lejun
+        if ([nodeName isEqualToString:@"TJFaceLayer"]) {
             
             CGFloat locationX = [[dataDict valueForKey:@"locationX"] floatValue];
             CGFloat locationY = [[dataDict valueForKey:@"locationY"] floatValue];
             
             model.location = CGPointMake(locationX, locationY);
+            model.faceWidth = [[dataDict valueForKey:@"faceWidth"] floatValue];
+            model.tj_size = faceImg.size;
+            
+            model.tj_center = CGPointMake(0, 0);
+            
+            
+            //缩放和旋转后的定位点
+            CGPoint newPoint8 = [TJ_PointConver tj_conver:point8 scale:model.tj_scale angle:model.tj_angle];
+            CGPoint offset = CGPointMake((newPoint8.x - model.location.x), (newPoint8.y - model.location.y));
+            
+            model.tj_center = CGPointMake(model.tj_center.x - offset.x, model.tj_center.y - offset.y);
             
         }else {
-            
-            if ([nodeName isEqualToString:@"TJFaceLayer"]) {
-                model.faceWidth = [[dataDict valueForKey:@"faceWidth"] floatValue];
-            }
-            
-            model.tj_angle = [[dataDict valueForKey:@"angle"] floatValue];
-            model.tj_scale = [[dataDict valueForKey:@"scale"] floatValue];
-            
             model.tj_size = CGSizeMake([[dataDict valueForKey:@"width"] floatValue], [[dataDict valueForKey:@"height"] floatValue]);
+            model.tj_center = CGPointMake([[dataDict valueForKey:@"centerX"] floatValue], [[dataDict valueForKey:@"centerY"] floatValue]);
         }
         
         [arrM addObject:model];
