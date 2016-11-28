@@ -10,7 +10,18 @@
 
 @interface TJPosterModel : NSObject
 
-/** 确定头的位置 */
+
+/**
+ *  参考点
+ *  0：参考背景
+ *  1：身子
+ *  2：左眼
+ *  3：右眼
+ */
+@property (nonatomic, assign) int               referenceObject;
+
+
+/** 定位点 */
 @property (nonatomic, assign) CGPoint           location;
 
 
@@ -30,6 +41,9 @@
 @property (nonatomic, assign) CGFloat           tj_scale;
 
 
+@property (nonatomic, assign) CGPoint           tj_offset;
+
+
 @property (nonatomic, assign) CGSize            tj_size;
 
 
@@ -46,7 +60,12 @@
 
 
 
-+ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight;
++ (NSArray *)modelWithDict:(NSDictionary *)dict
+                   faceImg:(UIImage *)faceImg
+                 faceWidth:(CGFloat)faceWidth
+                    point8:(CGPoint)point8
+                 backWidth:(CGFloat)backWidth
+                backHeight:(CGFloat)backHeight;
 
 
 @end

@@ -16,11 +16,38 @@
 }
 
 
++ (CGFloat)tj_anglePoint:(CGPoint)point
+{
+    CGFloat totalAngle = 0;
+    if (point.x == 0 && point.y == 0) {
+        return 0;
+    }else if (point.x == 0 && point.y != 0){
+        if (point.y > 0) {
+            totalAngle = M_PI_2;
+        }else {
+            totalAngle = -1 * M_PI_2;
+        }
+    }else {
+        if (point.x > 0) {
+            totalAngle = atan(point.y / point.x);
+        }else {
+            totalAngle = M_PI + atan(point.y / point.x);
+        }
+    }
+    return totalAngle;
+}
+
 + (CGPoint)tj_angle:(CGFloat)angle point:(CGPoint)point
 {
     CGFloat totalAngle = 0;
-    if (point.x == 0) {
-        totalAngle = point.y / fabs(point.y) * M_PI_2 + angle;
+    if (point.x == 0 && point.y == 0) {
+        return CGPointMake(0, 0);
+    }else if (point.x == 0 && point.y != 0){
+        if (point.y > 0) {
+            totalAngle = M_PI_2;
+        }else {
+            totalAngle = -1 * M_PI_2;
+        }
     }else {
         if (point.x > 0) {
             totalAngle = atan(point.y / point.x) + angle;

@@ -12,11 +12,14 @@
 @implementation TJPosterModel
 
 
-+ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight
++ (NSArray *)modelWithDict:(NSDictionary *)dict
+                   faceImg:(UIImage *)faceImg
+                 faceWidth:(CGFloat)faceWidth
+                    point8:(CGPoint)point8
+                 backWidth:(CGFloat)backWidth
+                backHeight:(CGFloat)backHeight
 {
-    
     NSMutableArray *arrM = [NSMutableArray array];
-    
     
     NSArray *result = [dict valueForKey:@"result"];
     for (NSDictionary *dataDict in result) {
@@ -44,33 +47,33 @@
         model.tj_angle = [[dataDict valueForKey:@"angle"] floatValue];
         model.tj_scale = [[dataDict valueForKey:@"scale"] floatValue];
         
+        CGFloat locationX = [[dataDict valueForKey:@"locationX"] floatValue];
+        CGFloat locationY = [[dataDict valueForKey:@"locationY"] floatValue];
+        model.location = CGPointMake(locationX, locationY);
+        
         //TODO:lejun
         if ([nodeName isEqualToString:@"TJFaceLayer"]) {
             
-            CGFloat locationX = [[dataDict valueForKey:@"locationX"] floatValue];
-            CGFloat locationY = [[dataDict valueForKey:@"locationY"] floatValue];
+            model.referenceObject = 1;
             
-            model.location = CGPointMake(locationX, locationY);
             model.faceWidth = [[dataDict valueForKey:@"faceWidth"] floatValue];
+            model.tj_scale = model.faceWidth / faceWidth;
             model.tj_size = faceImg.size;
             
             model.tj_center = CGPointMake(0, 0);
-            
             
             //缩放和旋转后的定位点
             CGPoint newPoint8 = [TJ_PointConver tj_conver:point8 scale:model.tj_scale angle:model.tj_angle];
             CGPoint offset = CGPointMake((newPoint8.x - model.location.x), (newPoint8.y - model.location.y));
             
-            model.tj_center = CGPointMake(model.tj_center.x - offset.x, model.tj_center.y - offset.y);
+            model.tj_center = CGPointMake(-offset.x, - offset.y);
             
         }else {
             model.tj_size = CGSizeMake([[dataDict valueForKey:@"width"] floatValue], [[dataDict valueForKey:@"height"] floatValue]);
             model.tj_center = CGPointMake([[dataDict valueForKey:@"centerX"] floatValue], [[dataDict valueForKey:@"centerY"] floatValue]);
         }
-        
         [arrM addObject:model];
     }
-    
     return arrM;
 }
 

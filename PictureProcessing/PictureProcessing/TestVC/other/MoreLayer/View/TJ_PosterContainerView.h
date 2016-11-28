@@ -15,4 +15,12 @@
 
 @property (nonatomic, weak) TJ_PosterView       *currentPoster;
 
+
+@property (nonatomic, copy) void(^scaleBlock)(CGFloat scale);
+@property (nonatomic, copy) void(^rotateBlock)(CGFloat angle);
+@property (nonatomic, copy) void(^translationBlock)(CGPoint offset);
+
+
+
+
 @end
