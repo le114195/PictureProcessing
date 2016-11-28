@@ -40,6 +40,9 @@
     NSArray         *keyPoint;
     
     CGPoint         point_8;
+    
+    CGFloat         faceWidth;
+    
 }
 
 - (void)viewDidLoad {
@@ -51,11 +54,18 @@
     self.posterArrM = [NSMutableArray array];
     self.ImgArray = [NSMutableArray array];
     
-    self.tj_image = [UIImage imageNamed:@"expression_face"];
+    self.tj_image = [UIImage imageNamed:@"rgba1475982568575c1000007m10000071"];
     keyPoint = [FaceLandmarkInterface getLanmarkPointFromUIImage:self.tj_image];
     
     point_8 = CGPointMake([keyPoint[8] floatValue], [keyPoint[keyPoint.count / 2 + 8] floatValue]);
     point_8 = CGPointMake(point_8.x - self.tj_image.size.width * 0.5, point_8.y - self.tj_image.size.height * 0.5);
+    
+    
+    CGPoint point_1 = CGPointMake([keyPoint[1] floatValue], [keyPoint[keyPoint.count / 2 + 1] floatValue]);
+    CGPoint point_15 = CGPointMake([keyPoint[15] floatValue], [keyPoint[keyPoint.count / 2 + 15] floatValue]);
+    
+    faceWidth = sqrt((point_1.x - point_15.x) * (point_1.x - point_15.x) + (point_1.y - point_15.y) * (point_1.y - point_15.y));
+    
     
     
     [self addPoster];
@@ -112,7 +122,7 @@
     
     
     for (NSDictionary *modelDict in array) {
-        NSArray *modelArray = [TJPosterModel modelWithDict:modelDict faceImg:self.tj_image point8:point_8 backWidth:backWidth backHeight:backHeight];
+        NSArray *modelArray = [TJPosterModel modelWithDict:modelDict faceImg:self.tj_image point8:point_8 backWidth:backWidth backHeight:backHeight faceWidth:faceWidth];
         UIImage *newImg = [self drawImageWithPosterModels:modelArray];
         [self.ImgArray addObject:newImg];
     }
@@ -120,7 +130,7 @@
 
 - (void)pictureWithDict:(NSDictionary*)dict
 {
-    NSArray *modelArray = [TJPosterModel modelWithDict:dict faceImg:self.tj_image point8:point_8 backWidth:backWidth backHeight:backHeight];
+    NSArray *modelArray = [TJPosterModel modelWithDict:dict faceImg:self.tj_image point8:point_8 backWidth:backWidth backHeight:backHeight faceWidth:faceWidth];
     
     for (TJPosterModel *model in modelArray) {
         

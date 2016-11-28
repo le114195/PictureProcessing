@@ -12,7 +12,7 @@
 @implementation TJPosterModel
 
 
-+ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight
++ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight faceWidth:(CGFloat)faceWidth
 {
     
     NSMutableArray *arrM = [NSMutableArray array];
@@ -52,6 +52,7 @@
             
             model.location = CGPointMake(locationX, locationY);
             model.faceWidth = [[dataDict valueForKey:@"faceWidth"] floatValue];
+            model.tj_scale = model.faceWidth / faceWidth;
             model.tj_size = faceImg.size;
             
             model.tj_center = CGPointMake(0, 0);

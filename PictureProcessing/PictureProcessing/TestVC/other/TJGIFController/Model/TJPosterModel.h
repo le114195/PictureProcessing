@@ -46,7 +46,7 @@
 
 
 
-+ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight;
++ (NSArray *)modelWithDict:(NSDictionary *)dict faceImg:(UIImage *)faceImg point8:(CGPoint)point8 backWidth:(CGFloat)backWidth backHeight:(CGFloat)backHeight faceWidth:(CGFloat)faceWidth;
 
 
 @end
