@@ -321,7 +321,7 @@
         TJPosterModel *model = modelArray[self.currentIndex];
         
         
-        model.tj_scale = self.containerView.currentPoster.tj_scale;
+        model.tj_scale *= scale;
         
         if (model.referenceObject == 1) {
             CGPoint newPoint8 = [TJ_PointConver tj_conver:point_8 scale:model.tj_scale angle:model.tj_angle];

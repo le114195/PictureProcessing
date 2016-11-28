@@ -36,21 +36,21 @@
 
 - (void)gestureConfigure
 {
-    //缩放
-    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
-    pinchGesture.delegate = self;
-    [self addGestureRecognizer:pinchGesture];
+//    //缩放
+//    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
+//    pinchGesture.delegate = self;
+//    [self addGestureRecognizer:pinchGesture];
     
-//    //旋转
-//    UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAction:)];
-//    rotationGesture.delegate = self;
-//    [self addGestureRecognizer:rotationGesture];
+    //旋转
+    UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAction:)];
+    rotationGesture.delegate = self;
+    [self addGestureRecognizer:rotationGesture];
     
     //平移
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
     panGesture.delegate = self;
     [panGesture setMinimumNumberOfTouches:1];
-    [panGesture setMaximumNumberOfTouches:2];
+    [panGesture setMaximumNumberOfTouches:1];
     [self addGestureRecognizer:panGesture];
 }
 
