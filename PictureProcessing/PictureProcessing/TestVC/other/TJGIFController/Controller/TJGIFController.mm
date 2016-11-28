@@ -168,9 +168,11 @@
             
             //缩放
             posterView.transform = CGAffineTransformScale(posterView.transform, model.tj_scale, model.tj_scale);
+            posterView.tj_scale *= model.tj_scale;
             
             //旋转
             posterView.transform = CGAffineTransformRotate(posterView.transform, model.tj_angle);
+            posterView.tj_angle += model.tj_angle;
             
             //平移
             [posterView setCenter:CGPointMake((model.tj_center.x + backWidth * 0.5) * (Screen_Width / backWidth), (model.tj_center.y + backHeight * 0.5) * (Screen_Width / backWidth))];
@@ -275,6 +277,8 @@
                 CGPoint offset = CGPointMake((newPoint8.x - model.location.x), (newPoint8.y - model.location.y));
 
                 model.tj_center = CGPointMake(-offset.x - model.tj_offset.x, -offset.y - model.tj_offset.y);
+                
+                
             }
             
 
@@ -317,7 +321,8 @@
         TJPosterModel *model = modelArray[self.currentIndex];
         
         
-        model.tj_scale *= scale;
+        model.tj_scale = self.containerView.currentPoster.tj_scale;
+        
         if (model.referenceObject == 1) {
             CGPoint newPoint8 = [TJ_PointConver tj_conver:point_8 scale:model.tj_scale angle:model.tj_angle];
             CGPoint offset = CGPointMake((newPoint8.x - model.location.x), (newPoint8.y - model.location.y));
@@ -362,13 +367,7 @@
         
         CGFloat r = sqrt(offset.x * offset.x + offset.y * offset.y);
         
-        NSLog(@"%f - - %f", r * cos(angle), r * sin(angle));
-        
         model.tj_offset = CGPointMake(model.tj_offset.x - r / (Screen_Width / backWidth) * cos(angle), model.tj_offset.y - r / (Screen_Width / backWidth) * sin(angle));
-        
-        NSLog(@"angle = %f", angle);
-        
-        NSLog(@"scale = %f", scale);
     }
 }
 
