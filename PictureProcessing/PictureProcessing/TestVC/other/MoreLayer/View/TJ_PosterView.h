@@ -15,6 +15,6 @@
 
 @property (nonatomic, assign) CGFloat           tj_angle;
 
-
+@property (nonatomic, assign) CGPoint           tj_offset;
 
 @end

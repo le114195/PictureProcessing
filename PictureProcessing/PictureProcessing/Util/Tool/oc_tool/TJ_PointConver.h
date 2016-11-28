@@ -19,4 +19,8 @@
 
 + (CGPoint)tj_conver:(CGPoint)point scale:(CGFloat)scale angle:(CGFloat)angle;
 
+
+
++ (CGFloat)tj_anglePoint:(CGPoint)point;
+
 @end

@@ -38,10 +38,10 @@
     pinchGesture.delegate = self;
     [self addGestureRecognizer:pinchGesture];
     
-    //旋转
-    UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAction:)];
-    rotationGesture.delegate = self;
-    [self addGestureRecognizer:rotationGesture];
+//    //旋转
+//    UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAction:)];
+//    rotationGesture.delegate = self;
+//    [self addGestureRecognizer:rotationGesture];
     
     //平移
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
@@ -58,6 +58,9 @@
     if (pinchGesture.state == UIGestureRecognizerStateBegan || pinchGesture.state == UIGestureRecognizerStateChanged) {
         self.currentPoster.transform = CGAffineTransformScale(self.currentPoster.transform, pinchGesture.scale, pinchGesture.scale);
         self.currentPoster.tj_scale *= pinchGesture.scale;
+        if (self.scaleBlock) {
+            self.scaleBlock(pinchGesture.scale);
+        }
         pinchGesture.scale = 1;
     }
     self.currentPoster.layer.borderWidth = 1.0 / self.currentPoster.tj_scale;
@@ -69,6 +72,9 @@
     if (rotateGesture.state == UIGestureRecognizerStateBegan || rotateGesture.state == UIGestureRecognizerStateChanged) {
         self.currentPoster.transform = CGAffineTransformRotate(self.currentPoster.transform, rotateGesture.rotation);
         self.currentPoster.tj_angle += rotateGesture.rotation;
+        if (self.rotateBlock) {
+            self.rotateBlock(rotateGesture.rotation);
+        }
         [rotateGesture setRotation:0];
     }
 }
@@ -79,6 +85,10 @@
     if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [panGesture translationInView:self.currentPoster.superview];
         [self.currentPoster setCenter:(CGPoint){self.currentPoster.center.x + translation.x, self.currentPoster.center.y + translation.y}];
+        self.currentPoster.tj_offset = CGPointMake(self.currentPoster.tj_offset.x + translation.x, self.currentPoster.tj_offset.y + translation.y);
+        if (self.translationBlock) {
+            self.translationBlock(translation);
+        }
         [panGesture setTranslation:CGPointZero inView:self.currentPoster.superview];
     }
 }
