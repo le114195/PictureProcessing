@@ -36,8 +36,6 @@
 
 @property (nonatomic, strong) NSMutableArray                    *poster2ModelArrM;
 
-@property (nonatomic, strong) NSArray                           *firstPosterModelArray;
-
 
 @end
 
@@ -148,7 +146,6 @@
 - (void)pictureWithDict:(NSDictionary*)dict
 {
     NSArray *modelArray = [TJPosterModel modelWithDict:dict faceImg:self.tj_image faceWidth:faceWidth point8:point_8 backWidth:backWidth backHeight:backHeight];
-    self.firstPosterModelArray = modelArray;
     
     for (TJPosterModel *model in modelArray) {
         
@@ -277,16 +274,9 @@
                 CGPoint offset = CGPointMake((newPoint8.x - model.location.x), (newPoint8.y - model.location.y));
 
                 model.tj_center = CGPointMake(-offset.x - model.tj_offset.x, -offset.y - model.tj_offset.y);
-                
-                
             }
-            
-
         }
     }
-    
-    
-    
     TJShowGIFController *showVC = [TJShowGIFController showWithImgArray:[self drawImgArray]];
     
     [self.navigationController pushViewController:showVC animated:YES];
@@ -353,9 +343,12 @@
 
 - (void)translationAction:(CGPoint)offset
 {
+    
+    NSArray *firstModelArray = [self.poster2ModelArrM firstObject];
+    
     for (NSArray *modelArray in self.poster2ModelArrM) {
         TJPosterModel *model = modelArray[self.currentIndex];
-        TJPosterModel *firstModel = self.firstPosterModelArray[self.currentIndex];
+        TJPosterModel *firstModel = firstModelArray[self.currentIndex];
         
 //        model.tj_offset = CGPointMake(model.tj_offset.x - offset.x / (Screen_Width / backWidth), model.tj_offset.y - offset.y / (Screen_Width / backWidth));
         
@@ -365,7 +358,7 @@
         
         angle += [TJ_PointConver tj_anglePoint:offset];
         
-        CGFloat r = sqrt(offset.x * offset.x + offset.y * offset.y);
+        CGFloat r = sqrt(offset.x * offset.x + offset.y * offset.y) * scale;
         
         model.tj_offset = CGPointMake(model.tj_offset.x - r / (Screen_Width / backWidth) * cos(angle), model.tj_offset.y - r / (Screen_Width / backWidth) * sin(angle));
     }
