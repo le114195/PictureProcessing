@@ -44,10 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
 }
-
 
 
 - (UIImage *)drawImgWithImage:(UIImage *)image pointArr:(NSArray *)pointArr
