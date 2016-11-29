@@ -28,6 +28,7 @@
 #import "TJ_CacheController.h"
 
 #import "ImgTOVideoVC.h"
+#import "TJGIFListController.h"
 
 
 
@@ -175,8 +176,10 @@
             break;
         }
         case 6:{
-            TJGIFController *gifVC = [[TJGIFController alloc] init];
-            [self.navigationController pushViewController:gifVC animated:YES];
+            
+            TJGIFListController *listVC = [[TJGIFListController alloc] init];
+            [self.navigationController pushViewController:listVC animated:YES];
+            
             break;
         }
         case 7:{

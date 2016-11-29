@@ -10,4 +10,7 @@
 
 @interface TJGIFController : UIViewController
 
++ (instancetype)gifWithTitle:(NSString *)title;
+
+
 @end

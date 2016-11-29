@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<TJExpressionTemplate backWidth="1024.0" backHeight="1024.0">
+    <Image time="0.5">
+        <TJBackgroundLayer title="haha1" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
+        <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="0" imageType="1" filp="0" lock="0" faceWidth="320" locationX="95" locationY="138"></TJFaceLayer>
+    </Image>
+    <Image time="1.0">
+        <TJBackgroundLayer title="haha2" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
+        <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="0.13" imageType="1" filp="0" lock="0" faceWidth="320" locationX="93" locationY="134"></TJFaceLayer>
+    </Image>
+</TJExpressionTemplate>

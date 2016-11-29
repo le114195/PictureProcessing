@@ -36,6 +36,7 @@
 
 @property (nonatomic, strong) NSMutableArray                    *poster2ModelArrM;
 
+@property (nonatomic, copy) NSString                            *xmlTitle;
 
 @end
 
@@ -49,6 +50,16 @@
     
     CGFloat         faceWidth;
     
+}
+
+
++ (instancetype)gifWithTitle:(NSString *)title
+{
+    TJGIFController *gifVC = [[TJGIFController alloc] init];
+    
+    gifVC.xmlTitle = title;
+    
+    return gifVC;
 }
 
 - (void)viewDidLoad {
@@ -109,7 +120,6 @@
         
         faceWidth = sqrt((point_1.x - point_15.x) * (point_1.x - point_15.x) + (point_1.y - point_15.y) * (point_1.y - point_15.y));
     }
-
 }
 
 
@@ -146,21 +156,26 @@
 - (void)pictureWithDict:(NSDictionary*)dict
 {
     NSArray *modelArray = [TJPosterModel modelWithDict:dict faceImg:self.tj_image faceWidth:faceWidth point8:point_8 backWidth:backWidth backHeight:backHeight];
+    CGFloat rate = (Screen_Width / backWidth);
     
     for (TJPosterModel *model in modelArray) {
         
+        TJ_PosterView *posterView = [[TJ_PosterView alloc] init];
+        if (model.referenceObject == 0) {
+            posterView.userInteractionEnabled = NO;
+        }
+        [self.containerView addSubview:posterView];
+        [self.posterImgViewArrM addObject:posterView];
+        
+        
         if ([model.nodeName isEqualToString:@"TJBackgroundLayer"]) {
-            
-            TJ_PosterView *posterBGView = [[TJ_PosterView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Width)];
-            posterBGView.userInteractionEnabled = NO;
-            [self.containerView addSubview:posterBGView];
-            posterBGView.image = model.tj_image;
-            [self.posterImgViewArrM addObject:posterBGView];
+            posterView.frame = CGRectMake(0, 0, Screen_Width, Screen_Width);
+            posterView.image = model.tj_image;
         }else if ([model.nodeName isEqualToString:@"TJFaceLayer"]) {
             
-            TJ_PosterView *posterView = [[TJ_PosterView alloc] initWithFrame:CGRectMake(0, 0, self.tj_image.size.width * (Screen_Width / backWidth), self.tj_image.size.height * (Screen_Width / backWidth))];
-            [posterView setCenter:CGPointMake(backWidth * 0.5 * (Screen_Width / backWidth), backHeight * 0.5 * (Screen_Width / backWidth))];
-            [self.containerView addSubview:posterView];
+            posterView.frame = CGRectMake(0, 0, self.tj_image.size.width * rate, self.tj_image.size.height * rate);
+            [posterView setCenter:CGPointMake(backWidth * 0.5 * rate, backHeight * 0.5 * rate)];
+            
             posterView.image = self.tj_image;
             
             //缩放
@@ -172,9 +187,10 @@
             posterView.tj_angle += model.tj_angle;
             
             //平移
-            [posterView setCenter:CGPointMake((model.tj_center.x + backWidth * 0.5) * (Screen_Width / backWidth), (model.tj_center.y + backHeight * 0.5) * (Screen_Width / backWidth))];
-            
-            [self.posterImgViewArrM addObject:posterView];
+            [posterView setCenter:CGPointMake((model.tj_center.x + backWidth * 0.5) * rate, (model.tj_center.y + backHeight * 0.5) * rate)];
+        }else {
+            posterView.frame = CGRectMake((model.tj_center.x - backWidth * 0.5) * rate, (model.tj_center.y - backHeight * 0.5) * rate, model.tj_size.width * rate, model.tj_size.height * rate);
+            posterView.image = model.tj_image;
         }
     }
 }
@@ -184,7 +200,8 @@
     NSMutableDictionary *rootDict = [NSMutableDictionary dictionary];
     NSMutableArray *arrM = [NSMutableArray array];
     
-    NSString *xmlPath = [[NSBundle mainBundle] pathForResource:@"1479719953719c400010m400010.xml" ofType:nil];
+    
+    NSString *xmlPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.xml", self.xmlTitle] ofType:nil];
     
     NSString *content = [[NSString alloc] initWithContentsOfFile:xmlPath encoding:NSUTF8StringEncoding error:nil];
     GDataXMLDocument *document =  [[GDataXMLDocument alloc] initWithXMLString:content options:0 error:nil];
@@ -203,7 +220,7 @@
         [eleDict setValue:[[element.attributes firstObject] stringValue] forKey:@"time"];
         
         NSMutableArray *dictArr = [NSMutableArray array];
-        
+
         NSArray *eleArr = [element children];
         
         for (GDataXMLElement *imgEle in eleArr) {
@@ -212,7 +229,7 @@
             // 标签名
             tempDic[@"nodeName"] = [imgEle name];
             // 标签内容
-            if([imgEle stringValue].length != 0){
+            if([imgEle stringValue].length != 0) {
                 tempDic[@"nodeValue"] = [imgEle stringValue];
             }
             // 标签属性
@@ -263,20 +280,6 @@
 
 - (void)showAction
 {
-    for (int i = 0; i < self.posterImgViewArrM.count; i++) {
-        
-        for (NSArray *modelArray in self.poster2ModelArrM) {
-            TJPosterModel *model = modelArray[i];
-            
-
-            if (model.referenceObject == 1) {
-                CGPoint newPoint8 = [TJ_PointConver tj_conver:point_8 scale:model.tj_scale angle:model.tj_angle];
-                CGPoint offset = CGPointMake((newPoint8.x - model.location.x), (newPoint8.y - model.location.y));
-
-                model.tj_center = CGPointMake(-offset.x - model.tj_offset.x, -offset.y - model.tj_offset.y);
-            }
-        }
-    }
     TJShowGIFController *showVC = [TJShowGIFController showWithImgArray:[self drawImgArray]];
     
     [self.navigationController pushViewController:showVC animated:YES];
@@ -371,7 +374,15 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(backWidth, backHeight), NO, 1.0);
     for (TJPosterModel *model in models) {
         if (model.tj_image == nil) continue;
-        [model.tj_image drawAtCenter:CGPointMake(model.tj_center.x + backWidth * 0.5, model.tj_center.y + backHeight * 0.5) Alpha:1.0 withTranslation:CGPointMake(0, 0) radian:model.tj_angle scale:model.tj_scale];
+        
+        CGPoint modelCenter = model.tj_center;
+        if (model.referenceObject == 1) {
+            CGPoint newPoint8 = [TJ_PointConver tj_conver:point_8 scale:model.tj_scale angle:model.tj_angle];
+            CGPoint offset = CGPointMake((newPoint8.x - model.location.x), (newPoint8.y - model.location.y));
+            
+            modelCenter = CGPointMake(-offset.x - model.tj_offset.x, -offset.y - model.tj_offset.y);
+        }
+        [model.tj_image drawAtCenter:CGPointMake(modelCenter.x + backWidth * 0.5, modelCenter.y + backHeight * 0.5) Alpha:1.0 withTranslation:CGPointMake(0, 0) radian:model.tj_angle scale:model.tj_scale];
     }
     UIImage *newImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
