@@ -36,10 +36,10 @@
 
 - (void)gestureConfigure
 {
-//    //缩放
-//    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
-//    pinchGesture.delegate = self;
-//    [self addGestureRecognizer:pinchGesture];
+    //缩放
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
+    pinchGesture.delegate = self;
+    [self addGestureRecognizer:pinchGesture];
     
     //旋转
     UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateAction:)];
