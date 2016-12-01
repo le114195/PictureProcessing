@@ -352,9 +352,6 @@
         TJPosterModel *model = modelArray[self.currentIndex];
         TJPosterModel *firstModel = firstModelArray[self.currentIndex];
         
-//        model.tj_offset = CGPointMake(model.tj_offset.x - offset.x / (Screen_Width / backWidth), model.tj_offset.y - offset.y / (Screen_Width / backWidth));
-        
-        
         CGFloat scale = model.tj_scale / firstModel.tj_scale;
         CGFloat angle = model.tj_angle - firstModel.tj_angle;
         
