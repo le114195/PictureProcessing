@@ -1,76 +1,76 @@
 <?xml version="1.0"?>
 
 <TJExpressionTemplate backWidth="1024.0" backHeight="1024.0">
-    <Image time="0.5">
+    <Image frameNum="1">
         <TJBackgroundLayer title="Expression4_1" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="0" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-142" locationY="129"></TJFaceLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="2">
         <TJBackgroundLayer title="Expression4_2" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="0" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-142" locationY="129"></TJFaceLayer>
     </Image>
-    <Image time="0.5">
+    <Image frameNum="3">
         <TJBackgroundLayer title="Expression4_3" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="0" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-142" locationY="129"></TJFaceLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="4">
         <TJBackgroundLayer title="Expression4_4" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="0" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-142" locationY="129"></TJFaceLayer>
     </Image>
-    <Image time="0.5">
+    <Image frameNum="5">
         <TJBackgroundLayer title="Expression4_5" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.05" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-139" locationY="130"></TJFaceLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="6">
         <TJBackgroundLayer title="Expression4_6" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.065" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-133" locationY="126"></TJFaceLayer>
     </Image>
-    <Image time="0.5">
+    <Image frameNum="7">
         <TJBackgroundLayer title="Expression4_7" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.08" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-133" locationY="122"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_7" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="8">
         <TJBackgroundLayer title="Expression4_8" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.095" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-132" locationY="130"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_8" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="0.5">
+    <Image frameNum="9">
         <TJBackgroundLayer title="Expression4_9" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.10" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-130" locationY="141"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_9" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="10">
         <TJBackgroundLayer title="Expression4_10" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.115" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-129" locationY="153"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_10" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="0.5">
+    <Image frameNum="11">
         <TJBackgroundLayer title="Expression4_11" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.13" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-129" locationY="133"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_11" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="12">
         <TJBackgroundLayer title="Expression4_12" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.13" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-129" locationY="133"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_12" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="13">
         <TJBackgroundLayer title="Expression4_13" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.13" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-129" locationY="133"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_13" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="14">
         <TJBackgroundLayer title="Expression4_14" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.13" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-129" locationY="133"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_14" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="15">
         <TJBackgroundLayer title="Expression4_15" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.13" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-129" locationY="133"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_15" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>
     </Image>
-    <Image time="1.0">
+    <Image frameNum="16">
         <TJBackgroundLayer title="Expression4_16" referenceObject="0" scale="1.0" angle="0" imageType="1" flip="0"></TJBackgroundLayer>
         <TJFaceLayer width="447" height="590" centerX="0" centerY="0" referenceObject="1" scale="1.0" angle="-0.13" imageType="1" filp="0" lock="0" faceWidth="320" locationX="-129" locationY="133"></TJFaceLayer>
         <TJMaterialLayer width="1024" height="1024" centerX="0" centerY="0" title="ThumbExpression4_16" referenceObject="0" scale="1.0" angle="0" imageType="1" filp="0" lock="0" locationX="0" locationY="0"></TJMaterialLayer>

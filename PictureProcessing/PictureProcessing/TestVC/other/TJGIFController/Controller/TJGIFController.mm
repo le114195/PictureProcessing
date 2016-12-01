@@ -38,6 +38,7 @@
 
 @property (nonatomic, copy) NSString                            *xmlTitle;
 
+
 @end
 
 @implementation TJGIFController
@@ -53,10 +54,10 @@
 }
 
 
-+ (instancetype)gifWithTitle:(NSString *)title
++ (instancetype)gifWithTitle:(NSString *)title headerImg:(UIImage *)headerImg
 {
     TJGIFController *gifVC = [[TJGIFController alloc] init];
-    
+    gifVC.tj_image = headerImg;
     gifVC.xmlTitle = title;
     
     return gifVC;
@@ -105,7 +106,6 @@
 /** 人脸检测 */
 - (void)faceDetect
 {
-    self.tj_image = [UIImage imageNamed:@"rgba1475982568575c1000007m10000071"];
     keyPoint = [FaceLandmarkInterface getLanmarkPointFromUIImage:self.tj_image];
     
     if (keyPoint.count * 0.5 < 68) {
@@ -121,7 +121,6 @@
         faceWidth = sqrt((point_1.x - point_15.x) * (point_1.x - point_15.x) + (point_1.y - point_15.y) * (point_1.y - point_15.y));
     }
 }
-
 
 - (void)addPoster
 {

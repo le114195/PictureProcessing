@@ -10,4 +10,8 @@
 
 @interface TJGIFListController : UIViewController
 
+
++ (instancetype)listImg:(UIImage *)image;
+
+
 @end

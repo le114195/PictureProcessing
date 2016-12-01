@@ -32,7 +32,7 @@
 
 
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) ImagePicker       *imgPicker;
 
@@ -40,6 +40,9 @@
 
 @property (nonatomic, strong) NSArray           *dataArray;
 
+@property (nonatomic, strong) UIImagePickerController           *picker;
+
+@property (nonatomic, copy) void(^getImageBlock)(UIImage *image);
 
 @end
 
@@ -67,6 +70,9 @@
 {
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
+
+
+
 
 
 #pragma mark - 子控件初始化
@@ -104,6 +110,18 @@
     return _imgPicker;
 }
 
+
+- (UIImagePickerController *)picker
+{
+    if (!_picker) {
+        _picker = [[UIImagePickerController alloc] init];
+        _picker.delegate = self;
+        _picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        _picker.delegate = self;
+        _picker.allowsEditing = NO;
+    }
+    return _picker;
+}
 
 
 
@@ -177,9 +195,12 @@
         }
         case 6:{
             
-            TJGIFListController *listVC = [[TJGIFListController alloc] init];
-            [self.navigationController pushViewController:listVC animated:YES];
-            
+            [self presentViewController:self.picker animated:YES completion:nil];
+            __weak __typeof(self)weakSelf = self;
+            self.getImageBlock = ^(UIImage *image){
+                TJGIFListController *listVC = [TJGIFListController listImg:image];
+                [weakSelf.navigationController pushViewController:listVC animated:YES];
+            };
             break;
         }
         case 7:{
@@ -233,5 +254,20 @@
 }
 
 #pragma mark - 私有方法
+
+
+/** ios自带相册代理方法 */
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage * imageOri = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (self.getImageBlock) {
+        self.getImageBlock(imageOri);
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
 
 @end
