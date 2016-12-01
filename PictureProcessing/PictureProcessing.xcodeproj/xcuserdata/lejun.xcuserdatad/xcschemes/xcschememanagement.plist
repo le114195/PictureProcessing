@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SDMFaceDetect.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>7556F7CD1D5CA0AA008CC401</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>75768EDF1DEFF5780091B8F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,7 +9,7 @@
 #import "TJGIFController.h"
 #import "TJ_PosterContainerView.h"
 
-#import <TJSDM/FaceLandmarkInterface.h>
+#import <SDMFaceDetect/FaceLandmarkInterface.h>
 
 #import <opencv2/imgcodecs/ios.h>
 #import <opencv2/opencv.hpp>

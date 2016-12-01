@@ -9,7 +9,6 @@
 #import "TJGIFListController.h"
 #import "TestCell.h"
 #import "TJGIFController.h"
-#import <TJSDM/FaceLandmarkInterface.h>
 
 @interface TJGIFListController ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -51,9 +50,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 
 - (void)tableViewConfigure
