@@ -311,8 +311,6 @@
 {
     for (NSArray *modelArray in self.poster2ModelArrM) {
         TJPosterModel *model = modelArray[self.currentIndex];
-        
-        
         model.tj_scale *= scale;
         
         if (model.referenceObject == 1) {
@@ -321,7 +319,6 @@
             
             model.tj_offset = CGPointMake(model.tj_offset.x + (-offset.x - model.tj_center.x), model.tj_offset.y + (-offset.y - model.tj_center.y));
             model.tj_center = CGPointMake(-offset.x, -offset.y);
-            
         }
     }
 }

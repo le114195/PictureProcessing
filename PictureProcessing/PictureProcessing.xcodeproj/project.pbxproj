@@ -483,6 +483,7 @@
 		759827BF1DD572B300BAC896 /* OpencvTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827B91DD572B300BAC896 /* OpencvTestVC.mm */; };
 		759827C01DD572B300BAC896 /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827BB1DD572B300BAC896 /* TestBaseVC.mm */; };
 		759827C71DD5730200BAC896 /* TJMoreLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759827C61DD5730200BAC896 /* TJMoreLayerController.m */; };
+		75B74BD31E0382A400E09A14 /* constData_haha_hader.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B74BD21E0382A400E09A14 /* constData_haha_hader.png */; };
 		75BA919D1DDC2EBD00B74EEF /* FaceFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BA919B1DDC2EBD00B74EEF /* FaceFeature.cpp */; };
 		75BA91A71DDC63C400B74EEF /* ptest3.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA91A51DDC63C400B74EEF /* ptest3.png */; };
 		75BA91AD1DDC6B3B00B74EEF /* expression1.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA91AC1DDC6B3B00B74EEF /* expression1.png */; };
@@ -1275,6 +1276,7 @@
 		759827C51DD5730200BAC896 /* TJMoreLayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMoreLayerController.h; sourceTree = "<group>"; };
 		759827C61DD5730200BAC896 /* TJMoreLayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMoreLayerController.m; sourceTree = "<group>"; };
 		75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
+		75B74BD21E0382A400E09A14 /* constData_haha_hader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = constData_haha_hader.png; sourceTree = "<group>"; };
 		75BA919B1DDC2EBD00B74EEF /* FaceFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceFeature.cpp; sourceTree = "<group>"; };
 		75BA919C1DDC2EBD00B74EEF /* FaceFeature.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FaceFeature.hpp; sourceTree = "<group>"; };
 		75BA91A51DDC63C400B74EEF /* ptest3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ptest3.png; sourceTree = "<group>"; };
@@ -1609,6 +1611,7 @@
 		7556218D1DB9ACD300294C41 /* brushTexture */ = {
 			isa = PBXGroup;
 			children = (
+				75B74BD21E0382A400E09A14 /* constData_haha_hader.png */,
 				7556218E1DB9ACD300294C41 /* brush01.png */,
 				7556218F1DB9ACD300294C41 /* brush02.png */,
 				755621901DB9ACD300294C41 /* brush03.png */,
@@ -3179,6 +3182,7 @@
 				7556219F1DB9ACD400294C41 /* imageTest002.png in Resources */,
 				7558E98D1DBF952B00E7EDA5 /* sj_20160705_19.JPG in Resources */,
 				752B306D1DED5E3A00181F32 /* rgbaThumbExpression4_11.png in Resources */,
+				75B74BD31E0382A400E09A14 /* constData_haha_hader.png in Resources */,
 				752B303A1DED1BF100181F32 /* rgbaExpression36.png in Resources */,
 				754411581DE679FC005F4C9C /* roboman-landmark-model.bin in Resources */,
 				752B30331DED1BF100181F32 /* rgbaExpression310.png in Resources */,
@@ -3850,6 +3854,7 @@
 				75768EEA1DEFF5790091B8F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

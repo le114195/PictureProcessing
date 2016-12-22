@@ -18,6 +18,7 @@
 #import "TJ_PointConver.h"
 #import "TJ_PosterContainerView.h"
 #import "GDataXMLNode.h"
+#import "FaceLandmarkInterface.h"
 
 
 
@@ -44,6 +45,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIImage *image = [UIImage imageNamed:@"constData_haha_hader"];
+    
+    NSArray *array = [FaceLandmarkInterface getLanmarkPointFromUIImage:image];
+    
+    
+    UIImage *showImg = [self drawImgWithImage:image pointArr:array];
+    
+    
+    NSLog(@"%@", NSStringFromCGSize(showImg.size));
+    
 }
 
 

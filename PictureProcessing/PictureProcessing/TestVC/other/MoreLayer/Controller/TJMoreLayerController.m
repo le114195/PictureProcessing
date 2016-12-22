@@ -56,6 +56,13 @@
     testImgView.layer.borderColor = [UIColor blueColor].CGColor;
     
     testImgView.backgroundColor = [UIColor redColor];
+    
+    
+    
+    TJ_PosterView *greenView = [[TJ_PosterView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+    [testImgView addSubview:greenView];
+    greenView.backgroundColor = [UIColor greenColor];
+    
 }
 
 
