@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self testCompressionSession];
+    [self makeVideo];
     
     // Do any additional setup after loading the view.
 }
@@ -30,206 +30,142 @@
 
 
 
-- (void) testCompressionSession
 
-{
+
+- (void)makeVideo {
     
-    NSArray *imageArr = [NSArray arrayWithObjects:[[UIImage imageNamed:@"sj_20160705_10.JPG"] CGImage],[[UIImage imageNamed:@"sj_20160705_11.JPG"] CGImage],[[UIImage imageNamed:@"sj_20160705_12.JPG"] CGImage],[[UIImage imageNamed:@"sj_20160705_13.JPG"] CGImage],[[UIImage imageNamed:@"sj_20160705_14.JPG"] CGImage], nil];
+    NSMutableArray *imgs = [NSMutableArray array];
+    [imgs addObject:[UIImage imageNamed:@"0.png"]];
+    [imgs addObject:[UIImage imageNamed:@"1.png"]];
+    [imgs addObject:[UIImage imageNamed:@"2.png"]];
+    [imgs addObject:[UIImage imageNamed:@"3.png"]];
+    [imgs addObject:[UIImage imageNamed:@"4.png"]];
+    [imgs addObject:[UIImage imageNamed:@"5.png"]];
+    [imgs addObject:[UIImage imageNamed:@"6.png"]];
+    [imgs addObject:[UIImage imageNamed:@"7.png"]];
+    [imgs addObject:[UIImage imageNamed:@"8.png"]];
+    [imgs addObject:[UIImage imageNamed:@"9.png"]];
+    [imgs addObject:[UIImage imageNamed:@"10.png"]];
     
-    
-    
-    CGSize size = CGSizeMake(1080, 1920);
-    
-    
-    
-    
+    CGSize size = CGSizeMake(650, 366);
     
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.m4v"];
     
-    
-    
-    NSError *error = nil;
-    
-    
-    
     unlink([betaCompressionDirectory UTF8String]);
     
-    
-    
-    //----initialize compression engine
-    
-    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:betaCompressionDirectory]
-                                  
-                                                           fileType:AVFileTypeQuickTimeMovie
-                                  
-                                                              error:&error];
-    
-    NSParameterAssert(videoWriter);
-    
-    if(error)
-        
-        NSLog(@"error = %@", [error localizedDescription]);
-    
-    
-    
-    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
-                                   
-                                   [NSNumber numberWithInt:size.width], AVVideoWidthKey,
-                                   
-                                   [NSNumber numberWithInt:size.height], AVVideoHeightKey, nil];
-    
-    AVAssetWriterInput *writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
-    
-    
-    
-    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           
-                                                           [NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
-    
-    
-    
-    AVAssetWriterInputPixelBufferAdaptor *adaptor = [AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:writerInput
-                                                     
-                                                                                                                     sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
-    
-    NSParameterAssert(writerInput);
-    
-    NSParameterAssert([videoWriter canAddInput:writerInput]);
-    
-    
-    
-    if ([videoWriter canAddInput:writerInput])
-        
-        NSLog(@"I can add this input");
-    
-    else
-        
-        NSLog(@"i can't add this input");
-    
-    
-    
-    [videoWriter addInput:writerInput];
-    
-    
-    
-    [videoWriter startWriting];
-    
-    [videoWriter startSessionAtSourceTime:kCMTimeZero];
-    
-    
-    
-    //---
-    
-    // insert demo debugging code to write the same image repeated as a movie
-    
-    dispatch_queue_t    dispatchQueue = dispatch_queue_create("mediaInputQueue", NULL);
-    
-    int __block         frame = 0;
-    
-    
-    
-    [writerInput requestMediaDataWhenReadyOnQueue:dispatchQueue usingBlock:^{
-        
-        while ([writerInput isReadyForMoreMediaData])
-            
-        {
-            
-            if(++frame >= imageArr.count * 40)
-                
-            {
-                
-                [writerInput markAsFinished];
-                
-                [videoWriter finishWriting];
-                
-                
-                
-                break;
-                
-            }
-            
-            int idx = frame/40;
-            
-            
-            
-            CVPixelBufferRef buffer = (CVPixelBufferRef)[self pixelBufferFromCGImage:(__bridge CGImageRef)([imageArr objectAtIndex:idx]) size:size];
-            
-            if (buffer)
-                
-            {
-                
-                if(![adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMake(frame, 20)])
-                    
-                    NSLog(@"FAIL");
-                
-                else
-                    
-                    NSLog(@"Success:%d", frame);
-                
-                CFRelease(buffer);
-                
-            }
-            
-        }
-        
-    }];
-    
-    
-    
-    NSLog(@"outside for loop");
-    
+    [self writeImages:imgs ToMovieAtPath:betaCompressionDirectory withSize:CGSizeMake(720, 720) inDuration:2.0 byFPS:30];
 }
 
 
 
+- (void)writeImages:(NSArray *)imagesArray ToMovieAtPath:(NSString *)path withSize:(CGSize) size
+         inDuration:(float)duration byFPS:(int32_t)fps{
+    //Wire the writer:
+    NSError *error =nil;
+    AVAssetWriter *videoWriter =[[AVAssetWriter alloc]initWithURL:[NSURL fileURLWithPath:path]
+                                                         fileType:AVFileTypeQuickTimeMovie
+                                                            error:&error];
+    NSParameterAssert(videoWriter);
+    
+    NSDictionary *videoSettings =[NSDictionary dictionaryWithObjectsAndKeys:
+                                  AVVideoCodecH264,AVVideoCodecKey,
+                                  [NSNumber numberWithInt:size.width],AVVideoWidthKey,
+                                  [NSNumber numberWithInt:size.height],AVVideoHeightKey,nil];
+    
+    AVAssetWriterInput* videoWriterInput =[AVAssetWriterInput
+                                           assetWriterInputWithMediaType:AVMediaTypeVideo
+                                           outputSettings:videoSettings];
+    
+    
+    AVAssetWriterInputPixelBufferAdaptor *adaptor =[AVAssetWriterInputPixelBufferAdaptor
+                                                    assetWriterInputPixelBufferAdaptorWithAssetWriterInput:videoWriterInput
+                                                    sourcePixelBufferAttributes:nil];
+    NSParameterAssert(videoWriterInput);
+    NSParameterAssert([videoWriter canAddInput:videoWriterInput]);
+    [videoWriter addInput:videoWriterInput];
+    
+    //Start a session:
+    [videoWriter startWriting];
+    [videoWriter startSessionAtSourceTime:kCMTimeZero];
+    
+    //Write some samples:
+    CVPixelBufferRef buffer =NULL;
+    
+    int frameCount = 0;
+    
+    NSUInteger imagesCount = [imagesArray count];
+    float averageTime = duration/imagesCount;
+    NSLog(@"averageTime--:%f",averageTime);
+    int averageFrame =(int)(averageTime * fps);
+    
+    for(UIImage *img in imagesArray)
+    {
+        buffer=[self pixelBufferFromCGImage:[img CGImage]size:size];
+        BOOL append_ok =NO;
+        int j = 0;
+        while (!append_ok)
+        {
+            if(adaptor.assetWriterInput.readyForMoreMediaData)
+            {
+                CMTime frameTime = CMTimeMake(frameCount,(int32_t)fps);
+                float frameSeconds = CMTimeGetSeconds(frameTime);
+                NSLog(@"frameCount:%d,kRecordingFPS:%d,frameSeconds:%f",frameCount,fps,frameSeconds);
+                append_ok = [adaptor appendPixelBuffer:buffer withPresentationTime:frameTime];
+                
+                if(buffer)
+                    [NSThread sleepForTimeInterval:0.05];
+            }else{
+                printf("adaptor not ready %d,%d\n", frameCount, j);
+                [NSThread sleepForTimeInterval:0.1];
+            }
+            j++;
+        }
+        if (!append_ok){
+            printf("error appendingimage %d times %d\n", frameCount, j);
+        }
+        
+        frameCount = frameCount + averageFrame;
+    }
+    
+    //Finish the session:
+    [videoWriter finishWritingWithCompletionHandler:^{
+        
+    }];
+    NSLog(@"finishWriting");
+}
 
 
-- (CVPixelBufferRef )pixelBufferFromCGImage:(CGImageRef)image size:(CGSize)size
-
+- (CVPixelBufferRef)pixelBufferFromCGImage:(CGImageRef)image size:(CGSize)size
 {
+    NSDictionary *options =[NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSNumber numberWithBool:YES],kCVPixelBufferCGImageCompatibilityKey,
+                            [NSNumber numberWithBool:YES],kCVPixelBufferCGBitmapContextCompatibilityKey,nil];
+    CVPixelBufferRef pxbuffer =NULL;
+    CVReturn status =CVPixelBufferCreate(kCFAllocatorDefault,size.width,size.height,kCVPixelFormatType_32ARGB,(__bridge CFDictionaryRef) options,&pxbuffer);
     
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             
-                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
-                             
-                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey, nil];
+    NSParameterAssert(status == kCVReturnSuccess && pxbuffer !=NULL);
     
-    CVPixelBufferRef pxbuffer = NULL;
-    
-    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width, size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options, &pxbuffer);
-    
-    // CVReturn status = CVPixelBufferPoolCreatePixelBuffer(NULL, adaptor.pixelBufferPool, &pxbuffer);
-    
-    
-    
-    NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
-    
-    
-    
-    CVPixelBufferLockBaseAddress(pxbuffer, 0);
-    
+    CVPixelBufferLockBaseAddress(pxbuffer,0);
     void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);
-    
-    NSParameterAssert(pxdata != NULL);
-    
-    
+    NSParameterAssert(pxdata !=NULL);
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    CGContextRef context = CGBitmapContextCreate(pxdata, size.width, size.height, 8, 4*size.width, rgbColorSpace, kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(pxdata,size.width,size.height,8,4*size.width,rgbColorSpace,kCGImageAlphaPremultipliedFirst);
     
     NSParameterAssert(context);
     
-    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
+    //    CGContextDrawImage(context,CGRectMake(0,0,CGImageGetWidth(image),CGImageGetHeight(image)), image);
     
+    CGContextDrawImage(context, CGRectMake(0 + (size.width-CGImageGetWidth(image))/2,
+                                           (size.height-CGImageGetHeight(image))/2,
+                                           CGImageGetWidth(image),
+                                           CGImageGetHeight(image)), image);
     CGColorSpaceRelease(rgbColorSpace);
-    
     CGContextRelease(context);
-    
-    CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
-    
+    CVPixelBufferUnlockBaseAddress(pxbuffer,0);
     return pxbuffer;
     
 }
+
 
 @end
