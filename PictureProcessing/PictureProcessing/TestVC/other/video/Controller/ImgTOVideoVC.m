@@ -47,8 +47,6 @@
     [imgs addObject:[UIImage imageNamed:@"9.png"]];
     [imgs addObject:[UIImage imageNamed:@"10.png"]];
     
-    CGSize size = CGSizeMake(650, 366);
-    
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.m4v"];
     
     unlink([betaCompressionDirectory UTF8String]);
