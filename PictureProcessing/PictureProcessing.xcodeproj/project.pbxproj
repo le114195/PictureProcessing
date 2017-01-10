@@ -103,6 +103,7 @@
 		755621A71DB9B81B00294C41 /* TJGIFController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 755621A61DB9B81B00294C41 /* TJGIFController.mm */; };
 		755621AA1DB9B8B200294C41 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755621A91DB9B8B200294C41 /* MobileCoreServices.framework */; };
 		755621AC1DB9B8CE00294C41 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755621AB1DB9B8CE00294C41 /* ImageIO.framework */; };
+		7556C6D91E20DDE2009D7EC6 /* MarchineLearingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7556C6D81E20DDE2009D7EC6 /* MarchineLearingVC.m */; };
 		7556F7D31D5CA0AA008CC401 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D21D5CA0AA008CC401 /* main.m */; };
 		7556F7D61D5CA0AA008CC401 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D51D5CA0AA008CC401 /* AppDelegate.m */; };
 		7556F7D91D5CA0AA008CC401 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7556F7D81D5CA0AA008CC401 /* ViewController.mm */; };
@@ -483,6 +484,7 @@
 		759827BF1DD572B300BAC896 /* OpencvTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827B91DD572B300BAC896 /* OpencvTestVC.mm */; };
 		759827C01DD572B300BAC896 /* TestBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 759827BB1DD572B300BAC896 /* TestBaseVC.mm */; };
 		759827C71DD5730200BAC896 /* TJMoreLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759827C61DD5730200BAC896 /* TJMoreLayerController.m */; };
+		75B211311E20D57D000F10EC /* OpencvSVM.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75B211301E20D57D000F10EC /* OpencvSVM.mm */; };
 		75B74BD31E0382A400E09A14 /* constData_haha_hader.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B74BD21E0382A400E09A14 /* constData_haha_hader.png */; };
 		75BA919D1DDC2EBD00B74EEF /* FaceFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75BA919B1DDC2EBD00B74EEF /* FaceFeature.cpp */; };
 		75BA91A71DDC63C400B74EEF /* ptest3.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BA91A51DDC63C400B74EEF /* ptest3.png */; };
@@ -640,6 +642,8 @@
 		755621A61DB9B81B00294C41 /* TJGIFController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TJGIFController.mm; sourceTree = "<group>"; };
 		755621A91DB9B8B200294C41 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		755621AB1DB9B8CE00294C41 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		7556C6D71E20DDE2009D7EC6 /* MarchineLearingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarchineLearingVC.h; sourceTree = "<group>"; };
+		7556C6D81E20DDE2009D7EC6 /* MarchineLearingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarchineLearingVC.m; sourceTree = "<group>"; };
 		7556F7CE1D5CA0AA008CC401 /* PictureProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7556F7D21D5CA0AA008CC401 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7556F7D41D5CA0AA008CC401 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1276,6 +1280,8 @@
 		759827C51DD5730200BAC896 /* TJMoreLayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMoreLayerController.h; sourceTree = "<group>"; };
 		759827C61DD5730200BAC896 /* TJMoreLayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMoreLayerController.m; sourceTree = "<group>"; };
 		75AA22B81D92DA9E00DA2AB9 /* ConstHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
+		75B2112F1E20D57D000F10EC /* OpencvSVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpencvSVM.h; sourceTree = "<group>"; };
+		75B211301E20D57D000F10EC /* OpencvSVM.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpencvSVM.mm; sourceTree = "<group>"; };
 		75B74BD21E0382A400E09A14 /* constData_haha_hader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = constData_haha_hader.png; sourceTree = "<group>"; };
 		75BA919B1DDC2EBD00B74EEF /* FaceFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceFeature.cpp; sourceTree = "<group>"; };
 		75BA919C1DDC2EBD00B74EEF /* FaceFeature.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FaceFeature.hpp; sourceTree = "<group>"; };
@@ -2805,6 +2811,7 @@
 		7594A7B31D5CBF4500D6F31B /* TestVC */ = {
 			isa = PBXGroup;
 			children = (
+				75B2112A1E20D540000F10EC /* MachineLearning */,
 				755763DF1DB8B84900B581D8 /* BaseClass */,
 				7531A4301D95016B006BC913 /* OpenGL */,
 				7560A9701D8FC7DE0056AB99 /* other */,
@@ -2862,6 +2869,49 @@
 				754411BB1DE6B5FE005F4C9C /* TJ_PosterView.m */,
 				754411C31DE6B728005F4C9C /* TJ_PosterContainerView.h */,
 				754411C41DE6B728005F4C9C /* TJ_PosterContainerView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75B2112A1E20D540000F10EC /* MachineLearning */ = {
+			isa = PBXGroup;
+			children = (
+				75B2112B1E20D562000F10EC /* Controller */,
+				75B2112C1E20D562000F10EC /* Model */,
+				75B2112D1E20D562000F10EC /* Utils */,
+				75B2112E1E20D562000F10EC /* View */,
+			);
+			path = MachineLearning;
+			sourceTree = "<group>";
+		};
+		75B2112B1E20D562000F10EC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7556C6D71E20DDE2009D7EC6 /* MarchineLearingVC.h */,
+				7556C6D81E20DDE2009D7EC6 /* MarchineLearingVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		75B2112C1E20D562000F10EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		75B2112D1E20D562000F10EC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				75B2112F1E20D57D000F10EC /* OpencvSVM.h */,
+				75B211301E20D57D000F10EC /* OpencvSVM.mm */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		75B2112E1E20D562000F10EC /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3387,6 +3437,7 @@
 				755763E41DB8B85B00B581D8 /* TJ_BaseController.m in Sources */,
 				7558E8991DBF94CB00E7EDA5 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				7558E8581DBF94CB00E7EDA5 /* GPUImageExposureFilter.m in Sources */,
+				75B211311E20D57D000F10EC /* OpencvSVM.mm in Sources */,
 				7558E8561DBF94CB00E7EDA5 /* GPUImageErosionFilter.m in Sources */,
 				7558E8A31DBF94CB00E7EDA5 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				7558E8651DBF94CB00E7EDA5 /* GPUImageGlassSphereFilter.m in Sources */,
@@ -3479,6 +3530,7 @@
 				7558E8371DBF94CB00E7EDA5 /* GPUImageBrightnessFilter.m in Sources */,
 				7558E8A61DBF94CB00E7EDA5 /* GPUImageRGBClosingFilter.m in Sources */,
 				7558E8411DBF94CB00E7EDA5 /* GPUImageColorConversion.m in Sources */,
+				7556C6D91E20DDE2009D7EC6 /* MarchineLearingVC.m in Sources */,
 				755763D61DB8A70900B581D8 /* UIView+Size.m in Sources */,
 				7558E89A1DBF94CB00E7EDA5 /* GPUImagePicture+TextureSubimage.m in Sources */,
 				7558E8D61DBF94CB00E7EDA5 /* GPUImageWhiteBalanceFilter.m in Sources */,

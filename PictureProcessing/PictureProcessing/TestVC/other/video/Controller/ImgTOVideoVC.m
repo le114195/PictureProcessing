@@ -30,8 +30,6 @@
 
 
 
-
-
 - (void)makeVideo {
     
     NSMutableArray *imgs = [NSMutableArray array];
@@ -51,13 +49,13 @@
     
     unlink([betaCompressionDirectory UTF8String]);
     
-    [self writeImages:imgs ToMovieAtPath:betaCompressionDirectory withSize:CGSizeMake(720, 720) inDuration:2.0 byFPS:30];
+    [self writeImages:imgs ToMovieAtPath:betaCompressionDirectory withSize:CGSizeMake(720, 720) inDuration:2.0 byFPS:24];
 }
 
 
 
-- (void)writeImages:(NSArray *)imagesArray ToMovieAtPath:(NSString *)path withSize:(CGSize) size
-         inDuration:(float)duration byFPS:(int32_t)fps{
+- (void)writeImages:(NSArray *)imagesArray ToMovieAtPath:(NSString *)path withSize:(CGSize) size inDuration:(float)duration byFPS:(int32_t)fps {
+    
     //Wire the writer:
     NSError *error =nil;
     AVAssetWriter *videoWriter =[[AVAssetWriter alloc]initWithURL:[NSURL fileURLWithPath:path]

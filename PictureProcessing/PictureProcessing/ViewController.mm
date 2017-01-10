@@ -30,6 +30,8 @@
 #import "ImgTOVideoVC.h"
 #import "TJGIFListController.h"
 
+#import "MarchineLearingVC.h"
+
 
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -52,7 +54,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频", @"openCV机器学习"];
     
     [self tableViewConfigure];
     
@@ -246,6 +248,11 @@
         case 14:{
             ImgTOVideoVC *ivVC = [[ImgTOVideoVC alloc] init];
             [self.navigationController pushViewController:ivVC animated:YES];
+            break;
+        }
+        case 15:{
+            MarchineLearingVC *mlVC = [[MarchineLearingVC alloc] init];
+            [self.navigationController pushViewController:mlVC animated:YES];
             break;
         }
         default:
