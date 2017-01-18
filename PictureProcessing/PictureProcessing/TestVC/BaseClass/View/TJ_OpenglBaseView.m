@@ -59,7 +59,7 @@
 
 
 - (void)setupContext {
-    // 指定 OpenGL 渲染 API 的版本，在这里我们使用 OpenGL ES 2.0
+    // 指定 OpenGL 渲染 API 的版本，在这里我们使用 OpenGL ES 3.0
     EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES3;
     EAGLContext* context = [[EAGLContext alloc] initWithAPI:api];
     if (!context) {

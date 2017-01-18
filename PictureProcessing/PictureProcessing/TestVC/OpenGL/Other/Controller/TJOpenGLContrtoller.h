@@ -8,7 +8,7 @@
 
 #import "TJ_PictureBaseVC.h"
 
-@interface TJOpenGLContrtoller : TJ_PictureBaseVC
+@interface TJOpenGLContrtoller : UIViewController
 
 
 

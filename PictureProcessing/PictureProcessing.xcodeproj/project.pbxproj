@@ -388,6 +388,7 @@
 		7574A5E11DDC0EDB009E65AA /* haarcascade_righteye_2splits.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7574A5CC1DDC0EDB009E65AA /* haarcascade_righteye_2splits.xml */; };
 		7574A5E21DDC0EDB009E65AA /* haarcascade_upperbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7574A5CD1DDC0EDB009E65AA /* haarcascade_upperbody.xml */; };
 		7574A5E61DDC0F1F009E65AA /* FaceDetectCPlusPlusAPI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7574A5E41DDC0F1F009E65AA /* FaceDetectCPlusPlusAPI.cpp */; };
+		7575D18E1E2F01C700AFD143 /* TJOpenglesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7575D18D1E2F01C700AFD143 /* TJOpenglesVC.m */; };
 		75768EE71DEFF5790091B8F9 /* SDMFaceDetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75768EE01DEFF5780091B8F9 /* SDMFaceDetect.framework */; };
 		75768EE81DEFF5790091B8F9 /* SDMFaceDetect.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75768EE01DEFF5780091B8F9 /* SDMFaceDetect.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		75768F391DEFF7290091B8F9 /* FaceLandmarkInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 75768EED1DEFF7290091B8F9 /* FaceLandmarkInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1164,6 +1165,8 @@
 		7574A5CD1DDC0EDB009E65AA /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_upperbody.xml; sourceTree = "<group>"; };
 		7574A5E41DDC0F1F009E65AA /* FaceDetectCPlusPlusAPI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceDetectCPlusPlusAPI.cpp; sourceTree = "<group>"; };
 		7574A5E51DDC0F1F009E65AA /* FaceDetectCPlusPlusAPI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FaceDetectCPlusPlusAPI.hpp; sourceTree = "<group>"; };
+		7575D18C1E2F01C700AFD143 /* TJOpenglesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJOpenglesVC.h; sourceTree = "<group>"; };
+		7575D18D1E2F01C700AFD143 /* TJOpenglesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJOpenglesVC.m; sourceTree = "<group>"; };
 		75768EE01DEFF5780091B8F9 /* SDMFaceDetect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDMFaceDetect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75768EE31DEFF5790091B8F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75768EED1DEFF7290091B8F9 /* FaceLandmarkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceLandmarkInterface.h; sourceTree = "<group>"; };
@@ -1793,6 +1796,8 @@
 				755763881DB863B500B581D8 /* PaintTypeView.m */,
 				755763891DB863B500B581D8 /* TJOpenGLContrtoller.h */,
 				7557638A1DB863B500B581D8 /* TJOpenGLContrtoller.m */,
+				7575D18C1E2F01C700AFD143 /* TJOpenglesVC.h */,
+				7575D18D1E2F01C700AFD143 /* TJOpenglesVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3603,6 +3608,7 @@
 				75BA919D1DDC2EBD00B74EEF /* FaceFeature.cpp in Sources */,
 				7558E8C01DBF94CB00E7EDA5 /* GPUImageTextureInput.m in Sources */,
 				7558E8891DBF94CB00E7EDA5 /* GPUImageMonochromeFilter.m in Sources */,
+				7575D18E1E2F01C700AFD143 /* TJOpenglesVC.m in Sources */,
 				7558E8D31DBF94CB00E7EDA5 /* GPUImageVignetteFilter.m in Sources */,
 				7558E85D1DBF94CB00E7EDA5 /* GPUImageFilterPipeline.m in Sources */,
 				7558E8B01DBF94CB00E7EDA5 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,

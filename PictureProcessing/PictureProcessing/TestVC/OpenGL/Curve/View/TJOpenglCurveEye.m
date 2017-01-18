@@ -175,7 +175,6 @@ NSString *const TJ_CurveEyeFragmentShaderString = TJ_STRING_ES
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
     
     
-    
     //将纹理与片段着色器对应起来
     GLuint textureLocation = glGetUniformLocation(self.myProgram, "textureColor");
     glUniform1i(textureLocation, 0);

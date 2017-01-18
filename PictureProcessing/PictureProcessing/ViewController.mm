@@ -39,7 +39,6 @@
 @property (nonatomic, strong) ImagePicker       *imgPicker;
 
 @property (nonatomic, weak) UITableView         *tableView;
-
 @property (nonatomic, strong) NSArray           *dataArray;
 
 @property (nonatomic, strong) UIImagePickerController           *picker;
