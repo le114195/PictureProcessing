@@ -18,6 +18,7 @@
 #import "TJopenglesText2D1.h"
 #import "TJOpenglesCurve.h"
 #import "TJ_TextureTest.h"
+#import "TwoTextureView.h"
 
 @interface TJOpenglesVC ()
 
@@ -78,6 +79,9 @@
             break;
         case 6:
             [self textureTest];
+            break;
+        case 7:
+            [self twoTexture];
             break;
         default:
             break;
@@ -144,6 +148,14 @@
     UIImage *image = [UIImage imageNamed:@"IMG_0994.JPG"];
     TJ_TextureTest *texture = [[TJ_TextureTest alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
     [self.view addSubview:texture];
+}
+
+
+- (void)twoTexture
+{
+    UIImage *image = [UIImage imageNamed:@"sj_20160705_10.JPG"];
+    TwoTextureView *twoTexture = [[TwoTextureView alloc] initWithFrame:[self resetImageViewFrameWithImage:image top:64 bottom:0] image:image];
+    [self.view addSubview:twoTexture];
 }
 
 
