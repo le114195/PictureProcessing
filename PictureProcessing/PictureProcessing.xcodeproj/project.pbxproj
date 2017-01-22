@@ -74,6 +74,7 @@
 		753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A2B4F1DD409F30003247A /* FaceDetectAPI.m */; };
 		753AD03F1DE535D3009A2A9C /* ImgTOVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 753AD03E1DE535D3009A2A9C /* ImgTOVideoVC.m */; };
 		753AD0411DE5361E009A2A9C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753AD0401DE5361E009A2A9C /* MediaPlayer.framework */; };
+		7543EFA11E34B0D900328C1F /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 7543EF9F1E34B0D900328C1F /* GLESMath.c */; };
 		754411571DE679FC005F4C9C /* haar_roboman_ff_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 754411551DE679FC005F4C9C /* haar_roboman_ff_alt2.xml */; };
 		754411581DE679FC005F4C9C /* roboman-landmark-model.bin in Resources */ = {isa = PBXBuildFile; fileRef = 754411561DE679FC005F4C9C /* roboman-landmark-model.bin */; };
 		754411B01DE68EFD005F4C9C /* TJ_PointConver.m in Sources */ = {isa = PBXBuildFile; fileRef = 754411AF1DE68EFD005F4C9C /* TJ_PointConver.m */; };
@@ -609,6 +610,8 @@
 		753AD03D1DE535D3009A2A9C /* ImgTOVideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgTOVideoVC.h; sourceTree = "<group>"; };
 		753AD03E1DE535D3009A2A9C /* ImgTOVideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgTOVideoVC.m; sourceTree = "<group>"; };
 		753AD0401DE5361E009A2A9C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		7543EF9F1E34B0D900328C1F /* GLESMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
+		7543EFA01E34B0D900328C1F /* GLESMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESMath.h; sourceTree = "<group>"; };
 		754411551DE679FC005F4C9C /* haar_roboman_ff_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haar_roboman_ff_alt2.xml; sourceTree = "<group>"; };
 		754411561DE679FC005F4C9C /* roboman-landmark-model.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "roboman-landmark-model.bin"; sourceTree = "<group>"; };
 		754411AE1DE68EFD005F4C9C /* TJ_PointConver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_PointConver.h; sourceTree = "<group>"; };
@@ -1569,6 +1572,15 @@
 			path = sdm;
 			sourceTree = "<group>";
 		};
+		7543EF9E1E34B0BD00328C1F /* 3DView */ = {
+			isa = PBXGroup;
+			children = (
+				7543EF9F1E34B0D900328C1F /* GLESMath.c */,
+				7543EFA01E34B0D900328C1F /* GLESMath.h */,
+			);
+			path = 3DView;
+			sourceTree = "<group>";
+		};
 		754411B11DE6B2BE005F4C9C /* GDataXMLNode-master */ = {
 			isa = PBXGroup;
 			children = (
@@ -1784,6 +1796,7 @@
 		755763831DB863B500B581D8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7543EF9E1E34B0BD00328C1F /* 3DView */,
 				759165F41E32013F002AE09C /* TextureView */,
 				755763841DB863B500B581D8 /* Controller */,
 				7557638B1DB863B500B581D8 /* View */,
@@ -3604,6 +3617,7 @@
 				755763D71DB8A70900B581D8 /* UIView+TJ.m in Sources */,
 				7558E8711DBF94CB00E7EDA5 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				7558E8AE1DBF94CB00E7EDA5 /* GPUImageSepiaFilter.m in Sources */,
+				7543EFA11E34B0D900328C1F /* GLESMath.c in Sources */,
 				7558E8611DBF94CB00E7EDA5 /* GPUImageGammaFilter.m in Sources */,
 				7557639C1DB863B500B581D8 /* PaintTypeView.m in Sources */,
 				7558E84D1DBF94CB00E7EDA5 /* GPUImageCrosshatchFilter.m in Sources */,
