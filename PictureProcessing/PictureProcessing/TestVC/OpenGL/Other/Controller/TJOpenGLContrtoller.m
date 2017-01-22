@@ -31,7 +31,7 @@
     self.view.backgroundColor = [UIColor blackColor];
     
 
-    self.dataArray = @[@"demo1", @"demo2", @"demo3", @"demo4", @"demo5", @"demo6", @"纹理", @"双纹理"];
+    self.dataArray = @[@"demo1", @"demo2", @"demo3", @"demo4", @"demo5", @"demo6", @"纹理", @"双纹理", @"3D"];
     
     [self tableViewConfigure];
     

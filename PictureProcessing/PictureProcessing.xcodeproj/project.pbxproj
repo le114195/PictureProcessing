@@ -74,7 +74,8 @@
 		753A2B501DD409F30003247A /* FaceDetectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A2B4F1DD409F30003247A /* FaceDetectAPI.m */; };
 		753AD03F1DE535D3009A2A9C /* ImgTOVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 753AD03E1DE535D3009A2A9C /* ImgTOVideoVC.m */; };
 		753AD0411DE5361E009A2A9C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753AD0401DE5361E009A2A9C /* MediaPlayer.framework */; };
-		7543EFA11E34B0D900328C1F /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 7543EF9F1E34B0D900328C1F /* GLESMath.c */; };
+		7543EFA41E34B14900328C1F /* TJ3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7543EFA31E34B14900328C1F /* TJ3DView.m */; };
+		7543EFA61E34B2E800328C1F /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7543EFA51E34B2E800328C1F /* libc.tbd */; };
 		754411571DE679FC005F4C9C /* haar_roboman_ff_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 754411551DE679FC005F4C9C /* haar_roboman_ff_alt2.xml */; };
 		754411581DE679FC005F4C9C /* roboman-landmark-model.bin in Resources */ = {isa = PBXBuildFile; fileRef = 754411561DE679FC005F4C9C /* roboman-landmark-model.bin */; };
 		754411B01DE68EFD005F4C9C /* TJ_PointConver.m in Sources */ = {isa = PBXBuildFile; fileRef = 754411AF1DE68EFD005F4C9C /* TJ_PointConver.m */; };
@@ -610,8 +611,9 @@
 		753AD03D1DE535D3009A2A9C /* ImgTOVideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgTOVideoVC.h; sourceTree = "<group>"; };
 		753AD03E1DE535D3009A2A9C /* ImgTOVideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgTOVideoVC.m; sourceTree = "<group>"; };
 		753AD0401DE5361E009A2A9C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		7543EF9F1E34B0D900328C1F /* GLESMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
-		7543EFA01E34B0D900328C1F /* GLESMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESMath.h; sourceTree = "<group>"; };
+		7543EFA21E34B14900328C1F /* TJ3DView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ3DView.h; sourceTree = "<group>"; };
+		7543EFA31E34B14900328C1F /* TJ3DView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJ3DView.m; sourceTree = "<group>"; };
+		7543EFA51E34B2E800328C1F /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		754411551DE679FC005F4C9C /* haar_roboman_ff_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haar_roboman_ff_alt2.xml; sourceTree = "<group>"; };
 		754411561DE679FC005F4C9C /* roboman-landmark-model.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "roboman-landmark-model.bin"; sourceTree = "<group>"; };
 		754411AE1DE68EFD005F4C9C /* TJ_PointConver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_PointConver.h; sourceTree = "<group>"; };
@@ -1328,6 +1330,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7543EFA61E34B2E800328C1F /* libc.tbd in Frameworks */,
 				754411B61DE6B3B7005F4C9C /* libxml2.2.tbd in Frameworks */,
 				753AD0411DE5361E009A2A9C /* MediaPlayer.framework in Frameworks */,
 				755621AC1DB9B8CE00294C41 /* ImageIO.framework in Frameworks */,
@@ -1575,8 +1578,8 @@
 		7543EF9E1E34B0BD00328C1F /* 3DView */ = {
 			isa = PBXGroup;
 			children = (
-				7543EF9F1E34B0D900328C1F /* GLESMath.c */,
-				7543EFA01E34B0D900328C1F /* GLESMath.h */,
+				7543EFA21E34B14900328C1F /* TJ3DView.h */,
+				7543EFA31E34B14900328C1F /* TJ3DView.m */,
 			);
 			path = 3DView;
 			sourceTree = "<group>";
@@ -1696,6 +1699,7 @@
 		755621A81DB9B8B200294C41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7543EFA51E34B2E800328C1F /* libc.tbd */,
 				7594A7AE1D5CBC7900D6F31B /* CoreMedia.framework */,
 				7594A7AC1D5CBC7100D6F31B /* CoreVideo.framework */,
 				7594A7AA1D5CBC6700D6F31B /* OpenGLES.framework */,
@@ -3591,6 +3595,7 @@
 				756642DA1DC9BDD500FB528B /* TJ_TextureTest.m in Sources */,
 				7558E8671DBF94CB00E7EDA5 /* GPUImageHalftoneFilter.m in Sources */,
 				755763EA1DB8BB4100B581D8 /* UIImage+TJ.mm in Sources */,
+				7543EFA41E34B14900328C1F /* TJ3DView.m in Sources */,
 				7558E8601DBF94CB00E7EDA5 /* GPUImageFramebufferCache.m in Sources */,
 				7558E83C1DBF94CB00E7EDA5 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				7558E8851DBF94CB00E7EDA5 /* GPUImageLuminosityBlendFilter.m in Sources */,
@@ -3617,7 +3622,6 @@
 				755763D71DB8A70900B581D8 /* UIView+TJ.m in Sources */,
 				7558E8711DBF94CB00E7EDA5 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				7558E8AE1DBF94CB00E7EDA5 /* GPUImageSepiaFilter.m in Sources */,
-				7543EFA11E34B0D900328C1F /* GLESMath.c in Sources */,
 				7558E8611DBF94CB00E7EDA5 /* GPUImageGammaFilter.m in Sources */,
 				7557639C1DB863B500B581D8 /* PaintTypeView.m in Sources */,
 				7558E84D1DBF94CB00E7EDA5 /* GPUImageCrosshatchFilter.m in Sources */,

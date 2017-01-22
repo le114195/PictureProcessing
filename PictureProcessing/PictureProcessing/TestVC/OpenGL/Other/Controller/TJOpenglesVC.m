@@ -19,6 +19,7 @@
 #import "TJOpenglesCurve.h"
 #import "TJ_TextureTest.h"
 #import "TwoTextureView.h"
+#import "TJ3DView.h"
 
 @interface TJOpenglesVC ()
 
@@ -82,6 +83,9 @@
             break;
         case 7:
             [self twoTexture];
+            break;
+        case 8:
+            [self openglFor3D];
             break;
         default:
             break;
@@ -159,6 +163,12 @@
 }
 
 
+/** 3D */
+- (void)openglFor3D
+{
+    TJ3DView *tj_3DView = [[TJ3DView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:tj_3DView];
+}
 
 
 @end
