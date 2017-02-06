@@ -63,7 +63,7 @@
     EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES3;
     EAGLContext* context = [[EAGLContext alloc] initWithAPI:api];
     if (!context) {
-        NSLog(@"Failed to initialize OpenGLES 2.0 context");
+        NSLog(@"Failed to initialize OpenGLES 3.0 context");
         exit(1);
     }
     
