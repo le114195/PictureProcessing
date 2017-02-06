@@ -35,7 +35,6 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
  void main()
  {
      gl_FragColor = texture2D(textureColor, varyTextCoord);
-     
  }
  
  );
@@ -128,6 +127,12 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
     //坐标数组
     GLfloat attrArr[] =
     {
+        1.0f, -1.0f, 0.0f,     1.0f, 1.0f,
+        -1.0f, 1.0f, 0.0f,     0.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,    0.0f, 1.0f,
+        1.0f, 1.0f, 0.0f,      1.0f, 0.0f,
+        -1.0f, 1.0f, 0.0f,     0.0f, 0.0f,
+        1.0f, -1.0f, 0.0f,     1.0f, 1.0f,
         0.5f, -0.5f, 0.0f,     1.0f, 1.0f,
         -0.5f, 0.5f, 0.0f,     0.0f, 0.0f,
         -0.5f, -0.5f, 0.0f,    0.0f, 1.0f,
@@ -153,7 +158,7 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glDrawArrays(GL_TRIANGLES, 0, 12);
     
     [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
 }
