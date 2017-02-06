@@ -22,7 +22,6 @@ NSString *const TJ_TwoTextureVertexShaderString = TJ_STRING_ES
  void main()
 {
     varyTextCoord = textCoordinate;
-    
     gl_Position = position;
 }
  );
@@ -31,10 +30,15 @@ NSString *const TJ_TwoTextureVertexShaderString = TJ_STRING_ES
 NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
 (
  varying lowp vec2 varyTextCoord;
- uniform sampler2D textureColor;
+ uniform sampler2D textureColor1;
+ uniform sampler2D textureColor2;
  void main()
  {
-     gl_FragColor = texture2D(textureColor, varyTextCoord);
+     if (varyTextCoord.x < 0.5) {
+         gl_FragColor = texture2D(textureColor2, varyTextCoord);
+     }else {
+         gl_FragColor = texture2D(textureColor1, varyTextCoord);
+     }
  }
  
  );
@@ -43,8 +47,6 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
 @implementation TwoTextureView
 {
     CGImageRef      rfImage;
-    GLuint          textureID;
-
 }
 
 + (Class)layerClass
@@ -76,7 +78,10 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
 }
 
 
-- (GLuint)setupTexture:(UIImage *)image {
+- (void)bindTextureImage:(UIImage *)image
+{
+    GLuint textureID;
+    
     // 1获取图片的CGImageRef
     rfImage = image.CGImage;
     if (!rfImage) {
@@ -97,7 +102,6 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
     CGContextRelease(spriteContext);
     
     glGenTextures(1, &textureID);
-    
     glBindTexture(GL_TEXTURE_2D, textureID);
     
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
@@ -108,16 +112,26 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
     float fw = width, fh = height;
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
     
-    
-    //将纹理与片段着色器对应起来
-    GLuint textureLocation = glGetUniformLocation(self.myProgram, "textureColor");
-    glUniform1i(textureLocation, 0);
+    free(spriteData);
+}
+
+
+- (GLuint)setupTexture:(UIImage *)image {
     
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, textureID);
+    [self bindTextureImage:image];
+    //将纹理与片段着色器对应起来
+    GLuint textureLocation = glGetUniformLocation(self.myProgram, "textureColor1");
+    glUniform1i(textureLocation, 0);
+
     
+    glActiveTexture(GL_TEXTURE1);
+    UIImage *image2 = [UIImage imageNamed:@"sj_20160705_11.JPG"];
+    [self bindTextureImage:image2];
+    //将纹理与片段着色器对应起来
+    GLuint textureLocation2 = glGetUniformLocation(self.myProgram, "textureColor2");
+    glUniform1i(textureLocation2, 1);
     
-    free(spriteData);
     return 0;
 }
 
@@ -133,12 +147,6 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
         1.0f, 1.0f, 0.0f,      1.0f, 0.0f,
         -1.0f, 1.0f, 0.0f,     0.0f, 0.0f,
         1.0f, -1.0f, 0.0f,     1.0f, 1.0f,
-        0.5f, -0.5f, 0.0f,     1.0f, 1.0f,
-        -0.5f, 0.5f, 0.0f,     0.0f, 0.0f,
-        -0.5f, -0.5f, 0.0f,    0.0f, 1.0f,
-        0.5f, 0.5f, 0.0f,      1.0f, 0.0f,
-        -0.5f, 0.5f, 0.0f,     0.0f, 0.0f,
-        0.5f, -0.5f, 0.0f,     1.0f, 1.0f,
     };
     
     GLuint  vertexBuffer;
