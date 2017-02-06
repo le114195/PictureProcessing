@@ -40,7 +40,6 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
          gl_FragColor = texture2D(textureColor1, varyTextCoord);
      }
  }
- 
  );
 
 
@@ -71,9 +70,7 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    [self setupTexture:self.renderImg];
-    
+    [self setupTexture];
     [self render];
 }
 
@@ -95,7 +92,6 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
     
     CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
                                                        CGImageGetColorSpace(rfImage), kCGImageAlphaPremultipliedLast);
-    
     // 3在CGContextRef上绘图
     CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), rfImage);
     
@@ -116,25 +112,23 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
 }
 
 
-- (GLuint)setupTexture:(UIImage *)image {
+- (void)setupTexture {
     
+    UIImage *image1 = [UIImage imageNamed:@"sj_20160705_10.JPG"];
     glActiveTexture(GL_TEXTURE0);
-    [self bindTextureImage:image];
+    [self bindTextureImage:image1];
     //将纹理与片段着色器对应起来
-    GLuint textureLocation = glGetUniformLocation(self.myProgram, "textureColor1");
-    glUniform1i(textureLocation, 0);
-
+    GLuint textureLocation1 = glGetUniformLocation(self.myProgram, "textureColor1");
+    glUniform1i(textureLocation1, 0);
     
-    glActiveTexture(GL_TEXTURE1);
+    
     UIImage *image2 = [UIImage imageNamed:@"sj_20160705_11.JPG"];
+    glActiveTexture(GL_TEXTURE1);
     [self bindTextureImage:image2];
     //将纹理与片段着色器对应起来
     GLuint textureLocation2 = glGetUniformLocation(self.myProgram, "textureColor2");
     glUniform1i(textureLocation2, 1);
-    
-    return 0;
 }
-
 
 - (void)render {
     
