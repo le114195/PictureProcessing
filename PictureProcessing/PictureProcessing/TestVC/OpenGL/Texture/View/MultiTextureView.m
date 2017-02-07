@@ -1,15 +1,15 @@
 //
-//  TwoTextureView.m
+//  MultiTextureView.m
 //  PictureProcessing
 //
-//  Created by 勒俊 on 2017/1/20.
+//  Created by 勒俊 on 2017/2/6.
 //  Copyright © 2017年 勒俊. All rights reserved.
 //
 
-#import "TwoTextureView.h"
+#import "MultiTextureView.h"
 
 
-NSString *const TJ_TwoTextureVertexShaderString = TJ_STRING_ES
+NSString *const TJ_MultiTextureVertexShaderString = TJ_STRING_ES
 (
  attribute vec4 position;
  attribute vec2 textCoordinate;
@@ -27,7 +27,7 @@ NSString *const TJ_TwoTextureVertexShaderString = TJ_STRING_ES
  );
 
 
-NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
+NSString *const TJ_MultiTextureFragmentShaderString = TJ_STRING_ES
 (
  varying lowp vec2 varyTextCoord;
  uniform sampler2D textureColor1;
@@ -43,72 +43,28 @@ NSString *const TJ_TwoTextureFragmentShaderString = TJ_STRING_ES
  );
 
 
-@implementation TwoTextureView
-{
-    CGImageRef      rfImage;
-}
+
+@implementation MultiTextureView
 
 + (Class)layerClass
 {
     return [CAEAGLLayer class];
 }
 
-
-- (instancetype)initWithFrame:(CGRect)frame image:(UIImage *)image
+- (instancetype)initWithFrame:(CGRect)frame
 {
     if ([super initWithFrame:frame]) {
-        VertexShaderString = TJ_TwoTextureVertexShaderString;
-        FragmentShaderString = TJ_TwoTextureFragmentShaderString;
-        
-        self.renderImg = image;
+        VertexShaderString = TJ_MultiTextureVertexShaderString;
+        FragmentShaderString = TJ_MultiTextureFragmentShaderString;
     }
     return self;
 }
-
-
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     [self setupTexture];
     [self render];
-}
-
-
-- (void)bindTextureImage:(UIImage *)image
-{
-    GLuint textureID;
-    
-    // 1获取图片的CGImageRef
-    rfImage = image.CGImage;
-    if (!rfImage) {
-        exit(1);
-    }
-    // 2 读取图片的大小
-    size_t width = CGImageGetWidth(rfImage);
-    size_t height = CGImageGetHeight(rfImage);
-    
-    GLubyte * spriteData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte)); //rgba共4个byte
-    
-    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
-                                                       CGImageGetColorSpace(rfImage), kCGImageAlphaPremultipliedLast);
-    // 3在CGContextRef上绘图
-    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), rfImage);
-    
-    CGContextRelease(spriteContext);
-    
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-    
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    
-    float fw = width, fh = height;
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
-    
-    free(spriteData);
 }
 
 

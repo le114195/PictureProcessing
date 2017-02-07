@@ -43,6 +43,8 @@
 
 - (GLuint)loadShaders:(NSString *)vert frag:(NSString *)frag;
 
+/** 纹理设置 */
+- (void)bindTextureImage:(UIImage *)image;
 
 /** 片段着色器：设置点的变量 */
 - (void)setPoint:(CGPoint)point name:(NSString *)name;

@@ -13,8 +13,6 @@
 
 
 
-
-
 - (void)setPoint:(CGPoint)point name:(NSString *)name
 {
     GLuint location = glGetUniformLocation(self.myProgram, [name UTF8String]);
@@ -178,6 +176,44 @@
         return NO;
     }
     return YES;
+}
+
+
+/** 纹理设置 */
+- (void)bindTextureImage:(UIImage *)image
+{
+    GLuint textureID;
+    
+    // 1获取图片的CGImageRef
+    CGImageRef rfImage = image.CGImage;
+    if (!rfImage) {
+        exit(1);
+    }
+    // 2 读取图片的大小
+    size_t width = CGImageGetWidth(rfImage);
+    size_t height = CGImageGetHeight(rfImage);
+    
+    GLubyte * spriteData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte)); //rgba共4个byte
+    
+    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
+                                                       CGImageGetColorSpace(rfImage), kCGImageAlphaPremultipliedLast);
+    // 3在CGContextRef上绘图
+    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), rfImage);
+    
+    CGContextRelease(spriteContext);
+    
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
+    float fw = width, fh = height;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+    
+    free(spriteData);
 }
 
 

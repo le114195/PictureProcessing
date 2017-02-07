@@ -1,14 +1,14 @@
 //
-//  TJOpenglesVC.h
+//  BrushBaseController.h
 //  PictureProcessing
 //
-//  Created by 勒俊 on 2017/1/18.
+//  Created by 勒俊 on 2017/2/7.
 //  Copyright © 2017年 勒俊. All rights reserved.
 //
 
-#import "TJ_PictureBaseVC.h"
+#import <UIKit/UIKit.h>
 
-@interface TJOpenglesVC : TJ_PictureBaseVC
+@interface BrushBaseController : UIViewController
 
 + (instancetype)openglesVCWithIndex:(NSInteger)index;
 

@@ -45,12 +45,7 @@ NSString *const TJ_3DFragmentShaderString = TJ_STRING_ES
 
 );
 
-
-
-
 @interface TJOpengles3D ()
-
-
 
 @property (nonatomic , strong) EAGLContext* myContext;
 @property (nonatomic , strong) CAEAGLLayer* myEagLayer;

@@ -1,37 +1,33 @@
 //
-//  TJOpenGLContrtoller.m
+//  OpenglEsListController.m
 //  PictureProcessing
 //
-//  Created by 勒俊 on 16/9/23.
-//  Copyright © 2016年 勒俊. All rights reserved.
+//  Created by 勒俊 on 2017/2/7.
+//  Copyright © 2017年 勒俊. All rights reserved.
 //
 
-#import "TJOpenGLContrtoller.h"
+#import "OpenglEsListController.h"
 #import "TestCell.h"
-#import "TJOpenglesVC.h"
+#import "TextureListerController.h"
+#import "BrushListController.h"
+#import "CurveListController.h"
+#import "OpenGL3DListerController.h"
 
-
-
-
-
-@interface TJOpenGLContrtoller ()<UITableViewDelegate, UITableViewDataSource>
-
+@interface OpenglEsListController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView         *tableView;
 @property (nonatomic, strong) NSArray           *dataArray;
 
-
 @end
 
-@implementation TJOpenGLContrtoller
+@implementation OpenglEsListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
     
-
-    self.dataArray = @[@"demo1", @"demo2", @"demo3", @"demo4", @"demo5", @"demo6", @"纹理", @"双纹理", @"3D"];
+    self.dataArray = @[@"OpenGL纹理", @"画笔", @"扭曲", @"3D"];
     
     [self tableViewConfigure];
     
@@ -87,11 +83,31 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TJOpenglesVC *openglVC = [TJOpenglesVC openglesVCWithIndex:indexPath.row];
-    [self.navigationController pushViewController:openglVC animated:YES];
+    switch (indexPath.row) {
+        case 0:{
+            TextureListerController *textureList = [[TextureListerController alloc] init];
+            [self.navigationController pushViewController:textureList animated:YES];
+            break;
+        }
+        case 1:{
+            BrushListController *brushVC = [[BrushListController alloc] init];
+            [self.navigationController pushViewController:brushVC animated:YES];
+            break;
+        }
+        case 2:{
+            CurveListController *curveVC = [[CurveListController alloc] init];
+            [self.navigationController pushViewController:curveVC animated:YES];
+            break;
+        }
+        case 3:{
+            OpenGL3DListerController *opengl3D = [[OpenGL3DListerController alloc] init];
+            [self.navigationController pushViewController:opengl3D animated:YES];
+            break;
+        }
+        default:
+            break;
+    }
 }
-
-
 
 
 @end

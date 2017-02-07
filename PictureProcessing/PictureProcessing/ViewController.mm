@@ -11,8 +11,6 @@
 #import "OpencvTestVC.h"
 #import "GPUImageTestVC.h"
 #import "TJOpenGLContrtoller.h"
-#import "TJOpenglCurveVC.h"
-#import "TJOpenglBrushVC.h"
 #import "ImagePicker.h"
 
 #import "FaceDetectVC.h"
@@ -31,6 +29,10 @@
 #import "TJGIFListController.h"
 
 #import "MarchineLearingVC.h"
+
+
+
+#import "OpenglEsListController.h"
 
 
 
@@ -53,7 +55,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"扭曲", @"画笔", @"人脸识别", @"gif图片", @"眨眼睛", @"挑眉毛", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频", @"openCV机器学习"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"人脸识别", @"gif图片", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频", @"openCV机器学习", @"OpenGL"];
     
     [self tableViewConfigure];
     
@@ -180,21 +182,11 @@
             break;
         }
         case 3:{
-            TJOpenglCurveVC *curveVC = [TJOpenglCurveVC curveWithType:0];
-            [self.navigationController pushViewController:curveVC animated:YES];
-            break;
-        }
-        case 4:{
-            TJOpenglBrushVC *brushVC = [[TJOpenglBrushVC alloc] init];
-            [self.navigationController pushViewController:brushVC animated:YES];
-            break;
-        }
-        case 5:{
             FaceDetectVC *faceVC = [[FaceDetectVC alloc] init];;
             [weakSelf.navigationController pushViewController:faceVC animated:YES];
             break;
         }
-        case 6:{
+        case 4:{
             
             [self presentViewController:self.picker animated:YES completion:nil];
             __weak __typeof(self)weakSelf = self;
@@ -204,54 +196,48 @@
             };
             break;
         }
-        case 7:{
-            TJOpenglCurveVC *curveVC = [TJOpenglCurveVC curveWithType:1];
-            [self.navigationController pushViewController:curveVC animated:YES];
-            break;
-        }
-        case 8:{
-            TJOpenglCurveVC *curveVC = [TJOpenglCurveVC curveWithType:2];
-            [self.navigationController pushViewController:curveVC animated:YES];
-            
-            break;
-        }
-        case 9:{
+        case 5:{
             TJ_CameraController *cameraVC = [[TJ_CameraController alloc] init];
             [self.navigationController pushViewController:cameraVC animated:YES];
             break;
         }
-        case 10:{
+        case 6:{
             
             GPUVideoCameraController *gpuVC = [[GPUVideoCameraController alloc] init];
             [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
             
-        case 11:{
+        case 7:{
             TJ_BlurController *BTest = [[TJ_BlurController alloc] init];
             [self.navigationController pushViewController:BTest animated:YES];
             break;
         }
             
-        case 12:{
+        case 8:{
             TJMoreLayerController *layerVC = [[TJMoreLayerController alloc] init];
             [self.navigationController pushViewController:layerVC animated:YES];
         
             break;
         }
-        case 13:{
+        case 9:{
             TJ_CacheController *cahceVC = [[TJ_CacheController alloc] init];
             [self.navigationController pushViewController:cahceVC animated:YES];
             break;
         }
-        case 14:{
+        case 10:{
             ImgTOVideoVC *ivVC = [[ImgTOVideoVC alloc] init];
             [self.navigationController pushViewController:ivVC animated:YES];
             break;
         }
-        case 15:{
+        case 11:{
             MarchineLearingVC *mlVC = [[MarchineLearingVC alloc] init];
             [self.navigationController pushViewController:mlVC animated:YES];
+            break;
+        }
+        case 12:{
+            OpenglEsListController *openglVC = [[OpenglEsListController alloc] init];
+            [self.navigationController pushViewController:openglVC animated:YES];
             break;
         }
         default:
