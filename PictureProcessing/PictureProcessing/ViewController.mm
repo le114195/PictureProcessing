@@ -10,7 +10,6 @@
 #import "TestCell.h"
 #import "OpencvTestVC.h"
 #import "GPUImageTestVC.h"
-#import "TJOpenGLContrtoller.h"
 #import "ImagePicker.h"
 
 #import "FaceDetectVC.h"
@@ -55,7 +54,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"人脸识别", @"gif图片", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频", @"openCV机器学习", @"OpenGL"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"人脸识别", @"gif图片", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频", @"openCV机器学习"];
     
     [self tableViewConfigure];
     
@@ -177,8 +176,8 @@
             break;
         }
         case 2:{
-            TJOpenGLContrtoller *openglEsVC = [[TJOpenGLContrtoller alloc] init];
-            [self.navigationController pushViewController:openglEsVC animated:YES];
+            OpenglEsListController *openglVC = [[OpenglEsListController alloc] init];
+            [self.navigationController pushViewController:openglVC animated:YES];
             break;
         }
         case 3:{
@@ -233,11 +232,6 @@
         case 11:{
             MarchineLearingVC *mlVC = [[MarchineLearingVC alloc] init];
             [self.navigationController pushViewController:mlVC animated:YES];
-            break;
-        }
-        case 12:{
-            OpenglEsListController *openglVC = [[OpenglEsListController alloc] init];
-            [self.navigationController pushViewController:openglVC animated:YES];
             break;
         }
         default:
