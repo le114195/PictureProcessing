@@ -12,20 +12,11 @@
 #import "GPUImageTestVC.h"
 #import "ImagePicker.h"
 
-#import "FaceDetectVC.h"
-
-#import "TJGIFController.h"
 #import "TJ_CameraController.h"
 #import "GPUVideoCameraController.h"
 
-#import "TJ_BlurController.h"
-
 
 #import "TJMoreLayerController.h"
-#import "TJ_CacheController.h"
-
-#import "ImgTOVideoVC.h"
-#import "TJGIFListController.h"
 
 #import "MarchineLearingVC.h"
 
@@ -54,7 +45,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"人脸识别", @"gif图片", @"自定义相机", @"gpu相机", @"双边滤波", @"图层", @"缓存", @"图片转视频", @"openCV机器学习"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"自定义相机", @"gpu相机", @"图层", @"openCV机器学习"];
     
     [self tableViewConfigure];
     
@@ -163,7 +154,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    __weak __typeof(self)weakSelf = self;
     switch (indexPath.row) {
         case 0:{//OpenCVTest
             OpencvTestVC *opencv = [[OpencvTestVC alloc] init];
@@ -181,52 +171,22 @@
             break;
         }
         case 3:{
-            FaceDetectVC *faceVC = [[FaceDetectVC alloc] init];;
-            [weakSelf.navigationController pushViewController:faceVC animated:YES];
-            break;
-        }
-        case 4:{
-            
-            [self presentViewController:self.picker animated:YES completion:nil];
-            __weak __typeof(self)weakSelf = self;
-            self.getImageBlock = ^(UIImage *image){
-                TJGIFListController *listVC = [TJGIFListController listImg:image];
-                [weakSelf.navigationController pushViewController:listVC animated:YES];
-            };
-            break;
-        }
-        case 5:{
             TJ_CameraController *cameraVC = [[TJ_CameraController alloc] init];
             [self.navigationController pushViewController:cameraVC animated:YES];
             break;
         }
-        case 6:{
+        case 4:{
             GPUVideoCameraController *gpuVC = [[GPUVideoCameraController alloc] init];
             [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
-        case 7:{
-            TJ_BlurController *BTest = [[TJ_BlurController alloc] init];
-            [self.navigationController pushViewController:BTest animated:YES];
-            break;
-        }
-        case 8:{
+        case 5:{
             TJMoreLayerController *layerVC = [[TJMoreLayerController alloc] init];
             [self.navigationController pushViewController:layerVC animated:YES];
         
             break;
         }
-        case 9:{
-            TJ_CacheController *cahceVC = [[TJ_CacheController alloc] init];
-            [self.navigationController pushViewController:cahceVC animated:YES];
-            break;
-        }
-        case 10:{
-            ImgTOVideoVC *ivVC = [[ImgTOVideoVC alloc] init];
-            [self.navigationController pushViewController:ivVC animated:YES];
-            break;
-        }
-        case 11:{
+        case 6:{
             MarchineLearingVC *mlVC = [[MarchineLearingVC alloc] init];
             [self.navigationController pushViewController:mlVC animated:YES];
             break;

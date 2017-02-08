@@ -24,10 +24,6 @@
     
     self.srcImageView.backgroundColor = [UIColor redColor];
     
-    [self openCVTest];
-    
-    
-    
     /*
     
     CIDetector *faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:context options:@{CIDetectorAccuracy: CIDetectorAccuracyHigh}];
@@ -64,8 +60,6 @@
     
     
 //    [self blendingTest];
-    
-    
     
     [self grammarTest];
     
