@@ -304,7 +304,6 @@ typedef struct {
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     
-    
     return YES;
 }
 
@@ -411,7 +410,7 @@ typedef struct {
 
     [self renderLineFromPointArr:[NSArray arrayWithObject:[NSValue valueWithCGPoint:location]]];
     
-    [TJ_DrawTool constDisDraw:location radius:1.0 dis:ConstDistance isStartMove:YES completion:nil];
+    [TJ_DrawTool constDisDraw:location dis:ConstDistance isStartMove:YES completion:nil];
 }
 
 // Handles the continuation of a touch.
@@ -425,7 +424,7 @@ typedef struct {
         return;
     }
     __weak __typeof(self)weakSelf = self;
-    [TJ_DrawTool constDisDraw:location radius:1.0 dis:ConstDistance isStartMove:NO completion:^(NSArray *array) {
+    [TJ_DrawTool constDisDraw:location dis:ConstDistance isStartMove:NO completion:^(NSArray *array) {
         [weakSelf renderLineFromPointArr:array];
     }];
 }

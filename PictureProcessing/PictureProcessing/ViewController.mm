@@ -201,18 +201,15 @@
             break;
         }
         case 6:{
-            
             GPUVideoCameraController *gpuVC = [[GPUVideoCameraController alloc] init];
             [self.navigationController pushViewController:gpuVC animated:YES];
             break;
         }
-            
         case 7:{
             TJ_BlurController *BTest = [[TJ_BlurController alloc] init];
             [self.navigationController pushViewController:BTest animated:YES];
             break;
         }
-            
         case 8:{
             TJMoreLayerController *layerVC = [[TJMoreLayerController alloc] init];
             [self.navigationController pushViewController:layerVC animated:YES];

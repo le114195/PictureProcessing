@@ -29,7 +29,7 @@ TJ_Point newPoint(TJ_Point lastLocation, TJ_Point location, double distance);
 
 
 /** 等距离移动 */
-void constDistanceMoved(TJ_Point location, double radius, double dis, int isStartMove, pfv pFunc);
+void constDistanceMoved(TJ_Point location, double dis, int isStartMove, pfv pFunc);
 
 
 #endif /* TJ_DrawTool_C_h */

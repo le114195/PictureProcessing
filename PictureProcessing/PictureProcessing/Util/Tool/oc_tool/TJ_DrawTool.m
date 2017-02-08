@@ -21,7 +21,7 @@ static DrawCompletionBlock  DrawCompletion;
 @implementation TJ_DrawTool
 
 
-+ (void)constDisDraw:(CGPoint)location radius:(double)radius dis:(double)dis isStartMove:(BOOL)isStartMove completion:(DrawCompletionBlock)completion
++ (void)constDisDraw:(CGPoint)location dis:(double)dis isStartMove:(BOOL)isStartMove completion:(DrawCompletionBlock)completion
 {
     DrawCompletion = completion;
     
@@ -35,7 +35,7 @@ static DrawCompletionBlock  DrawCompletion;
     }else {
         isStartM = 0;
     }
-    constDistanceMoved(tj_Point, radius, dis, isStartM, &pFunc);
+    constDistanceMoved(tj_Point, dis, isStartM, &pFunc);
 }
 
 void pFunc(float* verBuffer, int count)

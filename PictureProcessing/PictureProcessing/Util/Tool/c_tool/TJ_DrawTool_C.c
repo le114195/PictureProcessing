@@ -11,32 +11,26 @@
 #include <stdlib.h>
 
 
-void constDistanceMoved(TJ_Point location, double radius, double dis, int isStartMove, pfv pFunc)
+void constDistanceMoved(TJ_Point location, double dis, int isStartMove, pfv pFunc)
 {
-    static float           previousAngle;
     static float*           vertexBuffer = NULL;
     static TJ_Point         previousPoint;
-    float                  angle,
-                            distance,
-                            newDis = 0.0;
+    float                   distance, newDis = 0.0;
+    
     if (vertexBuffer == NULL) {
         vertexBuffer = malloc(64 * 2 * sizeof(float));
     }
     
+    //初始化，确定前一个点
     if (isStartMove) {
         previousPoint = location;
-        angle = atan((location.y - previousPoint.y) / (location.x - previousPoint.x));
-        previousAngle = angle;
     }
-    angle = atan((location.y - previousPoint.y) / (location.x - previousPoint.x));
-    distance = hypot(fabs(location.y - previousPoint.y), fabs(location.x - previousPoint.x));
     
-    if (distance < 2 * radius) {
-        return;
-    }
-    if (fabs(previousAngle - angle) < M_PI_4 && distance < dis) {
-        return;
-    }else if (distance > dis) {
+    //计算两个点的距离
+    distance = hypot(fabs(location.y - previousPoint.y), fabs(location.x - previousPoint.x));
+
+    //判断两个点的距离是否大于最短距离
+    if (distance > dis) {
         int count = distance / dis;
         if (count < 64) {
             newDis = dis;
@@ -53,7 +47,6 @@ void constDistanceMoved(TJ_Point location, double radius, double dis, int isStar
             pFunc(vertexBuffer, count);
         }
     }
-    previousAngle = angle;
 }
 
 
