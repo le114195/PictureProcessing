@@ -30,22 +30,25 @@ void constDistanceMoved(TJ_Point location, double dis, int isStartMove, pfv pFun
     distance = hypot(fabs(location.y - previousPoint.y), fabs(location.x - previousPoint.x));
 
     //判断两个点的距离是否大于最短距离
-    if (distance > dis) {
-        int count = distance / dis;
-        if (count < 64) {
-            newDis = dis;
-        }else {
-            count = 64;
-            newDis = distance / 64;
-        }
-        for (int i = 0; i < count; i++) {
-            previousPoint = newPoint(previousPoint, location, newDis);
-            vertexBuffer[2*i + 0] = previousPoint.x;
-            vertexBuffer[2*i + 1] = previousPoint.y;
-        }
-        if (pFunc != NULL) {
-            pFunc(vertexBuffer, count);
-        }
+    if (distance < dis) return;
+    
+    int count = distance / dis;
+    
+    //两个点之间最多存在64个点
+    if (count < 64) {
+        newDis = dis;
+    }else {
+        count = 64;
+        newDis = distance / 64;
+    }
+    
+    for (int i = 0; i < count; i++) {
+        previousPoint = newPoint(previousPoint, location, newDis);
+        vertexBuffer[2*i + 0] = previousPoint.x;
+        vertexBuffer[2*i + 1] = previousPoint.y;
+    }
+    if (pFunc != NULL) {
+        pFunc(vertexBuffer, count);
     }
 }
 
