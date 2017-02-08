@@ -15,14 +15,13 @@
 #import "TJ_CameraController.h"
 #import "GPUVideoCameraController.h"
 
-
 #import "TJMoreLayerController.h"
 
 #import "MarchineLearingVC.h"
 
-
-
 #import "OpenglEsListController.h"
+
+#import "OtherListController.h"
 
 
 
@@ -45,7 +44,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"自定义相机", @"gpu相机", @"图层", @"openCV机器学习"];
+    self.dataArray = @[@"opencvTest", @"GPUImageTest", @"OpenGL", @"自定义相机", @"gpu相机", @"图层", @"openCV机器学习", @"其他"];
     
     [self tableViewConfigure];
     
@@ -63,9 +62,6 @@
 {
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
-
-
-
 
 
 #pragma mark - 子控件初始化
@@ -115,9 +111,6 @@
     }
     return _picker;
 }
-
-
-
 #pragma mark - 点击事件
 
 
@@ -189,6 +182,11 @@
         case 6:{
             MarchineLearingVC *mlVC = [[MarchineLearingVC alloc] init];
             [self.navigationController pushViewController:mlVC animated:YES];
+            break;
+        }
+        case 7:{
+            OtherListController *otherListVC = [[OtherListController alloc] init];
+            [self.navigationController pushViewController:otherListVC animated:YES];
             break;
         }
         default:

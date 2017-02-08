@@ -10,9 +10,8 @@
 
 @interface UIView (TJ)
 
-
-
-
+/** 将UIView绘制成图片 */
+- (UIImage *)drawImage;
 
 
 @end

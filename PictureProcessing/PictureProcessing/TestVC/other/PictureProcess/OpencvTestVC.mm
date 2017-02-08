@@ -73,7 +73,6 @@
     TJScale *scale = new TJScale();
     self.srcImageView.image = MatToUIImage(scale->resize_demo([self.imageName UTF8String], 0.5));
     
-    
     Mat mat;
     UIImageToMat(self.srcImageView.image, mat);
     
@@ -150,13 +149,9 @@
 {
 //    [self virtual_test];
 //    [self threadTest];
-    
-    
     GrammmarDemo *grammar = new GrammmarDemo();
-    
     grammar->vecTest(10);
     delete grammar;
-    
 }
 
 /** 静态函数、虚函数和纯虚函数测试 */
@@ -176,7 +171,6 @@
 {
     TJPthread *thread = new TJPthread();
     thread->createThread(thred_func, NULL);
-    
     delete thread;
 }
 
