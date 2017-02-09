@@ -23,6 +23,8 @@
 
 #import "OtherListController.h"
 
+#import "OpenCVBaseController.h"
+
 
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>

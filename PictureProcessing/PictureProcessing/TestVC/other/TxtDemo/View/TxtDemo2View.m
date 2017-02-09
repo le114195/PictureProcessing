@@ -8,7 +8,7 @@
 
 #import "TxtDemo2View.h"
 #import "UIView+TJ.h"
-#import "UIImage+IM.h"
+#import "UIImage+TJ.h"
 
 
 @implementation TxtDemo2View
@@ -27,9 +27,8 @@
             
             UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(100 + i * (txtSize + 5), 70, txtSize, txtSize)];
             [self.containerView addSubview:testLabel];
-            
+
             testLabel.font = [UIFont systemFontOfSize:txtSize];
-            testLabel.backgroundColor = [UIColor redColor];
             testLabel.text = str;
             
             [self.arrM addObject:testLabel];
@@ -39,6 +38,11 @@
         UIView *view = [self.arrM firstObject];
     
         UIImage *newImg = [view drawImage];
+        
+        UIImage *invertImg = [newImg tj_invert];
+        
+        
+        NSLog(@"%@", NSStringFromCGSize(invertImg.size));
         
         [self drawLayerImgWithBGSize:self.containerView.bounds.size image:newImg];
 
@@ -68,7 +72,10 @@
     
     UIImage *newImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    NSLog(@"%@", NSStringFromCGSize(newImg.size));
 }
+
 
 
 

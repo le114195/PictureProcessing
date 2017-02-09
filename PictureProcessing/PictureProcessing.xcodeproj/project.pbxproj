@@ -303,7 +303,6 @@
 		756D411E1E4B13C8000439AA /* GravityTxtView.m in Sources */ = {isa = PBXBuildFile; fileRef = 756D411D1E4B13C8000439AA /* GravityTxtView.m */; };
 		756D41211E4B16E3000439AA /* TxtDemo2View.m in Sources */ = {isa = PBXBuildFile; fileRef = 756D41201E4B16E3000439AA /* TxtDemo2View.m */; };
 		756D41241E4B1953000439AA /* TxtBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 756D41231E4B1953000439AA /* TxtBaseView.m */; };
-		756D41271E4B1CAC000439AA /* UIImage+IM.m in Sources */ = {isa = PBXBuildFile; fileRef = 756D41261E4B1CAC000439AA /* UIImage+IM.m */; };
 		756F58A01E4AB9D700EA77E4 /* TJ_DrawTool_C.c in Sources */ = {isa = PBXBuildFile; fileRef = 756F589E1E4AB9D700EA77E4 /* TJ_DrawTool_C.c */; };
 		756F58A31E4AB9FC00EA77E4 /* TJ_DrawTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 756F58A21E4AB9FC00EA77E4 /* TJ_DrawTool.m */; };
 		756F58A91E4AE64200EA77E4 /* OpenCVBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756F58A81E4AE64200EA77E4 /* OpenCVBaseController.m */; };
@@ -1026,8 +1025,6 @@
 		756D41201E4B16E3000439AA /* TxtDemo2View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TxtDemo2View.m; sourceTree = "<group>"; };
 		756D41221E4B1953000439AA /* TxtBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TxtBaseView.h; sourceTree = "<group>"; };
 		756D41231E4B1953000439AA /* TxtBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TxtBaseView.m; sourceTree = "<group>"; };
-		756D41251E4B1CAC000439AA /* UIImage+IM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+IM.h"; sourceTree = "<group>"; };
-		756D41261E4B1CAC000439AA /* UIImage+IM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+IM.m"; sourceTree = "<group>"; };
 		756F589E1E4AB9D700EA77E4 /* TJ_DrawTool_C.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TJ_DrawTool_C.c; sourceTree = "<group>"; };
 		756F589F1E4AB9D700EA77E4 /* TJ_DrawTool_C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DrawTool_C.h; sourceTree = "<group>"; };
 		756F58A11E4AB9FC00EA77E4 /* TJ_DrawTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJ_DrawTool.h; sourceTree = "<group>"; };
@@ -1623,8 +1620,6 @@
 		755763C51DB8A70900B581D8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				756D41251E4B1CAC000439AA /* UIImage+IM.h */,
-				756D41261E4B1CAC000439AA /* UIImage+IM.m */,
 				755763C61DB8A70900B581D8 /* UIColor+Conver16.h */,
 				755763C71DB8A70900B581D8 /* UIColor+Conver16.m */,
 				755763CA1DB8A70900B581D8 /* UIView+Size.h */,
@@ -3286,7 +3281,6 @@
 				7558E8561DBF94CB00E7EDA5 /* GPUImageErosionFilter.m in Sources */,
 				7558E8A31DBF94CB00E7EDA5 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				7558E8651DBF94CB00E7EDA5 /* GPUImageGlassSphereFilter.m in Sources */,
-				756D41271E4B1CAC000439AA /* UIImage+IM.m in Sources */,
 				7579B2621D828CFA007B0F74 /* Draw.cpp in Sources */,
 				7558E84A1DBF94CB00E7EDA5 /* GPUImageContrastFilter.m in Sources */,
 				7558E8B31DBF94CB00E7EDA5 /* GPUImageSkinToneFilter.m in Sources */,

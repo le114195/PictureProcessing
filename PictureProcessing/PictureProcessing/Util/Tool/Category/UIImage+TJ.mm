@@ -105,8 +105,6 @@
 
 
 
-
-
 - (void)drawAtCenter:(CGPoint)center Alpha:(CGFloat) alpha withTranslation:(CGPoint)translation radian:(CGFloat)radian scale:(CGFloat)scale {
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -123,6 +121,95 @@
     CGPoint point = CGPointMake(center.x - self.size.width / 2, center.y - self.size.height / 2);
     [self drawAtPoint:point blendMode:kCGBlendModeNormal alpha:alpha];
 }
+
+
+/** 左右反转图片 */
+- (UIImage *)tj_reversal
+{
+    cv::Mat src, dst;
+    UIImageToMat(self, src, 1);
+    dst = cv::Mat::zeros(src.rows, src.cols, src.type());
+    switch (src.channels()) {
+        case 1:{
+            for (int i = 0; i < src.cols; i++) {
+                for (int j = 0; j < src.rows; j++) {
+                    dst.at<uchar>(j, src.cols - i - 1) = src.at<uchar>(j, i);
+                }
+            }
+            break;
+        }
+        case 3:{
+            for (int i = 0; i < src.cols; i++) {
+                for (int j = 0; j < src.rows; j++) {
+                    dst.at<cv::Vec3b>(j, src.cols - i - 1)[0] = src.at<cv::Vec3b>(j, i)[0];
+                    dst.at<cv::Vec3b>(j, src.cols - i - 1)[1] = src.at<cv::Vec3b>(j, i)[1];
+                    dst.at<cv::Vec3b>(j, src.cols - i - 1)[2] = src.at<cv::Vec3b>(j, i)[2];
+                }
+            }
+            break;
+        }
+        case 4:{
+            for (int i = 0; i < src.cols; i++) {
+                for (int j = 0; j < src.rows; j++) {
+                    dst.at<cv::Vec4b>(j, src.cols - i - 1)[0] = src.at<cv::Vec4b>(j, i)[0];
+                    dst.at<cv::Vec4b>(j, src.cols - i - 1)[1] = src.at<cv::Vec4b>(j, i)[1];
+                    dst.at<cv::Vec4b>(j, src.cols - i - 1)[2] = src.at<cv::Vec4b>(j, i)[2];
+                    dst.at<cv::Vec4b>(j, src.cols - i - 1)[3] = src.at<cv::Vec4b>(j, i)[3];
+                }
+            }
+            break;
+        }
+        default:
+            break;
+    }
+    return MatToUIImage(dst);
+}
+
+
+/** 上下反转图片 */
+- (UIImage *)tj_invert
+{
+    cv::Mat src, dst;
+    UIImageToMat(self, src, 1);
+    dst = cv::Mat::zeros(src.rows, src.cols, src.type());
+    switch (src.channels()) {
+        case 1:{
+            for (int i = 0; i < src.cols; i++) {
+                for (int j = 0; j < src.rows; j++) {
+                    dst.at<uchar>(src.rows - j - 1, i) = src.at<uchar>(j, i);
+                }
+            }
+            break;
+        }
+        case 3:{
+            for (int i = 0; i < src.cols; i++) {
+                for (int j = 0; j < src.rows; j++) {
+                    dst.at<cv::Vec3b>(src.rows - j - 1, i)[0] = src.at<cv::Vec3b>(j, i)[0];
+                    dst.at<cv::Vec3b>(src.rows - j - 1, i)[1] = src.at<cv::Vec3b>(j, i)[1];
+                    dst.at<cv::Vec3b>(src.rows - j - 1, i)[2] = src.at<cv::Vec3b>(j, i)[2];
+                }
+            }
+            break;
+        }
+        case 4:{
+            for (int i = 0; i < src.cols; i++) {
+                for (int j = 0; j < src.rows; j++) {
+                    dst.at<cv::Vec4b>(src.rows - j - 1, i)[0] = src.at<cv::Vec4b>(j, i)[0];
+                    dst.at<cv::Vec4b>(src.rows - j - 1, i)[1] = src.at<cv::Vec4b>(j, i)[1];
+                    dst.at<cv::Vec4b>(src.rows - j - 1, i)[2] = src.at<cv::Vec4b>(j, i)[2];
+                    dst.at<cv::Vec4b>(src.rows - j - 1, i)[3] = src.at<cv::Vec4b>(j, i)[3];
+                }
+            }
+            break;
+        }
+        default:
+            break;
+    }
+    return MatToUIImage(dst);
+}
+
+
+
 
 
 @end

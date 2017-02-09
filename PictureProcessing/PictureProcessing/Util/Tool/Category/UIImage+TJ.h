@@ -16,8 +16,17 @@
 
 -(UIImage *)fixOrientation;
 
-
+/** 画图 */
 - (void)drawAtCenter:(CGPoint)center Alpha:(CGFloat) alpha withTranslation:(CGPoint)translation radian:(CGFloat)radian scale:(CGFloat)scale;
 
+
+/** 左右反转图片 */
+- (UIImage *)tj_reversal;
+
+/** 上下反转图片 */
+- (UIImage *)tj_invert;
+
+/** 上下反转图片 */
+- (UIImage *)tj_invert;
 
 @end
