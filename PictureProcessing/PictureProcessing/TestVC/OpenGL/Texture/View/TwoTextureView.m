@@ -14,9 +14,6 @@ NSString *const TJ_TwoTextureVertexShaderString = TJ_STRING_ES
  attribute vec4 position;
  attribute vec2 textCoordinate;
  
- uniform mat4 projectionMatrix;
- uniform mat4 modelViewMatrix;
- 
  varying lowp vec2 varyTextCoord;
  
  void main()

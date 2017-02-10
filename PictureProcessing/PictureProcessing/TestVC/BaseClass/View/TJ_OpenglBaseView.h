@@ -15,6 +15,8 @@
     NSString *FragmentShaderString;
 }
 
+@property (nonatomic, assign) CGFloat           scale;
+
 @property (nonatomic, strong) UIImage           *originImg;
 @property (nonatomic, strong) UIImage           *renderImg;
 

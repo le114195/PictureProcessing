@@ -105,8 +105,8 @@
     glClearColor(0, 0.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    CGFloat scale = [[UIScreen mainScreen] scale];
-    glViewport(0, 0, self.frame.size.width * scale, self.frame.size.height * scale);
+    self.scale = [[UIScreen mainScreen] scale];
+    glViewport(0, 0, self.bounds.size.width * self.scale, self.bounds.size.height * self.scale);
     
     
     if (self.myProgram) {

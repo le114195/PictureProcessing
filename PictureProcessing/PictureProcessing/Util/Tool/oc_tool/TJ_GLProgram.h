@@ -31,6 +31,8 @@
                       fragmentShaderString:(NSString *)fShaderString;
 
 
+- (GLuint)myProgram;
+
 - (void)addAttribute:(NSString *)attributeName;
 - (GLuint)attributeIndex:(NSString *)attributeName;
 - (GLuint)uniformIndex:(NSString *)uniformName;

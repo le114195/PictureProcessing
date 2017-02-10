@@ -320,12 +320,14 @@ typedef struct {
         NSLog(@"Failed to make complete framebuffer objectz %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
         return NO;
     }
+    
+    [self.mProgram use];
+    
     // Update projection matrix
     GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth, 0, backingHeight, -1, 1);
     GLKMatrix4 modelViewMatrix = GLKMatrix4Identity; // this sample uses a constant identity modelView matrix
     GLKMatrix4 MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
-    [self.mProgram use];
     glUniformMatrix4fv([self.mProgram uniformIndex:@"MVP"], 1, GL_FALSE, MVPMatrix.m);
     
     // Update viewport
@@ -360,10 +362,6 @@ typedef struct {
     static NSUInteger	vertexMax = 64;
     NSUInteger			vertexCount = 0;
     
-    [EAGLContext setCurrentContext:context];
-    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
-    
-    
     // Allocate vertex array buffer
     if(vertexBuffer == NULL)
         vertexBuffer = malloc(vertexMax * 2 * sizeof(GLfloat));
@@ -384,19 +382,24 @@ typedef struct {
         vertexCount++;
     }
     
+    //glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
+    
     // Load data to the Vertex Buffer Object
-    glBindBuffer(GL_ARRAY_BUFFER, vboId);
+    GLuint  vertexBufferID;
+    glGenBuffers(1, &vertexBufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, vertexCount*2*sizeof(GLfloat), vertexBuffer, GL_DYNAMIC_DRAW);
     
-    glEnableVertexAttribArray(ATTRIB_VERTEX);
-    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    
+    GLuint position = glGetAttribLocation([self.mProgram myProgram], "inVertex");
+    glEnableVertexAttribArray(position);
+    glVertexAttribPointer(position, 2, GL_FLOAT, GL_FALSE, 0, 0);
     
     // Draw
-    [self.mProgram use];
     glDrawArrays(GL_POINTS, 0, (int)vertexCount);
     
     // Display the buffer
-    glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
+    
     [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 

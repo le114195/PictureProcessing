@@ -8,6 +8,8 @@
 
 #import "BrushBaseController.h"
 #import "TJOpenglesBrushView.h"
+#import "OpenGLBrushDemo1.h"
+#import "OpenGLBrushDemo2.h"
 
 
 @interface BrushBaseController ()
@@ -25,6 +27,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -41,6 +46,13 @@
         case 0:
             [self brush];
             break;
+        case 1:
+            [self brush2];
+            break;
+        case 2:
+            [self brush3];
+            break;
+            
         default:
             break;
     }
@@ -67,5 +79,21 @@
     // Defer to the OpenGL view to set the brush color
     [brushView setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
 }
+
+
+- (void)brush2
+{
+    OpenGLBrushDemo1 *brush2 = [[OpenGLBrushDemo1 alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:brush2];
+}
+
+- (void)brush3 {
+    
+    OpenGLBrushDemo2 *demo2 = [[OpenGLBrushDemo2 alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:demo2];
+}
+
+
+
 
 @end

@@ -13,10 +13,7 @@ NSString *const TJ_MultiTextureVertexShaderString = TJ_STRING_ES
 (
  attribute vec4 position;
  attribute vec2 textCoordinate;
- 
- uniform mat4 projectionMatrix;
- uniform mat4 modelViewMatrix;
- 
+
  varying lowp vec2 varyTextCoord;
  
  void main()
@@ -99,10 +96,13 @@ NSString *const TJ_MultiTextureFragmentShaderString = TJ_STRING_ES
         1.0f, -1.0f, 0.0f,     1.0f, 1.0f,
     };
     
+    GLfloat *attrP = attrArr;
+    
+    
     GLuint  vertexBuffer;
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrArr, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrP, GL_STATIC_DRAW);
     
     
     GLuint position = glGetAttribLocation(self.myProgram, "position");

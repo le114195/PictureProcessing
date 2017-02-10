@@ -84,6 +84,11 @@
     }
 }
 
+- (GLuint)myProgram
+{
+    return program;
+}
+
 - (GLuint)attributeIndex:(NSString *)attributeName
 {
     return (GLuint)[attributes indexOfObject:attributeName];

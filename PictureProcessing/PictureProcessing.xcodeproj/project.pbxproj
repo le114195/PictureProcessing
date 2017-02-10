@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7506F4581E4D5FDB0047315F /* OpenGLBrushDemo1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506F4571E4D5FDB0047315F /* OpenGLBrushDemo1.m */; };
+		7506F45B1E4D93B00047315F /* OpenGLBrushDemo2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506F45A1E4D93B00047315F /* OpenGLBrushDemo2.m */; };
 		751AA5C31DD0720500C6E1B9 /* coverImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5C21DD0720500C6E1B9 /* coverImg.png */; };
 		751AA5D21DD076B100C6E1B9 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5C51DD076B100C6E1B9 /* 0.png */; };
 		751AA5D31DD076B100C6E1B9 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5C61DD076B100C6E1B9 /* 1.png */; };
@@ -486,6 +488,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7506F4561E4D5FDB0047315F /* OpenGLBrushDemo1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLBrushDemo1.h; sourceTree = "<group>"; };
+		7506F4571E4D5FDB0047315F /* OpenGLBrushDemo1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLBrushDemo1.m; sourceTree = "<group>"; };
+		7506F4591E4D93B00047315F /* OpenGLBrushDemo2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLBrushDemo2.h; sourceTree = "<group>"; };
+		7506F45A1E4D93B00047315F /* OpenGLBrushDemo2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLBrushDemo2.m; sourceTree = "<group>"; };
 		750F800A1D616A39004BF41A /* BlockHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockHeader.h; sourceTree = "<group>"; };
 		750F800B1D616AA4004BF41A /* SizeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizeHeader.h; sourceTree = "<group>"; };
 		750F800C1D616AD8004BF41A /* FileHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileHeader.h; sourceTree = "<group>"; };
@@ -1566,6 +1572,10 @@
 			children = (
 				755763B51DB88CD400B581D8 /* TJOpenglesBrushView.h */,
 				755763B61DB88CD400B581D8 /* TJOpenglesBrushView.m */,
+				7506F4561E4D5FDB0047315F /* OpenGLBrushDemo1.h */,
+				7506F4571E4D5FDB0047315F /* OpenGLBrushDemo1.m */,
+				7506F4591E4D93B00047315F /* OpenGLBrushDemo2.h */,
+				7506F45A1E4D93B00047315F /* OpenGLBrushDemo2.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3232,6 +3242,7 @@
 				7558E8C61DBF94CB00E7EDA5 /* GPUImageTiltShiftFilter.m in Sources */,
 				7558E8571DBF94CB00E7EDA5 /* GPUImageExclusionBlendFilter.m in Sources */,
 				7558E8E31DBF94CB00E7EDA5 /* ViewController+MASAdditions.m in Sources */,
+				7506F4581E4D5FDB0047315F /* OpenGLBrushDemo1.m in Sources */,
 				7558E8921DBF94CB00E7EDA5 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				7558E8DB1DBF94CB00E7EDA5 /* MASConstraint.m in Sources */,
 				7558E8661DBF94CB00E7EDA5 /* GPUImageGrayscaleFilter.m in Sources */,
@@ -3456,6 +3467,7 @@
 				7558E8CA1DBF94CB00E7EDA5 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				7558E8831DBF94CB00E7EDA5 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				7558E88C1DBF94CB00E7EDA5 /* GPUImageMotionDetector.m in Sources */,
+				7506F45B1E4D93B00047315F /* OpenGLBrushDemo2.m in Sources */,
 				7558E8C21DBF94CB00E7EDA5 /* GPUImageThreeInputFilter.m in Sources */,
 				7558E87C1DBF94CB00E7EDA5 /* GPUImageLightenBlendFilter.m in Sources */,
 				7556F7D31D5CA0AA008CC401 /* main.m in Sources */,

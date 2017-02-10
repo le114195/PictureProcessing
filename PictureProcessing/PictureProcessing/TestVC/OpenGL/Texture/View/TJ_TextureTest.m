@@ -15,15 +15,11 @@ NSString *const TJ_TextureTestVertexShaderString = TJ_STRING_ES
  attribute vec4 position;
  attribute vec2 textCoordinate;
  
- uniform mat4 projectionMatrix;
- uniform mat4 modelViewMatrix;
- 
  varying lowp vec2 varyTextCoord;
  
  void main()
 {
     varyTextCoord = textCoordinate;
-    
     gl_Position = position;
 }
  );
@@ -32,7 +28,6 @@ NSString *const TJ_TextureTestVertexShaderString = TJ_STRING_ES
 NSString *const TJ_TextureTestFragmentShaderString = TJ_STRING_ES
 (
  varying lowp vec2 varyTextCoord;
- //uniform sampler2D colorMap;
  uniform sampler2D textureColor;
  void main()
  {

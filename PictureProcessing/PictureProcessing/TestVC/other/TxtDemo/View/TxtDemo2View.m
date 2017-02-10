@@ -36,17 +36,14 @@
         }
         
         UIView *view = [self.arrM firstObject];
-    
         UIImage *newImg = [view drawImage];
-        
         UIImage *invertImg = [newImg tj_invert];
-        
-        
-        NSLog(@"%@", NSStringFromCGSize(invertImg.size));
-        
+        for (int i = 0; i < array.count; i++) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100 + i * (txtSize + 5), 80 + txtSize, txtSize, txtSize)];
+            [self.containerView addSubview:imageView];
+            imageView.image = invertImg;
+        }
         [self drawLayerImgWithBGSize:self.containerView.bounds.size image:newImg];
-
-        
     }
     return self;
 }
