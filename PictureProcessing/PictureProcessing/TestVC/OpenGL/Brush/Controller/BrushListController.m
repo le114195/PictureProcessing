@@ -24,7 +24,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    self.dataArray = @[@"画笔1", @"画笔2", @"画笔3"];
+    self.dataArray = @[@"画笔1", @"画笔2", @"画笔3", @"画线1"];
     
     [self tableViewConfigure];
     

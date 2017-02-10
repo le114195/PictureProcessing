@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7506F4581E4D5FDB0047315F /* OpenGLBrushDemo1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506F4571E4D5FDB0047315F /* OpenGLBrushDemo1.m */; };
 		7506F45B1E4D93B00047315F /* OpenGLBrushDemo2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506F45A1E4D93B00047315F /* OpenGLBrushDemo2.m */; };
+		7506F45E1E4DB66C0047315F /* OpenGLBrushLine1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7506F45D1E4DB66C0047315F /* OpenGLBrushLine1.m */; };
 		751AA5C31DD0720500C6E1B9 /* coverImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5C21DD0720500C6E1B9 /* coverImg.png */; };
 		751AA5D21DD076B100C6E1B9 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5C51DD076B100C6E1B9 /* 0.png */; };
 		751AA5D31DD076B100C6E1B9 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 751AA5C61DD076B100C6E1B9 /* 1.png */; };
@@ -492,6 +493,8 @@
 		7506F4571E4D5FDB0047315F /* OpenGLBrushDemo1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLBrushDemo1.m; sourceTree = "<group>"; };
 		7506F4591E4D93B00047315F /* OpenGLBrushDemo2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLBrushDemo2.h; sourceTree = "<group>"; };
 		7506F45A1E4D93B00047315F /* OpenGLBrushDemo2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLBrushDemo2.m; sourceTree = "<group>"; };
+		7506F45C1E4DB66C0047315F /* OpenGLBrushLine1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLBrushLine1.h; sourceTree = "<group>"; };
+		7506F45D1E4DB66C0047315F /* OpenGLBrushLine1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLBrushLine1.m; sourceTree = "<group>"; };
 		750F800A1D616A39004BF41A /* BlockHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockHeader.h; sourceTree = "<group>"; };
 		750F800B1D616AA4004BF41A /* SizeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizeHeader.h; sourceTree = "<group>"; };
 		750F800C1D616AD8004BF41A /* FileHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileHeader.h; sourceTree = "<group>"; };
@@ -1576,6 +1579,8 @@
 				7506F4571E4D5FDB0047315F /* OpenGLBrushDemo1.m */,
 				7506F4591E4D93B00047315F /* OpenGLBrushDemo2.h */,
 				7506F45A1E4D93B00047315F /* OpenGLBrushDemo2.m */,
+				7506F45C1E4DB66C0047315F /* OpenGLBrushLine1.h */,
+				7506F45D1E4DB66C0047315F /* OpenGLBrushLine1.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3445,6 +3450,7 @@
 				7557639E1DB863B500B581D8 /* TJOpengles3D.m in Sources */,
 				7558E8981DBF94CB00E7EDA5 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				75887DFB1DBEF850008757CC /* SSHTTP.m in Sources */,
+				7506F45E1E4DB66C0047315F /* OpenGLBrushLine1.m in Sources */,
 				756F58A01E4AB9D700EA77E4 /* TJ_DrawTool_C.c in Sources */,
 				7558E8BF1DBF94CB00E7EDA5 /* GPUImageSwirlFilter.m in Sources */,
 				7558E8D41DBF94CB00E7EDA5 /* GPUImageVoronoiConsumerFilter.m in Sources */,

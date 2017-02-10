@@ -10,6 +10,7 @@
 #import "TJOpenglesBrushView.h"
 #import "OpenGLBrushDemo1.h"
 #import "OpenGLBrushDemo2.h"
+#import "OpenGLBrushLine1.h"
 
 
 @interface BrushBaseController ()
@@ -52,6 +53,9 @@
         case 2:
             [self brush3];
             break;
+        case 3:
+            [self lineDemo1];
+            break;
             
         default:
             break;
@@ -93,7 +97,10 @@
     [self.view addSubview:demo2];
 }
 
-
+- (void)lineDemo1{
+    OpenGLBrushLine1 *line1 = [[OpenGLBrushLine1 alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:line1];
+}
 
 
 @end
