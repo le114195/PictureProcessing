@@ -106,12 +106,13 @@ NSString *const TJ_Brush1FragmentShaderString = TJ_STRING_ES
     glUniform1f(glGetUniformLocation(self.myProgram, "pointSize"), brushTextureW / 2);
     
 
+    CGFloat brushOpacity = 0.3;
     GLfloat brushColor[4];
     
-    brushColor[0] = 1.0;
-    brushColor[1] = 0.5;
-    brushColor[2] = 0.7;
-    brushColor[3] = 0.3;
+    brushColor[0] = 1.0 * brushOpacity;
+    brushColor[1] = 1.0 * brushOpacity;
+    brushColor[2] = 1.0 * brushOpacity;
+    brushColor[3] = brushOpacity;
     
     glUniform4fv(glGetUniformLocation(self.myProgram, "vertexColor"), 1, brushColor);
 }

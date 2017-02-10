@@ -62,7 +62,7 @@ NSString *const TJ_Brush2FragmentShaderString = TJ_STRING_ES
 {
     [super layoutSubviews];
     
-    glClearColor(0, 0.0, 0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
     [self setupTexture];

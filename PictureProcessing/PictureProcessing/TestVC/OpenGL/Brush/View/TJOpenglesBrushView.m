@@ -214,8 +214,6 @@ typedef struct {
     
     // initialize brush color
     glUniform4fv([self.mProgram uniformIndex:@"vertexColor"], 1, brushColor);
-    
-
 }
 
 // Create a texture from an image
